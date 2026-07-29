@@ -4,19 +4,19 @@
 
 ### ✨ Headline
 
-**bmad-loop lands as an installable module, and the automator that came before it steps aside.** **bmad-loop** — the successor project for unattended dev-loop orchestration, adversarial review, and deferred-work sweeps — is now selectable straight from the installer picker, driven by the new **bmad-dev-auto** skill: a single-iteration unattended worker that clarifies intent, creates or resumes a spec, implements, reviews, and finalizes, all off a spec-frontmatter state machine an orchestrator can poll. **bmad-automator**, the experimental predecessor, is now deprecated in its favor.
+**acl-loop lands as an installable module, and the automator that came before it steps aside.** **acl-loop** — the successor project for unattended dev-loop orchestration, adversarial review, and deferred-work sweeps — is now selectable straight from the installer picker, driven by the new **acl-dev-auto** skill: a single-iteration unattended worker that clarifies intent, creates or resumes a spec, implements, reviews, and finalizes, all off a spec-frontmatter state machine an orchestrator can poll. **acl-automator**, the experimental predecessor, is now deprecated in its favor.
 
-**Also in this release:** party-mode gets an anti-consensus room and two sync fixes, the code-review/edge-case-hunter pipeline gets sharper severity triage and a named-set generalization pass, and **bmad-investigate** is retired.
+**Also in this release:** party-mode gets an anti-consensus room and two sync fixes, the code-review/edge-case-hunter pipeline gets sharper severity triage and a named-set generalization pass, and **acl-investigate** is retired.
 
 ### 💥 Breaking Changes
 
-* **bmad-automator deprecated, replaced by bmad-loop** (#2532). New installs no longer show BMad Automator in the picker. Existing installs are untouched and keep showing, with a migration hint pointing to BMad Loop. If you're on Automator, plan the move to `bmad-loop`.
+* **acl-automator deprecated, replaced by acl-loop** (#2532). New installs no longer show ACL Automator in the picker. Existing installs are untouched and keep showing, with a migration hint pointing to ACL Loop. If you're on Automator, plan the move to `acl-loop`.
 
 ### 🎁 Features
 
-* **bmad-loop — new marketplace module** (#2532). BMad's unattended-dev orchestrator ships as an opt-in installer module (`bmad-loop`, not selected by default). Its skills live behind a `.claude-plugin/marketplace.json` rather than a normal `module.yaml` folder, so the installer gained a `marketplace-plugin` registry flag that routes it through the existing custom-plugin resolver, and now fails loudly instead of installing an empty module if resolution comes up short. Installing the module only stages files — finish setup by running the `bmad-loop-setup` skill, which installs the orchestrator and wires up per-project hooks and policy; automation doesn't run until that completes. A new `post-install-message` registry field surfaces this instruction right after install (blocking on interactive installs so it isn't missed, non-blocking with `--yes`).
-* **bmad-dev-auto — new unattended workflow skill** (#2500 and nine follow-ups). A Quick Dev sibling built to keep moving without a human in the loop, driven entirely off spec-frontmatter status so an orchestrator like bmad-loop can poll it. Hardened through the release: an append-only review-triage log with loopback tracking (#2505); an end-of-run commit so the worktree stays clean into the next iteration (#2506); a fix to the Blind Hunter reviewer, which was wrongly denied project access ("blind" means blind to intent, not to the codebase) (#2507); re-entry on a completed spec to trigger a fresh follow-up review pass (#2508); a `final_revision` recorded in frontmatter at exit, the only link back from an out-of-tree spec to its in-tree commits (#2522); a closed gap where Finalize could leave `status: draft` on an otherwise-done run (#2536); and a hardened contract requiring subagents to be invoked synchronously, since there's no event loop to resume a yielded turn (#2543). Reference doc at `docs/reference/dev-auto.md` (#2519), retitled "Autonomous Development Loops" (#2521). Some of the same prompt fixes were backported to Quick Dev (#2501).
-* **party-mode: anti-consensus club** (#2530). New built-in persona group (Wildcard, Level, Killjoy, Splinter) for decision rooms that resist fast agreement while keeping a human in control. Launch with `--party=anti-concensus-club`, and use `--mode subagent` for best results. These can be configured as defaults if you use bmad customize and specify that.
+* **acl-loop — new marketplace module** (#2532). ACL's unattended-dev orchestrator ships as an opt-in installer module (`acl-loop`, not selected by default). Its skills live behind a `.claude-plugin/marketplace.json` rather than a normal `module.yaml` folder, so the installer gained a `marketplace-plugin` registry flag that routes it through the existing custom-plugin resolver, and now fails loudly instead of installing an empty module if resolution comes up short. Installing the module only stages files — finish setup by running the `acl-loop-setup` skill, which installs the orchestrator and wires up per-project hooks and policy; automation doesn't run until that completes. A new `post-install-message` registry field surfaces this instruction right after install (blocking on interactive installs so it isn't missed, non-blocking with `--yes`).
+* **acl-dev-auto — new unattended workflow skill** (#2500 and nine follow-ups). A Quick Dev sibling built to keep moving without a human in the loop, driven entirely off spec-frontmatter status so an orchestrator like acl-loop can poll it. Hardened through the release: an append-only review-triage log with loopback tracking (#2505); an end-of-run commit so the worktree stays clean into the next iteration (#2506); a fix to the Blind Hunter reviewer, which was wrongly denied project access ("blind" means blind to intent, not to the codebase) (#2507); re-entry on a completed spec to trigger a fresh follow-up review pass (#2508); a `final_revision` recorded in frontmatter at exit, the only link back from an out-of-tree spec to its in-tree commits (#2522); a closed gap where Finalize could leave `status: draft` on an otherwise-done run (#2536); and a hardened contract requiring subagents to be invoked synchronously, since there's no event loop to resume a yielded turn (#2543). Reference doc at `docs/reference/dev-auto.md` (#2519), retitled "Autonomous Development Loops" (#2521). Some of the same prompt fixes were backported to Quick Dev (#2501).
+* **party-mode: anti-consensus club** (#2530). New built-in persona group (Wildcard, Level, Killjoy, Splinter) for decision rooms that resist fast agreement while keeping a human in control. Launch with `--party=anti-concensus-club`, and use `--mode subagent` for best results. These can be configured as defaults if you use acl customize and specify that.
 * **Two new elicitation methods: Subtraction and Map Is Not the Territory** (#2515). Subtraction counters additive bias; Map Is Not the Territory guards against over-trusting a lossy model.
 * **Edge Case Hunter: named-set generalization pass** (#2524). Catches diffs that special-case some members of a fixed set (enum, status code, sentinel, flag) while leaving the rest as silent unhandled branches. Measured catch-rate improvement of 50% to 100% on a real regression, at a 19% token cost per run.
 
@@ -28,16 +28,16 @@
 * **Deletion audit folded into Edge Case Hunter** (#2525). Retires the standalone deletion-contract auditor layer, which added cold-start cost for near-zero yield, in favor of a gated deletion check inside Edge Case Hunter's existing turn.
 * **Review layer invocation normalized** (#2526). Removes stale "no access/control" wording from code-review/quick-dev/dev-auto prompts and normalizes Blind Hunter / Edge Case Hunter invocation phrasing.
 * **Installer accepts Windows custom module paths** (#2511). Local paths like `C:\modules\foo`, `C:/modules/foo`, and `.\foo` no longer fall through to the Git-URL parser and get rejected.
-* **bmad-help reads central config** (#2541). Its config data source now goes through the shared four-layer TOML resolver instead of legacy `config.yaml`/`user-config.yaml`, fixing `communication_language` and `project_knowledge` not reaching the skill.
+* **acl-help reads central config** (#2541). Its config data source now goes through the shared four-layer TOML resolver instead of legacy `config.yaml`/`user-config.yaml`, fixing `communication_language` and `project_knowledge` not reaching the skill.
 
 ### 📚 Docs
 
-* **bmad-forge-idea wording tightened** (#2513). Overview, session, persona, and exit language rewritten more directly; no behavior change.
-* **validate-skills exempts deprecated skills from the trigger-phrase check** (#2486). Thin compatibility shims (`bmad-create-prd`, `bmad-edit-prd`, `bmad-validate-prd`, `bmad-create-architecture`) intentionally omit a trigger phrase to steer users to their replacement.
+* **acl-forge-idea wording tightened** (#2513). Overview, session, persona, and exit language rewritten more directly; no behavior change.
+* **validate-skills exempts deprecated skills from the trigger-phrase check** (#2486). Thin compatibility shims (`acl-create-prd`, `acl-edit-prd`, `acl-validate-prd`, `acl-create-architecture`) intentionally omit a trigger phrase to steer users to their replacement.
 
 ### 🗑️ Removed
 
-* **bmad-investigate retired.** It reached the same conclusions as plain investigation at higher cost; the case-file artifact didn't justify the overhead.
+* **acl-investigate retired.** It reached the same conclusions as plain investigation at higher cost; the case-file artifact didn't justify the overhead.
 
 ## v6.9.0 - 2026-06-21
 
@@ -45,37 +45,37 @@
 
 **Reasoning skills get sharper and orchestration gets a memory.**
 
-**bmad-forge-idea** is a new core skill that takes a half-formed idea and pressure-tests it one Socratic question at a time — with an adversarial attack mode and optional persona rooms — until the idea hardens, proves out, or dies cheaply. 
+**acl-forge-idea** is a new core skill that takes a half-formed idea and pressure-tests it one Socratic question at a time — with an adversarial attack mode and optional persona rooms — until the idea hardens, proves out, or dies cheaply. 
 
-**bmad-architecture** lands as a ground-up rewrite of the old multi-step create-architecture flow: a lean spine (`ARCHITECTURE-SPINE.md`) that is the source of truth, intent-based routing (Create/Update/Validate), a breadth-coverage rubric so no dimension is silently skipped, and an opt-in reviewer gate.
+**acl-architecture** lands as a ground-up rewrite of the old multi-step create-architecture flow: a lean spine (`ARCHITECTURE-SPINE.md`) that is the source of truth, intent-based routing (Create/Update/Validate), a breadth-coverage rubric so no dimension is silently skipped, and an opt-in reviewer gate.
 
 **party-mode** is reborn with creatable, savable custom parties, optional party memory, and many pacing and dynamics improvements.
 
-**Under the hood:** a canonical shared **memlog** (`_bmad/scripts/memlog.py`) replaces per-skill decision logs and is now the standard working-memory primitive across the suite. The installer now checks for **uv** and reframes it as the standard way to run BMAD's Python scripts (`uv run`). Plus an **Astro 6** security upgrade clearing 8+ Dependabot advisories and two new platform targets.
+**Under the hood:** a canonical shared **memlog** (`_acl/scripts/memlog.py`) replaces per-skill decision logs and is now the standard working-memory primitive across the suite. The installer now checks for **uv** and reframes it as the standard way to run ACL's Python scripts (`uv run`). Plus an **Astro 6** security upgrade clearing 8+ Dependabot advisories and two new platform targets.
 
 ### ⚠️ Upcoming Breaking Change (in v7) — standardizing on `uv`
 
-The industry is converging on [**uv**](https://docs.astral.sh/uv/) for running Python, and BMAD is following. Today our skills use a **mix** of `uv run` and direct `python3` invocation. In the **v7 release, every skill that runs a Python script will standardize on `uv run`** instead of calling `python3` directly — `uv` provisions the interpreter and manages dependencies, so scripts run consistently regardless of what's on your PATH.
+The industry is converging on [**uv**](https://docs.astral.sh/uv/) for running Python, and ACL is following. Today our skills use a **mix** of `uv run` and direct `python3` invocation. In the **v7 release, every skill that runs a Python script will standardize on `uv run`** instead of calling `python3` directly — `uv` provisions the interpreter and manages dependencies, so scripts run consistently regardless of what's on your PATH.
 
 **What to do now:** install and set up `uv` ([docs](https://docs.astral.sh/uv/)) — or just ask your AI agent to "install and set up uv for me." Starting this release the installer checks for it and points you to setup if it's missing. `uv` is **not yet required** but without it some skills may have degraded performance or a shim AGENTS.md (or similar) or rule will need to be added to your environment to tell the agent when it sees uv run to use python3 instead. The best course of action though at this time is to install uv. A missing `uv` still warns rather than blocks, but it will be the assumed default in v7. Custom skills and overrides that shell out to `python3` should plan to migrate to `uv run`.
 
 ### 🎁 Features
 
-* **bmad-forge-idea — new core skill** (#2492). Domain-agnostic idea pressure-testing for the analysis phase: Socratic, one-question-at-a-time interrogation with an adversarial attack mode and optional persona rooms resolved from the installed roster. Hardens or kills an idea cheaply; emits memlog residue and an optional brief that feeds bmad-spec or bmad-quick-dev. Interactive only (menu code FI).
-* **bmad-architecture — lean spine rewrite** (#2467, #2475). Replaces the fixed-step `bmad-create-architecture` (retained as a forwarding shim, removed in v7) with intent-based routing across five entry shapes (raw idea, large doc, codebase, feature slice, existing spine). The spine (`ARCHITECTURE-SPINE.md`) is the source of truth and SPEC.md is derived from it. Adds a breadth-coverage rubric (every altitude-owned dimension decided/deferred/open), an opt-in reviewer gate that scales lenses to rigor, and a full non-interactive headless mode. `lint_spine.py` hardened with fence-blanking, robust column detection, and 28 regression tests.
+* **acl-forge-idea — new core skill** (#2492). Domain-agnostic idea pressure-testing for the analysis phase: Socratic, one-question-at-a-time interrogation with an adversarial attack mode and optional persona rooms resolved from the installed roster. Hardens or kills an idea cheaply; emits memlog residue and an optional brief that feeds acl-spec or acl-quick-dev. Interactive only (menu code FI).
+* **acl-architecture — lean spine rewrite** (#2467, #2475). Replaces the fixed-step `acl-create-architecture` (retained as a forwarding shim, removed in v7) with intent-based routing across five entry shapes (raw idea, large doc, codebase, feature slice, existing spine). The spine (`ARCHITECTURE-SPINE.md`) is the source of truth and SPEC.md is derived from it. Adds a breadth-coverage rubric (every altitude-owned dimension decided/deferred/open), an opt-in reviewer gate that scales lenses to rigor, and a full non-interactive headless mode. `lint_spine.py` hardened with fence-blanking, robust column detection, and 28 regression tests.
 * **party-mode: configurable parties + persistent memory** (#2479, #2484). Custom personas (`party_members`) and named rooms (`party_groups`, with optional scenes), four run modes (auto/session/subagent/agent-team), and a preloaded "Code Review Crew" of five adversarial lenses. Each party keeps append-only session memory under `{memory_dir}/<party_id>/` so sessions resume with prior context; ad-hoc casts stay ephemeral.
-* **bmad-brainstorming: facilitation modes + visual composer** (#2445). Three modes (Facilitator / Creative Partner / Ideate for me), append-only memlog with optional `--by` authorship attribution, and a self-contained `brain-selector.html` composer (technique strategy, category chips, filter, copy-to-clipboard, dark mode). Catalog grows to 108 techniques (8 new classics: HMW, JTBD, Empathy Map, Backcasting, TRIZ, Fishbone, Build on What Works, Scenario Cross) plus a convergence phase.
+* **acl-brainstorming: facilitation modes + visual composer** (#2445). Three modes (Facilitator / Creative Partner / Ideate for me), append-only memlog with optional `--by` authorship attribution, and a self-contained `brain-selector.html` composer (technique strategy, category chips, filter, copy-to-clipboard, dark mode). Catalog grows to 108 techniques (8 new classics: HMW, JTBD, Empathy Map, Backcasting, TRIZ, Fishbone, Build on What Works, Scenario Cross) plus a convergence phase.
 * **Canonical shared memlog script** (#2462). New `src/scripts/memlog.py` — append-only chronological working memory with init/append/set ops, no lifecycle-status design, Python 3.8+ support, 30 tests. Any skill can call it at runtime.
 * **Retrospective action items tracked in sprint-status** (#2465). The retrospective step appends an `action_items` section to `sprint-status.yaml`; sprint-status validates and surfaces open items, and sprint-planning preserves them on regenerate.
-* **Installer checks for `uv` and reframes it as the standard** (#2495). Replaces the old python3 probe with a `uv` check, adds a heads-up to the install intro and a tip to the "BMAD is ready" summary, and updates docs/script docstrings (en/fr/vi-vn) to frame `uv run` as the standard and `python3` as the transition fallback. Migration-friendly: a missing `uv` warns and points you to setup, never blocks. See the Upcoming Breaking Change note above.
+* **Installer checks for `uv` and reframes it as the standard** (#2495). Replaces the old python3 probe with a `uv` check, adds a heads-up to the install intro and a tip to the "ACL is ready" summary, and updates docs/script docstrings (en/fr/vi-vn) to frame `uv run` as the standard and `python3` as the transition fallback. Migration-friendly: a missing `uv` warns and points you to setup, never blocks. See the Upcoming Breaking Change note above.
 * **New installer platform targets: hermes-agent and CodeWhale** (#2489, #2459). hermes-agent added as a tool target; CodeWhale uses `.codewhale/skills/` (project) and `~/.codewhale/skills/` (global), both with test coverage.
 
 ### 🐛 Fixes
 
 * **Astro 6 security upgrade clears Dependabot alerts** (#2493). Astro 5.18.1 → 6.4.6 and Starlight 0.37.5 → 0.40.0 (8 XSS/SSRF advisories), esbuild pinned to 0.28.1 (Windows dev-server file read), markdown-it 14.2.0 (smartquotes ReDoS), brace-expansion 5.0.6 (range DoS). Docs content config migrated to `src/content.config.ts`; page output verified identical to baseline.
 * **Guard WSL installs from Windows Node** (#2470). Detects and prevents a Windows `node.exe` being used inside WSL, where it would silently fail.
-* **Remove empty skill-group dirs after install** (#2461). Prunes empty parent dirs (e.g. `_bmad/bmm/1-analysis`) left after skill cleanup, with a path-boundary check to avoid sibling-dir collisions.
-* **bmad-create-epics-and-stories discovers bmad-ux spine outputs** (#2446). Prerequisites now recognize `DESIGN.md` / `EXPERIENCE.md` alongside the legacy `ux-spec.md`.
+* **Remove empty skill-group dirs after install** (#2461). Prunes empty parent dirs (e.g. `_acl/acl/1-analysis`) left after skill cleanup, with a path-boundary check to avoid sibling-dir collisions.
+* **acl-create-epics-and-stories discovers acl-ux spine outputs** (#2446). Prerequisites now recognize `DESIGN.md` / `EXPERIENCE.md` alongside the legacy `ux-spec.md`.
 * **Pass diff inline to the blind-hunter reviewer** (#2463). Diff output is passed inline in the subagent prompt rather than via a file the reviewer can't read, preventing context-starved hallucination.
 * **Website: nav height for dual announcement banners** (#2473). Fixes layout crowding when two banners show at once.
 * **Workflow clarity & numbering** — clarify quick-dev subagent use across code-review/create-story/quick-dev (#2450), renumber retrospective steps (#2448).
@@ -84,99 +84,99 @@ The industry is converging on [**uv**](https://docs.astral.sh/uv/) for running P
 
 ### ✨ Headline
 
-**New planning shapes lead this release.** **bmad-ux** replaces the old single-spine UX skill with a two-spine contract: **DESIGN.md** (visual identity, Google Labs spec) and **EXPERIENCE.md** (behavior, flow, IA). **bmad-spec** distills any messy intent (brain dump, PRD, transcript, brief) into a tight five-field SPEC.md kernel that any downstream skill can consume. Both extend the streamlined Create/Update/Validate + Fast/Coaching template that **bmad-prd** and **bmad-product-brief** set in v6.7.0. The handoff from design into engineering is now a sealed file contract, not a translation layer.
+**New planning shapes lead this release.** **acl-ux** replaces the old single-spine UX skill with a two-spine contract: **DESIGN.md** (visual identity, Google Labs spec) and **EXPERIENCE.md** (behavior, flow, IA). **acl-spec** distills any messy intent (brain dump, PRD, transcript, brief) into a tight five-field SPEC.md kernel that any downstream skill can consume. Both extend the streamlined Create/Update/Validate + Fast/Coaching template that **acl-prd** and **acl-product-brief** set in v6.7.0. The handoff from design into engineering is now a sealed file contract, not a translation layer.
 
-**Also shipping:** **Web Bundles** for Gemini Gems and ChatGPT Custom GPTs ([bmadcode.com/web-bundles](https://bmadcode.com/web-bundles/)) bring six planning bundles to non-IDE users with full IDE schema parity. **bmad-automator** (story automation) lands on the `next` channel. **bmad-method-ui** ships a community-alpha VS Code dashboard + standalone Next.js web UI. 19 new elicitation techniques arrive. Plus a long tail of installer and activation fixes.
+**Also shipping:** **Web Bundles** for Gemini Gems and ChatGPT Custom GPTs ([aclcode.com/web-bundles](https://aclcode.com/web-bundles/)) bring six planning bundles to non-IDE users with full IDE schema parity. **acl-automator** (story automation) lands on the `next` channel. **acl-adlc-ui** ships a community-alpha VS Code dashboard + standalone Next.js web UI. 19 new elicitation techniques arrive. Plus a long tail of installer and activation fixes.
 
 ### 💥 Breaking Changes
 
-* **`bmad-create-ux-design` replaced by `bmad-ux`.** Single `design.md` spine is gone. New skill emits **DESIGN.md** (visual tokens per the Google Labs spec) and **EXPERIENCE.md** (behavior, flow, IA, states, a11y), with EXPERIENCE.md referencing DESIGN.md tokens via `{path.to.token}` syntax. Adds named-protagonist journeys, surface-closure validation, opt-in reviewer gate, and an extensible producer-handoff registry (default: Stitch). Installer auto-removes the legacy skill. PRD and brief templates aligned (form-factor probe, named-protagonist UJs, no standalone Primary Persona) (#2413)
-* **`bmad-distillator` retired, superseded by `bmad-spec`.** Promoted to core because the kernel pattern is domain-agnostic. Installer cleans up automatically. No internal pipelines called it, but custom workflows must switch to `bmad-spec`.
+* **`acl-create-ux-design` replaced by `acl-ux`.** Single `design.md` spine is gone. New skill emits **DESIGN.md** (visual tokens per the Google Labs spec) and **EXPERIENCE.md** (behavior, flow, IA, states, a11y), with EXPERIENCE.md referencing DESIGN.md tokens via `{path.to.token}` syntax. Adds named-protagonist journeys, surface-closure validation, opt-in reviewer gate, and an extensible producer-handoff registry (default: Stitch). Installer auto-removes the legacy skill. PRD and brief templates aligned (form-factor probe, named-protagonist UJs, no standalone Primary Persona) (#2413)
+* **`acl-distillator` retired, superseded by `acl-spec`.** Promoted to core because the kernel pattern is domain-agnostic. Installer cleans up automatically. No internal pipelines called it, but custom workflows must switch to `acl-spec`.
 
 ### 🎁 Features
 
-* **Web Bundles v6 shelf**: Six bundles purpose-built for Gemini Gems and ChatGPT Custom GPTs. Brainstorming (60 techniques, 10 categories), Product Brief (Create/Update/Validate, Fast/Coaching paths), PRFAQ (Working Backwards, 4 stages, weasel-word challenge), PRD (Vision- or Journey-led, 7-dimension validation), UX (two-spine, Don Norman framing, Stitch handoff), Market & Industry Research (Deep Research + Porter + Christensen). Full schema parity with IDE skills so Gem ↔ IDE handoffs do not break. [bmadcode.com/web-bundles](https://bmadcode.com/web-bundles/) is the single supported install path (#2421, #2423, #2425)
+* **Web Bundles v6 shelf**: Six bundles purpose-built for Gemini Gems and ChatGPT Custom GPTs. Brainstorming (60 techniques, 10 categories), Product Brief (Create/Update/Validate, Fast/Coaching paths), PRFAQ (Working Backwards, 4 stages, weasel-word challenge), PRD (Vision- or Journey-led, 7-dimension validation), UX (two-spine, Don Norman framing, Stitch handoff), Market & Industry Research (Deep Research + Porter + Christensen). Full schema parity with IDE skills so Gem ↔ IDE handoffs do not break. [aclcode.com/web-bundles](https://aclcode.com/web-bundles/) is the single supported install path (#2421, #2423, #2425)
 * **Web Bundle release packager**: `tools/bundle-web-bundles.js` zips each bundle into `dist/web-bundles/{slug}.zip` for GitHub Release attachment. `web-bundles/bundles.json` carries persona, copy, accent color, knowledge files, and platform feature flags (web-browsing, deep-research, Stitch). Zero deps; `execFileSync` + strict slug regex (`^[a-z0-9][a-z0-9-]*$`) eliminates shell-injection surface (#2424)
-* **`bmad-spec`, new core skill**: Distills any intent (brain dump, PRD, transcript, brief) into `SPEC.md` with a five-field kernel (Problem, Capabilities, Constraints, Non-goals, Success signal). Catalogs, tables, diagrams, and editorial-voice content go to named companions; absorbed inputs land in a `sources:` list downstream skips. Eight-rule Spec Law with lean-prose discipline. Outputs to `{output_folder}/specs/spec-{slug}/`, works without bmm installed. Headless callers get JSON; interactive runs close conversationally (#2417)
-* **`bmad-ux`, spine-based UX skill**: Rewrite around DESIGN.md (visual identity, Google Labs spec) + EXPERIENCE.md (behavior, flow, IA). Six-step activation matches `bmad-prd` and `bmad-product-brief`. Fast/Coaching modes. Opt-in reviewer gate (no auto-spend on parallel reviewers for hobby work). Per-category verdicts, no misleading headline grade. Ships three DESIGN.md examples (editorial/Linen & Logic, native mobile/Quill, web SaaS/Drift), two paired EXPERIENCE.md examples, one unpaired DESIGN.md modeling the pure Stitch handoff (#2413)
+* **`acl-spec`, new core skill**: Distills any intent (brain dump, PRD, transcript, brief) into `SPEC.md` with a five-field kernel (Problem, Capabilities, Constraints, Non-goals, Success signal). Catalogs, tables, diagrams, and editorial-voice content go to named companions; absorbed inputs land in a `sources:` list downstream skips. Eight-rule Spec Law with lean-prose discipline. Outputs to `{output_folder}/specs/spec-{slug}/`, works without acl installed. Headless callers get JSON; interactive runs close conversationally (#2417)
+* **`acl-ux`, spine-based UX skill**: Rewrite around DESIGN.md (visual identity, Google Labs spec) + EXPERIENCE.md (behavior, flow, IA). Six-step activation matches `acl-prd` and `acl-product-brief`. Fast/Coaching modes. Opt-in reviewer gate (no auto-spend on parallel reviewers for hobby work). Per-category verdicts, no misleading headline grade. Ships three DESIGN.md examples (editorial/Linen & Logic, native mobile/Quill, web SaaS/Drift), two paired EXPERIENCE.md examples, one unpaired DESIGN.md modeling the pure Stitch handoff (#2413)
 * **19 new advanced-elicitation techniques**: New `framing` category plus additions across 7 categories (all 50 existing methods preserved). Highlights: Chain-of-Thought Scaffolding, Six Thinking Hats, Delphi Method, Inversion Analysis, Steelmanning, Morphological Analysis, Abstraction Laddering, Cascading Failure Simulation, Boundary & Edge Case Sweep (#2062)
 * **Docs sidebar-order validator**: `tools/validate-sidebar-order.js` flags duplicates, gaps, missing fields, and translation drift across English and translated docs. Wired into `docs:validate-sidebar`. Locale-pattern detection prevents nested English subfolders from being silently excluded (#2409)
 
 ### 🐛 Fixes
 
-* **Skill activation guardrails strengthened across 23+ skills**: LLM agents were short-circuiting activation sequences (INCLUDE → READ → RUN → CHECK → FILTER → CD) by guessing variables instead of executing in order, silently skipping append steps and `on_complete` hooks. New guardrail names prepend/append steps explicitly and requires confirmation. Applied to all BMM planning + execution skills, all persona agents (analyst, tech-writer, pm, ux-designer, architect, dev), and new skills (bmad-spec, bmad-ux) (#2398)
-* **Installer reads `config.toml` on re-run**: `loadExistingConfig` only read legacy `_bmad/<module>/config.yaml`, so user-scoped answers (`user_name`, `communication_language`) written to `_bmad/config.user.toml` were ignored and users got re-prompted. Adds `parseCentralToml`; central toml read first, legacy yaml as fallback (#2411)
+* **Skill activation guardrails strengthened across 23+ skills**: LLM agents were short-circuiting activation sequences (INCLUDE → READ → RUN → CHECK → FILTER → CD) by guessing variables instead of executing in order, silently skipping append steps and `on_complete` hooks. New guardrail names prepend/append steps explicitly and requires confirmation. Applied to all ACL planning + execution skills, all persona agents (analyst, tech-writer, pm, ux-designer, architect, dev), and new skills (acl-spec, acl-ux) (#2398)
+* **Installer reads `config.toml` on re-run**: `loadExistingConfig` only read legacy `_acl/<module>/config.yaml`, so user-scoped answers (`user_name`, `communication_language`) written to `_acl/config.user.toml` were ignored and users got re-prompted. Adds `parseCentralToml`; central toml read first, legacy yaml as fallback (#2411)
 * **Stale custom-source caches refreshed on quick-update**: Quick-update now calls `cloneRepo` for every cached custom module, persists the real `next` ref, and atomically dedupes the refresh. When `git fetch` fails (network, deleted repo, revoked auth), the previous clone is preserved with a warning instead of being wiped (#2399)
 * **Shallow-clone default branch resolution**: `--depth 1` clones leave `origin/HEAD` stale, so `git reset --hard origin/HEAD` never pulled new commits. Now resolves the default branch via `git symbolic-ref` and resets against `origin/<branch>` explicitly, falling back to `main` (#2332)
 * **SSH Git URLs with nested group paths**: Custom module installer parses GitLab subgroup and Gitea nested-team SSH URLs correctly (#2379)
 * **`project_context` defined in dev-story, sprint-planning, sprint-status**: Skills referenced the variable without resolving it, producing unresolved expansions at activation in some configurations (#2422)
 * **Dev story baseline commits captured**: Baselining records the commit set the story was scoped against, so reviews compare against a stable reference (#2403)
-* **Customization JSON written as UTF-8**: Non-ASCII team names, product names, and editorial overrides survive a round trip through `_bmad/custom/` (#2414)
+* **Customization JSON written as UTF-8**: Non-ASCII team names, product names, and editorial overrides survive a round trip through `_acl/custom/` (#2414)
 * **Brainstorming idea-flow stays collaborative**: Agent was prematurely converging on its own preferred ideas instead of mirroring and expanding the user's. Collaborative posture restored (#2402)
 
 ### 📚 Docs
 
-* **bmad-investigate added to agent trigger tables**: `agents.md` and `named-agents.md` now show the `IN` trigger and forensic-investigation capability on Amelia's row, closing a v6.7.0 gap (#2410)
+* **acl-investigate added to agent trigger tables**: `agents.md` and `named-agents.md` now show the `IN` trigger and forensic-investigation capability on Amelia's row, closing a v6.7.0 gap (#2410)
 * **Web Bundles install framing and update/customize guidance**: Drops misleading "one-click install" and "two files" claims; adds explicit Gem/GPT setup pattern and an "Updating and customizing" section: custom changes belong in the pasted instructions block, not the knowledge files, so updates do not clobber team customizations (#2423)
-* **Web-bundles install traffic centralized at bmadcode.com/web-bundles**: README, web-bundles README, explanation, and how-to pages all point at the site as the single supported install path (#2425)
-* **Reference docs for bmad-spec**: Full entry in `docs/reference/core-tools.md` (en); table-row stubs in cs/fr/vi-vn/zh-cn pending full translation
+* **Web-bundles install traffic centralized at aclcode.com/web-bundles**: README, web-bundles README, explanation, and how-to pages all point at the site as the single supported install path (#2425)
+* **Reference docs for acl-spec**: Full entry in `docs/reference/core-tools.md` (en); table-row stubs in cs/fr/vi-vn/zh-cn pending full translation
 
 ## v6.7.1 - 2026-05-18
 
 ### 🐛 Fixes
 
-* **Installer no longer errors when a previously installed module's source can no longer be found** — In v6.7.0 the experimental BMad Automator module's installer code (the value used for its `_bmad/<code>/` folder and manifest entry) was renamed from `baut` to `automator`. Anyone who had installed it under the old `baut` code saw `quick-update` fail with `Source for module 'baut' is not available` and risked having the existing install removed. The installer now detects installed modules that can no longer be resolved from any source, leaves them in place untouched, and continues the update. If you previously installed it as `baut` and want the renamed `automator` version, run `npx bmad-method install`, choose **Modify BMAD Installation**, and reselect **BMad Automator**; the old `_bmad/baut/` directory can then be deleted manually
+* **Installer no longer errors when a previously installed module's source can no longer be found** — In v6.7.0 the experimental ACL Automator module's installer code (the value used for its `_acl/<code>/` folder and manifest entry) was renamed from `baut` to `automator`. Anyone who had installed it under the old `baut` code saw `quick-update` fail with `Source for module 'baut' is not available` and risked having the existing install removed. The installer now detects installed modules that can no longer be resolved from any source, leaves them in place untouched, and continues the update. If you previously installed it as `baut` and want the renamed `automator` version, run `npx acl-adlc install`, choose **Modify ACL Installation**, and reselect **ACL Automator**; the old `_acl/baut/` directory can then be deleted manually
 
 ## v6.7.0 - 2026-05-17
 
 ### ✨ Headline
 
-**PRD and Product Brief rebuilt as lean, outcome-driven facilitators called bmad-prd and bmad-brief.** Both flagship planning skills now ship three first-class intents (Create / Update / Validate), support express and guided modes, drive elicitation rather than LLM-suggested filler, and adapt output to your needs. New PRD validation pipeline replaces the adversarial reviewer with a quality-rubric synthesis pass that emits both HTML and markdown reports. New **bmad-investigate** skill brings forensic, evidence-graded case files for bug triage, incident RCA, and unfamiliar-code exploration.
+**PRD and Product Brief rebuilt as lean, outcome-driven facilitators called acl-prd and acl-brief.** Both flagship planning skills now ship three first-class intents (Create / Update / Validate), support express and guided modes, drive elicitation rather than LLM-suggested filler, and adapt output to your needs. New PRD validation pipeline replaces the adversarial reviewer with a quality-rubric synthesis pass that emits both HTML and markdown reports. New **acl-investigate** skill brings forensic, evidence-graded case files for bug triage, incident RCA, and unfamiliar-code exploration.
 
 A new .decision-log pattern is implemented in this release that will track through workflows all decisions made from the start, allowing for easier continuation or later modifications, where memory of what was decided and why will be remembered.
 
 The existing create, edit and validate prd skills still exist but internally will route to the single prd skill with the proper intent. These shims will be removed with the 7.0.0 release when similar updates are completed across all of v6.
 
-The shape of the toml customizations is still the same, so if you make them for create already, it will still work. There are new fields supported also that can improve your experience with the new bmad-prd skill.
+The shape of the toml customizations is still the same, so if you make them for create already, it will still work. There are new fields supported also that can improve your experience with the new acl-prd skill.
 
 ### 💥 Breaking Changes
 
 * **Community modules picker removed from the interactive installer.** Previously installed community modules are preserved on update. Install community modules headlessly with `--custom-source <git-url-or-path>`, or wait for the forthcoming dedicated community installer.
-* **Remote marketplace registry fully retired.** The installer makes zero network calls to `bmad-code-org/bmad-plugins-marketplace`. Both the official-registry fetch (`registry/official.yaml`) and the community-catalog fetch (`registry/community-index.yaml`, `categories.yaml`) are gone. `CommunityModuleManager` and `RegistryClient` are deleted. The bundled `bmad-modules.yaml` at the repo root is the single source of truth for which official modules appear in the picker. Per-module version bumps continue to happen in each module's own repo. **Migration note:** users with previously installed community modules will see them preserved in their manifest, but updates must be handled via `--custom-source <url>` going forward (a dedicated community installer is planned separately).
+* **Remote marketplace registry fully retired.** The installer makes zero network calls to `acl-code-org/acl-plugins-marketplace`. Both the official-registry fetch (`registry/official.yaml`) and the community-catalog fetch (`registry/community-index.yaml`, `categories.yaml`) are gone. `CommunityModuleManager` and `RegistryClient` are deleted. The bundled `acl-modules.yaml` at the repo root is the single source of truth for which official modules appear in the picker. Per-module version bumps continue to happen in each module's own repo. **Migration note:** users with previously installed community modules will see them preserved in their manifest, but updates must be handled via `--custom-source <url>` going forward (a dedicated community installer is planned separately).
 
 ### 🎁 Features
 
-* **WDS (Whiteport Design Studio) now bundled in the official module picker.** Selectable alongside BMM, BMB, BMA, CIS, GDS, and TEA without needing `--custom-source`.
-* **Refreshed display names and hints across all bundled modules.** Shorter, clearer names; hints now describe what each module provides. TEA repositioned to sit directly after BMM in the picker.
-* **Registry entries can declare a `plugin_name` override.** When a module's `.claude-plugin/marketplace.json` declares the plugin under a name different from the module's installer code (e.g., WDS uses `bmad-wds`), set `plugin_name: <name>` on the registry entry to match the marketplace plugin without falling back to the single-plugin heuristic.
+* **WDS (Whiteport Design Studio) now bundled in the official module picker.** Selectable alongside ACL, BMB, BMA, CIS, GDS, and TEA without needing `--custom-source`.
+* **Refreshed display names and hints across all bundled modules.** Shorter, clearer names; hints now describe what each module provides. TEA repositioned to sit directly after ACL in the picker.
+* **Registry entries can declare a `plugin_name` override.** When a module's `.claude-plugin/marketplace.json` declares the plugin under a name different from the module's installer code (e.g., WDS uses `acl-wds`), set `plugin_name: <name>` on the registry entry to match the marketplace plugin without falling back to the single-plugin heuristic.
 
-* **bmad-prd overhaul** — Three intents (Create / Update / Validate); new Discovery shape (Brain dump → Stakes calibration → Working mode → mode-scoped work); capability-first or user-first modes; Essential Spine template plus Adapt-In Menu with authorized section invention for compliance, integration, hardware, SLAs, monetization, data governance; subagent web research default-on; rebuilt validation via PRD Quality Rubric → synthesis pass → HTML + markdown reports; cross-skill parity with `bmad-product-brief` (variable names, `.decision-log.md`, `persistent_facts` auto-loads `project-context.md`); headless mode with per-intent inputs and `partial` status (#2385, #2378)
-* **bmad-product-brief refactor** — Streamlined from a five-stage scripted workflow to a single outcome-driven SKILL.md with Create / Update / Validate intents; inline discovery, elicitation, and review (no more scripted agent fan-outs); new `assets/brief-template.md` with adapt-aggressively guidance; finalize chain through `bmad-distillator` and `bmad-help`; JSON headless responses (#2370, #2371)
-* **New bmad-investigate skill** — Forensic case investigation with evidence-graded findings (Confirmed / Deduced / Hypothesized), delegation discipline for large codebases, resume-on-collision logic; supports both defect-chasing and area-exploration modes (#2345 and follow-ups)
+* **acl-prd overhaul** — Three intents (Create / Update / Validate); new Discovery shape (Brain dump → Stakes calibration → Working mode → mode-scoped work); capability-first or user-first modes; Essential Spine template plus Adapt-In Menu with authorized section invention for compliance, integration, hardware, SLAs, monetization, data governance; subagent web research default-on; rebuilt validation via PRD Quality Rubric → synthesis pass → HTML + markdown reports; cross-skill parity with `acl-product-brief` (variable names, `.decision-log.md`, `persistent_facts` auto-loads `project-context.md`); headless mode with per-intent inputs and `partial` status (#2385, #2378)
+* **acl-product-brief refactor** — Streamlined from a five-stage scripted workflow to a single outcome-driven SKILL.md with Create / Update / Validate intents; inline discovery, elicitation, and review (no more scripted agent fan-outs); new `assets/brief-template.md` with adapt-aggressively guidance; finalize chain through `acl-distillator` and `acl-help`; JSON headless responses (#2370, #2371)
+* **New acl-investigate skill** — Forensic case investigation with evidence-graded findings (Confirmed / Deduced / Hypothesized), delegation discipline for large codebases, resume-on-collision logic; supports both defect-chasing and area-exploration modes (#2345 and follow-ups)
 * **Interactive directory prompt in installer** — `@clack/core` AutocompletePrompt for install-path selection: Tab-cycles existing child dirs, accepts not-yet-created paths, validates raw input (#2387)
-* **OpenCode and GitHub Copilot pointer files** — Generic `installCommandPointers()` mechanism driven by per-platform YAML. OpenCode gets `.opencode/commands/<id>.md` for every skill; Copilot gets `.github/agents/<id>.agent.md` for persona agents only (plus `bmad-tea` allowlist), keeping the Custom Agents picker uncluttered. Works for external modules automatically via `skill-manifest.csv` (#2324)
-* **BMad Automator (`bma`) registered** — Bundled registry fallback gains source-root external-module support, enabling `--modules bma` (#2345)
+* **OpenCode and GitHub Copilot pointer files** — Generic `installCommandPointers()` mechanism driven by per-platform YAML. OpenCode gets `.opencode/commands/<id>.md` for every skill; Copilot gets `.github/agents/<id>.agent.md` for persona agents only (plus `acl-tea` allowlist), keeping the Custom Agents picker uncluttered. Works for external modules automatically via `skill-manifest.csv` (#2324)
+* **ACL Automator (`bma`) registered** — Bundled registry fallback gains source-root external-module support, enabling `--modules bma` (#2345)
 
 ### 🐛 Fixes
 
 * **Clear installer error on missing module definition** — `findExternalModuleSource()` throws an actionable error naming the module, missing path, and channel, with a suggested `--next=<code>` recovery path, replacing a silent ENOENT in `getFileList` (#2377)
-* **bmad-product-brief Update/Validate discipline** — Headless Update now requires decision-log entry + addendum before modifying `brief.md`; distillate regeneration is mandatory; Validate always returns `"offer_to_update": true`; eval expectations tightened (#2371)
+* **acl-product-brief Update/Validate discipline** — Headless Update now requires decision-log entry + addendum before modifying `brief.md`; distillate regeneration is mandatory; Validate always returns `"offer_to_update": true`; eval expectations tightened (#2371)
 * **Module help catalog directional clarity** — Renamed `after`/`before` columns (and JSON manifest keys) to `preceded-by`/`followed-by` to eliminate ambiguity that was causing dependency-direction flips; `required` retains hard-gate semantics (#2360)
-* **bmad-help removed from Copilot Custom Agents picker** — Not a true agent; every persona already advertises it on activation (#2359)
-* **bmad-investigate robustness** — Collapsed multi-line description, unwrapped case-file template, tightened PRD discovery glob (review follow-ups)
+* **acl-help removed from Copilot Custom Agents picker** — Not a true agent; every persona already advertises it on activation (#2359)
+* **acl-investigate robustness** — Collapsed multi-line description, unwrapped case-file template, tightened PRD discovery glob (review follow-ups)
 * **Dependency security audit** — Lockfile-only fixes closed 12 of 14 open Dependabot alerts (`vite`, `postcss`, `h3`, `yaml`, `brace-expansion`, `picomatch`, `astro`, others). Two `astro <6.1.10` alerts and one `markdown-it` (via `markdownlint-cli2`) deferred pending major bumps (#2382)
 
 ### 📚 Docs
 
-* New `docs/explanation/forensic-investigation.md` (EN + FR) explaining the bmad-investigate workflow and evidence-grading discipline; workflow maps updated in both languages
+* New `docs/explanation/forensic-investigation.md` (EN + FR) explaining the acl-investigate workflow and evidence-grading discipline; workflow maps updated in both languages
 * Installer prerequisite docs updated across README, install/upgrade/non-interactive/tutorial guides and FR / CS / ZH-CN / VI-VN translations to advertise Node.js 20.12+ (#2387)
 
 ## v6.6.0 - 2026-04-28
 
 ### 💥 Breaking Changes
 
-* `--tools none` is no longer accepted; fresh `--yes` installs now require an explicit `--tools <id>`. Existing-install flows are unchanged. Run `npx bmad-method --list-tools` to see supported IDs (#2346)
-* `project_name` has moved from `[modules.bmm]` to `[core]` in `config.toml`. Existing installs are auto-migrated on next install/update — no manual action required (#2348)
+* `--tools none` is no longer accepted; fresh `--yes` installs now require an explicit `--tools <id>`. Existing-install flows are unchanged. Run `npx acl-adlc --list-tools` to see supported IDs (#2346)
+* `project_name` has moved from `[modules.acl]` to `[core]` in `config.toml`. Existing installs are auto-migrated on next install/update — no manual action required (#2348)
 
 ### 🎁 Features
 
@@ -189,13 +189,13 @@ The shape of the toml customizations is still the same, so if you make them for 
 * **Installer safety** — `--list-tools` flag added; empty/typo'd tool IDs rejected with specific errors (#2346)
 * **Channel and dist-tag handling** — installer launched from a prerelease (e.g. `@next`) now defaults external module channels to `next` instead of silently downgrading to stable (#2321); stable publishes advance the `@next` dist-tag so prerelease users no longer leapfrog or miss update notifications (#2320)
 * **Architecture validation gate** — step-07 validation template no longer ships pre-checked; status field is now templated against actual checklist completion (#2347)
-* **bmad-help data integrity** — `bmad-help.csv` is no longer transformed at merge time and is emitted in its documented schema; 31 misaligned rows in core/bmm `module-help.csv` repaired (#2349)
+* **acl-help data integrity** — `acl-help.csv` is no longer transformed at merge time and is emitted in its documented schema; 31 misaligned rows in core/acl `module-help.csv` repaired (#2349)
 * **Config robustness** — malformed `module.yaml` (scalars, arrays) is now rejected before crash (#2348)
-* **Legacy cleanup** — pre-v6.2.0 wrapper skills (`bmad-bmm-*`, `bmad-agent-bmm-*`) are removed automatically on upgrade so they no longer error with missing-file warnings (#2315)
+* **Legacy cleanup** — pre-v6.2.0 wrapper skills (`acl-acl-*`, `acl-agent-acl-*`) are removed automatically on upgrade so they no longer error with missing-file warnings (#2315)
 
 ### 📚 Docs
 
-* Complete Chinese (zh-CN) translations for `named-agents.md` and `expand-bmad-for-your-org.md`; localized BMad Ecosystem sidebar (CIS, BMB, TEA, WDS) across zh-cn, vi-vn, fr-fr, cs-cz (#2355)
+* Complete Chinese (zh-CN) translations for `named-agents.md` and `expand-acl-for-your-org.md`; localized ACL Ecosystem sidebar (CIS, BMB, TEA, WDS) across zh-cn, vi-vn, fr-fr, cs-cz (#2355)
 
 ## v6.5.0 - 2026-04-26
 
@@ -208,9 +208,9 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 ### ✨ Headline
 
-**Full agent and workflow customization across the entire BMad Method.** Every agent and workflow in BMM, Core, CIS, GDS, and TEA can now be customized via TOML overrides in `_bmad/custom/`. Customize agents to apply tooling, version control, or behavior changes across whole groups of workflows. Drop in fine-grained per-workflow overrides where you need them. Built for power users who want BMad to fit their stack without forking.
+**Full agent and workflow customization across the entire ACL Method.** Every agent and workflow in ACL, Core, CIS, GDS, and TEA can now be customized via TOML overrides in `_acl/custom/`. Customize agents to apply tooling, version control, or behavior changes across whole groups of workflows. Drop in fine-grained per-workflow overrides where you need them. Built for power users who want ACL to fit their stack without forking.
 
-**Stable and bleeding-edge release channels, standardized across all modules.** Pick `stable` or `next` per module, pin specific versions, and switch channels interactively or via CLI flags (`--channel`, `--all-stable`, `--all-next`, `--next=CODE`, `--pin CODE=TAG`). Same model across BMM, Core, and every external module.
+**Stable and bleeding-edge release channels, standardized across all modules.** Pick `stable` or `next` per module, pin specific versions, and switch channels interactively or via CLI flags (`--channel`, `--all-stable`, `--all-next`, `--next=CODE`, `--pin CODE=TAG`). Same model across ACL, Core, and every external module.
 
 ### 💥 Breaking Changes
 
@@ -221,10 +221,10 @@ The shape of the toml customizations is still the same, so if you make them for 
 **Customization framework**
 
 * TOML-based agent and workflow customization with flat schema, structural merge rules (scalars, tables, code-keyed arrays, append arrays), and `persistent_facts` unification (#2284)
-* Central `_bmad/config.toml` surface with four-file architecture (`config.toml`, `config.user.toml`, `custom/config.toml`, `custom/config.user.toml`) for agent roster and scope-partitioned install answers (#2285)
-* `customize.toml` support extended to 17 bmm-skills workflows with flattened SKILL.md architecture and standardized `[workflow]` block (#2287)
-* `customize.toml` extended to all six developer-execution workflows: bmad-dev-story, bmad-code-review, bmad-sprint-planning, bmad-sprint-status, bmad-quick-dev, bmad-checkpoint-preview (#2308)
-* `bmad-customize` skill — guided authoring of TOML overrides in `_bmad/custom/` with stdlib-only resolver verification (#2289)
+* Central `_acl/config.toml` surface with four-file architecture (`config.toml`, `config.user.toml`, `custom/config.toml`, `custom/config.user.toml`) for agent roster and scope-partitioned install answers (#2285)
+* `customize.toml` support extended to 17 acl-skills workflows with flattened SKILL.md architecture and standardized `[workflow]` block (#2287)
+* `customize.toml` extended to all six developer-execution workflows: acl-dev-story, acl-code-review, acl-sprint-planning, acl-sprint-status, acl-quick-dev, acl-checkpoint-preview (#2308)
+* `acl-customize` skill — guided authoring of TOML overrides in `_acl/custom/` with stdlib-only resolver verification (#2289)
 * Wire `on_complete` hook into all 23 workflow terminal steps with full customize.toml documentation (#2290)
 
 **Release channels & installer**
@@ -234,11 +234,11 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 **Other**
 
-* Kimi Code CLI support for installing BMM skills in `.kimi/skills/` (#2302)
-* `bmad-create-story` now reads every UPDATE-marked file before generating dev notes so brownfield stories preserve current behavior instead of improvising at implementation time (#2274)
+* Kimi Code CLI support for installing ACL skills in `.kimi/skills/` (#2302)
+* `acl-create-story` now reads every UPDATE-marked file before generating dev notes so brownfield stories preserve current behavior instead of improvising at implementation time (#2274)
 * Sync `sprint-status.yaml` from quick-dev on epic-story implementation with idempotent writes tracking `in-progress` and `review` transitions (#2234)
 * Enforce model parity for all code review subagents to match orchestrator session capability for improved rare-event detection (#2236)
-* Set `team: software-development` on all six BMM agents for unified grouping in party-mode and retrospective skills (#2286)
+* Set `team: software-development` on all six ACL agents for unified grouping in party-mode and retrospective skills (#2286)
 
 ### 🐛 Bug Fixes
 
@@ -249,12 +249,12 @@ The shape of the toml customizations is still the same, so if you make them for 
 * Replace fs-extra with native `node:fs` to prevent file loss during multi-module installs from deferred retry-queue races (#2253)
 * Add `move()` and overwrite support to fs-native wrapper for directory migrations during upgrades (#2253)
 * Stop skill scanner from recursing into discovered skills to prevent spurious errors on nested template files (#2255)
-* Source built-in modules locally in installer UI to preserve core and bmm in module list when registry is unreachable (#2251)
+* Source built-in modules locally in installer UI to preserve core and acl in module list when registry is unreachable (#2251)
 * Remove dead Batch-apply option from code-review patch menu and rename apply options for clarity (#2225)
 
 ### ♻️ Refactoring
 
-* Remove 1,683 lines of dead code: three entirely dead files (agent-command-generator.js, bmad-artifacts.js, module-injections.js) and ~50 unused exports across installer modules (#2247)
+* Remove 1,683 lines of dead code: three entirely dead files (agent-command-generator.js, acl-artifacts.js, module-injections.js) and ~50 unused exports across installer modules (#2247)
 * Remove dead template and agent-command pipeline from installer; SKILL.md directory copying is the sole installation path (#2244)
 
 ### 📚 Documentation
@@ -271,7 +271,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 ### 💥 Breaking Changes
 
 * Remove custom content installation feature; use marketplace-based plugin installation instead (#2227)
-* Remove bmad-init skill; all agents and skills now load config directly from `{project-root}/_bmad/bmm/config.yaml` (#2159)
+* Remove acl-init skill; all agents and skills now load config directly from `{project-root}/_acl/acl/config.yaml` (#2159)
 * Remove spec-wip.md singleton; quick-dev now writes directly to `spec-{slug}.md` with status field, enabling parallel sessions (#2214)
 * Consolidate three agent personas into Developer agent (Amelia): remove Barry quick-flow-solo-dev (#2177), Quinn QA agent (#2179), and Bob Scrum Master agent (#2186)
 
@@ -280,8 +280,8 @@ The shape of the toml customizations is still the same, so if you make them for 
 * Universal source support for custom module installs with 5-strategy PluginResolver cascade supporting any Git host (GitHub, GitLab, Bitbucket, self-hosted) and local file paths (#2233)
 * Community module browser with three-tier selection: official, community (category drill-down from marketplace index), and custom URL with unverified source warning (#2229)
 * Switch module source of truth from bundled config to remote marketplace registry with network-failure fallback (#2228)
-* Add bmad-prfaq skill implementing Amazon's Working Backwards methodology as alternative Phase 1 analysis path with 5-stage coached workflow and subagent architecture (#2157)
-* Add bmad-checkpoint-preview skill for guided, concern-ordered human review of commits, branches, or PRs (#2145)
+* Add acl-prfaq skill implementing Amazon's Working Backwards methodology as alternative Phase 1 analysis path with 5-stage coached workflow and subagent architecture (#2157)
+* Add acl-checkpoint-preview skill for guided, concern-ordered human review of commits, branches, or PRs (#2145)
 * Epic context compilation for quick-dev step-01: sub-agent compiles planning docs into cached `epic-{N}-context.md` for story implementation (#2218)
 * Previous story continuity in quick-dev: load completed spec from same epic as implementation context (#2201)
 * Planning artifact awareness in quick-dev: selectively load PRD, architecture, UX, and epics docs for context-informed specs (#2185)
@@ -289,7 +289,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 * Improve checkpoint-preview UX with clickable spec paths, external edit detection, and missing-file halt (#2217)
 * Add Junie (JetBrains AI) platform support (#2142)
 * Restore KiloCoder support with native-skills installation (#2151)
-* Add bmad-help support for llms.txt general questions (#2230)
+* Add acl-help support for llms.txt general questions (#2230)
 
 ### ♻️ Refactoring
 
@@ -305,33 +305,33 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 ### 🔧 Maintenance
 
-* Overhaul installer branding with responsive BMAD METHOD logo, blue color scheme, unified version sourcing from marketplace.json, and surgical manifest-based skill cleanup (#2223)
-* Stop copying skill prompts to _bmad by default (#2182)
+* Overhaul installer branding with responsive ACL METHOD logo, blue color scheme, unified version sourcing from marketplace.json, and surgical manifest-based skill cleanup (#2223)
+* Stop copying skill prompts to _acl by default (#2182)
 * Add Python 3.10+ and uv as documented prerequisites (#2221)
 
 ### 📚 Documentation
 
 * Complete Czech (cs-CZ) documentation translation (#2134)
 * Complete Vietnamese (vi-VN) documentation translation (#2110, #2192)
-* Rewrite get-answers-about-bmad as 1-2-3 escalation flow, remove deprecated references (#2213)
+* Rewrite get-answers-about-acl as 1-2-3 escalation flow, remove deprecated references (#2213)
 * Add checkpoint-preview explainer page and workflow diagram (#2183)
-* Update docs theme to match bmadcode.com with responsive logo and blue color scheme (#2176)
+* Update docs theme to match aclcode.com with responsive logo and blue color scheme (#2176)
 
 ## v6.2.2 - 2026-03-25
 
 ### ♻️ Refactoring
 
 * Modernize module-help CSV to 13-column format with `after`/`before` dependency graph replacing sequence numbers (#2120)
-* Rewrite bmad-help from procedural 8-step execution to outcome-based skill design (~50% shorter) (#2120)
+* Rewrite acl-help from procedural 8-step execution to outcome-based skill design (~50% shorter) (#2120)
 
 ### 🐛 Bug Fixes
 
-* Update bmad-builder module-definition path from `src/module.yaml` to `skills/module.yaml` for bmad-builder v1.2.0 compatibility (#2126)
+* Update acl-builder module-definition path from `src/module.yaml` to `skills/module.yaml` for acl-builder v1.2.0 compatibility (#2126)
 * Fix eslint config to ignore gitignored lock files (#2120)
 
 ### 📚 Documentation
 
-* Close Epic 4.5 explanation gaps in Chinese (zh-CN): normalize command naming to current `bmad-*` convention and add cross-links across 9 explanation pages (#2102)
+* Close Epic 4.5 explanation gaps in Chinese (zh-CN): normalize command naming to current `acl-*` convention and add cross-links across 9 explanation pages (#2102)
 
 ## v6.2.1 - 2026-03-24
 
@@ -357,8 +357,8 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 ### 🎁 Highlights
 
-* Fix manifest generation so BMad Builder installs correctly when a module has no agents (#1998)
-* Prototype preview of bmad-product-brief-preview skill — try `/bmad-product-brief-preview` and share feedback! (#1959)
+* Fix manifest generation so ACL Builder installs correctly when a module has no agents (#1998)
+* Prototype preview of acl-product-brief-preview skill — try `/acl-product-brief-preview` and share feedback! (#1959)
 * All skills now use native skill directory format for improved modularity and maintainability (#1931, #1945, #1946, #1949, #1950, #1984, #1985, #1988, #1994)
 
 ### 🎁 Features
@@ -371,9 +371,9 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 * Validation pass 2 — fix path, variable, and sequence issues across 32 files (#2008)
 * Replace broken party-mode workflow refs with skill syntax (#2000)
-* Improve bmad-help description for accurate trigger matching (#2012)
+* Improve acl-help description for accurate trigger matching (#2012)
 * Point zh-cn doc links to Chinese pages instead of English (#2010)
-* Validation cleanup for bmad-quick-flow (#1997), 6 skills batch (#1996), bmad-sprint-planning (#1995), bmad-retrospective (#1993), bmad-dev-story (#1992), bmad-create-story (#1991), bmad-code-review (#1990), bmad-create-epics-and-stories (#1989), bmad-create-architecture (#1987), bmad-check-implementation-readiness (#1986), bmad-create-ux-design (#1983), bmad-create-product-brief (#1982)
+* Validation cleanup for acl-quick-flow (#1997), 6 skills batch (#1996), acl-sprint-planning (#1995), acl-retrospective (#1993), acl-dev-story (#1992), acl-create-story (#1991), acl-code-review (#1990), acl-create-epics-and-stories (#1989), acl-create-architecture (#1987), acl-check-implementation-readiness (#1986), acl-create-ux-design (#1983), acl-create-product-brief (#1982)
 
 ### 🔧 Maintenance
 
@@ -389,7 +389,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 ### Highlights
 
 * Whiteport Design Studio (WDS) module enabled in the installer
-* Support @next installation channel (`npx bmad-method@next install`) — get the latest tip of main instead of waiting for the next stable published version
+* Support @next installation channel (`npx acl-adlc@next install`) — get the latest tip of main instead of waiting for the next stable published version
 * Everything now installs as a skill — all workflows, agents, and tasks converted to markdown with SKILL.md entrypoints (not yet optimized skills, but unified format)
 * An experimental preview of the new Quick Dev is available, which will become the main Phase 4 development tool
 * Edge Case Hunter added as a parallel code review layer in Phase 4, improving code quality by exhaustively tracing branching paths and boundary conditions (#1791)
@@ -397,7 +397,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 ### 💥 Breaking Changes
 
-* Convert entire BMAD method to skills-based architecture with unified skill manifests (#1834)
+* Convert entire ACL method to skills-based architecture with unified skill manifests (#1834)
 * Convert all core workflows from YAML+instructions to single workflow.md format
 * Migrate all remaining platforms to native Agent Skills format (#1841)
 * Remove legacy YAML/XML workflow engine plumbing (#1864)
@@ -440,11 +440,11 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 ### 🎁 Features
 
-* Add bmad-os-root-cause-analysis skill for analyzing bug-fix commits and producing structured root cause analysis reports with pyramid communication format (#1741)
+* Add acl-os-root-cause-analysis skill for analyzing bug-fix commits and producing structured root cause analysis reports with pyramid communication format (#1741)
 
 ### 🐛 Bug Fixes
 
-* Fix installer to refuse installation when ancestor directory has BMAD commands, preventing duplicate command autocompletion in nested directories (#1735)
+* Fix installer to refuse installation when ancestor directory has ACL commands, preventing duplicate command autocompletion in nested directories (#1735)
 * Fix OpenCode integration by replacing unsupported `name` frontmatter with `mode: all` and update directory names to plural form (#1764)
 * Fix CSV manifest pipeline double-escaping of quotes that was corrupting output files; switch Gemini templates to single quotes (#1746)
 * Fix workflow descriptions to use proper quotes so they format better in skill conversion and don't break yaml front matter
@@ -457,7 +457,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 ### 📚 Documentation
 
 * Fix broken TEA hyperlinks to point to new repository URL (#1772)
-* Rebrand BMAD acronym to "Build More Architect Dreams" across documentation (#1765)
+* Rebrand ACL acronym to "Build More Architect Dreams" across documentation (#1765)
 
 ---
 
@@ -468,7 +468,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 * Add CodeBuddy platform support with installer configuration (#1483)
 * Add LLM audit prompt for file reference conventions - new audit tool using parallel subagents (#1720)
 * Migrate Codex installer from `.codex/prompts` to `.agents/skills` format to align with Codex CLI changes (#1729)
-* Convert review-pr and audit-file-refs tools to proper bmad-os skills with slash commands `bmad-os-review-pr` and `bmad-os-audit-file-refs` (#1732)
+* Convert review-pr and audit-file-refs tools to proper acl-os skills with slash commands `acl-os-review-pr` and `acl-os-audit-file-refs` (#1732)
 
 ### 🐛 Bug Fixes
 
@@ -476,7 +476,7 @@ The shape of the toml customizations is still the same, so if you make them for 
 * Fix step file path references in check-implementation-readiness workflow (#1709, #1716)
 * Fix 3 broken file references and enable strict file reference validation in CI (#1717)
 * Fix Rovo Dev integration with custom installer that generates prompts.yml manifest (#1701)
-* Fix 104 relative step file references to use standardized `{project-root}/_bmad/` paths across 68 files (#1722)
+* Fix 104 relative step file references to use standardized `{project-root}/_acl/` paths across 68 files (#1722)
 * Fix code fence imbalance in step-03-starter.md that caused rendering issues (#1724)
 * Remove Windsurf from recommended/preferred IDEs list (#1727)
 * Fix default Codex install location from global to project for better defaults (#1698)
@@ -492,8 +492,8 @@ The shape of the toml customizations is still the same, so if you make them for 
 
 ### 📚 Documentation
 
-* Elevate `bmad-help` as primary on-ramp across all documentation
-* Update workflow names with `bmad-bmm-` prefix and standardize table formatting
+* Elevate `acl-help` as primary on-ramp across all documentation
+* Update workflow names with `acl-acl-` prefix and standardize table formatting
 * Clarify phase routing and catalog path in help task
 
 ---
@@ -505,7 +505,7 @@ V6 Stable Release! The End of Beta!
 ### 🎁 Features
 
 * Add PRD workflow steps 2b (vision/differentiators) and 2c (executive summary) for more complete product requirements documentation
-* Add new `bmad uninstall` command with interactive and non-interactive modes for selective component removal
+* Add new `acl uninstall` command with interactive and non-interactive modes for selective component removal
 * Add dedicated GitHub Copilot installer that generates enriched `.agent.md`, `.prompt.md` files and project configuration
 * Add TEA browser automation prerequisite prompts to guide Playwright CLI/MCP setup after configuration
 
@@ -529,7 +529,7 @@ V6 Stable Release! The End of Beta!
 
 * Add post-install notes documentation for modules
 * Improve project-context documentation and fix folder structure
-* Add BMad Builder link to index for extenders
+* Add ACL Builder link to index for extenders
 
 ---
 
@@ -562,7 +562,7 @@ V6 Stable Release! The End of Beta!
 * **Technical Research Workflow** — Fixed step-05 routing to step-06 and corrected `stepsCompleted` values (#1547)
 * **Forbidden Variable Removal** — Removed `workflow_path` variable from 16 workflow step files (#1546)
 * **Kilo Installer** — Fixed YAML formatting issues by trimming activation header and converting to yaml.parse/stringify (#1537)
-* **bmad-help** — Now reads project-specific docs and respects `communication_language` setting (#1535)
+* **acl-help** — Now reads project-specific docs and respects `communication_language` setting (#1535)
 * **Cache Errors** — Removed `--prefer-offline` npm flag to prevent stale cache errors during installation (#1531)
 
 ### ♻️ Refactoring
@@ -604,7 +604,7 @@ V6 Stable Release! The End of Beta!
 
 * **Workflow File Splitting** — Split monolithic `workflow.md` files into specific `workflow-*.md` files for individual workflow invocation (bd620e38)
 * **Installer Multi-Workflow Support** — Installer manifest generator now supports `workflow-*.md` pattern, allowing multiple workflow files per directory (731bee26)
-* **Internal Skill Renaming** — Renamed internal project skills to use `bmad-os-` prefix for consistent naming (5276d58b)
+* **Internal Skill Renaming** — Renamed internal project skills to use `acl-os-` prefix for consistent naming (5276d58b)
 
 ---
 
@@ -636,7 +636,7 @@ V6 Stable Release! The End of Beta!
 ### ♻️ Refactoring
 
 * **Excalidraw/Flattener Removal** — Removed dead artifacts no longer supported beyond beta: Excalidraw workflows, flattener tool, and 12+ diagram creation workflows (-3,798 lines) (f699a368)
-* **Centralized Constants** — Centralized `BMAD_FOLDER_NAME` to reduce hardcoded strings (PR #1492)
+* **Centralized Constants** — Centralized `ACL_FOLDER_NAME` to reduce hardcoded strings (PR #1492)
 * **Cross-Platform Paths** — Fixed path separator inconsistencies in agent IDs (PR #1492)
 
 ### 📚 Documentation
@@ -661,7 +661,7 @@ V6 Stable Release! The End of Beta!
 ### 🐛 Bug Fixes
 
 * **Fix npm install peer dependency issues** — Add `.npmrc` with `legacy-peer-deps=true`, update Starlight to 0.37.5, and add `--legacy-peer-deps` flag to module installer (PR #1476)
-* **Fix leaked source paths in PRD validation report** — Replace absolute `/src/core/` paths with `{project-root}/_bmad/core/` (#1481)
+* **Fix leaked source paths in PRD validation report** — Replace absolute `/src/core/` paths with `{project-root}/_acl/core/` (#1481)
 * **Fix orphaned market research customer analysis** — Connect step-01-init to step-02-customer-behavior to complete workflow sharding (#1486)
 * **Fix duplicate 2-letter brainstorming code** — Change BS to BSP to resolve conflict with cis Brainstorming module
 * **Fix tech writer sidecar functionality** — Enable proper sidecar operation (#1487)
@@ -714,7 +714,7 @@ V6 Stable Release! The End of Beta!
 
 ### 🐛 Bug Fixes
 
-- **Quick-flow workflow path fix** (#1368): Fixed incorrect workflow_path in bmad-quick-flow/quick-spec steps (step-01, step-02, step-03) - changed from non-existent 'create-tech-spec' to correct 'quick-spec'
+- **Quick-flow workflow path fix** (#1368): Fixed incorrect workflow_path in acl-quick-flow/quick-spec steps (step-01, step-02, step-03) - changed from non-existent 'create-tech-spec' to correct 'quick-spec'
 - **PRD edit flow paths**: Fixed path references in PRD editing workflow
 - **Agent file handling**: Changes to prevent double agent files and use .agent.md file extensions
 - **README link fix**: Corrected broken documentation links
@@ -732,19 +732,19 @@ V6 Stable Release! The End of Beta!
 
 ### 🎉 Beta Release
 
-- **Transition from Alpha to Beta**: BMad Method is now in Beta! This marks a significant milestone in the framework's development
-- **NPM Default Tag**: Beta versions are now published with the `latest` tag, making `npx bmad-method` serve the beta version by default
+- **Transition from Alpha to Beta**: ACL Method is now in Beta! This marks a significant milestone in the framework's development
+- **NPM Default Tag**: Beta versions are now published with the `latest` tag, making `npx acl-adlc` serve the beta version by default
 
 ### 🌟 Key Highlights
 
-1. **bmad-help**: Revolutionary AI-powered guidance system replaces the alpha workflow-init and workflow tracking — introduces full AI intelligence to guide users through workflows, commands, and project context
-2. **Module Ecosystem Expansion**: bmad-builder, CIS (Creative Intelligence Suite), and Game Dev Studio moved to separate repositories for focused development
-3. **Installer Consolidation**: Unified installer architecture with standardized command naming (`bmad-dash-case.md` or `bmad-*-agent-*.md`)
+1. **acl-help**: Revolutionary AI-powered guidance system replaces the alpha workflow-init and workflow tracking — introduces full AI intelligence to guide users through workflows, commands, and project context
+2. **Module Ecosystem Expansion**: acl-builder, CIS (Creative Intelligence Suite), and Game Dev Studio moved to separate repositories for focused development
+3. **Installer Consolidation**: Unified installer architecture with standardized command naming (`acl-dash-case.md` or `acl-*-agent-*.md`)
 4. **Windows Compatibility**: Complete migration from Inquirer.js to @clack/prompts for reliable cross-platform support
 
 ### 🚀 Major Features
 
-**bmad-help - Intelligent Guidance System:**
+**acl-help - Intelligent Guidance System:**
 
 - **Replaces**: workflow-init and legacy workflow tracking
 - **AI-Powered**: Full context awareness of installed modules, workflows, agents, and commands
@@ -756,9 +756,9 @@ V6 Stable Release! The End of Beta!
 
 | Module                                | Status                                            | New Location                                            |
 | ------------------------------------- | ------------------------------------------------- | ------------------------------------------------------- |
-| **bmad-builder**                      | Near beta, with docs and walkthroughs coming soon | `bmad-code-org/bmad-builder`                            |
-| **CIS** (Creative Intelligence Suite) | Published as npm package                          | `bmad-code-org/bmad-module-creative-intelligence-suite` |
-| **Game Dev Studio**                   | Published as npm package                          | `bmad-code-org/bmad-module-game-dev-studio`             |
+| **acl-builder**                      | Near beta, with docs and walkthroughs coming soon | `acl-code-org/acl-builder`                            |
+| **CIS** (Creative Intelligence Suite) | Published as npm package                          | `acl-code-org/acl-module-creative-intelligence-suite` |
+| **Game Dev Studio**                   | Published as npm package                          | `acl-code-org/acl-module-game-dev-studio`             |
 
 ### 🔧 Installer & CLI Improvements
 
@@ -766,10 +766,10 @@ V6 Stable Release! The End of Beta!
 
 - All IDE installers now use a common `UnifiedInstaller` class
 - Standardized command naming conventions:
-  - Workflows: `bmad-module-workflow-name.md`
-  - Agents: `bmad-module-agent-name.md`
-  - Tasks: `bmad-task-name.md`
-  - Tools: `bmad-tool-name.md`
+  - Workflows: `acl-module-workflow-name.md`
+  - Agents: `acl-module-agent-name.md`
+  - Tasks: `acl-task-name.md`
+  - Tools: `acl-tool-name.md`
 - External module installation from npm with progress indicators
 - Module removal on unselect with confirmation
 
@@ -786,7 +786,7 @@ V6 Stable Release! The End of Beta!
 - TEA documentation restructured using Diátaxis framework (25 docs)
 - Style guide optimized for LLM readers (367 lines, down from 767)
 - Glossary rewritten using table format (123 lines, down from 373)
-- README overhaul with numbered command flows and prominent `bmad-help` callout
+- README overhaul with numbered command flows and prominent `acl-help` callout
 - New workflow map diagram with interactive HTML
 - New editorial review tasks for document quality
 - E2E testing methodology for Game Dev Studio
@@ -834,7 +834,7 @@ More documentation updates coming soon.
 - **Starlight Theme**: Professional documentation theme with dark mode default and responsive design
 - **Build Pipeline Overhaul**: New build-docs.js orchestrates link checking, artifact generation, and Astro build
 - **LLM-Friendly Documentation**: Generated llms.txt and llms-full.txt for AI agent discoverability
-- **Downloadable Source Bundles**: bmad-sources.zip and bmad-prompts.zip for offline use
+- **Downloadable Source Bundles**: acl-sources.zip and acl-prompts.zip for offline use
 
 **Diataxis Framework Implementation:**
 
@@ -849,7 +849,7 @@ More documentation updates coming soon.
 - **Site-Relative Links**: Converted 217 links to repo-relative format (/docs/path/file.md)
 - **Link Validation Tools**: New validate-doc-links.js and fix-doc-links.js for maintaining link integrity
 - **Broken Link Fixes**: Resolved ~50 broken internal links across documentation
-- **BMad Acronym Standardization**: Consistent use of "BMad" (Breakthrough Method of Agile AI Driven Development)
+- **ACL Acronym Standardization**: Consistent use of "ACL" (Breakthrough Method of Agile AI Driven Development)
 - **SEO Optimization**: Absolute URLs in AI meta tags for better web crawler discoverability
 
 ### 🔧 Workflow Creator & Validator (Major Feature)
@@ -906,8 +906,8 @@ More documentation updates coming soon.
 
 - **From Rules to Commands**: Complete refactor from rules-based to command-based system
 - **Command Generation**: Automatic generation of task and tool commands
-- **Commands Directory**: New `.cursor/commands/bmad/` structure for generated commands
-- **Cleanup Integration**: Automatic cleanup of old BMAD commands alongside rules
+- **Commands Directory**: New `.cursor/commands/acl/` structure for generated commands
+- **Cleanup Integration**: Automatic cleanup of old ACL commands alongside rules
 - **Enhanced Logging**: Better feedback on agents, tasks, tools, and workflow commands generated
 
 ### 🤖 Agent System Improvements
@@ -933,7 +933,7 @@ More documentation updates coming soon.
 
 **Workflow & Variable Fixes:**
 
-- **Variable Naming**: Standardized from {project_root} to {project-root} across CIS, BMGD, and BMM modules
+- **Variable Naming**: Standardized from {project_root} to {project-root} across CIS, BMGD, and ACL modules
 - **Workflow References**: Fixed broken .yaml → .md workflow references
 - **Advanced Elicitation Variables**: Fixed undefined variables in brainstorming
 - **Dependency Format**: Corrected dependency format and added missing frontmatter
@@ -943,7 +943,7 @@ More documentation updates coming soon.
 - **Dependency Updates**: Bumped qs from 6.14.0 to 6.14.1
 - **CodeRabbit Integration**: Enabled auto-review on new PRs
 - **TEA Fragment Counts**: Updated fragment counts for accuracy
-- **Documentation Links**: Fixed Discord channel references (#general-dev → #bmad-development)
+- **Documentation Links**: Fixed Discord channel references (#general-dev → #acl-development)
 
 ### 🚀 Installation & CLI Improvements
 
@@ -976,7 +976,7 @@ More documentation updates coming soon.
 2. **Agent Knowledge System**: Comprehensive data file architecture with persona properties, validation patterns, and crafting principles
 3. **Deep Language Integration**: All sharded progressive workflows now support language choice at every step
 4. **Core Module Documentation**: Extensive docs for core workflows (brainstorming, party mode, advanced elicitation)
-5. **BMAD Core Concepts**: New documentation structure explaining agents, workflows, modules, and installation
+5. **ACL Core Concepts**: New documentation structure explaining agents, workflows, modules, and installation
 6. **Tech Spec Sharded**: create-tech-spec workflow converted to sharded format with orient-first pattern
 
 ### 🤖 Unified Agent Workflow (Major Feature)
@@ -1031,7 +1031,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
   - Core workflows (brainstorming, party mode, advanced elicitation)
   - BMB workflows (create-agent, create-module, create-workflow, edit-workflow, etc.)
   - BMGD workflows (game-brief, gdd, narrative, game-architecture, etc.)
-  - BMM workflows (research, create-ux-design, prd, create-architecture, etc.)
+  - ACL workflows (research, create-ux-design, prd, create-architecture, etc.)
 - **Tested Languages**: Verified working with Spanish and Pirate Speak
 - **Natural Conversations**: AI agents respond in configured language throughout workflow
 
@@ -1056,21 +1056,21 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **To**: `src/core/workflows/advanced-elicitation/`
 - **Status**: Now a proper core workflow with methods.csv
 
-### 📚 BMAD Core Concepts Documentation
+### 📚 ACL Core Concepts Documentation
 
 **New Documentation Structure:**
 
-`docs/bmad-core-concepts/`:
+`docs/acl-core-concepts/`:
 
 - **index.md** - Core concepts introduction
-- **agents.md** (93 lines) - Understanding agents in BMAD
-- **workflows.md** (89 lines) - Understanding workflows in BMAD
-- **modules.md** (76 lines) - Understanding modules (BMM, BMGD, CIS, BMB, Core)
+- **agents.md** (93 lines) - Understanding agents in ACL
+- **workflows.md** (89 lines) - Understanding workflows in ACL
+- **modules.md** (76 lines) - Understanding modules (ACL, BMGD, CIS, BMB, Core)
 - **installing/index.md** (77 lines) - Installation guide
 - **installing/upgrading.md** (144 lines) - Upgrading guide
-- **bmad-customization/index.md** - Customization overview
-- **bmad-customization/agents.md** - Agent customization guide
-- **bmad-customization/workflows.md** (30 lines) - Workflow customization guide
+- **acl-customization/index.md** - Customization overview
+- **acl-customization/agents.md** - Agent customization guide
+- **acl-customization/workflows.md** (30 lines) - Workflow customization guide
 - **web-bundles/index.md** (34 lines) - Web bundle distribution guide
 
 **Documentation Cleanup:**
@@ -1078,7 +1078,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **Removed v4-to-v6-upgrade.md** - Outdated upgrade guide
 - **Removed document-sharding-guide.md** from docs root (moved to core)
 - **Removed web-bundles-gemini-gpt-guide.md** - Consolidated into web-bundles/index.md
-- **Removed getting-started/installation.md** - Migrated to bmad-core-concepts
+- **Removed getting-started/installation.md** - Migrated to acl-core-concepts
 - **Removed all ide-info/*.md files** - Consolidated into web-bundles documentation
 
 ### 🔧 Create-Tech-Spec Sharded Conversion
@@ -1100,7 +1100,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 - **BMB Agent Creation Guide**: Comprehensive 166-line guide for agent creation
 - **Workflow Vendoring Doc**: New 42-line guide on workflow customization and inheritance
-- **Document Project Reference**: Moved from BMM docs to shared location
+- **Document Project Reference**: Moved from ACL docs to shared location
 - **Workflows Planning Guide**: New 89-line guide for planning workflows
 
 **BMB Documentation Streamlining:**
@@ -1115,8 +1115,8 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Code Quality:**
 
-- **Removed Old BMM README**: Consolidated module documentation
-- **Removed BMM Troubleshooting**: 661-line doc moved to shared location
+- **Removed Old ACL README**: Consolidated module documentation
+- **Removed ACL Troubleshooting**: 661-line doc moved to shared location
 - **Removed Enterprise Agentic Development**: 686-line doc consolidated
 - **Removed Scale Adaptive System**: 618-line doc consolidated
 
@@ -1138,18 +1138,18 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Standardized 2-Letter Codes:**
 
-- **Compound Menu Triggers**: All agents now use consistent 2-letter compound trigger format (e.g., `bmm-rd`, `bmm-ca`)
+- **Compound Menu Triggers**: All agents now use consistent 2-letter compound trigger format (e.g., `acl-rd`, `acl-ca`)
 - **Improved UX**: Shorter, more memorable command shortcuts across all modules
-- **Module Prefixing**: Menu items properly scoped by module prefix (bmm-, bmgd-, cis-, bmb-)
+- **Module Prefixing**: Menu items properly scoped by module prefix (acl-, bmgd-, cis-, bmb-)
 - **Universal Pattern**: All 22 agents updated to follow the same menu structure
 
 **Agent Updates:**
 
-- **BMM Module**: 9 agents with standardized menus (pm, analyst, architect, dev, ux-designer, tech-writer, sm, tea, quick-flow-solo-dev)
+- **ACL Module**: 9 agents with standardized menus (pm, analyst, architect, dev, ux-designer, tech-writer, sm, tea, quick-flow-solo-dev)
 - **BMGD Module**: 6 agents with standardized menus (game-architect, game-designer, game-dev, game-qa, game-scrum-master, game-solo-dev)
 - **CIS Module**: 6 agents with standardized menus (innovation-strategist, design-thinking-coach, creative-problem-solver, brainstorming-coach, presentation-master, storyteller)
-- **BMB Module**: 3 agents with standardized menus (bmad-builder, agent-builder, module-builder, workflow-builder)
-- **Core Module**: BMAD Master agent updated with consistent menu patterns
+- **BMB Module**: 3 agents with standardized menus (acl-builder, agent-builder, module-builder, workflow-builder)
+- **Core Module**: ACL Master agent updated with consistent menu patterns
 
 ### 📁 Planning Artifacts Architecture
 
@@ -1170,7 +1170,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 - **Planning Artifacts**: Ephemeral planning documents (prd.md, product-brief.md, ux-design.md, architecture.md)
 - **Documentation**: Long-term project documentation (separate from planning)
-- **Module Configuration**: BMM and BMGD modules updated with proper default paths
+- **Module Configuration**: ACL and BMGD modules updated with proper default paths
 
 ### 🪟 Windows Installer Fixes
 
@@ -1207,7 +1207,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 - **Schema Improvements**: Enhanced agent schema validation with better error messages
 - **Removed Redundancy**: Cleaned up duplicate and obsolete agent definitions
-- **Installer Cleanup**: Removed unused configuration code from BMM installer
+- **Installer Cleanup**: Removed unused configuration code from ACL installer
 
 **Planning Artifacts Path:**
 - Default: `planning_artifacts/` (configurable in module.yaml)
@@ -1242,7 +1242,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Revolutionary Content Organization:**
 
-- **Phase 1-4 Path Segregation**: Implemented new BM paths across all BMM and BMGD workflows
+- **Phase 1-4 Path Segregation**: Implemented new BM paths across all ACL and BMGD workflows
 - **Planning vs Implementation Artifacts**: Separated ephemeral Phase 4 artifacts from permanent documentation
 - **Optimized File Organization**: Better structure differentiating planning artifacts from long-term project documentation
 - **Backward Compatible**: Existing installations continue working while preparing for optimized content organization
@@ -1349,7 +1349,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Installer Stability:**
 
-- **Fixed \_bmad Folder Stutter**: Resolved issue with duplicate \_bmad folder creation when applying agent custom files
+- **Fixed \_acl Folder Stutter**: Resolved issue with duplicate \_acl folder creation when applying agent custom files
 - **Cleaner Installation**: Removed unnecessary backup file that was causing bloat in the installer
 - **Streamlined Agent Customization**: Fixed path handling for agent custom files to prevent folder duplication
 
@@ -1378,7 +1378,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
   - Quick-flow workflows optimized for solo/small team development
   - Streamlined development process for indie game creators
 
-- **Production Workflow Alignment**: BMGD 4-production now fully aligned with BMM 4-implementation
+- **Production Workflow Alignment**: BMGD 4-production now fully aligned with ACL 4-implementation
   - Removed obsolete workflows: story-done, story-ready, story-context, epic-tech-context
   - Added sprint-status workflow for project tracking
   - All workflows updated as standalone with proper XML instructions
@@ -1446,7 +1446,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **28,350+ lines added** across testing documentation and workflows
 - **2 new agents** added to BMGD module
 - **15 comprehensive testing guides** created
-- **Complete alignment** between BMGD and BMM production workflows
+- **Complete alignment** between BMGD and ACL production workflows
 
 ### 🌟 Key Highlights
 
@@ -1484,14 +1484,14 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Breaking Through Dot-Folder Limitations:**
 
-- **Dot-Folder to Underscore Migration**: Critical change from `.bmad` to `_bmad` ensures LLMs (Codex, Claude, and others) can no longer ignore or skip BMAD content - dot folders are commonly filtered out by AI systems
-- **Universal Content Visibility**: Underscore folders are treated as regular content, ensuring full AI agent access to all BMAD resources and configurations
+- **Dot-Folder to Underscore Migration**: Critical change from `.acl` to `_acl` ensures LLMs (Codex, Claude, and others) can no longer ignore or skip ACL content - dot folders are commonly filtered out by AI systems
+- **Universal Content Visibility**: Underscore folders are treated as regular content, ensuring full AI agent access to all ACL resources and configurations
 - **Agent Memory Architecture**: Rolled out comprehensive agent memory support for installed agents with `-sidecar` folders
-- **Persistent Agent Learning**: Sidecar content installs to `_bmad/_memory`, giving each agent the ability to learn and remember important information specific to its role
+- **Persistent Agent Learning**: Sidecar content installs to `_acl/_memory`, giving each agent the ability to learn and remember important information specific to its role
 
 **Content Location Strategy:**
 
-- **Standardized Memory Location**: All sidecar content now uses `_bmad/_memory` as the unified location for agent memories
+- **Standardized Memory Location**: All sidecar content now uses `_acl/_memory` as the unified location for agent memories
 - **Segregated Output System**: New architecture supports differentiating between ephemeral Phase 4 artifacts and long-term documentation
 - **Forward Compatibility**: Existing installations continue working with content in docs folder, with optimization coming in next release
 - **Configuration Cleanup**: Renamed `_cfg` to `_config` for clearer naming conventions
@@ -1504,7 +1504,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **Phase 4 Artifact Segregation**: Infrastructure ready for separating ephemeral workflow artifacts from permanent documentation
 - **Planning vs Implementation Docs**: New system will differentiate between planning artifacts and long-term project documentation
 - **Backward Compatibility**: Current installs maintain full functionality while preparing for optimized content organization
-- **Quick Update Path**: Tomorrow's quick update will fully optimize all BMM workflows to use new segregated output locations
+- **Quick Update Path**: Tomorrow's quick update will fully optimize all ACL workflows to use new segregated output locations
 
 ### 🎯 Sample Modules & Documentation
 
@@ -1530,7 +1530,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **Removed Unused Code**: Cleaned up deprecated and unused functionality
 - **Release Workflow Restoration**: Fixed automated release workflow for v6
 
-**BMM Phase 4 Workflow Improvements:**
+**ACL Phase 4 Workflow Improvements:**
 
 - **Sprint Status Enhancement**: Improved sprint-status validation with interactive correction for unknown values and better epic status handling
 - **Story Status Standardization**: Normalized all story status references to lowercase kebab-case (ready-for-dev, in-progress, review, done)
@@ -1549,8 +1549,8 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 1. **Installer Revolution**: The installation system has been completely overhauled for better user experience, reliability, and speed
 2. **Custom Content Freedom**: Users can now easily create, share, and install custom content through the streamlined installer
-3. **AI Visibility Breakthrough**: Migration from `.bmad` to `_bmad` ensures LLMs can access all BMAD content (dot folders are commonly ignored by AI systems)
-4. **Agent Memory System**: Rolled out persistent agent memory support - agents with `-sidecar` folders can now learn and remember important information in `_bmad/_memory`
+3. **AI Visibility Breakthrough**: Migration from `.acl` to `_acl` ensures LLMs can access all ACL content (dot folders are commonly ignored by AI systems)
+4. **Agent Memory System**: Rolled out persistent agent memory support - agents with `-sidecar` folders can now learn and remember important information in `_acl/_memory`
 5. **Quick Default Selection**: Installation is now faster with smart default selections for popular configurations
 6. **Future-Ready Architecture**: Infrastructure in place for segregating ephemeral artifacts from permanent documentation (full optimization coming in next release)
 
@@ -1626,8 +1626,8 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Memory Management:**
 
-- **Removed Hardcoded .bmad Folders**: Cleaned up demo content to use configurable paths
-- **Sidecar File Cleanup**: Removed old .bmad-user-memory folders from wellness modules
+- **Removed Hardcoded .acl Folders**: Cleaned up demo content to use configurable paths
+- **Sidecar File Cleanup**: Removed old .acl-user-memory folders from wellness modules
 - **Example Content Organization**: Better organization of example-custom-content directory
 
 **Installer Improvements:**
@@ -1688,10 +1688,10 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 - **11-Step Module Creation**: Comprehensive step-by-step module generation process
 - **Production-Ready Templates**: Complete templates for agents, installers, and workflow plans
-- **Built-in Validation System**: Ensures module quality and BMad Core compliance
+- **Built-in Validation System**: Ensures module quality and ACL Core compliance
 - **Professional Documentation**: Auto-generated module documentation and structure
 
-### 🚀 BMad Method (BMM) Enhancements
+### 🚀 ACL Method (ACL) Enhancements
 
 **Workflow Improvements:**
 
@@ -1711,7 +1711,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 **Kiro-Cli Installer:**
 
 - **Intelligent Routing**: Smart routing to quick-dev workflow
-- **BMad Core Compliance**: Full compliance with BMad standards
+- **ACL Core Compliance**: Full compliance with ACL standards
 
 **Discord Notifications:**
 
@@ -1784,7 +1784,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 ### 🐛 Bug Fixes
 
-- Added missing `yaml` dependency to fix `MODULE_NOT_FOUND` error when running `npx bmad-method install`
+- Added missing `yaml` dependency to fix `MODULE_NOT_FOUND` error when running `npx acl-adlc install`
 
 ## [6.0.0-alpha.11]
 
@@ -1792,7 +1792,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 ### 🚀 Agent Installation Revolution
 
-- **bmad agent-install CLI**: Interactive agent installation with persona customization
+- **acl agent-install CLI**: Interactive agent installation with persona customization
 - **4 Reference Agents**: commit-poet, journal-keeper, security-engineer, trend-analyst
 - **Agent Compilation Engine**: YAML → XML with smart handler injection
 - **60 Communication Presets**: Pure communication styles for agent personas
@@ -1802,7 +1802,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **Complete Documentation Suite**: 7 new guides for agent architecture and creation
 - **Expert Agent Sidecar Support**: Multi-file agents with templates and knowledge bases
 - **Unified Validation**: 160-line checklist shared across workflows
-- **BMM Agent Voices**: All 9 agents enhanced with distinct communication styles
+- **ACL Agent Voices**: All 9 agents enhanced with distinct communication styles
 
 ### 🎯 Workflow Architecture Change
 
@@ -1813,7 +1813,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 ### ⚠️ Breaking Changes
 
 1. **Frame Expert Retired**: Use role-appropriate agents for diagrams
-2. **Agent Installation**: New bmad agent-install command replaces manual installation
+2. **Agent Installation**: New acl agent-install command replaces manual installation
 3. **Epic Creation Phase**: Moved from Phase 2 to Phase 3
 
 ## [6.0.0-alpha.10]
@@ -1834,17 +1834,17 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 - **3-Track System**: Simplified from 5 levels to 3 intuitive tracks
 - **Web Bundles Guide**: Comprehensive documentation with 60-80% cost savings strategies
 - **Unified Output Structure**: Eliminated .ephemeral/ folders - single configurable output folder
-- **BMGD Phase 4**: Added 10 game development workflows with BMM patterns
+- **BMGD Phase 4**: Added 10 game development workflows with ACL patterns
 
 ## [6.0.0-alpha.8]
 
 **Release: November 9, 2025**
 
-- **Configurable Installation**: Custom directories with .bmad hidden folder default
+- **Configurable Installation**: Custom directories with .acl hidden folder default
 - **Optimized Agent Loading**: CLI loads from installed files, eliminating duplication
 - **Party Mode Everywhere**: All web bundles include multi-agent collaboration
 - **Phase 4 Artifact Separation**: Stories, code reviews, sprint plans configurable outside docs
-- **Expanded Web Bundles**: All BMM, BMGD, CIS agents bundled with elicitation integration
+- **Expanded Web Bundles**: All ACL, BMGD, CIS agents bundled with elicitation integration
 
 ## [6.0.0-alpha.7]
 
@@ -1880,7 +1880,7 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 **Release: November 2, 2025**
 
 - **Documentation Hub**: Created 18 comprehensive guides (7000+ lines) with professional standards
-- **Paige Agent**: New technical documentation specialist across all BMM phases
+- **Paige Agent**: New technical documentation specialist across all ACL phases
 - **Quick Spec Flow**: Intelligent Level 0-1 planning with auto-stack detection
 - **Universal Shard-Doc**: Split large markdown documents with dual-strategy loading
 - **Intent-Driven Planning**: PRD and Product Brief transformed from template-filling to conversation
@@ -1897,13 +1897,13 @@ Located in `src/modules/bmb/workflows/agent/data/`:
 
 **Release: September 28, 2025**
 
-- **Lean Core**: Simple common tasks and agents (bmad-web-orchestrator, bmad-master)
-- **BMad Method (BMM)**: Complete scale-adaptive rewrite supporting projects from small enhancements to massive undertakings
-- **BoMB**: BMad Builder for creating and converting modules, workflows, and agents
+- **Lean Core**: Simple common tasks and agents (acl-web-orchestrator, acl-master)
+- **ACL Method (ACL)**: Complete scale-adaptive rewrite supporting projects from small enhancements to massive undertakings
+- **BoMB**: ACL Builder for creating and converting modules, workflows, and agents
 - **CIS**: Creative Intelligence Suite for ideation and creative workflows
 - **Game Development**: Full subclass of game-specific development patterns**Note**: Version 5.0.0 was skipped due to NPX registry issues that corrupted the version. Development continues with v6.0.0-alpha.0.
 
-## [v4.43.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v4.43.0)
+## [v4.43.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v4.43.0)
 
 **Release: August-September 2025 (v4.31.0 - v4.43.1)**
 
@@ -1926,7 +1926,7 @@ Focus on stability, ecosystem growth, and professional tooling.
 
 - **AGENTS.md Generation**: Auto-generated agent documentation
 - **NPM Script Injection**: Automatic package.json updates
-- **File Exclusion**: `.bmad-flattenignore` support for flattener
+- **File Exclusion**: `.acl-flattenignore` support for flattener
 - **JSON-only Integration**: Compact integration mode
 
 ### Quality & Stability
@@ -1934,7 +1934,7 @@ Focus on stability, ecosystem growth, and professional tooling.
 - **PR Validation Workflow**: Automated contribution checks
 - **Fork-Friendly CI/CD**: Opt-in mechanism for forks
 - **Code Formatting**: Prettier integration with pre-commit hooks
-- **Update Checker**: `npx bmad-method update-check` command
+- **Update Checker**: `npx acl-adlc update-check` command
 
 ### Flattener Improvements
 
@@ -1957,9 +1957,9 @@ Focus on stability, ecosystem growth, and professional tooling.
 - Automatic release notes generation
 - Changelog file path configuration
 
-[View v4.43.1 tag](https://github.com/bmad-code-org/BMAD-METHOD/tree/v4.43.1)
+[View v4.43.1 tag](https://github.com/acl-code-org/ACL-ADLC/tree/v4.43.1)
 
-## [v4.30.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v4.30.0)
+## [v4.30.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v4.30.0)
 
 **Release: July 2025 (v4.21.0 - v4.30.4)**
 
@@ -1969,12 +1969,12 @@ Introduction of advanced IDE integrations and command systems.
 
 - **Slash Commands**: Native Claude Code slash command support for agents
 - **Task Commands**: Direct task invocation via slash commands
-- **BMad Subdirectory**: Organized command structure
+- **ACL Subdirectory**: Organized command structure
 - **Nested Organization**: Clean command hierarchy
 
 ### Agent Enhancements
 
-- BMad-master knowledge base loading
+- ACL-master knowledge base loading
 - Improved brainstorming facilitation
 - Better agent task following with cost-saving model combinations
 - Direct commands in agent definitions
@@ -1998,9 +1998,9 @@ Introduction of advanced IDE integrations and command systems.
 - Improved expansion pack documentation
 - Better isolated expansion pack installations
 
-[View v4.30.4 tag](https://github.com/bmad-code-org/BMAD-METHOD/tree/v4.30.4)
+[View v4.30.4 tag](https://github.com/acl-code-org/ACL-ADLC/tree/v4.30.4)
 
-## [v4.20.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v4.20.0)
+## [v4.20.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v4.20.0)
 
 **Release: June 2025 (v4.11.0 - v4.20.0)**
 
@@ -2040,13 +2040,13 @@ Major focus on documentation quality and expanding QA agent capabilities.
 - Common files moved to shared locations
 - Hardcoded dependencies removed from installer
 
-[View v4.20.0 tag](https://github.com/bmad-code-org/BMAD-METHOD/tree/v4.20.0)
+[View v4.20.0 tag](https://github.com/acl-code-org/ACL-ADLC/tree/v4.20.0)
 
-## [v4.10.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v4.10.0)
+## [v4.10.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v4.10.0)
 
 **Release: June 2025 (v4.3.0 - v4.10.3)**
 
-This release focused on making BMAD more configurable and adaptable to different project structures.
+This release focused on making ACL more configurable and adaptable to different project structures.
 
 ### Configuration System
 
@@ -2076,18 +2076,18 @@ This release focused on making BMAD more configurable and adaptable to different
 - Bundle build improvements
 - Template formatting fixes
 
-[View v4.10.3 tag](https://github.com/bmad-code-org/BMAD-METHOD/tree/v4.10.3)
+[View v4.10.3 tag](https://github.com/acl-code-org/ACL-ADLC/tree/v4.10.3)
 
-## [v4.0.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v4.0.0)
+## [v4.0.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v4.0.0)
 
 **Release: June 20, 2025 (v4.0.0 - v4.2.0)**
 
-Version 4 represented a complete architectural overhaul, transforming BMAD from a collection of prompts into a professional, distributable framework.
+Version 4 represented a complete architectural overhaul, transforming ACL from a collection of prompts into a professional, distributable framework.
 
 ### Framework Transformation
 
-- **NPM Package**: Professional distribution and simple installation via `npx bmad-method install`
-- **Modular Architecture**: Move to `.bmad-core` hidden folder structure
+- **NPM Package**: Professional distribution and simple installation via `npx acl-adlc install`
+- **Modular Architecture**: Move to `.acl-core` hidden folder structure
 - **Multi-IDE Support**: Unified support for Claude Code, Cursor, Roo, Windsurf, and many more
 - **Schema Standardization**: YAML-based agent and team definitions
 - **Automated Installation**: One-command setup with upgrade detection
@@ -2114,9 +2114,9 @@ Version 4 represented a complete architectural overhaul, transforming BMAD from 
 - VSCode settings and markdown linting
 - Comprehensive documentation restructure
 
-[View v4.2.0 tag](https://github.com/bmad-code-org/BMAD-METHOD/tree/v4.2.0)
+[View v4.2.0 tag](https://github.com/acl-code-org/ACL-ADLC/tree/v4.2.0)
 
-## [v3.0.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v3.0.0)
+## [v3.0.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v3.0.0)
 
 **Release: May 20, 2025**
 
@@ -2124,7 +2124,7 @@ Version 3 introduced the revolutionary orchestrator concept, creating a unified 
 
 ### Major Features
 
-- **BMad Orchestrator**: Uber-agent that orchestrates all specialized agents
+- **ACL Orchestrator**: Uber-agent that orchestrates all specialized agents
 - **Web-First Approach**: Streamlined web setup with pre-compiled agent bundles
 - **Simplified Onboarding**: Complete setup in minutes with clear quick-start guide
 - **Build System**: Scripts to compile web agents from modular components
@@ -2143,9 +2143,9 @@ Version 3 introduced the revolutionary orchestrator concept, creating a unified 
 - Integrated method explanation within the agent itself
 - Cross-platform consistency (Gemini Gems, Custom GPTs)
 
-[View V3 Branch](https://github.com/bmad-code-org/BMAD-METHOD/tree/V3)
+[View V3 Branch](https://github.com/acl-code-org/ACL-ADLC/tree/V3)
 
-## [v2.0.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v2.0.0)
+## [v2.0.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v2.0.0)
 
 **Release: April 17, 2025**
 
@@ -2172,13 +2172,13 @@ Version 2 addressed the major shortcomings of V1 by introducing separation of co
 - Manual export/import workflow between agents
 - Creating each web agent separately was tedious
 
-[View V2 Branch](https://github.com/bmad-code-org/BMAD-METHOD/tree/V2)
+[View V2 Branch](https://github.com/acl-code-org/ACL-ADLC/tree/V2)
 
-## [v1.0.0](https://github.com/bmad-code-org/BMAD-METHOD/releases/tag/v1.0.0)
+## [v1.0.0](https://github.com/acl-code-org/ACL-ADLC/releases/tag/v1.0.0)
 
 **Initial Release: April 6, 2025**
 
-The original BMAD Method was a tech demo showcasing how different custom agile personas could be used to build out artifacts for planning and executing complex applications from scratch. This initial version established the foundation of the AI-driven agile development approach.
+The original ACL Method was a tech demo showcasing how different custom agile personas could be used to build out artifacts for planning and executing complex applications from scratch. This initial version established the foundation of the AI-driven agile development approach.
 
 ### Key Features
 
@@ -2195,12 +2195,12 @@ The original BMAD Method was a tech demo showcasing how different custom agile p
 - Rigid scope and purpose with templates coupled to agents
 - Not optimized for IDE integration
 
-[View V1 Branch](https://github.com/bmad-code-org/BMAD-METHOD/tree/V1)
+[View V1 Branch](https://github.com/acl-code-org/ACL-ADLC/tree/V1)
 
 ## Installation
 
 ```bash
-npx bmad-method
+npx acl-adlc
 ```
 
-For detailed release notes, see the [GitHub releases page](https://github.com/bmad-code-org/BMAD-METHOD/releases).
+For detailed release notes, see the [GitHub releases page](https://github.com/acl-code-org/ACL-ADLC/releases).

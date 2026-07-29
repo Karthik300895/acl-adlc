@@ -11,7 +11,7 @@ const { spawn, spawnSync } = require('node:child_process');
 
 const REPO = path.resolve(__dirname, '..');
 const SCRIPT_SRC = path.join(REPO, 'src', 'scripts');
-const SKILL_SRC = path.join(REPO, 'src', 'bmm-skills', '4-implementation', 'bmad-dev-auto');
+const SKILL_SRC = path.join(REPO, 'src', 'acl-skills', '4-implementation', 'acl-dev-auto');
 const tempDirs = [];
 let total = 0;
 let passed = 0;
@@ -58,7 +58,7 @@ function baseConfig(extra = '') {
     'communication_language = "English"',
     'document_output_language = "French"',
     '',
-    '[modules.bmm]',
+    '[modules.acl]',
     'user_skill_level = "expert"',
     'planning_artifacts = "{project-root}/planning"',
     'implementation_artifacts = "{project-root}/implementation"',
@@ -67,29 +67,29 @@ function baseConfig(extra = '') {
   ].join('\n');
 }
 
-function fixture({ sharedBmad, config = baseConfig(), projectName = 'project' } = {}) {
-  const outer = fs.mkdtempSync(path.join(os.tmpdir(), 'bmad-dev-auto-render-'));
+function fixture({ sharedAcl, config = baseConfig(), projectName = 'project' } = {}) {
+  const outer = fs.mkdtempSync(path.join(os.tmpdir(), 'acl-dev-auto-render-'));
   tempDirs.push(outer);
   const project = path.join(outer, projectName);
-  const bmad = sharedBmad || path.join(outer, 'installed-bmad');
+  const acl = sharedAcl || path.join(outer, 'installed-acl');
   fs.mkdirSync(project, { recursive: true });
-  if (!sharedBmad) {
-    fs.mkdirSync(path.join(bmad, 'scripts'), { recursive: true });
+  if (!sharedAcl) {
+    fs.mkdirSync(path.join(acl, 'scripts'), { recursive: true });
     for (const name of ['config_utils.py', 'render_skill.py']) {
-      fs.copyFileSync(path.join(SCRIPT_SRC, name), path.join(bmad, 'scripts', name));
+      fs.copyFileSync(path.join(SCRIPT_SRC, name), path.join(acl, 'scripts', name));
     }
-    copyDir(SKILL_SRC, path.join(bmad, 'bmm', 'bmad-dev-auto'));
-    fs.writeFileSync(path.join(bmad, 'config.toml'), config, 'utf8');
+    copyDir(SKILL_SRC, path.join(acl, 'acl', 'acl-dev-auto'));
+    fs.writeFileSync(path.join(acl, 'config.toml'), config, 'utf8');
   }
-  fs.symlinkSync(bmad, path.join(project, '_bmad'), process.platform === 'win32' ? 'junction' : 'dir');
+  fs.symlinkSync(acl, path.join(project, '_acl'), process.platform === 'win32' ? 'junction' : 'dir');
   fs.mkdirSync(path.join(project, 'nested', 'cwd'), { recursive: true });
-  return { outer, project, bmad, skill: path.join(bmad, 'bmm', 'bmad-dev-auto') };
+  return { outer, project, acl, skill: path.join(acl, 'acl', 'acl-dev-auto') };
 }
 
 function run(fix, cwd = fix.project) {
   return spawnSync(
     'uv',
-    ['run', '--python', '3.11', path.join(fix.bmad, 'scripts', 'render_skill.py'), '--project-root', fix.project, '--skill', fix.skill],
+    ['run', '--python', '3.11', path.join(fix.acl, 'scripts', 'render_skill.py'), '--project-root', fix.project, '--skill', fix.skill],
     {
       cwd,
       encoding: 'utf8',
@@ -101,7 +101,7 @@ function runAsync(fix) {
   return new Promise((resolve) => {
     const child = spawn(
       'uv',
-      ['run', '--python', '3.11', path.join(fix.bmad, 'scripts', 'render_skill.py'), '--project-root', fix.project, '--skill', fix.skill],
+      ['run', '--python', '3.11', path.join(fix.acl, 'scripts', 'render_skill.py'), '--project-root', fix.project, '--skill', fix.skill],
       { cwd: fix.project },
     );
     let stdout = '';
@@ -156,7 +156,7 @@ async function main() {
   });
 
   test('renderer execution leaves no bytecode cache beside installed files', () => {
-    assert(!fs.existsSync(path.join(fix.bmad, 'scripts', '__pycache__')), 'shared-script bytecode cache was created');
+    assert(!fs.existsSync(path.join(fix.acl, 'scripts', '__pycache__')), 'shared-script bytecode cache was created');
     assert(!fs.existsSync(path.join(fix.skill, '__pycache__')), 'skill bytecode cache was created');
   });
 
@@ -180,7 +180,7 @@ async function main() {
       .filter((name) => name.endsWith('.md'))
       .map((name) => fs.readFileSync(path.join(dir, name), 'utf8'))
       .join('\n');
-    assert(!/\{\{(?:\.|config\.)|\{workflow\.|\[\[bmad-snapshot:/.test(markdown), 'compile token survived');
+    assert(!/\{\{(?:\.|config\.)|\{workflow\.|\[\[acl-snapshot:/.test(markdown), 'compile token survived');
     assert(!markdown.includes('{skill-root}'), 'mutable skill-root reference survived');
     assert(markdown.includes('{spec_file}'), 'runtime placeholder was removed');
     assert(markdown.includes('tailored to `expert`'), 'user_skill_level behavior missing');
@@ -197,7 +197,7 @@ async function main() {
   test('identical input and irrelevant config changes reuse immutable bytes', () => {
     const second = entry(run(fix));
     assert(second === firstEntry, 'identical input created a generation');
-    fs.appendFileSync(path.join(fix.bmad, 'config.toml'), '\nunreferenced_value = "ignored"\n');
+    fs.appendFileSync(path.join(fix.acl, 'config.toml'), '\nunreferenced_value = "ignored"\n');
     const third = entry(run(fix));
     assert(third === firstEntry, 'unreferenced config changed generation identity');
     const current = bytesByName(path.dirname(firstEntry));
@@ -219,15 +219,15 @@ async function main() {
   test('a referenced resolved value publishes a new generation', () => {
     const configured = fixture();
     const before = entry(run(configured));
-    fs.writeFileSync(path.join(configured.bmad, 'config.user.toml'), '[core]\ncommunication_language = "Japanese"\n', 'utf8');
+    fs.writeFileSync(path.join(configured.acl, 'config.user.toml'), '[core]\ncommunication_language = "Japanese"\n', 'utf8');
     const after = entry(run(configured));
     assert(after !== before, 'referenced config change reused generation');
     assert(fs.readFileSync(after, 'utf8').includes('Speak in `Japanese`'), 'new value was not rendered');
     assert(fs.existsSync(before), 'prior generation disappeared');
   });
 
-  test('two project roots sharing _bmad get distinct root-bound snapshots', () => {
-    const other = fixture({ sharedBmad: fix.bmad });
+  test('two project roots sharing _acl get distinct root-bound snapshots', () => {
+    const other = fixture({ sharedAcl: fix.acl });
     const one = entry(run(fix));
     const two = entry(run(other));
     assert(one !== two, 'shared roots collided');
@@ -245,13 +245,13 @@ async function main() {
 
   test('malformed present config and customization layers HALT without traceback or dispatch', () => {
     const invalid = fixture();
-    fs.mkdirSync(path.join(invalid.bmad, 'custom'), { recursive: true });
-    fs.writeFileSync(path.join(invalid.bmad, 'custom', 'config.toml'), '[core\nbad', 'utf8');
+    fs.mkdirSync(path.join(invalid.acl, 'custom'), { recursive: true });
+    fs.writeFileSync(path.join(invalid.acl, 'custom', 'config.toml'), '[core\nbad', 'utf8');
     let result = run(invalid);
     assert(result.status !== 0 && result.stdout.startsWith('HALT:'), 'malformed config did not HALT');
     assert(!result.stdout.includes('read and follow') && !result.stderr.includes('Traceback'), 'failure leaked dispatch/traceback');
-    fs.rmSync(path.join(invalid.bmad, 'custom', 'config.toml'));
-    fs.writeFileSync(path.join(invalid.bmad, 'custom', 'bmad-dev-auto.toml'), '[workflow\nbad', 'utf8');
+    fs.rmSync(path.join(invalid.acl, 'custom', 'config.toml'));
+    fs.writeFileSync(path.join(invalid.acl, 'custom', 'acl-dev-auto.toml'), '[workflow\nbad', 'utf8');
     result = run(invalid);
     assert(result.status !== 0 && result.stdout.includes('failed to parse'), 'malformed customization did not HALT');
   });
@@ -262,9 +262,9 @@ async function main() {
     const wrong = fixture({ config: baseConfig().replace('user_skill_level = "expert"', 'user_skill_level = 42') });
     assert(run(wrong).stdout.includes('must be a string'), 'wrong type accepted');
     const keyed = fixture();
-    fs.mkdirSync(path.join(keyed.bmad, 'custom'), { recursive: true });
+    fs.mkdirSync(path.join(keyed.acl, 'custom'), { recursive: true });
     fs.writeFileSync(
-      path.join(keyed.bmad, 'custom', 'bmad-dev-auto.toml'),
+      path.join(keyed.acl, 'custom', 'acl-dev-auto.toml'),
       '[[workflow.review_layers]]\nid = 42\nname = "bad"\ninstruction = "bad"\n',
       'utf8',
     );
@@ -273,11 +273,11 @@ async function main() {
 
   test('snapshot-like text inside customization prose is preserved', () => {
     const custom = fixture();
-    fs.mkdirSync(path.join(custom.bmad, 'custom'), { recursive: true });
-    const literal = '[[bmad-snapshot:step-04-review.md]]';
+    fs.mkdirSync(path.join(custom.acl, 'custom'), { recursive: true });
+    const literal = '[[acl-snapshot:step-04-review.md]]';
     const compileLiteral = '{workflow.implementation_handoff}';
     fs.writeFileSync(
-      path.join(custom.bmad, 'custom', 'bmad-dev-auto.user.toml'),
+      path.join(custom.acl, 'custom', 'acl-dev-auto.user.toml'),
       `[workflow]\non_complete = "Preserve ${literal} and ${compileLiteral} as prose"\n`,
       'utf8',
     );
@@ -288,9 +288,9 @@ async function main() {
 
   test('review layer overrides, guards, disabling, and the empty-layer HALT are rendered', () => {
     const reviewed = fixture();
-    fs.mkdirSync(path.join(reviewed.bmad, 'custom'), { recursive: true });
+    fs.mkdirSync(path.join(reviewed.acl, 'custom'), { recursive: true });
     fs.writeFileSync(
-      path.join(reviewed.bmad, 'custom', 'bmad-dev-auto.toml'),
+      path.join(reviewed.acl, 'custom', 'acl-dev-auto.toml'),
       [
         '[[workflow.review_layers]]',
         'id = "blind-hunter"',
@@ -308,7 +308,7 @@ async function main() {
 
     const ids = ['blind-hunter', 'edge-case-hunter', 'verification-gap', 'intent-alignment'];
     fs.writeFileSync(
-      path.join(reviewed.bmad, 'custom', 'bmad-dev-auto.toml'),
+      path.join(reviewed.acl, 'custom', 'acl-dev-auto.toml'),
       ids.map((id) => `[[workflow.review_layers]]\nid = "${id}"\nname = "disabled"\ninstruction = ""\n`).join('\n'),
       'utf8',
     );
@@ -319,7 +319,7 @@ async function main() {
   test('renderer identity changes create a new immutable generation', () => {
     const identity = fixture();
     const original = entry(run(identity));
-    fs.appendFileSync(path.join(identity.bmad, 'scripts', 'render_skill.py'), '\n# renderer identity change\n');
+    fs.appendFileSync(path.join(identity.acl, 'scripts', 'render_skill.py'), '\n# renderer identity change\n');
     const rendererChanged = entry(run(identity));
     assert(rendererChanged !== original, 'renderer change reused generation');
     assert(fs.existsSync(original), 'prior identity generation disappeared');
@@ -336,9 +336,9 @@ async function main() {
 
   test('shared renderer accepts a convention-only skill without customization', () => {
     const generic = fixture();
-    const skill = path.join(generic.bmad, 'core', 'plain-workflow');
+    const skill = path.join(generic.acl, 'core', 'plain-workflow');
     fs.mkdirSync(skill, { recursive: true });
-    fs.writeFileSync(path.join(skill, 'workflow.md'), 'Read [[bmad-snapshot:step.md]].\n', 'utf8');
+    fs.writeFileSync(path.join(skill, 'workflow.md'), 'Read [[acl-snapshot:step.md]].\n', 'utf8');
     fs.writeFileSync(path.join(skill, 'step.md'), 'No rendered values required.\n', 'utf8');
     const output = entry(run({ ...generic, skill }));
     assert(output.includes(`${path.sep}render${path.sep}plain-workflow${path.sep}`), 'generic skill namespace missing');
@@ -360,14 +360,14 @@ async function main() {
   });
 
   test('long project basenames are bounded in the snapshot namespace', () => {
-    const outer = fs.mkdtempSync(path.join(os.tmpdir(), 'bmad-dev-auto-long-'));
+    const outer = fs.mkdtempSync(path.join(os.tmpdir(), 'acl-dev-auto-long-'));
     tempDirs.push(outer);
     const long = 'project-' + 'x'.repeat(220);
     const project = path.join(outer, long);
     const source = fixture();
     fs.mkdirSync(project);
-    fs.symlinkSync(source.bmad, path.join(project, '_bmad'), process.platform === 'win32' ? 'junction' : 'dir');
-    const longFix = { project, bmad: source.bmad, skill: source.skill };
+    fs.symlinkSync(source.acl, path.join(project, '_acl'), process.platform === 'win32' ? 'junction' : 'dir');
+    const longFix = { project, acl: source.acl, skill: source.skill };
     const output = entry(run(longFix));
     assert(path.basename(path.dirname(path.dirname(output))).length <= 93, 'namespace component was not bounded');
   });
@@ -386,13 +386,13 @@ async function main() {
     const stable = fixture();
     const original = entry(run(stable));
     const originalBytes = bytesByName(path.dirname(original));
-    const broken = fixture({ sharedBmad: stable.bmad });
+    const broken = fixture({ sharedAcl: stable.acl });
     const slug = path
       .basename(broken.project)
       .toLowerCase()
       .replaceAll(/[^a-z0-9]+/g, '-');
     const rootHash = hash(Buffer.from(fs.realpathSync(broken.project))).slice(0, 12);
-    const namespace = path.join(stable.bmad, 'render', 'bmad-dev-auto', `${slug}-${rootHash}`);
+    const namespace = path.join(stable.acl, 'render', 'acl-dev-auto', `${slug}-${rootHash}`);
     fs.writeFileSync(namespace, 'not a directory', 'utf8');
     const result = run(broken);
     assert(result.status !== 0 && result.stdout.startsWith('HALT:'), 'publication failure did not HALT');

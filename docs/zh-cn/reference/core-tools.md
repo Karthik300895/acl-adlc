@@ -5,10 +5,10 @@ sidebar:
   order: 3
 ---
 
-每个 BMad 安装都包含 **核心模块** —— 一小组跨项目、跨模块、跨阶段通用的 skills。本页覆盖这 7 个核心 skills：4 个内核工具，加上 3 个 **思考类 skills**（brainstorming、forge idea、party mode）。
+每个 ACL 安装都包含 **核心模块** —— 一小组跨项目、跨模块、跨阶段通用的 skills。本页覆盖这 7 个核心 skills：4 个内核工具，加上 3 个 **思考类 skills**（brainstorming、forge idea、party mode）。
 
 :::tip[快速入口]
-在 IDE 中直接输入工具 skill 名（例如 `bmad-help`）即可调用，无需先加载智能体。
+在 IDE 中直接输入工具 skill 名（例如 `acl-help`）即可调用，无需先加载智能体。
 :::
 
 ## 概览
@@ -17,24 +17,24 @@ sidebar:
 
 | 工具                                                      | 主要用途                                     |
 | --------------------------------------------------------- | -------------------------------------------- |
-| [`bmad-help`](#bmad-help)                                 | 基于项目上下文推荐下一步                     |
-| [`bmad-advanced-elicitation`](#bmad-advanced-elicitation) | 通过多轮技法增强 LLM 输出                    |
-| [`bmad-review`](#bmad-review)                             | 多视角批判性审查 —— 对抗、边界条件与验证缺口 |
-| [`bmad-customize`](#bmad-customize)                       | 创建并验证 BMad 自定义覆盖                   |
+| [`acl-help`](#acl-help)                                 | 基于项目上下文推荐下一步                     |
+| [`acl-advanced-elicitation`](#acl-advanced-elicitation) | 通过多轮技法增强 LLM 输出                    |
+| [`acl-review`](#acl-review)                             | 多视角批判性审查 —— 对抗、边界条件与验证缺口 |
+| [`acl-customize`](#acl-customize)                       | 创建并验证 ACL 自定义覆盖                   |
 
 **思考类 skills：**
 
 | 工具                                        | 主要用途                                             |
 | ------------------------------------------- | ---------------------------------------------------- |
-| [`bmad-brainstorming`](#bmad-brainstorming) | 引导式头脑风暴与想法扩展                             |
-| [`bmad-forge-idea`](#bmad-forge-idea)       | 压力测试一个想法，直到它站得住、被证实或低成本地淘汰 |
-| [`bmad-party-mode`](#bmad-party-mode)       | 多智能体协作讨论                                     |
+| [`acl-brainstorming`](#acl-brainstorming) | 引导式头脑风暴与想法扩展                             |
+| [`acl-forge-idea`](#acl-forge-idea)       | 压力测试一个想法，直到它站得住、被证实或低成本地淘汰 |
+| [`acl-party-mode`](#acl-party-mode)       | 多智能体协作讨论                                     |
 
 :::note[迁移与移除]
-`bmad-spec` 现随 BMM 模块作为第 2 阶段规划 workflow 发布 —— 见[工作流地图](./workflow-map.md)。`bmad-shard-doc` 与 `bmad-index-docs` 已移除。原 `bmad-editorial-review`、`bmad-editorial-review-prose`、`bmad-editorial-review-structure`、`bmad-review-adversarial-general`、`bmad-review-edge-case-hunter`、`bmad-review-verification-gap` 已全部合并进 `bmad-review`，其编辑视角取代了原独立的编辑审查 skill；旧 ID 仍可通过转发器解析，保持兼容。
+`acl-spec` 现随 ACL 模块作为第 2 阶段规划 workflow 发布 —— 见[工作流地图](./workflow-map.md)。`acl-shard-doc` 与 `acl-index-docs` 已移除。原 `acl-editorial-review`、`acl-editorial-review-prose`、`acl-editorial-review-structure`、`acl-review-adversarial-general`、`acl-review-edge-case-hunter`、`acl-review-verification-gap` 已全部合并进 `acl-review`，其编辑视角取代了原独立的编辑审查 skill；旧 ID 仍可通过转发器解析，保持兼容。
 :::
 
-## bmad-help
+## acl-help
 
 **定位：** 你的默认导航入口，告诉你“下一步该做什么”。
 
@@ -50,10 +50,10 @@ sidebar:
 2. 检测已安装模块及其可用 workflow
 3. 按优先级输出“必需步骤 + 可选步骤”
 
-**输入：** 可选自然语言问题（如 `bmad-help 我该先做 PRD 还是 architecture？`）  
+**输入：** 可选自然语言问题（如 `acl-help 我该先做 PRD 还是 architecture？`）  
 **输出：** 带 skill 名称的下一步建议列表
 
-## bmad-advanced-elicitation
+## acl-advanced-elicitation
 
 **定位：** 对已有 LLM 输出做第二轮深挖与改写强化。
 
@@ -73,7 +73,7 @@ sidebar:
 **输入：** 待增强内容（默认最近输出），可选指定方法名  
 **输出：** 增强后的内容版本
 
-## bmad-review
+## acl-review
 
 **定位：** 面向任意 diff、文档或产物的多视角审查。统一输出。零发现是合法结果，绝不为“看起来彻底”而凑数。每个视角声明其适用对象：diff 触发代码视角，文档触发编辑视角。
 
@@ -102,25 +102,25 @@ sidebar:
 **输入：** `content`（必填），`lenses`（可选，默认运行所有适配内容的视角），`also_consider`（可选），`style_guide` / `reader_type`（可选，供编辑视角使用）  
 **输出：** JSON findings 数组和/或按视角分组的 markdown 报告。可通过 skill 的 `customize.toml` 增加自定义视角，或调整/停用内置视角
 
-## bmad-customize
+## acl-customize
 
-**定位：** 无需手写 TOML，即可修改已安装 BMad 智能体或 workflow 的行为。
+**定位：** 无需手写 TOML，即可修改已安装 ACL 智能体或 workflow 的行为。
 
 **工作机制：**
 
-1. 扫描已安装 BMad skills 的可自定义面
+1. 扫描已安装 ACL skills 的可自定义面
 2. 为你的变更选择合适的覆盖范围
-3. 在 `_bmad/custom/` 下写入覆盖文件
+3. 在 `_acl/custom/` 下写入覆盖文件
 4. 验证合并后的配置
 
 **输入：** 用自然语言描述想要的自定义  
-**输出：** `_bmad/custom/` 下的 TOML 覆盖文件。详见[如何自定义 BMad](../how-to/customize-bmad.md)
+**输出：** `_acl/custom/` 下的 TOML 覆盖文件。详见[如何自定义 ACL](../how-to/customize-acl.md)
 
 ## 思考类 skills
 
 以下三个 skills 是核心模块的组成部分 —— 任何阶段、任何模块都可以借助的通用思考工具。
 
-### bmad-brainstorming
+### acl-brainstorming
 
 **定位：** 用结构化创意技法快速扩展想法池。
 
@@ -140,7 +140,7 @@ sidebar:
 **输入：** 主题或问题陈述（可附上下文文件）  
 **输出：** 自包含的 `brainstorm.html` 会话纪念页、可选的 `brainstorm-intent.md`（供下游 skills 使用）与 `.memlog.md` 会话记录
 
-### bmad-forge-idea
+### acl-forge-idea
 
 **定位：** 压力测试一个想法，直到它站得住、被证实或低成本地淘汰。
 
@@ -155,7 +155,7 @@ sidebar:
 **输入：** 任何领域的想法 —— 功能、商业模式、研究假设、人生决定  
 **输出：** 想法站住时的 `forged-idea.md` 提炼稿（可选），加上每次运行的 `forge-report.html`
 
-### bmad-party-mode
+### acl-party-mode
 
 **定位：** 让多个智能体围绕同一议题协作讨论。
 

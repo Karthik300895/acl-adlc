@@ -1,28 +1,28 @@
 ---
 title: Agenti
-description: Výchozí BMM agenti s jejich skill ID, spouštěči nabídky a primárními workflow
+description: Výchozí ACL agenti s jejich skill ID, spouštěči nabídky a primárními workflow
 sidebar:
   order: 2
 ---
 
 ## Výchozí agenti
 
-Tato stránka uvádí výchozí BMM (Agile suite) agenty, kteří se instalují s BMad Method, společně s jejich skill ID, spouštěči nabídky a primárními workflow. Každý agent se vyvolává jako skill.
+Tato stránka uvádí výchozí ACL (Agile suite) agenty, kteří se instalují s ACL Method, společně s jejich skill ID, spouštěči nabídky a primárními workflow. Každý agent se vyvolává jako skill.
 
 ## Poznámky
 
-- Každý agent je dostupný jako skill, generovaný instalátorem. Skill ID (např. `bmad-dev`) se používá k vyvolání agenta.
+- Každý agent je dostupný jako skill, generovaný instalátorem. Skill ID (např. `acl-dev`) se používá k vyvolání agenta.
 - Spouštěče jsou krátké kódy nabídky (např. `CP`) a fuzzy shody zobrazené v nabídce každého agenta.
-- Generování QA testů zajišťuje workflow skill `bmad-qa-generate-e2e-tests`, dostupný přes Developer agenta. Plný Test Architect (TEA) žije ve vlastním modulu.
+- Generování QA testů zajišťuje workflow skill `acl-qa-generate-e2e-tests`, dostupný přes Developer agenta. Plný Test Architect (TEA) žije ve vlastním modulu.
 
 | Agent                       | Skill ID             | Spouštěče                                    | Primární workflow                                                                                   |
 | --------------------------- | -------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Analyst (Mary)              | `bmad-analyst`       | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP`     | Brainstorm, průzkum trhu, doménový výzkum, technický výzkum, tvorba briefu, PRFAQ výzva, dokumentace projektu |
-| Product Manager (John)      | `bmad-pm`            | `CP`, `VP`, `EP`, `CE`, `IR`, `CC`           | Tvorba/validace/editace PRD, tvorba epiců a stories, připravenost implementace, korekce kurzu       |
-| Architect (Winston)         | `bmad-architect`     | `CA`, `IR`                                    | Tvorba architektury, připravenost implementace                                                      |
-| Developer (Amelia)          | `bmad-agent-dev`     | `QD`, `QA`, `CR`, `SP`, `ER`                  | Quick Dev, generování QA testů, revize kódu, plánování sprintu, retrospektiva epicu |
-| UX Designer (Sally)         | `bmad-ux-designer`   | `CU`                                          | Tvorba UX designu                                                                                   |
-| Technical Writer (Paige)    | `bmad-tech-writer`   | `DP`, `WD`, `US`, `MG`, `VD`, `EC`           | Dokumentace projektu, psaní dokumentu, aktualizace standardů, generování Mermaid, validace dok., vysvětlení konceptu |
+| Analyst (Mary)              | `acl-analyst`       | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP`     | Brainstorm, průzkum trhu, doménový výzkum, technický výzkum, tvorba briefu, PRFAQ výzva, dokumentace projektu |
+| Product Manager (John)      | `acl-pm`            | `CP`, `VP`, `EP`, `CE`, `IR`, `CC`           | Tvorba/validace/editace PRD, tvorba epiců a stories, připravenost implementace, korekce kurzu       |
+| Architect (Winston)         | `acl-architect`     | `CA`, `IR`                                    | Tvorba architektury, připravenost implementace                                                      |
+| Developer (Amelia)          | `acl-agent-dev`     | `QD`, `QA`, `CR`, `SP`, `ER`                  | Quick Dev, generování QA testů, revize kódu, plánování sprintu, retrospektiva epicu |
+| UX Designer (Sally)         | `acl-ux-designer`   | `CU`                                          | Tvorba UX designu                                                                                   |
+| Technical Writer (Paige)    | `acl-tech-writer`   | `DP`, `WD`, `US`, `MG`, `VD`, `EC`           | Dokumentace projektu, psaní dokumentu, aktualizace standardů, generování Mermaid, validace dok., vysvětlení konceptu |
 
 ## Typy spouštěčů
 

@@ -30,7 +30,7 @@ class RenderError(ValueError):
 _CONFIG_TOKEN = re.compile(r"\{\{config\.([A-Za-z0-9_.-]+)\}\}")
 _SHORT_CONFIG_TOKEN = re.compile(r"\{\{\.([A-Za-z0-9_]+)\}\}")
 _CUSTOM_TOKEN = re.compile(r"\{workflow\.([A-Za-z0-9_.-]+)\}")
-_SNAPSHOT_TOKEN = re.compile(r"\[\[bmad-snapshot:([A-Za-z0-9_./-]+\.md)\]\]")
+_SNAPSHOT_TOKEN = re.compile(r"\[\[acl-snapshot:([A-Za-z0-9_./-]+\.md)\]\]")
 
 
 def _hash_bytes(content: bytes) -> str:
@@ -321,8 +321,8 @@ def _publish(destination: Path, outputs: dict[str, bytes], manifest: dict[str, A
 def render(project_root: Path, skill_dir: Path) -> Path:
     project_root = project_root.resolve(strict=True)
     skill_dir = skill_dir.resolve(strict=True)
-    if not (project_root / "_bmad").is_dir():
-        raise RenderError(f"project root does not contain _bmad/: {project_root}")
+    if not (project_root / "_acl").is_dir():
+        raise RenderError(f"project root does not contain _acl/: {project_root}")
 
     sources = _load_sources(skill_dir)
     central = load_central_config(project_root)
@@ -356,7 +356,7 @@ def render(project_root: Path, skill_dir: Path) -> Path:
     generation_hash = _hash_bytes(_canonical_json(identity))[:20]
     destination = (
         project_root
-        / "_bmad"
+        / "_acl"
         / "render"
         / skill_dir.name
         / f"{slug}-{root_hash}"

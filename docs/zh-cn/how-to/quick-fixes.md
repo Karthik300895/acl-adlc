@@ -15,7 +15,7 @@ Bug 修复、重构或小范围改动可以在很少甚至没有上游规划的�
 - 依赖更新
 
 :::note[前置条件]
-- 已安装 BMad Method（`npx bmad-method install`）
+- 已安装 ACL Method（`npx acl-adlc install`）
 - AI 驱动的 IDE（Claude Code、Cursor 或类似工具）
 :::
 
@@ -38,7 +38,7 @@ run quick-dev — fix https://github.com/org/repo/issues/42
 ```
 
 ```text
-run quick-dev — 实现 _bmad-output/implementation-artifacts/my-intent.md 中的意图
+run quick-dev — 实现 _acl-output/implementation-artifacts/my-intent.md 中的意图
 ```
 
 ```text

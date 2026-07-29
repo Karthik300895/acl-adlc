@@ -1,17 +1,17 @@
 ---
 title: "技能（Skills）"
-description: BMad 技能参考：它们是什么、如何生成以及如何调用。
+description: ACL 技能参考：它们是什么、如何生成以及如何调用。
 sidebar:
   order: 4
 ---
 
-每次运行 `npx bmad-method install`，BMad 会基于你选择的模块生成一组 **skills**。你可以直接输入 skill 名称调用 workflow、任务、工具或智能体角色。
+每次运行 `npx acl-adlc install`，ACL 会基于你选择的模块生成一组 **skills**。你可以直接输入 skill 名称调用 workflow、任务、工具或智能体角色。
 
 ## Skills 与菜单触发器的区别
 
 | 机制 | 调用方式 | 适用场景 |
 | --- | --- | --- |
-| **Skill** | 直接输入 skill 名（如 `bmad-help`） | 你已明确要运行哪个功能 |
+| **Skill** | 直接输入 skill 名（如 `acl-help`） | 你已明确要运行哪个功能 |
 | **智能体菜单触发器** | 先加载智能体，再输入短触发码（如 `QD`） | 你在智能体会话内连续切换任务 |
 
 菜单触发器依赖“已激活的智能体会话”；skill 可独立运行。
@@ -44,25 +44,25 @@ sidebar:
 
 ```text
 .claude/skills/
-├── bmad-help/
+├── acl-help/
 │   └── SKILL.md
-├── bmad-prd/
+├── acl-prd/
 │   └── SKILL.md
-├── bmad-agent-dev/
+├── acl-agent-dev/
 │   └── SKILL.md
 └── ...
 ```
 
-skill 目录名就是调用名，例如 `bmad-agent-dev/` 对应 skill `bmad-agent-dev`。
+skill 目录名就是调用名，例如 `acl-agent-dev/` 对应 skill `acl-agent-dev`。
 
 ## 如何发现可用 skills
 
-- 在 IDE 中直接输入 `bmad-` 前缀查看补全候选
-- 运行 `bmad-help` 获取基于当前项目状态的下一步建议
+- 在 IDE 中直接输入 `acl-` 前缀查看补全候选
+- 运行 `acl-help` 获取基于当前项目状态的下一步建议
 - 打开 skills 目录查看完整清单（这是最权威来源）
 
 :::tip[快速定位]
-不确定该跑哪个 workflow 时，先执行 `bmad-help`，通常比人工翻文档更快。
+不确定该跑哪个 workflow 时，先执行 `acl-help`，通常比人工翻文档更快。
 :::
 
 ## Skill 分类与示例
@@ -73,9 +73,9 @@ skill 目录名就是调用名，例如 `bmad-agent-dev/` 对应 skill `bmad-age
 
 | 示例 skill | 角色 | 用途 |
 | --- | --- | --- |
-| `bmad-agent-dev` | Developer（Amelia） | 按规范实现 story |
-| `bmad-pm` | Product Manager（John） | 创建与校验 PRD |
-| `bmad-architect` | Architect（Winston） | 架构设计与约束定义 |
+| `acl-agent-dev` | Developer（Amelia） | 按规范实现 story |
+| `acl-pm` | Product Manager（John） | 创建与校验 PRD |
+| `acl-architect` | Architect（Winston） | 架构设计与约束定义 |
 
 完整列表见 [智能体参考](./agents.md)。
 
@@ -85,11 +85,11 @@ skill 目录名就是调用名，例如 `bmad-agent-dev/` 对应 skill `bmad-age
 
 | 示例 skill | 用途 |
 | --- | --- |
-| `bmad-prd` | 创建 PRD |
-| `bmad-architecture` | 创建架构方案 |
-| `bmad-create-epics-and-stories` | 拆分 epics/stories |
-| `bmad-code-review` | 代码评审 |
-| `bmad-quick-dev` | 实施直接意图、issue、功能、修复或已规划 story |
+| `acl-prd` | 创建 PRD |
+| `acl-architecture` | 创建架构方案 |
+| `acl-create-epics-and-stories` | 拆分 epics/stories |
+| `acl-code-review` | 代码评审 |
+| `acl-quick-dev` | 实施直接意图、issue、功能、修复或已规划 story |
 
 按阶段查看见 [工作流地图](./workflow-map.md)。
 
@@ -97,13 +97,13 @@ skill 目录名就是调用名，例如 `bmad-agent-dev/` 对应 skill `bmad-age
 
 独立任务，不依赖特定智能体上下文。
 
-**`bmad-help`** 是最常用入口：它会读取项目状态并给出“下一步建议 + 对应 skill”。
+**`acl-help`** 是最常用入口：它会读取项目状态并给出“下一步建议 + 对应 skill”。
 
 更多核心任务和工具见 [核心工具参考](./core-tools.md)。
 
 ## 命名规则
 
-所有技能统一以 `bmad-` 开头，后接语义化名称（如 `bmad-agent-dev`、`bmad-prd`、`bmad-help`）。
+所有技能统一以 `acl-` 开头，后接语义化名称（如 `acl-agent-dev`、`acl-prd`、`acl-help`）。
 
 ## 故障排查
 

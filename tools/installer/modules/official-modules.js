@@ -103,7 +103,7 @@ class OfficialModules {
   }
 
   /**
-   * List all available built-in modules (core and bmm).
+   * List all available built-in modules (core and acl).
    * All other modules come from external-official-modules.yaml
    * @returns {Object} Object with modules array
    */
@@ -119,12 +119,12 @@ class OfficialModules {
       }
     }
 
-    // Add built-in bmm module (directly under src/bmm-skills)
-    const bmmPath = getSourcePath('bmm-skills');
-    if (await fs.pathExists(bmmPath)) {
-      const bmmInfo = await this.getModuleInfo(bmmPath, 'bmm', 'src/bmm-skills');
-      if (bmmInfo) {
-        modules.push(bmmInfo);
+    // Add built-in acl module (directly under src/acl-skills)
+    const aclPath = getSourcePath('acl-skills');
+    if (await fs.pathExists(aclPath)) {
+      const aclInfo = await this.getModuleInfo(aclPath, 'acl', 'src/acl-skills');
+      if (aclInfo) {
+        modules.push(aclInfo);
       }
     }
 
@@ -168,7 +168,7 @@ class OfficialModules {
         .split('-')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' '),
-      description: 'BMAD Module',
+      description: 'ACL Module',
       version: '5.0.0',
       source: sourceDescription,
     };
@@ -217,11 +217,11 @@ class OfficialModules {
       }
     }
 
-    // Check for built-in bmm module (directly under src/bmm-skills)
-    if (moduleCode === 'bmm') {
-      const bmmPath = getSourcePath('bmm-skills');
-      if (await fs.pathExists(bmmPath)) {
-        return bmmPath;
+    // Check for built-in acl module (directly under src/acl-skills)
+    if (moduleCode === 'acl') {
+      const aclPath = getSourcePath('acl-skills');
+      if (await fs.pathExists(aclPath)) {
+        return aclPath;
       }
     }
 
@@ -245,27 +245,27 @@ class OfficialModules {
   /**
    * Install a module
    * @param {string} moduleName - Code of the module to install (from module.yaml)
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    * @param {Function} fileTrackingCallback - Optional callback to track installed files
    * @param {Object} options - Additional installation options
    * @param {Array<string>} options.installedIDEs - Array of IDE codes that were installed
    * @param {Object} options.moduleConfig - Module configuration from config collector
    * @param {Object} options.logger - Logger instance for output
    */
-  async install(moduleName, bmadDir, fileTrackingCallback = null, options = {}) {
+  async install(moduleName, aclDir, fileTrackingCallback = null, options = {}) {
     // Check if this module has a plugin resolution (custom marketplace install)
     const { CustomModuleManager } = require('./custom-module-manager');
     const customMgr = new CustomModuleManager();
     const resolved = customMgr.getResolution(moduleName);
     if (resolved) {
-      return this.installFromResolution(resolved, bmadDir, fileTrackingCallback, options);
+      return this.installFromResolution(resolved, aclDir, fileTrackingCallback, options);
     }
 
     const sourcePath = await this.findModuleSource(moduleName, {
       silent: options.silent,
       channelOptions: options.channelOptions,
     });
-    const targetPath = path.join(bmadDir, moduleName);
+    const targetPath = path.join(aclDir, moduleName);
 
     if (!sourcePath) {
       throw new Error(
@@ -302,18 +302,18 @@ class OfficialModules {
     }
 
     if (!options.skipModuleInstaller) {
-      await this.createModuleDirectories(moduleName, bmadDir, options);
+      await this.createModuleDirectories(moduleName, aclDir, options);
     }
 
     const { Manifest } = require('../core/manifest');
     const manifestObj = new Manifest();
-    const versionInfo = await manifestObj.getModuleVersionInfo(moduleName, bmadDir, sourcePath);
+    const versionInfo = await manifestObj.getModuleVersionInfo(moduleName, aclDir, sourcePath);
 
     // Pick up channel resolution recorded by the external manager (the only
     // manager that does pre-clone resolution now that community is retired).
     const resolution = this.externalModuleManager.getResolution(moduleName);
 
-    await manifestObj.addModule(bmadDir, moduleName, {
+    await manifestObj.addModule(aclDir, moduleName, {
       version: resolution?.version || versionInfo.version,
       source: versionInfo.source,
       npmPackage: versionInfo.npmPackage,
@@ -332,7 +332,7 @@ class OfficialModules {
    * (installFromResolution) and official marketplace-plugin registry installs
    * (install), so the two paths cannot drift.
    * @param {Object} resolved - ResolvedModule from PluginResolver
-   * @param {string} targetPath - Destination module directory (e.g. bmadDir/<code>)
+   * @param {string} targetPath - Destination module directory (e.g. aclDir/<code>)
    * @param {Function} fileTrackingCallback - Optional callback to track installed files
    * @param {Object} moduleConfig - Module configuration passed to copy filtering
    */
@@ -374,12 +374,12 @@ class OfficialModules {
    * Install a module from a PluginResolver resolution result.
    * Copies specific skill directories and places module-help.csv at the target root.
    * @param {Object} resolved - ResolvedModule from PluginResolver
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    * @param {Function} fileTrackingCallback - Optional callback to track installed files
    * @param {Object} options - Installation options
    */
-  async installFromResolution(resolved, bmadDir, fileTrackingCallback = null, options = {}) {
-    const targetPath = path.join(bmadDir, resolved.code);
+  async installFromResolution(resolved, aclDir, fileTrackingCallback = null, options = {}) {
+    const targetPath = path.join(aclDir, resolved.code);
 
     if (await fs.pathExists(targetPath)) {
       await fs.remove(targetPath);
@@ -389,7 +389,7 @@ class OfficialModules {
 
     // Create directories declared in module.yaml (strategies 1-4 may have these)
     if (!options.skipModuleInstaller) {
-      await this.createModuleDirectories(resolved.code, bmadDir, options);
+      await this.createModuleDirectories(resolved.code, aclDir, options);
     }
 
     // Update manifest. For custom-source installs we derive channel from the
@@ -410,7 +410,7 @@ class OfficialModules {
       if (resolved.rawInput) manifestEntry.rawSource = resolved.rawInput;
     }
     if (resolved.localPath) manifestEntry.localPath = resolved.localPath;
-    await manifestObj.addModule(bmadDir, resolved.code, manifestEntry);
+    await manifestObj.addModule(aclDir, resolved.code, manifestEntry);
 
     return {
       success: true,
@@ -428,11 +428,11 @@ class OfficialModules {
   /**
    * Update an existing module
    * @param {string} moduleName - Name of the module to update
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    */
-  async update(moduleName, bmadDir) {
+  async update(moduleName, aclDir) {
     const sourcePath = await this.findModuleSource(moduleName);
-    const targetPath = path.join(bmadDir, moduleName);
+    const targetPath = path.join(aclDir, moduleName);
 
     if (!sourcePath) {
       throw new Error(`Module '${moduleName}' not found in any source location`);
@@ -454,10 +454,10 @@ class OfficialModules {
   /**
    * Remove a module
    * @param {string} moduleName - Name of the module to remove
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    */
-  async remove(moduleName, bmadDir) {
-    const targetPath = path.join(bmadDir, moduleName);
+  async remove(moduleName, aclDir) {
+    const targetPath = path.join(aclDir, moduleName);
 
     if (!(await fs.pathExists(targetPath))) {
       throw new Error(`Module '${moduleName}' is not installed`);
@@ -474,22 +474,22 @@ class OfficialModules {
   /**
    * Check if a module is installed
    * @param {string} moduleName - Name of the module
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    * @returns {boolean} True if module is installed
    */
-  async isInstalled(moduleName, bmadDir) {
-    const targetPath = path.join(bmadDir, moduleName);
+  async isInstalled(moduleName, aclDir) {
+    const targetPath = path.join(aclDir, moduleName);
     return await fs.pathExists(targetPath);
   }
 
   /**
    * Get installed module info
    * @param {string} moduleName - Name of the module
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    * @returns {Object|null} Module info or null if not installed
    */
-  async getInstalledInfo(moduleName, bmadDir) {
-    const targetPath = path.join(bmadDir, moduleName);
+  async getInstalledInfo(moduleName, aclDir) {
+    const targetPath = path.join(aclDir, moduleName);
 
     if (!(await fs.pathExists(targetPath))) {
       return null;
@@ -585,17 +585,17 @@ class OfficialModules {
    * This replaces the security-risky module installer pattern with declarative config
    * During updates, if a directory path changed, moves the old directory to the new path
    * @param {string} moduleName - Name of the module
-   * @param {string} bmadDir - Target bmad directory
+   * @param {string} aclDir - Target acl directory
    * @param {Object} options - Installation options
    * @param {Object} options.moduleConfig - Module configuration from config collector
    * @param {Object} options.existingModuleConfig - Previous module config (for detecting path changes during updates)
    * @param {Object} options.coreConfig - Core configuration
    * @returns {Promise<{createdDirs: string[], movedDirs: string[], createdWdsFolders: string[]}>} Created directories info
    */
-  async createModuleDirectories(moduleName, bmadDir, options = {}) {
+  async createModuleDirectories(moduleName, aclDir, options = {}) {
     const moduleConfig = options.moduleConfig || {};
     const existingModuleConfig = options.existingModuleConfig || {};
-    const projectRoot = path.dirname(bmadDir);
+    const projectRoot = path.dirname(aclDir);
     const emptyResult = { createdDirs: [], movedDirs: [], createdWdsFolders: [] };
 
     // Special handling for core module - it's in src/core-skills not src/modules
@@ -809,16 +809,16 @@ class OfficialModules {
   // ─── Config collection methods (merged from ConfigCollector) ───
 
   /**
-   * Find the bmad installation directory in a project
+   * Find the acl installation directory in a project
    * V6+ installations can use ANY folder name but ALWAYS have _config/manifest.yaml
    * @param {string} projectDir - Project directory
-   * @returns {Promise<string>} Path to bmad directory
+   * @returns {Promise<string>} Path to acl directory
    */
-  async findBmadDir(projectDir) {
+  async findAclDir(projectDir) {
     // Check if project directory exists
     if (!(await fs.pathExists(projectDir))) {
       // Project doesn't exist yet, return default
-      return path.join(projectDir, 'bmad');
+      return path.join(projectDir, 'acl');
     }
 
     // V6+ strategy: Look for ANY directory with _config/manifest.yaml
@@ -840,15 +840,15 @@ class OfficialModules {
 
     // No V6+ installation found, return default
     // This will be used for new installations
-    return path.join(projectDir, 'bmad');
+    return path.join(projectDir, 'acl');
   }
 
   /**
-   * Detect the existing BMAD folder name in a project
+   * Detect the existing ACL folder name in a project
    * @param {string} projectDir - Project directory
    * @returns {Promise<string|null>} Folder name (just the name, not full path) or null if not found
    */
-  async detectExistingBmadFolder(projectDir) {
+  async detectExistingAclFolder(projectDir) {
     // Check if project directory exists
     if (!(await fs.pathExists(projectDir))) {
       return null;
@@ -885,11 +885,11 @@ class OfficialModules {
       return false;
     }
 
-    // Find the actual bmad directory (handles custom folder names)
-    const bmadDir = await this.findBmadDir(projectDir);
+    // Find the actual acl directory (handles custom folder names)
+    const aclDir = await this.findAclDir(projectDir);
 
-    // Check if bmad directory exists
-    if (!(await fs.pathExists(bmadDir))) {
+    // Check if acl directory exists
+    if (!(await fs.pathExists(aclDir))) {
       return false;
     }
 
@@ -899,7 +899,7 @@ class OfficialModules {
     // every reinstall.
     let foundAny = false;
     for (const fileName of ['config.toml', 'config.user.toml']) {
-      const tomlPath = path.join(bmadDir, fileName);
+      const tomlPath = path.join(aclDir, fileName);
       if (!(await fs.pathExists(tomlPath))) continue;
       try {
         const content = await fs.readFile(tomlPath, 'utf8');
@@ -921,7 +921,7 @@ class OfficialModules {
     }
 
     // Fallback: legacy per-module config.yaml files (pre-v6 installations).
-    const entries = await fs.readdir(bmadDir, { withFileTypes: true });
+    const entries = await fs.readdir(aclDir, { withFileTypes: true });
     const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'scripts', 'custom', 'render']);
     for (const entry of entries) {
       if (entry.isDirectory()) {
@@ -929,7 +929,7 @@ class OfficialModules {
           continue;
         }
 
-        const moduleConfigPath = path.join(bmadDir, entry.name, 'config.yaml');
+        const moduleConfigPath = path.join(aclDir, entry.name, 'config.yaml');
 
         if (await fs.pathExists(moduleConfigPath)) {
           try {
@@ -958,8 +958,8 @@ class OfficialModules {
 
   /**
    * Migrate prior answers when a key has moved from a non-core module to core
-   * (e.g. project_name moving from bmm to core in #2279). Without this, the
-   * partition logic in writeCentralConfig drops the value from the bmm bucket
+   * (e.g. project_name moving from acl to core in #2279). Without this, the
+   * partition logic in writeCentralConfig drops the value from the acl bucket
    * (because it's now a core key) without re-homing it under [core], so the
    * user's prior answer silently disappears on the next install/quick-update.
    */
@@ -1466,7 +1466,7 @@ class OfficialModules {
    * @returns {string} Capitalized username\
    */
   getDefaultUsername() {
-    let result = 'BMad';
+    let result = 'ACL';
     try {
       const os = require('node:os');
       const userInfo = os.userInfo();
@@ -1475,7 +1475,7 @@ class OfficialModules {
         result = username.charAt(0).toUpperCase() + username.slice(1);
       }
     } catch {
-      // Do nothing, just return 'BMad'
+      // Do nothing, just return 'ACL'
     }
     return result;
   }
@@ -1860,7 +1860,7 @@ class OfficialModules {
 
   /**
    * Convert an existing stored value back into the prompt-facing value for templated fields.
-   * For example, "{test_artifacts}/{value}" + "_bmad-output/test-artifacts/test-design"
+   * For example, "{test_artifacts}/{value}" + "_acl-output/test-artifacts/test-design"
    * becomes "test-design" so the template is not applied twice on modify.
    * @param {*} existingValue - Stored config value
    * @param {string} moduleName - Module name
@@ -2203,7 +2203,7 @@ class OfficialModules {
  * Only handles the subset of TOML the installer produces: [core],
  * [modules.<code>], string/bool/number scalar values. [agents.*] and other
  * sections are ignored. Returns a plain object keyed by section name where
- * module sections use the bare code (e.g. "bmm"), not the full "modules.bmm".
+ * module sections use the bare code (e.g. "acl"), not the full "modules.acl".
  */
 function parseCentralToml(content) {
   const result = {};

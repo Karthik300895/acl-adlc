@@ -5,7 +5,7 @@ sidebar:
   order: 7
 ---
 
-`bmad-quick-dev` 是所有开发工作的标准实施 workflow。它既可接收自由意图或 issue，也可接收完整规划的 story，并在安全前提下用尽可能少的人机交互完成代码变更。
+`acl-quick-dev` 是所有开发工作的标准实施 workflow。它既可接收自由意图或 issue，也可接收完整规划的 story，并在安全前提下用尽可能少的人机交互完成代码变更。
 
 上游规划仍然可选且深度可变。清晰变更可以直接进入；大型项目可以携带 PRD、UX、架构、epics、stories、就绪检查和 sprint 计划。这些产物会增强上下文，而不是选择另一条开发 workflow。
 

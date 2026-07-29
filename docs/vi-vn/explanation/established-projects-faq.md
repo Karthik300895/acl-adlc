@@ -1,11 +1,11 @@
 ---
 title: "FAQ cho dự án đã tồn tại"
-description: Các câu hỏi phổ biến khi dùng BMad Method trên dự án đã tồn tại
+description: Các câu hỏi phổ biến khi dùng ACL Method trên dự án đã tồn tại
 sidebar:
   order: 12
 ---
 
-Các câu trả lời nhanh cho những câu hỏi thường gặp khi làm việc với dự án đã tồn tại bằng BMad Method (BMM).
+Các câu trả lời nhanh cho những câu hỏi thường gặp khi làm việc với dự án đã tồn tại bằng ACL Method (ACL).
 
 ## Các câu hỏi
 
@@ -30,7 +30,7 @@ Không sao - bạn có thể chạy nó bất cứ lúc nào. Bạn thậm chí 
 
 ### Implementation hoạt động thế nào trong dự án đã tồn tại?
 
-Chạy `bmad-quick-dev`, giống như với dự án mới. Workflow sẽ:
+Chạy `acl-quick-dev`, giống như với dự án mới. Workflow sẽ:
 
 - Tự động nhận diện stack hiện có
 - Phân tích pattern code hiện có
@@ -46,6 +46,6 @@ Quick Dev sẽ nhận diện quy ước hiện có và hỏi: "Tôi có nên tu�
 - **Có** → Giữ tính nhất quán với codebase hiện tại
 - **Không** → Đặt ra chuẩn mới, đồng thời ghi rõ lý do trong spec
 
-BMM tôn trọng lựa chọn của bạn - nó không ép buộc hiện đại hóa, nhưng sẽ đưa ra lựa chọn đó.
+ACL tôn trọng lựa chọn của bạn - nó không ép buộc hiện đại hóa, nhưng sẽ đưa ra lựa chọn đó.
 
-**Có câu hỏi chưa được trả lời ở đây?** Hãy [mở issue](https://github.com/bmad-code-org/BMAD-METHOD/issues) hoặc hỏi trên [Discord](https://discord.gg/gk8jAdXWmj) để chúng tôi bổ sung!
+**Có câu hỏi chưa được trả lời ở đây?** Hãy [mở issue](https://github.com/acl-code-org/ACL-ADLC/issues) hoặc hỏi trên [Discord](https://discord.gg/gk8jAdXWmj) để chúng tôi bổ sung!

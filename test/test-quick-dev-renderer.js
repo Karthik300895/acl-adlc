@@ -1,10 +1,10 @@
 // Test only deterministic renderer behavior.
 // Do not test model inference or assert prose copied verbatim from skill sources.
 /**
- * Smoke test for bmad-quick-dev render.py
+ * Smoke test for acl-quick-dev render.py
  *
  * Sets up a temp project with base + override config layers and a
- * _bmad/custom/bmad-quick-dev.user.toml [workflow] override, runs render.py,
+ * _acl/custom/acl-quick-dev.user.toml [workflow] override, runs render.py,
  * and asserts:
  *   1. The central-config override wins (step files' language line contains "Japanese").
  *   2. sprint_status is an absolute path rooted at the temp project dir.
@@ -62,7 +62,7 @@ function assert(condition, message) {
 // Helpers
 // ---------------------------------------------------------------------------
 
-const SKILL_SRC = path.join(__dirname, '..', 'src', 'bmm-skills', '4-implementation', 'bmad-quick-dev');
+const SKILL_SRC = path.join(__dirname, '..', 'src', 'acl-skills', '4-implementation', 'acl-quick-dev');
 
 /**
  * Recursively copy a directory (stdlib only, no fs.cp to stay >=20 compat).
@@ -84,16 +84,16 @@ function copyDirSync(src, dst) {
 const extraTmpDirs = [];
 
 /**
- * Spin up an isolated temp project with the given _bmad/config.toml body and a
+ * Spin up an isolated temp project with the given _acl/config.toml body and a
  * copy of the skill dir, so a single bad-config scenario can be rendered in
  * isolation. Returns { dir, skillDst }; the caller runs render.py against it.
  */
 function makeProject(configText) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'bmad-renderer-halt-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'acl-renderer-halt-'));
   extraTmpDirs.push(dir);
-  fs.mkdirSync(path.join(dir, '_bmad'), { recursive: true });
-  fs.writeFileSync(path.join(dir, '_bmad', 'config.toml'), configText, 'utf-8');
-  const skillDst = path.join(dir, 'bmad-quick-dev');
+  fs.mkdirSync(path.join(dir, '_acl'), { recursive: true });
+  fs.writeFileSync(path.join(dir, '_acl', 'config.toml'), configText, 'utf-8');
+  const skillDst = path.join(dir, 'acl-quick-dev');
   copyDirSync(SKILL_SRC, skillDst);
   return { dir, skillDst };
 }
@@ -102,39 +102,39 @@ function makeProject(configText) {
 // Test fixture setup
 // ---------------------------------------------------------------------------
 
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'bmad-renderer-test-'));
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'acl-renderer-test-'));
 
 try {
-  // _bmad/config.toml — base layer
-  fs.mkdirSync(path.join(tmpDir, '_bmad'), { recursive: true });
+  // _acl/config.toml — base layer
+  fs.mkdirSync(path.join(tmpDir, '_acl'), { recursive: true });
   fs.writeFileSync(
-    path.join(tmpDir, '_bmad', 'config.toml'),
+    path.join(tmpDir, '_acl', 'config.toml'),
     [
       '[core]',
       'communication_language = "French"',
       'document_output_language = "Klingon"',
       '',
-      '[modules.bmm]',
+      '[modules.acl]',
       'planning_artifacts = "{project-root}/plan"',
       'implementation_artifacts = "{project-root}/impl"',
     ].join('\n'),
     'utf-8',
   );
 
-  // _bmad/custom/config.user.toml — override layer (should win)
-  fs.mkdirSync(path.join(tmpDir, '_bmad', 'custom'), { recursive: true });
+  // _acl/custom/config.user.toml — override layer (should win)
+  fs.mkdirSync(path.join(tmpDir, '_acl', 'custom'), { recursive: true });
   fs.writeFileSync(
-    path.join(tmpDir, '_bmad', 'custom', 'config.user.toml'),
+    path.join(tmpDir, '_acl', 'custom', 'config.user.toml'),
     ['[core]', 'communication_language = "Japanese"'].join('\n'),
     'utf-8',
   );
 
-  // _bmad/custom/bmad-quick-dev.user.toml — [workflow] customization override.
+  // _acl/custom/acl-quick-dev.user.toml — [workflow] customization override.
   // Exercises render.py's self-resolution: array append (persistent_facts),
   // list inlining (activation_steps_prepend), and scalar override (on_complete),
   // all baked into the rendered output with no runtime resolve_customization.py.
   fs.writeFileSync(
-    path.join(tmpDir, '_bmad', 'custom', 'bmad-quick-dev.user.toml'),
+    path.join(tmpDir, '_acl', 'custom', 'acl-quick-dev.user.toml'),
     [
       '[workflow]',
       'activation_steps_prepend = ["TEST_PREPEND_STEP"]',
@@ -154,11 +154,11 @@ try {
     'utf-8',
   );
 
-  // Copy skill dir into <tmpDir>/bmad-quick-dev/ so find_project_root() walks
-  // up and finds <tmpDir>/_bmad/, and os.path.basename(script_dir) resolves
+  // Copy skill dir into <tmpDir>/acl-quick-dev/ so find_project_root() walks
+  // up and finds <tmpDir>/_acl/, and os.path.basename(script_dir) resolves
   // to the real skill name so the render output lands at
-  // _bmad/render/bmad-quick-dev/workflow.md.
-  const skillDst = path.join(tmpDir, 'bmad-quick-dev');
+  // _acl/render/acl-quick-dev/workflow.md.
+  const skillDst = path.join(tmpDir, 'acl-quick-dev');
   copyDirSync(SKILL_SRC, skillDst);
 
   // ---------------------------------------------------------------------------
@@ -172,7 +172,7 @@ try {
     encoding: 'utf-8',
   });
 
-  const renderDir = path.join(tmpDir, '_bmad', 'render', 'bmad-quick-dev');
+  const renderDir = path.join(tmpDir, '_acl', 'render', 'acl-quick-dev');
   const readRendered = (name) => fs.readFileSync(path.join(renderDir, name), 'utf-8');
   const renderedMdFiles = () => fs.readdirSync(renderDir).filter((f) => f.endsWith('.md'));
 
@@ -185,7 +185,7 @@ try {
   });
 
   test('workflow.md exists in render output', () => {
-    const rendered = path.join(tmpDir, '_bmad', 'render', 'bmad-quick-dev', 'workflow.md');
+    const rendered = path.join(tmpDir, '_acl', 'render', 'acl-quick-dev', 'workflow.md');
     assert(fs.existsSync(rendered), `workflow.md not found at ${rendered}`);
   });
 
@@ -287,7 +287,7 @@ try {
     // Second render pass: replace the override file so every default layer
     // (and the oneshot route's only layer) is disabled, then re-render.
     fs.writeFileSync(
-      path.join(tmpDir, '_bmad', 'custom', 'bmad-quick-dev.user.toml'),
+      path.join(tmpDir, '_acl', 'custom', 'acl-quick-dev.user.toml'),
       [
         '[workflow]',
         '',
@@ -384,12 +384,12 @@ try {
         'implementation_artifacts = "{project-root}/impl"',
       ].join('\n'),
     );
-    fs.mkdirSync(path.join(dir, '_bmad', 'custom'), { recursive: true });
-    fs.writeFileSync(path.join(dir, '_bmad', 'custom', 'bmad-quick-dev.user.toml'), '[workflow\non_complete = broken', 'utf-8');
+    fs.mkdirSync(path.join(dir, '_acl', 'custom'), { recursive: true });
+    fs.writeFileSync(path.join(dir, '_acl', 'custom', 'acl-quick-dev.user.toml'), '[workflow\non_complete = broken', 'utf-8');
     const res = spawnSync('python3', [path.join(dst, 'render.py')], { cwd: dst, encoding: 'utf-8' });
     assert(res.status === 1, `expected exit 1, got ${res.status}\nstdout: ${res.stdout}\nstderr: ${res.stderr}`);
     assert(
-      res.stdout.includes('HALT and report to the user: failed to parse') && res.stdout.includes('bmad-quick-dev.user.toml'),
+      res.stdout.includes('HALT and report to the user: failed to parse') && res.stdout.includes('acl-quick-dev.user.toml'),
       `stdout missing the failed-to-parse HALT directive naming the override file.\nstdout: ${res.stdout}`,
     );
     assert(!res.stderr.includes('Traceback'), `renderer crashed with a traceback instead of HALTing:\n${res.stderr}`);
@@ -411,7 +411,7 @@ try {
     assert(res.status === 0, `expected exit 0, got ${res.status}\nstdout: ${res.stdout}\nstderr: ${res.stderr}`);
     assert(!res.stderr.includes('Traceback'), `renderer crashed on non-table modules:\n${res.stderr}`);
     assert(
-      fs.existsSync(path.join(dir, '_bmad', 'render', 'bmad-quick-dev', 'workflow.md')),
+      fs.existsSync(path.join(dir, '_acl', 'render', 'acl-quick-dev', 'workflow.md')),
       'workflow.md not rendered when [modules] was a non-table scalar',
     );
   });

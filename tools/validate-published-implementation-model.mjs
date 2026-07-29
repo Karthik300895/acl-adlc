@@ -5,7 +5,7 @@ const CANONICAL_LLMS_ENTRY = '**[Quick Dev]';
 const CANONICAL_LLMS_DESCRIPTION = 'Canonical implementation workflow for direct intent and fully planned work';
 
 const FORBIDDEN_TERMS = [
-  /\bbmad-(?:create|dev)-story\b/gi,
+  /\bacl-(?:create|dev)-story\b/gi,
   /\b(?:create-story|dev-story)\b/gi,
   /\b(?:Create Story|Dev Story)\b/g,
   /\b(?:createStory|devStory|create_story|dev_story)\b/g,

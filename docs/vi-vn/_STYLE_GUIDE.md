@@ -64,8 +64,8 @@ Chỉ dùng cho cảnh báo nghiêm trọng — mất dữ liệu, vấn đề b
 ```md
 | Skill | Agent | Mục đích |
 | ----- | ----- | -------- |
-| `bmad-brainstorming` | Analyst | Brainstorm cho dự án mới |
-| `bmad-prd` | PM | Tạo tài liệu yêu cầu sản phẩm |
+| `acl-brainstorming` | Analyst | Brainstorm cho dự án mới |
+| `acl-prd` | PM | Tạo tài liệu yêu cầu sản phẩm |
 ```
 
 ## Khối cấu trúc thư mục
@@ -75,8 +75,8 @@ Hiển thị trong phần "Bạn đã hoàn thành những gì":
 ````md
 ```
 your-project/
-├── _bmad/                                   # Cấu hình BMad
-├── _bmad-output/
+├── _acl/                                   # Cấu hình ACL
+├── _acl-output/
 │   ├── planning-artifacts/
 │   │   └── PRD.md                           # Tài liệu yêu cầu của bạn
 │   ├── implementation-artifacts/
@@ -325,7 +325,7 @@ Starlight tạo phần điều hướng "On this page" từ các tiêu đề:
 Thêm ngữ cảnh in nghiêng ở đầu định nghĩa với các thuật ngữ có phạm vi hẹp:
 
 - `*Chỉ dành cho đầu vào triển khai trực tiếp.*`
-- `*BMad Method/Enterprise.*`
+- `*ACL Method/Enterprise.*`
 - `*Phase N.*`
 - `*BMGD.*`
 - `*Dự án hiện có.*`
@@ -353,7 +353,7 @@ Chỉ dành cho công việc cần kiến trúc. Công việc rõ ràng có th�
 
 ### Tôi có thể đổi kế hoạch về sau không?
 
-Có. Workflow `bmad-correct-course` xử lý thay đổi phạm vi giữa chừng.
+Có. Workflow `acl-correct-course` xử lý thay đổi phạm vi giữa chừng.
 
 **Có câu hỏi chưa được trả lời ở đây?** [Mở issue](...) hoặc hỏi trên [Discord](...).
 ```

@@ -68,7 +68,7 @@ async function formatPlatformList() {
     lines.push(`${star}${pad(e.id, idWidth)}  ${pad(e.name, nameWidth)}  ${e.targetDir}`);
   }
 
-  lines.push('', '* = recommended / preferred', '', 'Example: bmad-method install --modules bmm --tools claude-code');
+  lines.push('', '* = recommended / preferred', '', 'Example: acl-adlc install --modules acl --tools claude-code');
 
   return lines.join('\n');
 }

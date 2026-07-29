@@ -1,41 +1,41 @@
 ---
 title: "Comment passer à la v6"
-description: Migrer de BMad v4 vers v6
+description: Migrer de ACL v4 vers v6
 sidebar:
   order: 4
 ---
 
-Utilisez l’installateur BMad pour passer de la v4 à la v6, qui inclut une détection automatique des installations existantes et une assistance à la migration.
+Utilisez l’installateur ACL pour passer de la v4 à la v6, qui inclut une détection automatique des installations existantes et une assistance à la migration.
 
 ## Quand utiliser ce guide
 
-- Vous avez BMad v4 installé (dossier `.bmad-method`)
+- Vous avez ACL v4 installé (dossier `.acl-adlc`)
 - Vous souhaitez migrer vers la nouvelle architecture v6
 - Vous avez des artefacts de planification existants à préserver
 
 :::note[Prérequis]
 - Node.js 20.12+
-- Installation BMad v4 existante
+- Installation ACL v4 existante
 :::
 
 ## Étapes
 
 ### 1. Lancer l’installateur
 
-Suivez les [Instructions d’installation](./install-bmad.md).
+Suivez les [Instructions d’installation](./install-acl.md).
 
 ### 2. Gérer l’installation existante
 
 Quand v4 est détecté, vous pouvez :
 
-- Autoriser l’installateur à sauvegarder et supprimer `.bmad-method`
+- Autoriser l’installateur à sauvegarder et supprimer `.acl-adlc`
 - Quitter et gérer le nettoyage manuellement
 
-Si votre dossier de méthode BMad porte un nom différent, vous devrez le supprimer manuellement.
+Si votre dossier de méthode ACL porte un nom différent, vous devrez le supprimer manuellement.
 
 ### 3. Nettoyer les skills IDE
 
-Supprimez manuellement les commandes/skills IDE v4 existants - par exemple si vous utilisez Claude Code, recherchez tous les dossiers imbriqués qui commencent par bmad et supprimez-les :
+Supprimez manuellement les commandes/skills IDE v4 existants - par exemple si vous utilisez Claude Code, recherchez tous les dossiers imbriqués qui commencent par acl et supprimez-les :
 
 - `.claude/commands/`
 
@@ -47,7 +47,7 @@ Les nouveaux skills v6 sont installés dans :
 
 **Si vous avez des documents de planification (Brief/PRD/UX/Architecture) :**
 
-Déplacez-les dans `_bmad-output/planning-artifacts/` avec des noms descriptifs :
+Déplacez-les dans `_acl-output/planning-artifacts/` avec des noms descriptifs :
 
 - Incluez `PRD` dans le nom de fichier pour les documents PRD[^1]
 - Incluez `brief`, `architecture`, ou `ux-design` selon le cas
@@ -60,8 +60,8 @@ Déplacez-les dans `_bmad-output/planning-artifacts/` avec des noms descriptifs 
 Si vous avez des stories[^3] créées ou implémentées :
 
 1. Terminez l’installation v6
-2. Placez `epics.md` ou `epics/epic*.md`[^2] dans `_bmad-output/planning-artifacts/`
-3. Lancez le workflow Développeur `bmad-sprint-planning`[^4]
+2. Placez `epics.md` ou `epics/epic*.md`[^2] dans `_acl-output/planning-artifacts/`
+3. Lancez le workflow Développeur `acl-sprint-planning`[^4]
 4. Indiquez à l’agent quels epics/stories sont déjà terminés
 
 ## Résultat de la migration
@@ -70,32 +70,32 @@ Si vous avez des stories[^3] créées ou implémentées :
 
 ```text
 votre-projet/
-├── _bmad/               # Dossier d'installation unique
+├── _acl/               # Dossier d'installation unique
 │   ├── _config/         # Vos personnalisations
 │   │   └── agents/      # Fichiers de personnalisation des agents
 │   ├── core/            # Framework core universel
-│   ├── bmm/             # Module BMad Method
-│   ├── bmb/             # BMad Builder
+│   ├── acl/             # Module ACL Method
+│   ├── bmb/             # ACL Builder
 │   └── cis/             # Creative Intelligence Suite
-└── _bmad-output/        # Dossier de sortie (remplace le dossier doc de la v4)
+└── _acl-output/        # Dossier de sortie (remplace le dossier doc de la v4)
 ```
 
 ## Migration des modules
 
 | Module v4                     | Statut v6                                         |
 |-------------------------------|---------------------------------------------------|
-| `.bmad-2d-phaser-game-dev`    | Intégré dans le Module BMGD                       |
-| `.bmad-2d-unity-game-dev`     | Intégré dans le Module BMGD                       |
-| `.bmad-godot-game-dev`        | Intégré dans le Module BMGD                       |
-| `.bmad-infrastructure-devops` | Obsolète — nouvel agent DevOps bientôt disponible |
-| `.bmad-creative-writing`      | Non migré — nouveau module v6 bientôt disponible  |
+| `.acl-2d-phaser-game-dev`    | Intégré dans le Module BMGD                       |
+| `.acl-2d-unity-game-dev`     | Intégré dans le Module BMGD                       |
+| `.acl-godot-game-dev`        | Intégré dans le Module BMGD                       |
+| `.acl-infrastructure-devops` | Obsolète — nouvel agent DevOps bientôt disponible |
+| `.acl-creative-writing`      | Non migré — nouveau module v6 bientôt disponible  |
 
 ## Changements clés
 
 | Concept       | v4                                                      | v6                                       |
 |---------------|---------------------------------------------------------|------------------------------------------|
-| **Core**      | `_bmad-core` correspondait en réalité à la méthode BMad | `_bmad/core/` est le framework universel |
-| **Method**    | `_bmad-method`                                          | `_bmad/bmm/`                             |
+| **Core**      | `_acl-core` correspondait en réalité à la méthode ACL | `_acl/core/` est le framework universel |
+| **Method**    | `_acl-adlc`                                          | `_acl/acl/`                             |
 | **Config**    | Fichiers modifiés directement                           | `config.yaml` par module                 |
 | **Documents** | Division en fragments obligatoire ou optionnelle        | Totalement flexible, analyse automatique |
 

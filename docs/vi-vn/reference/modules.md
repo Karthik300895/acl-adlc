@@ -5,19 +5,19 @@ sidebar:
   order: 5
 ---
 
-BMad được mở rộng thông qua các module chính thức mà bạn chọn trong quá trình cài đặt. Những module bổ sung này cung cấp agent, workflow và task chuyên biệt cho các lĩnh vực cụ thể, vượt ra ngoài phần lõi tích hợp sẵn và BMM (Agile suite).
+ACL được mở rộng thông qua các module chính thức mà bạn chọn trong quá trình cài đặt. Những module bổ sung này cung cấp agent, workflow và task chuyên biệt cho các lĩnh vực cụ thể, vượt ra ngoài phần lõi tích hợp sẵn và ACL (Agile suite).
 
 :::tip[Cài đặt module]
-Chạy `npx bmad-method install` rồi chọn những module bạn muốn. Trình cài đặt sẽ tự xử lý phần tải về, cấu hình và tích hợp vào IDE.
+Chạy `npx acl-adlc install` rồi chọn những module bạn muốn. Trình cài đặt sẽ tự xử lý phần tải về, cấu hình và tích hợp vào IDE.
 :::
 
-## BMad Builder
+## ACL Builder
 
-Tạo agent tùy chỉnh, workflow tùy chỉnh và module chuyên biệt theo lĩnh vực với sự hỗ trợ có hướng dẫn. BMad Builder là meta-module để mở rộng chính framework này.
+Tạo agent tùy chỉnh, workflow tùy chỉnh và module chuyên biệt theo lĩnh vực với sự hỗ trợ có hướng dẫn. ACL Builder là meta-module để mở rộng chính framework này.
 
 - **Mã:** `bmb`
-- **npm:** [`bmad-builder`](https://www.npmjs.com/package/bmad-builder)
-- **GitHub:** [bmad-code-org/bmad-builder](https://github.com/bmad-code-org/bmad-builder)
+- **npm:** [`acl-builder`](https://www.npmjs.com/package/acl-builder)
+- **GitHub:** [acl-code-org/acl-builder](https://github.com/acl-code-org/acl-builder)
 
 **Cung cấp:**
 
@@ -31,8 +31,8 @@ Tạo agent tùy chỉnh, workflow tùy chỉnh và module chuyên biệt theo l
 Bộ công cụ vận hành bởi AI dành cho sáng tạo có cấu trúc, phát ý tưởng và đổi mới trong giai đoạn đầu phát triển. Bộ này cung cấp nhiều agent giúp brainstorming, design thinking và giải quyết vấn đề bằng các framework đã được kiểm chứng.
 
 - **Mã:** `cis`
-- **npm:** [`bmad-creative-intelligence-suite`](https://www.npmjs.com/package/bmad-creative-intelligence-suite)
-- **GitHub:** [bmad-code-org/bmad-module-creative-intelligence-suite](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
+- **npm:** [`acl-creative-intelligence-suite`](https://www.npmjs.com/package/acl-creative-intelligence-suite)
+- **GitHub:** [acl-code-org/acl-module-creative-intelligence-suite](https://github.com/acl-code-org/acl-module-creative-intelligence-suite)
 
 **Cung cấp:**
 
@@ -46,8 +46,8 @@ Bộ công cụ vận hành bởi AI dành cho sáng tạo có cấu trúc, phá
 Các workflow phát triển game có cấu trúc, được điều chỉnh cho Unity, Unreal, Godot và các engine tùy chỉnh. Hỗ trợ độ sâu planning từ prototype nhanh đến sản xuất toàn diện; implementation hội tụ vào Quick Dev.
 
 - **Mã:** `gds`
-- **npm:** [`bmad-game-dev-studio`](https://www.npmjs.com/package/bmad-game-dev-studio)
-- **GitHub:** [bmad-code-org/bmad-module-game-dev-studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
+- **npm:** [`acl-game-dev-studio`](https://www.npmjs.com/package/acl-game-dev-studio)
+- **GitHub:** [acl-code-org/acl-module-game-dev-studio](https://github.com/acl-code-org/acl-module-game-dev-studio)
 
 **Cung cấp:**
 
@@ -61,8 +61,8 @@ Các workflow phát triển game có cấu trúc, được điều chỉnh cho U
 Chiến lược kiểm thử cấp doanh nghiệp, hướng dẫn tự động hóa và quyết định release gate thông qua một agent chuyên gia cùng chín workflow có cấu trúc. TEA vượt xa QA agent tích hợp sẵn nhờ ưu tiên theo rủi ro và truy vết yêu cầu.
 
 - **Mã:** `tea`
-- **npm:** [`bmad-method-test-architecture-enterprise`](https://www.npmjs.com/package/bmad-method-test-architecture-enterprise)
-- **GitHub:** [bmad-code-org/bmad-method-test-architecture-enterprise](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise)
+- **npm:** [`acl-adlc-test-architecture-enterprise`](https://www.npmjs.com/package/acl-adlc-test-architecture-enterprise)
+- **GitHub:** [acl-code-org/acl-adlc-test-architecture-enterprise](https://github.com/acl-code-org/acl-adlc-test-architecture-enterprise)
 
 **Cung cấp:**
 
@@ -73,4 +73,4 @@ Chiến lược kiểm thử cấp doanh nghiệp, hướng dẫn tự động h
 
 ## Community Modules
 
-Các module cộng đồng và một chợ module đang được chuẩn bị. Hãy theo dõi [tổ chức BMad trên GitHub](https://github.com/bmad-code-org) để cập nhật.
+Các module cộng đồng và một chợ module đang được chuẩn bị. Hãy theo dõi [tổ chức ACL trên GitHub](https://github.com/acl-code-org) để cập nhật.

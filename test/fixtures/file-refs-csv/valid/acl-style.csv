@@ -1,0 +1,3 @@
+module,phase,name,code,sequence,workflow-file,command,required,agent,options,description,output-location,outputs,
+acl,anytime,Document Project,DP,,_acl/acl/workflows/document-project/workflow.md,acl-acl-document-project,false,analyst,Create Mode,"Analyze project",project-knowledge,*,
+acl,1-analysis,Brainstorm Project,BP,10,_acl/core/workflows/brainstorming/workflow.md,acl-brainstorming,false,analyst,data=template.md,"Brainstorming",planning_artifacts,"session",

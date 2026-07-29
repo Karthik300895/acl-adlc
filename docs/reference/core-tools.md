@@ -5,10 +5,10 @@ sidebar:
   order: 3
 ---
 
-Every BMad installation includes the **core module** — a small set of skills that work across all projects, all modules, and all phases. This page covers those seven core skills: the four kernel tools plus the three **thinking skills** (brainstorming, forge idea, party mode).
+Every ACL installation includes the **core module** — a small set of skills that work across all projects, all modules, and all phases. This page covers those seven core skills: the four kernel tools plus the three **thinking skills** (brainstorming, forge idea, party mode).
 
 :::tip[Quick Path]
-Run any tool by typing its skill name (e.g., `bmad-help`) in your IDE. No agent session required.
+Run any tool by typing its skill name (e.g., `acl-help`) in your IDE. No agent session required.
 :::
 
 ## Overview
@@ -17,32 +17,32 @@ Run any tool by typing its skill name (e.g., `bmad-help`) in your IDE. No agent 
 
 | Tool                                                      | Purpose                                                                                                      |
 | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`bmad-help`](#bmad-help)                                 | Get context-aware guidance on what to do next                                                                |
-| [`bmad-advanced-elicitation`](#bmad-advanced-elicitation) | Push LLM output through iterative refinement methods                                                         |
-| [`bmad-review`](#bmad-review)                             | Multi-lens review — adversarial, edge-case, and verification-gap for code; structure and prose for documents |
-| [`bmad-customize`](#bmad-customize)                       | Create and verify BMad customization overrides                                                               |
+| [`acl-help`](#acl-help)                                 | Get context-aware guidance on what to do next                                                                |
+| [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Push LLM output through iterative refinement methods                                                         |
+| [`acl-review`](#acl-review)                             | Multi-lens review — adversarial, edge-case, and verification-gap for code; structure and prose for documents |
+| [`acl-customize`](#acl-customize)                       | Create and verify ACL customization overrides                                                               |
 
 **Thinking skills:**
 
 | Tool                                        | Purpose                                                             |
 | ------------------------------------------- | ------------------------------------------------------------------- |
-| [`bmad-brainstorming`](#bmad-brainstorming) | Facilitate interactive brainstorming sessions                       |
-| [`bmad-deep-recon`](#bmad-deep-recon)       | Decision-grade research: draft, process, or run — any subject       |
-| [`bmad-forge-idea`](#bmad-forge-idea)       | Pressure-test an idea until it hardens, proves out, or dies cheaply |
-| [`bmad-party-mode`](#bmad-party-mode)       | Orchestrate multi-agent group discussions                           |
+| [`acl-brainstorming`](#acl-brainstorming) | Facilitate interactive brainstorming sessions                       |
+| [`acl-deep-recon`](#acl-deep-recon)       | Decision-grade research: draft, process, or run — any subject       |
+| [`acl-forge-idea`](#acl-forge-idea)       | Pressure-test an idea until it hardens, proves out, or dies cheaply |
+| [`acl-party-mode`](#acl-party-mode)       | Orchestrate multi-agent group discussions                           |
 
 :::note[Moved and removed]
-`bmad-spec` now ships with the BMM module as a Phase 2 planning workflow — see the [Workflow Map](./workflow-map.md#phase-2-planning). The `bmad-shard-doc` and `bmad-index-docs` utilities have been removed. The former `bmad-editorial-review`, `bmad-editorial-review-prose`, `bmad-editorial-review-structure`, `bmad-review-adversarial-general`, `bmad-review-edge-case-hunter`, and `bmad-review-verification-gap` skills are all merged into `bmad-review`, whose editorial lenses replace the separate editorial skill; the old IDs still resolve via forwarders for compatibility. The former `bmad-market-research`, `bmad-domain-research`, and `bmad-technical-research` workflows are merged into `bmad-deep-recon` as research types, with the old IDs forwarding the same way.
+`acl-spec` now ships with the ACL module as a Phase 2 planning workflow — see the [Workflow Map](./workflow-map.md#phase-2-planning). The `acl-shard-doc` and `acl-index-docs` utilities have been removed. The former `acl-editorial-review`, `acl-editorial-review-prose`, `acl-editorial-review-structure`, `acl-review-adversarial-general`, `acl-review-edge-case-hunter`, and `acl-review-verification-gap` skills are all merged into `acl-review`, whose editorial lenses replace the separate editorial skill; the old IDs still resolve via forwarders for compatibility. The former `acl-market-research`, `acl-domain-research`, and `acl-technical-research` workflows are merged into `acl-deep-recon` as research types, with the old IDs forwarding the same way.
 :::
 
-## bmad-help
+## acl-help
 
 **Your intelligent guide to what comes next.** — Inspects your project state, detects what's been done, and recommends the next required or optional step.
 
 **Use it when:**
 
 - You finished a workflow and want to know what's next
-- You're new to BMad and need orientation
+- You're new to ACL and need orientation
 - You're stuck and want context-aware advice
 - You installed new modules and want to see what's available
 
@@ -53,13 +53,13 @@ Run any tool by typing its skill name (e.g., `bmad-help`) in your IDE. No agent 
 3. Recommends next steps in priority order — required steps first, then optional
 4. Presents each recommendation with the skill command and a brief description
 
-**Input:** Optional query in natural language (e.g., `bmad-help I have a SaaS idea, where do I start?`)
+**Input:** Optional query in natural language (e.g., `acl-help I have a SaaS idea, where do I start?`)
 
 **Output:** Prioritized list of recommended next steps with skill commands
 
-## bmad-advanced-elicitation
+## acl-advanced-elicitation
 
-**Push the LLM to reconsider, refine, and improve its recent output.** — BMad's shared refinement checkpoint: other skills invoke it at natural pauses, and you can call it directly on anything recent in the conversation.
+**Push the LLM to reconsider, refine, and improve its recent output.** — ACL's shared refinement checkpoint: other skills invoke it at natural pauses, and you can call it directly on anything recent in the conversation.
 
 **Use it when:**
 
@@ -79,7 +79,7 @@ Run any tool by typing its skill name (e.g., `bmad-help`) in your IDE. No agent 
 
 **Output:** Enhanced version of the content with improvements applied
 
-## bmad-review
+## acl-review
 
 **Multi-lens review over any diff, doc, or artifact.** — Runs review lenses — each a distinct method and stance — and reports every finding in one canonical shape. Zero findings is a valid outcome; it never pads to look thorough. Each lens declares what it applies to, so a diff draws the code lenses and a document draws the editorial ones.
 
@@ -126,9 +126,9 @@ The set isn't fixed: a `customize.toml` override can add lenses or replace shipp
 Code Review workflows in other modules run the code lenses automatically, and the document workflows (PRD, UX, architecture, product brief) run the editorial lenses as their finalize step. Custom lenses can be added — and shipped ones tuned or disabled — through the skill's `customize.toml`.
 :::
 
-## bmad-customize
+## acl-customize
 
-**Create and verify customization overrides.** — Helps you change how an installed BMad agent or workflow behaves without hand-authoring TOML.
+**Create and verify customization overrides.** — Helps you change how an installed ACL agent or workflow behaves without hand-authoring TOML.
 
 **Use it when:**
 
@@ -138,22 +138,22 @@ Code Review workflows in other modules run the code lenses automatically, and th
 
 **How it works:**
 
-1. Scans installed BMad skills for customizable surfaces
+1. Scans installed ACL skills for customizable surfaces
 2. Selects the right scope for your requested change
-3. Writes override files under `_bmad/custom/`
+3. Writes override files under `_acl/custom/`
 4. Verifies the merged configuration
 
 **Input:** Natural language description of the customization you want
 
-**Output:** TOML override files under `_bmad/custom/`
+**Output:** TOML override files under `_acl/custom/`
 
-For a detailed guide on customizing BMad, see [How to Customize BMad](../how-to/customize-bmad.md).
+For a detailed guide on customizing ACL, see [How to Customize ACL](../how-to/customize-acl.md).
 
 ## Thinking Skills
 
 The skills below round out the core module — general-purpose thinking tools that any phase or module can lean on.
 
-### bmad-brainstorming
+### acl-brainstorming
 
 **Generate diverse ideas through interactive creative techniques.** — A facilitated brainstorming session that loads proven ideation methods from a technique library and guides you toward 100+ ideas before organizing.
 
@@ -179,7 +179,7 @@ The skills below round out the core module — general-purpose thinking tools th
 The magic happens in ideas 50–100. The workflow encourages generating 100+ ideas before organization.
 :::
 
-### bmad-deep-recon
+### acl-deep-recon
 
 **Decision-grade research on any subject, three ways.** — Draft a deep-research prompt for the AI tool you already subscribe to, process a finished report into a cited summary downstream skills consume directly, or run the research in place through parallel web fan-out.
 
@@ -204,7 +204,7 @@ The magic happens in ideas 50–100. The workflow encourages generating 100+ ide
 
 For the three modes, how to choose between them, and what happens inside a run, see [Deep Recon](../explanation/deep-recon.md).
 
-### bmad-forge-idea
+### acl-forge-idea
 
 **Pressure-test an idea until it hardens, proves out, or dies cheaply.** — An adversarial interrogator drives a half-formed idea one question at a time, bringing two characters to every branch, until what survives is something you can act on with conviction.
 
@@ -226,9 +226,9 @@ For the three modes, how to choose between them, and what happens inside a run, 
 
 **Output:** A `forged-idea.md` distillate when an idea hardens (optional), plus a `forge-report.html` keepsake every run
 
-### bmad-party-mode
+### acl-party-mode
 
-**Orchestrate multi-agent group discussions.** — Loads all installed BMad agents and facilitates a natural conversation where each agent contributes from their unique expertise and personality.
+**Orchestrate multi-agent group discussions.** — Loads all installed ACL agents and facilitates a natural conversation where each agent contributes from their unique expertise and personality.
 
 **Use it when:**
 

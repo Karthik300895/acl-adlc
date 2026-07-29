@@ -9,11 +9,11 @@ Take a half-formed idea and pressure-test it now, in conversation, while changin
 
 ## What is Forge Idea?
 
-Run `bmad-forge-idea` and an exacting interrogator goes to work on your idea, one question at a time, until what survives is something you can act on with earned conviction. The skill is domain-agnostic. It runs on a software feature, a business model, a research hypothesis, or a life decision you keep circling.
+Run `acl-forge-idea` and an exacting interrogator goes to work on your idea, one question at a time, until what survives is something you can act on with earned conviction. The skill is domain-agnostic. It runs on a software feature, a business model, a research hypothesis, or a life decision you keep circling.
 
 What you walk away with is sharper thinking. A distilled `forged-idea.md` is only ever one possible exit, and the session never herds you toward "shall we build it?"
 
-Forge Idea is one of the core module's thinking skills, so it is present in every BMad installation.
+Forge Idea is one of the core module's thinking skills, so it is present in every ACL installation.
 
 ## Why Pressure-Test Early
 
@@ -45,7 +45,7 @@ The session ends however the thinking lands, and every landing is a real outcome
 
 | Outcome | What it means |
 | --- | --- |
-| **Hardened** | The idea survived. It distills into `forged-idea.md` (the locked decisions, plus what was killed and why), ready to feed `bmad-spec`, `bmad-prd`, or `bmad-prfaq` for a product concept. |
+| **Hardened** | The idea survived. It distills into `forged-idea.md` (the locked decisions, plus what was killed and why), ready to feed `acl-spec`, `acl-prd`, or `acl-prfaq` for a product concept. |
 | **Killed** | The idea didn't survive, and the report records the cause of death. Finding that out cheaply is a win. |
 | **Clearer** | You just think straighter now. No artifact needed, and the session stands on its own. |
 
@@ -55,11 +55,11 @@ Reach for the forge when you already hold an idea and want it hardened or killed
 
 | Skill | Use it when | Voice |
 | --- | --- | --- |
-| `bmad-forge-idea` | You have an idea and want it stress-tested or killed | An interrogator plus a two-person room |
-| `bmad-prfaq` | You've committed to a product and want it proven customer-first | A Working Backwards coach |
-| `bmad-brainstorming` | You have no idea yet and need to generate options | A facilitation coach |
-| `bmad-party-mode` | You want your agents to discuss or decide together | Your whole roster in one conversation |
-| `bmad-review` | You have an artifact and need its flaws found | A multi-lens reviewer hunting real issues |
+| `acl-forge-idea` | You have an idea and want it stress-tested or killed | An interrogator plus a two-person room |
+| `acl-prfaq` | You've committed to a product and want it proven customer-first | A Working Backwards coach |
+| `acl-brainstorming` | You have no idea yet and need to generate options | A facilitation coach |
+| `acl-party-mode` | You want your agents to discuss or decide together | Your whole roster in one conversation |
+| `acl-review` | You have an artifact and need its flaws found | A multi-lens reviewer hunting real issues |
 
 ## Example
 

@@ -1,10 +1,10 @@
 ---
 title: "Established Projects FAQ"
-description: Common questions about using BMad Method on established projects
+description: Common questions about using ACL Method on established projects
 sidebar:
   order: 12
 ---
-Quick answers to common questions about working on established projects with the BMad Method (BMM).
+Quick answers to common questions about working on established projects with the ACL Method (ACL).
 
 ## Questions
 
@@ -29,7 +29,7 @@ Don't worry about it - you can do it at any time. You can even do it during or a
 
 ### How does implementation work in established projects?
 
-Run `bmad-quick-dev`, just as you would for new development. It will:
+Run `acl-quick-dev`, just as you would for new development. It will:
 
 - Auto-detect your existing stack
 - Analyze existing code patterns
@@ -45,6 +45,6 @@ Quick Dev detects your conventions and asks: "Should I follow these existing con
 - **Yes** → Maintain consistency with current codebase
 - **No** → Establish new standards (document why in spec)
 
-BMM respects your choice — it won't force modernization, but it will offer it.
+ACL respects your choice — it won't force modernization, but it will offer it.
 
-**Have a question not answered here?** Please [open an issue](https://github.com/bmad-code-org/BMAD-METHOD/issues) or ask in [Discord](https://discord.gg/gk8jAdXWmj) so we can add it!
+**Have a question not answered here?** Please [open an issue](https://github.com/acl-code-org/ACL-ADLC/issues) or ask in [Discord](https://discord.gg/gk8jAdXWmj) so we can add it!

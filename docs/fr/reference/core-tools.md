@@ -5,10 +5,10 @@ sidebar:
   order: 3
 ---
 
-Chaque installation BMad comprend le **module principal** — un petit ensemble de compétences qui fonctionnent dans tous les projets, tous les modules et toutes les phases. Cette page couvre ces sept compétences principales : les quatre outils du noyau plus les trois **compétences de réflexion** (brainstorming, forge idea, party mode).
+Chaque installation ACL comprend le **module principal** — un petit ensemble de compétences qui fonctionnent dans tous les projets, tous les modules et toutes les phases. Cette page couvre ces sept compétences principales : les quatre outils du noyau plus les trois **compétences de réflexion** (brainstorming, forge idea, party mode).
 
 :::tip[Raccourci Rapide]
-Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `bmad-help`) dans votre IDE. Aucune session d’agent requise.
+Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `acl-help`) dans votre IDE. Aucune session d’agent requise.
 :::
 
 ## Vue d’ensemble
@@ -17,31 +17,31 @@ Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `bma
 
 | Outil                                                     | Objectif                                                                                                                               |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [`bmad-help`](#bmad-help)                                 | Obtenir des conseils contextuels sur la prochaine étape                                                                                |
-| [`bmad-advanced-elicitation`](#bmad-advanced-elicitation) | Soumettre la sortie LLM à des méthodes de raffinement itératives                                                                       |
-| [`bmad-review`](#bmad-review)                             | Revue multi-perspectives — contradictoire, cas limites et lacunes de vérification pour le code ; structure et prose pour les documents |
-| [`bmad-customize`](#bmad-customize)                       | Créer et vérifier des personnalisations BMad                                                                                           |
+| [`acl-help`](#acl-help)                                 | Obtenir des conseils contextuels sur la prochaine étape                                                                                |
+| [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Soumettre la sortie LLM à des méthodes de raffinement itératives                                                                       |
+| [`acl-review`](#acl-review)                             | Revue multi-perspectives — contradictoire, cas limites et lacunes de vérification pour le code ; structure et prose pour les documents |
+| [`acl-customize`](#acl-customize)                       | Créer et vérifier des personnalisations ACL                                                                                           |
 
 **Compétences de réflexion :**
 
 | Outil                                       | Objectif                                                                               |
 | ------------------------------------------- | -------------------------------------------------------------------------------------- |
-| [`bmad-brainstorming`](#bmad-brainstorming) | Faciliter des sessions de brainstorming interactives                                   |
-| [`bmad-forge-idea`](#bmad-forge-idea)       | Éprouver une idée jusqu’à ce qu’elle se consolide, se confirme ou meure à moindre coût |
-| [`bmad-party-mode`](#bmad-party-mode)       | Orchestrer des discussions de groupe multi-agents                                      |
+| [`acl-brainstorming`](#acl-brainstorming) | Faciliter des sessions de brainstorming interactives                                   |
+| [`acl-forge-idea`](#acl-forge-idea)       | Éprouver une idée jusqu’à ce qu’elle se consolide, se confirme ou meure à moindre coût |
+| [`acl-party-mode`](#acl-party-mode)       | Orchestrer des discussions de groupe multi-agents                                      |
 
 :::note[Déplacés et supprimés]
-`bmad-spec` fait désormais partie du module BMM comme workflow de planification de Phase 2 — voir la [Carte des Workflows](./workflow-map.md). Les utilitaires `bmad-shard-doc` et `bmad-index-docs` ont été supprimés. Les anciennes compétences `bmad-editorial-review`, `bmad-editorial-review-prose`, `bmad-editorial-review-structure`, `bmad-review-adversarial-general`, `bmad-review-edge-case-hunter` et `bmad-review-verification-gap` sont toutes fusionnées dans `bmad-review`, dont les perspectives éditoriales remplacent la compétence éditoriale séparée ; les anciens identifiants restent résolus via des redirections pour la compatibilité.
+`acl-spec` fait désormais partie du module ACL comme workflow de planification de Phase 2 — voir la [Carte des Workflows](./workflow-map.md). Les utilitaires `acl-shard-doc` et `acl-index-docs` ont été supprimés. Les anciennes compétences `acl-editorial-review`, `acl-editorial-review-prose`, `acl-editorial-review-structure`, `acl-review-adversarial-general`, `acl-review-edge-case-hunter` et `acl-review-verification-gap` sont toutes fusionnées dans `acl-review`, dont les perspectives éditoriales remplacent la compétence éditoriale séparée ; les anciens identifiants restent résolus via des redirections pour la compatibilité.
 :::
 
-## bmad-help
+## acl-help
 
 **Votre guide intelligent pour la suite.** — Inspecte l’état de votre projet, détecte ce qui a été fait et recommande la prochaine étape requise ou facultative.
 
 **À utiliser quand :**
 
 - Vous avez terminé un workflow et voulez savoir quoi faire ensuite
-- Vous êtes nouveau sur BMad et avez besoin d’orientation
+- Vous êtes nouveau sur ACL et avez besoin d’orientation
 - Vous êtes bloqué et voulez des conseils contextuels
 - Vous avez installé de nouveaux modules et voulez voir ce qui est disponible
 
@@ -52,13 +52,13 @@ Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `bma
 3. Recommande les prochaines étapes par ordre de priorité — étapes requises d’abord, puis facultatives
 4. Présente chaque recommandation avec la commande de compétence et une brève description
 
-**Entrée :** Requête optionnelle en langage naturel (par ex., `bmad-help J'ai une idée de SaaS, par où commencer ?`)
+**Entrée :** Requête optionnelle en langage naturel (par ex., `acl-help J'ai une idée de SaaS, par où commencer ?`)
 
 **Sortie :** Liste priorisée des prochaines étapes recommandées avec les commandes de compétence
 
-## bmad-advanced-elicitation
+## acl-advanced-elicitation
 
-**Pousse le LLM à reconsidérer, raffiner et améliorer sa sortie récente.** — Le point de contrôle de raffinement partagé de BMad : d’autres compétences l’invoquent aux pauses naturelles, et vous pouvez l’appeler directement sur tout contenu récent de la conversation.
+**Pousse le LLM à reconsidérer, raffiner et améliorer sa sortie récente.** — Le point de contrôle de raffinement partagé de ACL : d’autres compétences l’invoquent aux pauses naturelles, et vous pouvez l’appeler directement sur tout contenu récent de la conversation.
 
 **À utiliser quand :**
 
@@ -78,7 +78,7 @@ Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `bma
 
 **Sortie :** Version améliorée du contenu avec les améliorations appliquées
 
-## bmad-review
+## acl-review
 
 **Revue multi-perspectives sur tout diff, document ou artefact.** — Exécute des perspectives de revue — chacune avec sa méthode et sa posture propres — et rapporte chaque constatation dans un format canonique unique. Zéro constatation est un résultat valide ; il ne remplit jamais pour paraître exhaustif. Chaque perspective déclare ce à quoi elle s’applique : un diff appelle les perspectives de code, un document les perspectives éditoriales.
 
@@ -125,9 +125,9 @@ L’ensemble n’est pas figé : une surcharge dans `customize.toml` peut ajoute
 Les workflows de Code Review d’autres modules exécutent les perspectives de code automatiquement, et les workflows documentaires (PRD, UX, architecture, brief produit) exécutent les perspectives éditoriales à l’étape de finalisation. Des perspectives personnalisées peuvent être ajoutées — et celles livrées ajustées ou désactivées — via le `customize.toml` de la compétence.
 :::
 
-## bmad-customize
+## acl-customize
 
-**Créer et vérifier des personnalisations.** — Vous aide à modifier le comportement d’un agent ou d’un workflow BMad installé sans avoir à écrire de TOML manuellement.
+**Créer et vérifier des personnalisations.** — Vous aide à modifier le comportement d’un agent ou d’un workflow ACL installé sans avoir à écrire de TOML manuellement.
 
 **À utiliser quand :**
 
@@ -137,22 +137,22 @@ Les workflows de Code Review d’autres modules exécutent les perspectives de c
 
 **Fonctionnement :**
 
-1. Analyse les skills BMad installés pour identifier les surfaces personnalisables
+1. Analyse les skills ACL installés pour identifier les surfaces personnalisables
 2. Sélectionne le bon périmètre pour le changement demandé
-3. Écrit les fichiers de surcharge sous `_bmad/custom/`
+3. Écrit les fichiers de surcharge sous `_acl/custom/`
 4. Vérifie la configuration fusionnée
 
 **Entrée :** Description en langage naturel de la personnalisation souhaitée
 
-**Sortie :** Fichiers de surcharge TOML sous `_bmad/custom/`
+**Sortie :** Fichiers de surcharge TOML sous `_acl/custom/`
 
-Pour un guide détaillé sur la personnalisation de BMad, consultez [Comment personnaliser BMad](../how-to/customize-bmad.md).
+Pour un guide détaillé sur la personnalisation de ACL, consultez [Comment personnaliser ACL](../how-to/customize-acl.md).
 
 ## Compétences de Réflexion
 
 Les trois compétences ci-dessous complètent le module principal — des outils de réflexion généralistes sur lesquels toute phase ou tout module peut s’appuyer.
 
-### bmad-brainstorming
+### acl-brainstorming
 
 **Génère des idées variées grâce à des techniques créatives interactives.** — Une session de brainstorming facilitée qui charge des méthodes d’idéation éprouvées à partir d’une bibliothèque de techniques et vous guide vers plus de 100 idées avant de les organiser.
 
@@ -177,7 +177,7 @@ Les trois compétences ci-dessous complètent le module principal — des outils
 La magie se produit dans les idées 50–100. Le workflow encourage la génération de plus de 100 idées avant organisation.
 :::
 
-### bmad-forge-idea
+### acl-forge-idea
 
 **Éprouve une idée jusqu’à ce qu’elle se consolide, se confirme ou meure à moindre coût.** — Un interrogateur contradictoire fait avancer une idée à moitié formée une question à la fois, en amenant deux personnages à chaque embranchement, jusqu’à ce que ce qui survit soit quelque chose sur quoi vous pouvez agir avec conviction.
 
@@ -199,9 +199,9 @@ La magie se produit dans les idées 50–100. Le workflow encourage la générat
 
 **Sortie :** Un distillat `forged-idea.md` quand une idée se consolide (optionnel), plus un souvenir `forge-report.html` à chaque exécution
 
-### bmad-party-mode
+### acl-party-mode
 
-**Orchestre des discussions de groupe multi-agents.** — Charge tous les agents BMad installés et facilite une conversation naturelle où chaque agent apporte son expertise et sa personnalité uniques.
+**Orchestre des discussions de groupe multi-agents.** — Charge tous les agents ACL installés et facilite une conversation naturelle où chaque agent apporte son expertise et sa personnalité uniques.
 
 **À utiliser quand :**
 

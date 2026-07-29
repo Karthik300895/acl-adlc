@@ -4,7 +4,7 @@ const yaml = require('yaml');
 const { Manifest } = require('./manifest');
 
 /**
- * Immutable snapshot of an existing BMAD installation.
+ * Immutable snapshot of an existing ACL installation.
  * Pure query object — no filesystem operations after construction.
  */
 class ExistingInstall {
@@ -38,12 +38,12 @@ class ExistingInstall {
   }
 
   /**
-   * Scan a bmad directory and return an immutable snapshot of what's installed.
-   * @param {string} bmadDir - Path to bmad directory
+   * Scan a acl directory and return an immutable snapshot of what's installed.
+   * @param {string} aclDir - Path to acl directory
    * @returns {Promise<ExistingInstall>}
    */
-  static async detect(bmadDir) {
-    if (!(await fs.pathExists(bmadDir))) {
+  static async detect(aclDir) {
+    if (!(await fs.pathExists(aclDir))) {
       return ExistingInstall.empty();
     }
 
@@ -53,7 +53,7 @@ class ExistingInstall {
     let ides = [];
 
     const manifest = new Manifest();
-    const manifestData = await manifest.read(bmadDir);
+    const manifestData = await manifest.read(aclDir);
     if (manifestData) {
       version = manifestData.version;
       if (manifestData.ides) {
@@ -61,7 +61,7 @@ class ExistingInstall {
       }
     }
 
-    const corePath = path.join(bmadDir, 'core');
+    const corePath = path.join(aclDir, 'core');
     if (await fs.pathExists(corePath)) {
       hasCore = true;
 
@@ -83,7 +83,7 @@ class ExistingInstall {
 
     if (manifestData && manifestData.modules && manifestData.modules.length > 0) {
       for (const moduleId of manifestData.modules) {
-        const modulePath = path.join(bmadDir, moduleId);
+        const modulePath = path.join(aclDir, moduleId);
         const moduleConfigPath = path.join(modulePath, 'config.yaml');
 
         const moduleInfo = {

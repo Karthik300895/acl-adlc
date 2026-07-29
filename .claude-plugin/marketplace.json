@@ -1,104 +1,104 @@
 {
-  "name": "bmad-method",
+  "name": "acl-adlc",
   "owner": {
-    "name": "Brian (BMad) Madison"
+    "name": "Brian (ACL) Madison"
   },
   "description": "Breakthrough Method of Agile AI-driven Development — a full-lifecycle framework with agents and workflows for analysis, planning, architecture, and implementation.",
   "license": "MIT",
-  "homepage": "https://github.com/bmad-code-org/BMAD-METHOD",
-  "repository": "https://github.com/bmad-code-org/BMAD-METHOD",
-  "keywords": ["bmad", "agile", "ai", "orchestrator", "development", "methodology", "agents", "brainstorming", "thinking"],
+  "homepage": "https://github.com/acl-code-org/ACL-ADLC",
+  "repository": "https://github.com/acl-code-org/ACL-ADLC",
+  "keywords": ["acl", "agile", "ai", "orchestrator", "development", "methodology", "agents", "brainstorming", "thinking"],
   "plugins": [
     {
-      "name": "bmad-brainstorming",
+      "name": "acl-brainstorming",
       "source": "./",
       "description": "Facilitated brainstorming with a curated technique library — diverge, converge, and capture ideas with a visual technique picker.",
       "version": "6.10.0",
       "author": {
-        "name": "Brian (BMad) Madison"
+        "name": "Brian (ACL) Madison"
       },
-      "skills": ["./src/core-skills/bmad-brainstorming"]
+      "skills": ["./src/core-skills/acl-brainstorming"]
     },
     {
-      "name": "bmad-party-mode",
+      "name": "acl-party-mode",
       "source": "./",
       "description": "Multi-perspective roundtable discussions — collide viewpoints between agents or custom personas to stress-test any topic.",
       "version": "6.10.0",
       "author": {
-        "name": "Brian (BMad) Madison"
+        "name": "Brian (ACL) Madison"
       },
-      "skills": ["./src/core-skills/bmad-party-mode"]
+      "skills": ["./src/core-skills/acl-party-mode"]
     },
     {
-      "name": "bmad-forge-idea",
+      "name": "acl-forge-idea",
       "source": "./",
       "description": "Pressure-test an idea with persona-driven interrogation until it hardens, proves out, or dies cheaply.",
       "version": "6.10.0",
       "author": {
-        "name": "Brian (BMad) Madison"
+        "name": "Brian (ACL) Madison"
       },
-      "skills": ["./src/core-skills/bmad-forge-idea"]
+      "skills": ["./src/core-skills/acl-forge-idea"]
     },
     {
-      "name": "bmad-deep-recon",
+      "name": "acl-deep-recon",
       "source": "./",
       "description": "Decision-grade research harness — draft deep-research prompts for your own AI tools, process finished reports into downstream-ready cited summaries, or run the research directly; six research types, claim verification, and a living refresh cycle.",
       "version": "6.10.0",
       "author": {
-        "name": "Brian (BMad) Madison"
+        "name": "Brian (ACL) Madison"
       },
-      "skills": ["./src/core-skills/bmad-deep-recon"]
+      "skills": ["./src/core-skills/acl-deep-recon"]
     },
     {
-      "name": "bmad-analysis",
+      "name": "acl-analysis",
       "source": "./",
-      "description": "The BMad thinking pack — structured brainstorming, idea pressure-testing, and multi-perspective agent roundtables in one install.",
+      "description": "The ACL thinking pack — structured brainstorming, idea pressure-testing, and multi-perspective agent roundtables in one install.",
       "version": "6.10.0",
       "author": {
-        "name": "Brian (BMad) Madison"
+        "name": "Brian (ACL) Madison"
       },
-      "skills": ["./src/core-skills/bmad-brainstorming", "./src/core-skills/bmad-party-mode", "./src/core-skills/bmad-forge-idea"]
+      "skills": ["./src/core-skills/acl-brainstorming", "./src/core-skills/acl-party-mode", "./src/core-skills/acl-forge-idea"]
     },
     {
-      "name": "bmad-method-lifecycle",
+      "name": "acl-adlc-lifecycle",
       "source": "./",
       "description": "Full-lifecycle AI development framework — agents and workflows for product analysis, planning, architecture, and implementation.",
       "version": "6.10.0",
       "author": {
-        "name": "Brian (BMad) Madison"
+        "name": "Brian (ACL) Madison"
       },
       "skills": [
-        "./src/core-skills/bmad-help",
-        "./src/core-skills/bmad-customize",
-        "./src/core-skills/bmad-advanced-elicitation",
-        "./src/core-skills/bmad-review",
-        "./src/bmm-skills/1-analysis/bmad-product-brief",
-        "./src/bmm-skills/1-analysis/bmad-prfaq",
-        "./src/bmm-skills/1-analysis/bmad-agent-analyst",
-        "./src/bmm-skills/1-analysis/bmad-agent-tech-writer",
-        "./src/bmm-skills/1-analysis/bmad-document-project",
-        "./src/core-skills/bmad-deep-recon",
-        "./src/bmm-skills/2-plan-workflows/bmad-agent-pm",
-        "./src/bmm-skills/2-plan-workflows/bmad-agent-ux-designer",
-        "./src/bmm-skills/2-plan-workflows/bmad-prd",
-        "./src/bmm-skills/2-plan-workflows/bmad-spec",
-        "./src/bmm-skills/2-plan-workflows/bmad-ux",
-        "./src/bmm-skills/3-solutioning/bmad-agent-architect",
-        "./src/bmm-skills/3-solutioning/bmad-architecture",
-        "./src/bmm-skills/3-solutioning/bmad-check-implementation-readiness",
-        "./src/bmm-skills/3-solutioning/bmad-create-epics-and-stories",
-        "./src/bmm-skills/3-solutioning/bmad-generate-project-context",
-        "./src/bmm-skills/4-implementation/bmad-agent-dev",
-        "./src/bmm-skills/4-implementation/bmad-dev-story",
-        "./src/bmm-skills/4-implementation/bmad-quick-dev",
-        "./src/bmm-skills/4-implementation/bmad-checkpoint-preview",
-        "./src/bmm-skills/4-implementation/bmad-sprint-planning",
-        "./src/bmm-skills/4-implementation/bmad-sprint-status",
-        "./src/bmm-skills/4-implementation/bmad-code-review",
-        "./src/bmm-skills/4-implementation/bmad-create-story",
-        "./src/bmm-skills/4-implementation/bmad-correct-course",
-        "./src/bmm-skills/4-implementation/bmad-retrospective",
-        "./src/bmm-skills/4-implementation/bmad-qa-generate-e2e-tests"
+        "./src/core-skills/acl-help",
+        "./src/core-skills/acl-customize",
+        "./src/core-skills/acl-advanced-elicitation",
+        "./src/core-skills/acl-review",
+        "./src/acl-skills/1-analysis/acl-product-brief",
+        "./src/acl-skills/1-analysis/acl-prfaq",
+        "./src/acl-skills/1-analysis/acl-agent-analyst",
+        "./src/acl-skills/1-analysis/acl-agent-tech-writer",
+        "./src/acl-skills/1-analysis/acl-document-project",
+        "./src/core-skills/acl-deep-recon",
+        "./src/acl-skills/2-plan-workflows/acl-agent-pm",
+        "./src/acl-skills/2-plan-workflows/acl-agent-ux-designer",
+        "./src/acl-skills/2-plan-workflows/acl-prd",
+        "./src/acl-skills/2-plan-workflows/acl-spec",
+        "./src/acl-skills/2-plan-workflows/acl-ux",
+        "./src/acl-skills/3-solutioning/acl-agent-architect",
+        "./src/acl-skills/3-solutioning/acl-architecture",
+        "./src/acl-skills/3-solutioning/acl-check-implementation-readiness",
+        "./src/acl-skills/3-solutioning/acl-create-epics-and-stories",
+        "./src/acl-skills/3-solutioning/acl-generate-project-context",
+        "./src/acl-skills/4-implementation/acl-agent-dev",
+        "./src/acl-skills/4-implementation/acl-dev-story",
+        "./src/acl-skills/4-implementation/acl-quick-dev",
+        "./src/acl-skills/4-implementation/acl-checkpoint-preview",
+        "./src/acl-skills/4-implementation/acl-sprint-planning",
+        "./src/acl-skills/4-implementation/acl-sprint-status",
+        "./src/acl-skills/4-implementation/acl-code-review",
+        "./src/acl-skills/4-implementation/acl-create-story",
+        "./src/acl-skills/4-implementation/acl-correct-course",
+        "./src/acl-skills/4-implementation/acl-retrospective",
+        "./src/acl-skills/4-implementation/acl-qa-generate-e2e-tests"
       ]
     }
   ]

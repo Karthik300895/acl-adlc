@@ -5,10 +5,10 @@ sidebar:
   order: 3
 ---
 
-Mọi bản cài BMad đều bao gồm **module lõi** — một tập nhỏ các skill hoạt động xuyên suốt mọi dự án, mọi module và mọi giai đoạn. Trang này bao quát 7 skill lõi đó: 4 công cụ nhân lõi cùng 3 **skill tư duy** (brainstorming, forge idea, party mode).
+Mọi bản cài ACL đều bao gồm **module lõi** — một tập nhỏ các skill hoạt động xuyên suốt mọi dự án, mọi module và mọi giai đoạn. Trang này bao quát 7 skill lõi đó: 4 công cụ nhân lõi cùng 3 **skill tư duy** (brainstorming, forge idea, party mode).
 
 :::tip[Lối đi nhanh]
-Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví dụ `bmad-help`, trong IDE của bạn. Không cần mở phiên agent trước.
+Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví dụ `acl-help`, trong IDE của bạn. Không cần mở phiên agent trước.
 :::
 
 ## Tổng Quan
@@ -17,31 +17,31 @@ Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví d�
 
 | Công cụ                                                   | Mục đích                                                                                                |
 | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`bmad-help`](#bmad-help)                                 | Nhận hướng dẫn có ngữ cảnh về việc nên làm gì tiếp theo                                                 |
-| [`bmad-advanced-elicitation`](#bmad-advanced-elicitation) | Đẩy đầu ra của LLM qua các vòng tinh luyện lặp                                                          |
-| [`bmad-review`](#bmad-review)                             | Review đa lăng kính — hoài nghi, ca biên, lỗ hổng kiểm chứng cho code; cấu trúc và câu chữ cho tài liệu |
-| [`bmad-customize`](#bmad-customize)                       | Tạo và kiểm tra các tùy biến BMad                                                                       |
+| [`acl-help`](#acl-help)                                 | Nhận hướng dẫn có ngữ cảnh về việc nên làm gì tiếp theo                                                 |
+| [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Đẩy đầu ra của LLM qua các vòng tinh luyện lặp                                                          |
+| [`acl-review`](#acl-review)                             | Review đa lăng kính — hoài nghi, ca biên, lỗ hổng kiểm chứng cho code; cấu trúc và câu chữ cho tài liệu |
+| [`acl-customize`](#acl-customize)                       | Tạo và kiểm tra các tùy biến ACL                                                                       |
 
 **Skill tư duy:**
 
 | Công cụ                                     | Mục đích                                                                                |
 | ------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`bmad-brainstorming`](#bmad-brainstorming) | Tổ chức các phiên brainstorming có tương tác                                            |
-| [`bmad-forge-idea`](#bmad-forge-idea)       | Thử lửa một ý tưởng cho đến khi nó cứng cáp, được chứng thực hoặc chết với chi phí thấp |
-| [`bmad-party-mode`](#bmad-party-mode)       | Điều phối thảo luận nhóm nhiều agent                                                    |
+| [`acl-brainstorming`](#acl-brainstorming) | Tổ chức các phiên brainstorming có tương tác                                            |
+| [`acl-forge-idea`](#acl-forge-idea)       | Thử lửa một ý tưởng cho đến khi nó cứng cáp, được chứng thực hoặc chết với chi phí thấp |
+| [`acl-party-mode`](#acl-party-mode)       | Điều phối thảo luận nhóm nhiều agent                                                    |
 
 :::note[Đã chuyển và đã gỡ]
-`bmad-spec` giờ đi kèm module BMM như một workflow lập kế hoạch Giai đoạn 2 — xem [Bản đồ Workflow](./workflow-map.md). Các tiện ích `bmad-shard-doc` và `bmad-index-docs` đã bị gỡ bỏ. Các skill cũ `bmad-editorial-review`, `bmad-editorial-review-prose`, `bmad-editorial-review-structure`, `bmad-review-adversarial-general`, `bmad-review-edge-case-hunter` và `bmad-review-verification-gap` đều đã được gộp vào `bmad-review`, với các lăng kính biên tập thay thế skill biên tập riêng lẻ; các ID cũ vẫn hoạt động qua cơ chế chuyển tiếp để giữ tương thích.
+`acl-spec` giờ đi kèm module ACL như một workflow lập kế hoạch Giai đoạn 2 — xem [Bản đồ Workflow](./workflow-map.md). Các tiện ích `acl-shard-doc` và `acl-index-docs` đã bị gỡ bỏ. Các skill cũ `acl-editorial-review`, `acl-editorial-review-prose`, `acl-editorial-review-structure`, `acl-review-adversarial-general`, `acl-review-edge-case-hunter` và `acl-review-verification-gap` đều đã được gộp vào `acl-review`, với các lăng kính biên tập thay thế skill biên tập riêng lẻ; các ID cũ vẫn hoạt động qua cơ chế chuyển tiếp để giữ tương thích.
 :::
 
-## bmad-help
+## acl-help
 
 **Người dẫn đường thông minh cho bước tiếp theo của bạn.** Công cụ này kiểm tra trạng thái dự án, phát hiện những gì đã hoàn thành và đề xuất bước bắt buộc hoặc tùy chọn tiếp theo.
 
 **Dùng khi:**
 
 - Bạn vừa hoàn tất một quy trình và muốn biết tiếp theo là gì
-- Bạn mới làm quen với BMad và cần định hướng
+- Bạn mới làm quen với ACL và cần định hướng
 - Bạn đang mắc kẹt và muốn lời khuyên có ngữ cảnh
 - Bạn vừa cài module mới và muốn xem có gì khả dụng
 
@@ -52,13 +52,13 @@ Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví d�
 3. Đề xuất bước tiếp theo theo thứ tự ưu tiên — bước bắt buộc trước, tùy chọn sau
 4. Trình bày từng đề xuất cùng lệnh skill và mô tả ngắn
 
-**Đầu vào:** Truy vấn ngôn ngữ tự nhiên tùy chọn, ví dụ `bmad-help I have a SaaS idea, where do I start?`
+**Đầu vào:** Truy vấn ngôn ngữ tự nhiên tùy chọn, ví dụ `acl-help I have a SaaS idea, where do I start?`
 
 **Đầu ra:** Danh sách ưu tiên các bước tiếp theo được khuyến nghị kèm lệnh skill
 
-## bmad-advanced-elicitation
+## acl-advanced-elicitation
 
-**Đẩy LLM xem xét lại, tinh luyện và cải thiện đầu ra gần nhất của nó.** Đây là điểm dừng tinh luyện dùng chung của BMad: các skill khác gọi nó tại các điểm nghỉ tự nhiên, và bạn có thể gọi trực tiếp lên bất kỳ nội dung nào gần đây trong cuộc hội thoại.
+**Đẩy LLM xem xét lại, tinh luyện và cải thiện đầu ra gần nhất của nó.** Đây là điểm dừng tinh luyện dùng chung của ACL: các skill khác gọi nó tại các điểm nghỉ tự nhiên, và bạn có thể gọi trực tiếp lên bất kỳ nội dung nào gần đây trong cuộc hội thoại.
 
 **Dùng khi:**
 
@@ -78,7 +78,7 @@ Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví d�
 
 **Đầu ra:** Phiên bản nội dung đã được nâng cấp
 
-## bmad-review
+## acl-review
 
 **Review đa lăng kính trên bất kỳ diff, tài liệu hay artifact nào.** Chạy các lăng kính review — mỗi lăng kính một phương pháp và lập trường riêng — và báo cáo mọi phát hiện theo một định dạng chuẩn duy nhất. Không phát hiện gì cũng là kết quả hợp lệ; nó không bao giờ độn thêm cho có vẻ kỹ lưỡng. Mỗi lăng kính khai báo phạm vi áp dụng: diff kéo theo các lăng kính code, tài liệu kéo theo các lăng kính biên tập.
 
@@ -121,9 +121,9 @@ Tập lăng kính không cố định: một override trong `customize.toml` có
 
 **Đầu ra:** Mảng phát hiện JSON và/hoặc báo cáo markdown nhóm theo lăng kính. Có thể thêm lăng kính tùy biến — và tinh chỉnh hoặc tắt các lăng kính đi kèm — qua `customize.toml` của skill
 
-## bmad-customize
+## acl-customize
 
-**Tạo và kiểm tra các tùy biến.** Giúp bạn thay đổi hành vi của một agent hoặc workflow BMad đã cài mà không phải tự viết TOML.
+**Tạo và kiểm tra các tùy biến.** Giúp bạn thay đổi hành vi của một agent hoặc workflow ACL đã cài mà không phải tự viết TOML.
 
 **Dùng khi:**
 
@@ -133,20 +133,20 @@ Tập lăng kính không cố định: một override trong `customize.toml` có
 
 **Cách hoạt động:**
 
-1. Quét các skill BMad đã cài để tìm các bề mặt có thể tùy biến
+1. Quét các skill ACL đã cài để tìm các bề mặt có thể tùy biến
 2. Chọn phạm vi phù hợp cho thay đổi bạn yêu cầu
-3. Ghi các file override dưới `_bmad/custom/`
+3. Ghi các file override dưới `_acl/custom/`
 4. Kiểm tra cấu hình sau khi hợp nhất
 
 **Đầu vào:** Mô tả bằng ngôn ngữ tự nhiên về tùy biến bạn muốn
 
-**Đầu ra:** Các file override TOML dưới `_bmad/custom/`. Xem hướng dẫn chi tiết tại [Cách tùy biến BMad](../how-to/customize-bmad.md)
+**Đầu ra:** Các file override TOML dưới `_acl/custom/`. Xem hướng dẫn chi tiết tại [Cách tùy biến ACL](../how-to/customize-acl.md)
 
 ## Các skill tư duy
 
 Ba skill dưới đây hoàn thiện module lõi — những công cụ tư duy đa dụng mà bất kỳ giai đoạn hay module nào cũng có thể dựa vào.
 
-### bmad-brainstorming
+### acl-brainstorming
 
 **Tạo ra nhiều ý tưởng đa dạng bằng các kỹ thuật sáng tạo có tương tác.** Đây là một phiên động não có điều phối, nạp các phương pháp phát ý tưởng đã được kiểm chứng từ thư viện kỹ thuật và dẫn bạn đến 100+ ý tưởng trước khi bắt đầu sắp xếp.
 
@@ -171,7 +171,7 @@ Ba skill dưới đây hoàn thiện module lõi — những công cụ tư duy 
 Điểm bứt phá thường nằm ở vùng ý tưởng thứ 50-100. Workflow này khuyến khích bạn tạo 100+ ý tưởng trước khi sắp xếp.
 :::
 
-### bmad-forge-idea
+### acl-forge-idea
 
 **Thử lửa một ý tưởng cho đến khi nó cứng cáp, được chứng thực hoặc chết với chi phí thấp.** Một người chất vấn phản biện dồn một ý tưởng còn dang dở đi từng câu hỏi một, đưa hai nhân vật vào mỗi nhánh rẽ, cho đến khi thứ sống sót là điều bạn có thể hành động với niềm tin chắc chắn.
 
@@ -193,9 +193,9 @@ Ba skill dưới đây hoàn thiện module lõi — những công cụ tư duy 
 
 **Đầu ra:** Bản chưng cất `forged-idea.md` khi ý tưởng cứng cáp (tùy chọn), cộng một `forge-report.html` làm kỷ vật cho mỗi lần chạy
 
-### bmad-party-mode
+### acl-party-mode
 
-**Điều phối thảo luận nhóm nhiều agent.** Công cụ này nạp toàn bộ agent BMad đã cài và tạo một cuộc trao đổi tự nhiên, nơi mỗi agent đóng góp từ góc nhìn chuyên môn và cá tính riêng.
+**Điều phối thảo luận nhóm nhiều agent.** Công cụ này nạp toàn bộ agent ACL đã cài và tạo một cuộc trao đổi tự nhiên, nơi mỗi agent đóng góp từ góc nhìn chuyên môn và cá tính riêng.
 
 **Dùng khi:**
 

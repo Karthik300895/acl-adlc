@@ -1,14 +1,14 @@
 code: core
-name: "BMad Core Module"
+name: "ACL Core Module"
 description: "Shared utilities across modules"
 
-header: "BMad Core Configuration"
-subheader: "Configure the core settings for your BMad installation.\nThese settings will be used across all installed bmad skills, workflows, and agents."
+header: "ACL Core Configuration"
+subheader: "Configure the core settings for your ACL installation.\nThese settings will be used across all installed acl skills, workflows, and agents."
 
 user_name:
   prompt: "What should agents call you? (Use your name or a team name)"
   scope: user
-  default: "BMad"
+  default: "ACL"
   result: "{value}"
 
 project_name:
@@ -29,7 +29,7 @@ document_output_language:
 
 output_folder:
   prompt: "Where should output files be saved?"
-  default: "_bmad-output"
+  default: "_acl-output"
   result: "{project-root}/{value}"
 
 # The one directory created at install time. Everything else (module artifact

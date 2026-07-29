@@ -8,11 +8,11 @@ const ui = new UI();
 
 module.exports = {
   command: 'install',
-  description: 'Install BMAD Core agents and tools',
+  description: 'Install ACL Core agents and tools',
   options: [
     ['-d, --debug', 'Enable debug output for manifest generation'],
     ['--directory <path>', 'Installation directory (default: current directory)'],
-    ['--modules <modules>', 'Comma-separated list of module IDs to install (e.g., "bmm,bmb")'],
+    ['--modules <modules>', 'Comma-separated list of module IDs to install (e.g., "acl,bmb")'],
     [
       '--tools <tools>',
       'Comma-separated list of tool/IDE IDs to configure (e.g., "claude-code,cursor"). Required for fresh non-interactive (--yes) installs. Run with --list-tools to see all valid IDs.',
@@ -20,7 +20,7 @@ module.exports = {
     ['--list-tools', 'Print all supported tool/IDE IDs (with target directories) and exit.'],
     [
       '--set <spec>',
-      'Set a module config option non-interactively. Spec format: <module>.<key>=<value> (e.g. bmm.project_knowledge=research). Repeatable. Run --list-options to see available keys.',
+      'Set a module config option non-interactively. Spec format: <module>.<key>=<value> (e.g. acl.project_knowledge=research). Repeatable. Run --list-options to see available keys.',
       (value, prev) => [...(prev || []), value],
       [],
     ],
@@ -32,7 +32,7 @@ module.exports = {
     ['--user-name <name>', 'Name for agents to use (default: system username)'],
     ['--communication-language <lang>', 'Language for agent communication (default: English)'],
     ['--document-output-language <lang>', 'Language for document output (default: English)'],
-    ['--output-folder <path>', 'Output folder path relative to project root (default: _bmad-output)'],
+    ['--output-folder <path>', 'Output folder path relative to project root (default: _acl-output)'],
     ['--custom-source <sources>', 'Comma-separated Git URLs or local paths to install custom modules from'],
     ['-y, --yes', 'Accept all defaults and skip prompts where possible'],
     [
@@ -80,7 +80,7 @@ module.exports = {
 
       // Set debug flag as environment variable for all components
       if (options.debug) {
-        process.env.BMAD_DEBUG_MANIFEST = 'true';
+        process.env.ACL_DEBUG_MANIFEST = 'true';
         await prompts.log.info('Debug mode enabled');
       }
 

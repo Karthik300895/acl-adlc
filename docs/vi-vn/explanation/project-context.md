@@ -21,10 +21,10 @@ Tệp `project-context.md` giải quyết vấn đề này bằng cách tài li�
 Mỗi workflow triển khai đều tự động nạp `project-context.md` nếu tệp tồn tại. Workflow architect cũng nạp tệp này để tôn trọng các ưu tiên kỹ thuật của bạn khi thiết kế kiến trúc.
 
 **Được nạp bởi các workflow sau:**
-- `bmad-architecture` - tôn trọng ưu tiên kỹ thuật trong giai đoạn solutioning
-- `bmad-code-review` - đối chiếu với tiêu chuẩn của dự án
-- `bmad-quick-dev` - áp dụng pattern khi lập kế hoạch và triển khai ý định trực tiếp hoặc story
-- `bmad-sprint-planning`, `bmad-retrospective`, `bmad-correct-course` - cung cấp bối cảnh cấp dự án
+- `acl-architecture` - tôn trọng ưu tiên kỹ thuật trong giai đoạn solutioning
+- `acl-code-review` - đối chiếu với tiêu chuẩn của dự án
+- `acl-quick-dev` - áp dụng pattern khi lập kế hoạch và triển khai ý định trực tiếp hoặc story
+- `acl-sprint-planning`, `acl-retrospective`, `acl-correct-course` - cung cấp bối cảnh cấp dự án
 
 ## Khi nào nên tạo
 
@@ -32,10 +32,10 @@ Tệp `project-context.md` hữu ích ở bất kỳ giai đoạn nào của d�
 
 | Tình huống | Khi nào nên tạo | Mục đích |
 |----------|----------------|---------|
-| **Dự án mới, trước kiến trúc** | Tạo thủ công, trước `bmad-architecture` | Ghi lại ưu tiên kỹ thuật để architect tôn trọng |
-| **Dự án mới, sau kiến trúc** | Qua `bmad-generate-project-context` hoặc tạo thủ công | Ghi lại quyết định kiến trúc cho các agent triển khai |
-| **Dự án hiện có** | Qua `bmad-generate-project-context` | Khám phá pattern hiện có để agent theo đúng quy ước |
-| **Đầu vào triển khai trực tiếp** | Trước hoặc trong `bmad-quick-dev` | Đảm bảo triển khai không có planning upstream vẫn tôn trọng pattern của bạn |
+| **Dự án mới, trước kiến trúc** | Tạo thủ công, trước `acl-architecture` | Ghi lại ưu tiên kỹ thuật để architect tôn trọng |
+| **Dự án mới, sau kiến trúc** | Qua `acl-generate-project-context` hoặc tạo thủ công | Ghi lại quyết định kiến trúc cho các agent triển khai |
+| **Dự án hiện có** | Qua `acl-generate-project-context` | Khám phá pattern hiện có để agent theo đúng quy ước |
+| **Đầu vào triển khai trực tiếp** | Trước hoặc trong `acl-quick-dev` | Đảm bảo triển khai không có planning upstream vẫn tôn trọng pattern của bạn |
 
 :::tip[Khuyến nghị]
 Với dự án mới, hãy tạo thủ công trước giai đoạn kiến trúc nếu bạn có ưu tiên kỹ thuật rõ ràng. Nếu không, hãy tạo nó sau kiến trúc để ghi lại các quyết định đã được đưa ra.
@@ -93,32 +93,32 @@ Bạn có ba lựa chọn:
 
 ### Tạo thủ công
 
-Tạo tệp tại `_bmad-output/project-context.md` và thêm các quy tắc của bạn:
+Tạo tệp tại `_acl-output/project-context.md` và thêm các quy tắc của bạn:
 
 ```bash
 # Trong thư mục gốc của dự án
-mkdir -p _bmad-output
-touch _bmad-output/project-context.md
+mkdir -p _acl-output
+touch _acl-output/project-context.md
 ```
 
 Sửa tệp để thêm stack công nghệ và quy tắc triển khai. Workflow architect và implementation sẽ tự động tìm và nạp nó.
 
 ### Tạo sau khi hoàn thành kiến trúc
 
-Chạy workflow `bmad-generate-project-context` sau khi bạn hoàn tất kiến trúc:
+Chạy workflow `acl-generate-project-context` sau khi bạn hoàn tất kiến trúc:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Nó sẽ quét tài liệu kiến trúc và tệp dự án để tạo tệp context ghi lại các quyết định đã được đưa ra.
 
 ### Tạo cho dự án hiện có
 
-Với dự án hiện có, chạy `bmad-generate-project-context` để khám phá pattern sẵn có:
+Với dự án hiện có, chạy `acl-generate-project-context` để khám phá pattern sẵn có:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Workflow sẽ phân tích codebase để nhận diện quy ước, sau đó tạo tệp context cho bạn xem lại và tinh chỉnh.
@@ -148,8 +148,8 @@ Tệp `project-context.md` là tài liệu sống. Hãy cập nhật khi:
 - Pattern tiến hóa trong quá trình triển khai
 - Bạn nhận ra lỗ hổng qua hành vi của agent
 
-Bạn có thể sửa thủ công bất kỳ lúc nào, hoặc chạy lại `bmad-generate-project-context` để cập nhật sau các thay đổi lớn.
+Bạn có thể sửa thủ công bất kỳ lúc nào, hoặc chạy lại `acl-generate-project-context` để cập nhật sau các thay đổi lớn.
 
 :::note[Vị trí tệp]
-Vị trí mặc định là `_bmad-output/project-context.md`. Các workflow tìm tệp ở đó, đồng thời cũng kiểm tra `**/project-context.md` ở bất kỳ đâu trong dự án.
+Vị trí mặc định là `_acl-output/project-context.md`. Các workflow tìm tệp ở đó, đồng thời cũng kiểm tra `**/project-context.md` ở bất kỳ đâu trong dự án.
 :::

@@ -1,17 +1,17 @@
 // `--set <module>.<key>=<value>` is a post-install patch. The installer runs
-// its normal flow and writes `_bmad/config.toml`, `_bmad/config.user.toml`,
-// and `_bmad/<module>/config.yaml`; afterwards `applySetOverrides` upserts
+// its normal flow and writes `_acl/config.toml`, `_acl/config.user.toml`,
+// and `_acl/<module>/config.yaml`; afterwards `applySetOverrides` upserts
 // each override into those files.
 //
 // This is intentionally NOT integrated with the prompt/template/schema
 // system. Tradeoffs:
-//   - No `result:` template rendering: `--set bmm.project_knowledge=research`
-//     writes "research" verbatim. Pass `--set bmm.project_knowledge='{project-root}/research'`
+//   - No `result:` template rendering: `--set acl.project_knowledge=research`
+//     writes "research" verbatim. Pass `--set acl.project_knowledge='{project-root}/research'`
 //     if you want the rendered form.
 //   - Carry-forward across installs is best-effort: declared schema keys
 //     persist via the existingValue path on the next interactive run; values
 //     for keys outside any module's schema may need to be re-passed on each
-//     install (or edited directly in `_bmad/config.toml`).
+//     install (or edited directly in `_acl/config.toml`).
 //   - No "key not in schema" validation: whatever you assert, we write.
 //
 // Names that, when used as object keys, can mutate `Object.prototype` and
@@ -220,9 +220,9 @@ async function tomlHasKey(filePath, section, key) {
  * installer. Called at the end of an install / quick-update.
  *
  * Routing per (module, key):
- *   1. If `_bmad/config.user.toml` already has `[section] key`, update there
- *      (user-scope key like `core.user_name`, `bmm.user_skill_level`).
- *   2. Otherwise update `_bmad/config.toml` (team scope, the default).
+ *   1. If `_acl/config.user.toml` already has `[section] key`, update there
+ *      (user-scope key like `core.user_name`, `acl.user_skill_level`).
+ *   2. Otherwise update `_acl/config.toml` (team scope, the default).
  *
  * The schema-correct user/team partition lives in `manifest-generator`. We
  * intentionally don't re-read module schemas here — the only goal is to
@@ -230,24 +230,24 @@ async function tomlHasKey(filePath, section, key) {
  * (not in either file yet), team scope is the safe default.
  *
  * @param {Object<string, Object<string, string>>} overrides
- * @param {string} bmadDir absolute path to `_bmad/`
+ * @param {string} aclDir absolute path to `_acl/`
  * @returns {Promise<Array<{module:string,key:string,scope:'team'|'user',file:string}>>}
  *          a list of applied entries (for caller logging)
  */
-async function applySetOverrides(overrides, bmadDir) {
+async function applySetOverrides(overrides, aclDir) {
   const applied = [];
   if (!overrides || typeof overrides !== 'object') return applied;
 
-  const teamPath = path.join(bmadDir, 'config.toml');
-  const userPath = path.join(bmadDir, 'config.user.toml');
+  const teamPath = path.join(aclDir, 'config.toml');
+  const userPath = path.join(aclDir, 'config.user.toml');
 
   for (const moduleCode of Object.keys(overrides)) {
     // Skip overrides for modules not actually installed. The installer writes
-    // `_bmad/<module>/config.yaml` for every installed module (including core),
+    // `_acl/<module>/config.yaml` for every installed module (including core),
     // so its presence is a reliable "is this module here?" signal that works
     // for both fresh installs and quick-updates without coupling to caller-
     // supplied module lists.
-    const moduleConfigYaml = path.join(bmadDir, moduleCode, 'config.yaml');
+    const moduleConfigYaml = path.join(aclDir, moduleCode, 'config.yaml');
     if (!(await fs.pathExists(moduleConfigYaml))) {
       continue;
     }
@@ -269,7 +269,7 @@ async function applySetOverrides(overrides, bmadDir) {
       if (await fs.pathExists(targetPath)) {
         content = await fs.readFile(targetPath, 'utf8');
       } else {
-        content = '# Personal overrides for _bmad/config.toml.\n';
+        content = '# Personal overrides for _acl/config.toml.\n';
       }
 
       const next = upsertTomlKey(content, section, key, valueToml);
@@ -282,7 +282,7 @@ async function applySetOverrides(overrides, bmadDir) {
       });
     }
 
-    // Also patch the per-module yaml (`_bmad/<module>/config.yaml`). The
+    // Also patch the per-module yaml (`_acl/<module>/config.yaml`). The
     // installer reads this file as `_existingConfig` on subsequent runs and
     // surfaces declared values as prompt defaults — under `--yes` those
     // defaults are accepted, so patching here gives `--set` natural
@@ -291,14 +291,14 @@ async function applySetOverrides(overrides, bmadDir) {
     // value lives in the per-module yaml but won't be re-emitted into
     // config.toml on the next install (the schema-strict partition drops
     // it); re-pass `--set` if you need it sticky.
-    const moduleYamlPath = path.join(bmadDir, moduleCode, 'config.yaml');
+    const moduleYamlPath = path.join(aclDir, moduleCode, 'config.yaml');
     if (await fs.pathExists(moduleYamlPath)) {
       try {
         const text = await fs.readFile(moduleYamlPath, 'utf8');
         const parsed = yaml.parse(text);
         if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
           // Preserve the installer's banner header (everything up to the
-          // first non-comment line) so `_bmad/<module>/config.yaml` keeps
+          // first non-comment line) so `_acl/<module>/config.yaml` keeps
           // its provenance comments after we round-trip it.
           const headerLines = [];
           for (const line of text.split('\n')) {

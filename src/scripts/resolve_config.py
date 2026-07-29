@@ -2,7 +2,7 @@
 # /// script
 # requires-python = ">=3.11"
 # ///
-"""Resolve BMad's four central TOML layers to JSON."""
+"""Resolve ACL's four central TOML layers to JSON."""
 
 import argparse
 import json
@@ -36,13 +36,13 @@ def extract_key(data, dotted_key: str):
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Resolve BMad central config using four-layer TOML merge."
+        description="Resolve ACL central config using four-layer TOML merge."
     )
     parser.add_argument(
         "--project-root",
         "-p",
         required=True,
-        help="Absolute project root containing _bmad/",
+        help="Absolute project root containing _acl/",
     )
     parser.add_argument(
         "--key",

@@ -9,7 +9,7 @@ Deep Recon researches anything you need to decide on. This page explains its thr
 
 ## What is Deep Recon?
 
-Run `bmad-deep-recon` and you get a research director, not a search engine. Every engagement starts from a decision: enter a market or skip it, pick a stack, choose a vendor, commit to a domain, ground a paper. The decision shapes which questions get asked, which sources count, and what the final report recommends.
+Run `acl-deep-recon` and you get a research director, not a search engine. Every engagement starts from a decision: enter a market or skip it, pick a stack, choose a vendor, commit to a domain, ground a paper. The decision shapes which questions get asked, which sources count, and what the final report recommends.
 
 It's a core skill, so it isn't tied to software projects. Product teams use it for market sizing, but it handles a literature review for a thesis, a teardown of three competitors, or "which health insurance plan should I pick" with the same machinery. If the answer should rest on evidence rather than the model's memory, it's in scope.
 
@@ -28,7 +28,7 @@ A type selects a pack: a short card of prioritized dimensions, source craft, and
 | `user-voice` | What users actually experience and want: reviews, communities |
 | `academic-lit` | Literature review, state of the art, grounding an approach in papers |
 
-The decision shape is a second, independent choice. **Explore** (the default) builds understanding; **select** runs a structured choose-between when you're picking among candidates. Any type can end in a selection matrix. You can also add your own types through [bmad-customize](../how-to/customize-bmad.md).
+The decision shape is a second, independent choice. **Explore** (the default) builds understanding; **select** runs a structured choose-between when you're picking among candidates. Any type can end in a selection matrix. You can also add your own types through [acl-customize](../how-to/customize-acl.md).
 
 ## The three modes
 
@@ -112,14 +112,14 @@ That map powers the lifecycle. **Refresh** re-verifies only the stale claims and
 
 | Goal | Type this |
 | --- | --- |
-| Research something | `/bmad-deep-recon` then describe the decision, or just "research the self-hosted analytics market" |
+| Research something | `/acl-deep-recon` then describe the decision, or just "research the self-hosted analytics market" |
 | Force a type | "competitive research on Linear and Height" |
 | Draft a prompt for your tool | "draft a deep research prompt about X for Gemini" |
 | Process a report | "there's a research report at ~/Downloads/report.pdf, process it" |
 | Choose between options | "help me choose between Postgres and MySQL for this" |
 | Refresh an existing report | "refresh the market research" |
-| Customize defaults | `/bmad-customize bmad-deep-recon` |
+| Customize defaults | `/acl-customize acl-deep-recon` |
 
 ## Where the old research skills went
 
-The v6 `bmad-market-research`, `bmad-domain-research`, and `bmad-technical-research` skills merged into Deep Recon as the `market`, `domain`, and `technical` types. The old names still work and forward to the new skill, so existing habits and menu entries keep functioning.
+The v6 `acl-market-research`, `acl-domain-research`, and `acl-technical-research` skills merged into Deep Recon as the `market`, `domain`, and `technical` types. The old names still work and forward to the new skill, so existing habits and menu entries keep functioning.

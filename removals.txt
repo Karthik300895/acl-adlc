@@ -1,75 +1,75 @@
-# BMad Method - Skill Removal List
+# ACL Method - Skill Removal List
 # Entries listed here will be removed from IDE skill directories during install/update.
 # One entry per line. Lines starting with # are comments.
 # Each entry is a skill directory name (canonicalId) that was removed or renamed.
 
 # Removed agents (v6.2.0 - v6.2.2)
-bmad-agent-sm
-bmad-agent-qa
-bmad-agent-quick-flow-solo-dev
+acl-agent-sm
+acl-agent-qa
+acl-agent-quick-flow-solo-dev
 
 # Removed skills (v6.2.0 - v6.2.2)
-bmad-create-product-brief
-bmad-product-brief-preview
-bmad-quick-spec
-bmad-quick-flow
-bmad-quick-dev-new-preview
-bmad-init
+acl-create-product-brief
+acl-product-brief-preview
+acl-quick-spec
+acl-quick-flow
+acl-quick-dev-new-preview
+acl-init
 
 # Pre-v6.2.0 wrapper skills (module-prefixed naming, dropped in v6.2.0).
 # Users upgrading from v6.0.x / v6.1.x had these installed and the cleanup
 # never knew to remove them; they remained alongside the new self-contained
 # skills causing duplicates and broken-file errors. See issue #2309.
-bmad-agent-bmm-analyst
-bmad-agent-bmm-architect
-bmad-agent-bmm-dev
-bmad-agent-bmm-pm
-bmad-agent-bmm-qa
-bmad-agent-bmm-quick-flow-solo-dev
-bmad-agent-bmm-sm
-bmad-agent-bmm-tech-writer
-bmad-agent-bmm-ux-designer
-bmad-bmm-check-implementation-readiness
-bmad-bmm-code-review
-bmad-bmm-correct-course
-bmad-bmm-create-architecture
-bmad-bmm-create-epics-and-stories
-bmad-bmm-create-prd
-bmad-bmm-create-product-brief
-bmad-bmm-create-story
-bmad-bmm-create-ux-design
-bmad-bmm-dev-story
-bmad-bmm-document-project
-bmad-bmm-domain-research
-bmad-bmm-edit-prd
-bmad-bmm-generate-project-context
-bmad-bmm-market-research
-bmad-bmm-qa-generate-e2e-tests
-bmad-bmm-quick-dev
-bmad-bmm-quick-spec
-bmad-bmm-retrospective
-bmad-bmm-sprint-planning
-bmad-bmm-sprint-status
-bmad-bmm-technical-research
-bmad-bmm-validate-prd
+acl-agent-acl-analyst
+acl-agent-acl-architect
+acl-agent-acl-dev
+acl-agent-acl-pm
+acl-agent-acl-qa
+acl-agent-acl-quick-flow-solo-dev
+acl-agent-acl-sm
+acl-agent-acl-tech-writer
+acl-agent-acl-ux-designer
+acl-acl-check-implementation-readiness
+acl-acl-code-review
+acl-acl-correct-course
+acl-acl-create-architecture
+acl-acl-create-epics-and-stories
+acl-acl-create-prd
+acl-acl-create-product-brief
+acl-acl-create-story
+acl-acl-create-ux-design
+acl-acl-dev-story
+acl-acl-document-project
+acl-acl-domain-research
+acl-acl-edit-prd
+acl-acl-generate-project-context
+acl-acl-market-research
+acl-acl-qa-generate-e2e-tests
+acl-acl-quick-dev
+acl-acl-quick-spec
+acl-acl-retrospective
+acl-acl-sprint-planning
+acl-acl-sprint-status
+acl-acl-technical-research
+acl-acl-validate-prd
 
 # Removed skills (post-v6.7.x)
-# bmad-distillator: superseded by bmad-spec (universal intent distiller with
+# acl-distillator: superseded by acl-spec (universal intent distiller with
 # preservation-validated contract for downstream skills).
-bmad-distillator
-# bmad-create-ux-design: renamed to bmad-ux (spine-based skill with separate
+acl-distillator
+# acl-create-ux-design: renamed to acl-ux (spine-based skill with separate
 # DESIGN.md and EXPERIENCE.md outputs).
-bmad-create-ux-design
-# bmad-investigate: retired. Plain investigation reaches the same conclusions at
+acl-create-ux-design
+# acl-investigate: retired. Plain investigation reaches the same conclusions at
 # lower cost.
-bmad-investigate
+acl-investigate
 
 # Removed skills (v6.10.0)
-# bmad-auto-setup: renamed to bmad-loop-setup as part of the bmad-auto ->
-# bmad-loop module rename (BMad Automator's replacement).
-bmad-auto-setup
+# acl-auto-setup: renamed to acl-loop-setup as part of the acl-auto ->
+# acl-loop module rename (ACL Automator's replacement).
+acl-auto-setup
 
 # Removed skills (core streamline, post-v6.10.0)
-# bmad-index-docs, bmad-shard-doc: retired outright.
-bmad-index-docs
-bmad-shard-doc
+# acl-index-docs, acl-shard-doc: retired outright.
+acl-index-docs
+acl-shard-doc

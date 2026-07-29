@@ -39,12 +39,12 @@ class ResolveConfigCliTests(unittest.TestCase):
     def test_full_and_repeated_key_output_follow_layer_precedence(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            custom = root / "_bmad" / "custom"
+            custom = root / "_acl" / "custom"
             custom.mkdir(parents=True)
-            (root / "_bmad" / "config.toml").write_text(
+            (root / "_acl" / "config.toml").write_text(
                 '[core]\nname = "base"\nkeep = "yes"\n', encoding="utf-8"
             )
-            (root / "_bmad" / "config.user.toml").write_text(
+            (root / "_acl" / "config.user.toml").write_text(
                 '[core]\nname = "base-user"\n', encoding="utf-8"
             )
             (custom / "config.toml").write_text(
@@ -65,9 +65,9 @@ class ResolveConfigCliTests(unittest.TestCase):
     def test_malformed_present_layer_fails(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            custom = root / "_bmad" / "custom"
+            custom = root / "_acl" / "custom"
             custom.mkdir(parents=True)
-            (root / "_bmad" / "config.toml").write_text("[core]\nvalid = true\n", encoding="utf-8")
+            (root / "_acl" / "config.toml").write_text("[core]\nvalid = true\n", encoding="utf-8")
             (custom / "config.toml").write_text("[broken\n", encoding="utf-8")
 
             result = self._run(root)

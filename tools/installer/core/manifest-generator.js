@@ -33,20 +33,20 @@ class ManifestGenerator {
 
   /**
    * Generate all manifests for the installation
-   * @param {string} bmadDir - _bmad
+   * @param {string} aclDir - _acl
    * @param {Array} selectedModules - Selected modules for installation
    * @param {Array} installedFiles - All installed files (optional, for hash tracking)
    */
-  async generateManifests(bmadDir, selectedModules, installedFiles = [], options = {}) {
+  async generateManifests(aclDir, selectedModules, installedFiles = [], options = {}) {
     // Create _config directory if it doesn't exist
-    const cfgDir = path.join(bmadDir, '_config');
+    const cfgDir = path.join(aclDir, '_config');
     await fs.ensureDir(cfgDir);
 
     // Store modules list (all modules including preserved ones)
     const preservedModules = options.preservedModules || [];
 
-    // Scan the bmad directory to find all actually installed modules
-    const installedModules = await this.scanInstalledModules(bmadDir);
+    // Scan the acl directory to find all actually installed modules
+    const installedModules = await this.scanInstalledModules(aclDir);
 
     // Since custom modules are now installed the same way as regular modules,
     // we don't need to exclude them from manifest generation
@@ -55,8 +55,8 @@ class ManifestGenerator {
     this.modules = allModules;
     this.updatedModules = allModules; // Include ALL modules (including custom) for scanning
 
-    this.bmadDir = bmadDir;
-    this.bmadFolderName = path.basename(bmadDir); // Get the actual folder name (e.g., '_bmad' or 'bmad')
+    this.aclDir = aclDir;
+    this.aclFolderName = path.basename(aclDir); // Get the actual folder name (e.g., '_acl' or 'acl')
     this.allInstalledFiles = installedFiles;
 
     if (!Object.prototype.hasOwnProperty.call(options, 'ides')) {
@@ -81,7 +81,7 @@ class ManifestGenerator {
     await this.collectAgentsFromModuleYaml();
 
     // Write manifest files and collect their paths
-    const [teamConfigPath, userConfigPath] = await this.writeCentralConfig(bmadDir, options.moduleConfigs || {});
+    const [teamConfigPath, userConfigPath] = await this.writeCentralConfig(aclDir, options.moduleConfigs || {});
     const manifestFiles = [
       await this.writeMainManifest(cfgDir),
       await this.writeSkillManifest(cfgDir),
@@ -90,7 +90,7 @@ class ManifestGenerator {
       await this.writeFilesManifest(cfgDir),
     ];
 
-    await this.ensureCustomConfigStubs(bmadDir);
+    await this.ensureCustomConfigStubs(aclDir);
 
     return {
       skills: this.skills.length,
@@ -110,10 +110,10 @@ class ManifestGenerator {
   async collectSkills() {
     this.skills = [];
     this.skillClaimedDirs = new Set();
-    const debug = process.env.BMAD_DEBUG_MANIFEST === 'true';
+    const debug = process.env.ACL_DEBUG_MANIFEST === 'true';
 
     for (const moduleName of this.updatedModules) {
-      const modulePath = path.join(this.bmadDir, moduleName);
+      const modulePath = path.join(this.aclDir, moduleName);
       if (!(await fs.pathExists(modulePath))) continue;
 
       // Recursive walk skipping . and _ prefixed dirs
@@ -136,8 +136,8 @@ class ManifestGenerator {
           // Build path relative from module root (points to SKILL.md — the permanent entrypoint)
           const relativePath = path.relative(modulePath, dir).split(path.sep).join('/');
           const installPath = relativePath
-            ? `${this.bmadFolderName}/${moduleName}/${relativePath}/${skillFile}`
-            : `${this.bmadFolderName}/${moduleName}/${skillFile}`;
+            ? `${this.aclFolderName}/${moduleName}/${relativePath}/${skillFile}`
+            : `${this.aclFolderName}/${moduleName}/${skillFile}`;
 
           // Native SKILL.md entrypoints always derive canonicalId from directory name.
           const canonicalId = dirName;
@@ -241,12 +241,12 @@ class ManifestGenerator {
    */
   async collectAgentsFromModuleYaml() {
     this.agents = [];
-    const debug = process.env.BMAD_DEBUG_MANIFEST === 'true';
+    const debug = process.env.ACL_DEBUG_MANIFEST === 'true';
 
     for (const moduleName of this.updatedModules) {
       const moduleYamlPath = await resolveInstalledModuleYaml(moduleName);
       if (!moduleYamlPath) {
-        // External modules live in ~/.bmad/cache/external-modules, not src/modules.
+        // External modules live in ~/.acl/cache/external-modules, not src/modules.
         // Warn rather than silently skip so missing agent rosters don't vanish
         // from config.toml without notice.
         console.warn(
@@ -335,7 +335,7 @@ class ManifestGenerator {
 
     for (const moduleName of this.modules) {
       // Get fresh version info from source
-      const versionInfo = await manifestObj.getModuleVersionInfo(moduleName, this.bmadDir);
+      const versionInfo = await manifestObj.getModuleVersionInfo(moduleName, this.aclDir);
 
       // Get existing install date if available
       const existing = existingModulesMap.get(moduleName);
@@ -419,15 +419,15 @@ class ManifestGenerator {
   }
 
   /**
-   * Write central _bmad/config.toml with [core], [modules.<code>], [agents.<code>] tables.
+   * Write central _acl/config.toml with [core], [modules.<code>], [agents.<code>] tables.
    * Install-owned. Team-scope answers → config.toml; user-scope answers → config.user.toml.
    * Both files are regenerated on every install. User overrides live in
-   * _bmad/custom/config.toml and _bmad/custom/config.user.toml (never touched by installer).
+   * _acl/custom/config.toml and _acl/custom/config.user.toml (never touched by installer).
    * @returns {string[]} Paths to the written config files
    */
-  async writeCentralConfig(bmadDir, moduleConfigs) {
-    const teamPath = path.join(bmadDir, 'config.toml');
-    const userPath = path.join(bmadDir, 'config.user.toml');
+  async writeCentralConfig(aclDir, moduleConfigs) {
+    const teamPath = path.join(aclDir, 'config.toml');
+    const userPath = path.join(aclDir, 'config.user.toml');
 
     // Load each module's source module.yaml to determine scope per prompt key.
     // Default scope is 'team' when the prompt doesn't declare one.
@@ -467,7 +467,7 @@ class ManifestGenerator {
 
     // Core keys are always known (core module.yaml is built-in). These are
     // the only keys allowed in [core]; they must be stripped from every
-    // non-core module bucket because legacy _bmad/{mod}/config.yaml files
+    // non-core module bucket because legacy _acl/{mod}/config.yaml files
     // spread core values into each module. Core belongs in [core] only —
     // workflows that need user_name/language/etc. read [core] directly.
     const coreKeys = new Set(Object.keys(scopeByModuleKey.core || {}));
@@ -502,8 +502,8 @@ class ManifestGenerator {
       '# To change an install answer durably, re-run the installer (your prior',
       '# answers are remembered as defaults). To pin a value regardless of',
       '# install answers, or to add custom agents / override descriptors, use:',
-      '#   _bmad/custom/config.toml       (team, committed)',
-      '#   _bmad/custom/config.user.toml  (personal, gitignored)',
+      '#   _acl/custom/config.toml       (team, committed)',
+      '#   _acl/custom/config.user.toml  (personal, gitignored)',
       '# Those files are never touched by the installer.',
       '# ─────────────────────────────────────────────────────────────────',
       '',
@@ -517,7 +517,7 @@ class ManifestGenerator {
       '# Direct edits to this file will be overwritten on the next install.',
       '# To change an answer durably, re-run the installer (your prior answers',
       '# are remembered as defaults). For pinned overrides or custom sections',
-      '# the installer does not know about, use _bmad/custom/config.user.toml',
+      '# the installer does not know about, use _acl/custom/config.user.toml',
       '# — it is never touched by the installer.',
       '# ─────────────────────────────────────────────────────────────────',
       '',
@@ -620,23 +620,23 @@ class ManifestGenerator {
   }
 
   /**
-   * Create empty _bmad/custom/config.toml and _bmad/custom/config.user.toml stubs
+   * Create empty _acl/custom/config.toml and _acl/custom/config.user.toml stubs
    * on first install only. Installer never touches these files again after creation.
    */
-  async ensureCustomConfigStubs(bmadDir) {
-    const customDir = path.join(bmadDir, 'custom');
+  async ensureCustomConfigStubs(aclDir) {
+    const customDir = path.join(aclDir, 'custom');
     await fs.ensureDir(customDir);
 
     const stubs = [
       {
         file: path.join(customDir, 'config.toml'),
         header: [
-          '# Team / enterprise overrides for _bmad/config.toml.',
+          '# Team / enterprise overrides for _acl/config.toml.',
           '# Committed to the repo — applies to every developer on the project.',
           '# Tables deep-merge over base config; keyed entries merge by key.',
           '# Example: override an agent descriptor, or add a new agent.',
           '#',
-          '# [agents.bmad-agent-pm]',
+          '# [agents.acl-agent-pm]',
           '# description = "Prefers short, bulleted PRDs over narrative drafts."',
           '',
         ],
@@ -644,7 +644,7 @@ class ManifestGenerator {
       {
         file: path.join(customDir, 'config.user.toml'),
         header: [
-          '# Personal overrides for _bmad/config.toml.',
+          '# Personal overrides for _acl/config.toml.',
           '# NOT committed (gitignored) — applies only to your local install.',
           '# Wins over both base config and team overrides.',
           '',
@@ -689,8 +689,8 @@ class ManifestGenerator {
     if (this.allInstalledFiles && this.allInstalledFiles.length > 0) {
       // Process all installed files
       for (const filePath of this.allInstalledFiles) {
-        // Store paths relative to bmadDir (no folder prefix)
-        const relativePath = filePath.replace(this.bmadDir, '').replaceAll('\\', '/').replace(/^\//, '');
+        // Store paths relative to aclDir (no folder prefix)
+        const relativePath = filePath.replace(this.aclDir, '').replaceAll('\\', '/').replace(/^\//, '');
         const ext = path.extname(filePath).toLowerCase();
         const fileName = path.basename(filePath, ext);
 
@@ -713,8 +713,8 @@ class ManifestGenerator {
       // Fallback: use the collected workflows/agents/tasks
       for (const file of this.files) {
         // Strip the folder prefix if present (for consistency)
-        const relPath = file.path.replace(this.bmadFolderName + '/', '');
-        const filePath = path.join(this.bmadDir, relPath);
+        const relPath = file.path.replace(this.aclFolderName + '/', '');
+        const filePath = path.join(this.aclDir, relPath);
         const hash = await this.calculateFileHash(filePath);
         allFiles.push({
           ...file,
@@ -741,15 +741,15 @@ class ManifestGenerator {
   }
 
   /**
-   * Scan the bmad directory to find all installed modules
-   * @param {string} bmadDir - Path to bmad directory
+   * Scan the acl directory to find all installed modules
+   * @param {string} aclDir - Path to acl directory
    * @returns {Array} List of module names
    */
-  async scanInstalledModules(bmadDir) {
+  async scanInstalledModules(aclDir) {
     const modules = [];
 
     try {
-      const entries = await fs.readdir(bmadDir, { withFileTypes: true });
+      const entries = await fs.readdir(aclDir, { withFileTypes: true });
 
       for (const entry of entries) {
         // Skip if not a directory or is a special directory
@@ -758,7 +758,7 @@ class ManifestGenerator {
         }
 
         // Check if this looks like a module (has agents directory or skill manifests)
-        const modulePath = path.join(bmadDir, entry.name);
+        const modulePath = path.join(aclDir, entry.name);
         const hasAgents = await fs.pathExists(path.join(modulePath, 'agents'));
         const hasSkills = await this._hasSkillMdRecursive(modulePath);
 

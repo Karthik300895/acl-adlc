@@ -20,7 +20,7 @@ function normalizeChannelName(raw) {
 /**
  * Conservative quoting for tag names passed to git commands. Tags are
  * user-typed (--pin) or come from the GitHub API. Only allow the semver
- * character class we use to tag BMad releases; anything else throws.
+ * character class we use to tag ACL releases; anything else throws.
  */
 function quoteShell(ref) {
   if (typeof ref !== 'string' || !/^[\w.\-+/]+$/.test(ref)) {
@@ -47,7 +47,7 @@ async function writeChannelMarker(markerPath, data) {
   }
 }
 
-const REGISTRY_CONFIG_PATH = path.join(getProjectRoot(), 'bmad-modules.yaml');
+const REGISTRY_CONFIG_PATH = path.join(getProjectRoot(), 'acl-modules.yaml');
 
 /**
  * Manages official modules from the bundled registry file. The remote
@@ -126,7 +126,7 @@ class ExternalModuleManager {
       name: mod.display_name || mod.name,
       description: mod.description || '',
       defaultSelected: mod.default_selected === true || mod.defaultSelected === true,
-      type: mod.type || 'bmad-org',
+      type: mod.type || 'acl-org',
       npmPackage: mod.npm_package || mod.npmPackage || null,
       pluginName: mod.plugin_name || mod.pluginName || null,
       defaultChannel: normalizeChannelName(mod.default_channel || mod.defaultChannel) || 'stable',
@@ -136,7 +136,7 @@ class ExternalModuleManager {
       postInstallMessage: mod.post_install_message || mod['post-install-message'] || mod.postInstallMessage || null,
       builtIn: mod.built_in === true,
       isExternal: mod.built_in !== true,
-      // Prior codes this module was registered under (e.g. `bmad-loop` was
+      // Prior codes this module was registered under (e.g. `acl-loop` was
       // `bauto`). Lets a renamed module keep resolving existing installs
       // instead of orphaning them — see getModuleByCode().
       aliases: Array.isArray(mod.aliases) ? mod.aliases : [],
@@ -192,7 +192,7 @@ class ExternalModuleManager {
    * @returns {string} Path to the external modules cache directory
    */
   getExternalCacheDir() {
-    const cacheDir = path.join(os.homedir(), '.bmad', 'cache', 'external-modules');
+    const cacheDir = path.join(os.homedir(), '.acl', 'cache', 'external-modules');
     return cacheDir;
   }
 
@@ -212,7 +212,7 @@ class ExternalModuleManager {
     const moduleInfo = await this.getModuleByCode(moduleCode);
 
     if (!moduleInfo) {
-      throw new Error(`External module '${moduleCode}' not found in the BMad registry`);
+      throw new Error(`External module '${moduleCode}' not found in the ACL registry`);
     }
 
     // Normalize to the canonical code so cache dir, in-memory resolutions,
@@ -299,7 +299,7 @@ class ExternalModuleManager {
       // updates" and re-use the cached version silently — that's the right
       // call for an update/quick-update, since the semantics don't change
       // and the user isn't worse off than before they ran this command.
-      const cachedMarker = await readChannelMarker(path.join(moduleCacheDir, '.bmad-channel.json'));
+      const cachedMarker = await readChannelMarker(path.join(moduleCacheDir, '.acl-channel.json'));
       if (cachedMarker?.channel && (await fs.pathExists(moduleCacheDir))) {
         if (!silent) {
           await prompts.log.warn(
@@ -353,7 +353,7 @@ class ExternalModuleManager {
     }
 
     // ─── Clone or update cache by resolved channel ────────────────────────
-    const markerPath = path.join(moduleCacheDir, '.bmad-channel.json');
+    const markerPath = path.join(moduleCacheDir, '.acl-channel.json');
     const currentMarker = await readChannelMarker(markerPath);
     const needsChannelReset = currentMarker && currentMarker.channel !== resolved.channel;
 

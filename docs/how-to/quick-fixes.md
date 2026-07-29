@@ -16,7 +16,7 @@ Bug fixes, refactorings, and small targeted changes can enter **Quick Dev** dire
 
 :::note[Prerequisites]
 
-- BMad Method installed (`npx bmad-method install`)
+- ACL Method installed (`npx acl-adlc install`)
 - An AI-powered IDE (Claude Code, Cursor, or similar)
   :::
 
@@ -39,7 +39,7 @@ run quick-dev — fix https://github.com/org/repo/issues/42
 ```
 
 ```text
-run quick-dev — implement the intent in _bmad-output/implementation-artifacts/my-intent.md
+run quick-dev — implement the intent in _acl-output/implementation-artifacts/my-intent.md
 ```
 
 ```text

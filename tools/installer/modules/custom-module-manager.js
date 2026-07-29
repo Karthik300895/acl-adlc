@@ -361,7 +361,7 @@ class CustomModuleManager {
    * @returns {string} Path to the custom modules cache directory
    */
   getCacheDir() {
-    return path.join(os.homedir(), '.bmad', 'cache', 'custom-modules');
+    return path.join(os.homedir(), '.acl', 'cache', 'custom-modules');
   }
 
   /**
@@ -397,11 +397,11 @@ class CustomModuleManager {
     };
 
     // If an existing cache exists but was cloned at a different version, re-clone.
-    // Tracked via .bmad-source.json's recorded version.
+    // Tracked via .acl-source.json's recorded version.
     if (await fs.pathExists(repoCacheDir)) {
       let cachedVersion = null;
       try {
-        const existing = await fs.readJson(path.join(repoCacheDir, '.bmad-source.json'));
+        const existing = await fs.readJson(path.join(repoCacheDir, '.acl-source.json'));
         cachedVersion = existing?.version || null;
       } catch {
         // no metadata; treat as mismatched to be safe if a version was requested
@@ -522,7 +522,7 @@ class CustomModuleManager {
       } catch {
         // Fallback to previous marker value when symbolic ref is unavailable.
         try {
-          const existingMarker = await fs.readJson(path.join(repoCacheDir, '.bmad-channel.json'));
+          const existingMarker = await fs.readJson(path.join(repoCacheDir, '.acl-channel.json'));
           if (existingMarker?.channel === 'next' && typeof existingMarker.version === 'string' && existingMarker.version.trim()) {
             defaultRef = existingMarker.version.trim();
           }
@@ -533,7 +533,7 @@ class CustomModuleManager {
     }
 
     // Write source metadata for later URL reconstruction
-    const metadataPath = path.join(repoCacheDir, '.bmad-source.json');
+    const metadataPath = path.join(repoCacheDir, '.acl-source.json');
     await fs.writeJson(metadataPath, {
       cloneUrl: parsed.cloneUrl,
       cacheKey: parsed.cacheKey,
@@ -546,7 +546,7 @@ class CustomModuleManager {
     // Keep a channel marker in custom cache too so update paths that rely on
     // channel metadata (same as official-module cache) can treat this clone as
     // refreshable. URL + no explicit ref => next, explicit ref => pinned.
-    await fs.writeJson(path.join(repoCacheDir, '.bmad-channel.json'), {
+    await fs.writeJson(path.join(repoCacheDir, '.acl-channel.json'), {
       channel: effectiveVersion ? 'pinned' : 'next',
       version: effectiveVersion || defaultRef,
       sha: resolvedSha,
@@ -596,7 +596,7 @@ class CustomModuleManager {
     let cloneMetadata = null;
     if (sourceUrl) {
       try {
-        cloneMetadata = await fs.readJson(path.join(repoPath, '.bmad-source.json'));
+        cloneMetadata = await fs.readJson(path.join(repoPath, '.acl-source.json'));
       } catch {
         // no metadata — local-source or legacy cache
       }
@@ -720,7 +720,7 @@ class CustomModuleManager {
         // Quick-update path: refresh URL-backed cached repos before reading
         // files from them so re-deploy uses latest commits for `next` and
         // the pinned ref for `pinned`.
-        if (options.bmadDir && metadata?.rawInput) {
+        if (options.aclDir && metadata?.rawInput) {
           await this._refreshRepoCacheOnce(repoPath, metadata);
         }
 
@@ -778,7 +778,7 @@ class CustomModuleManager {
    * Refresh one cached repo at most once per process with in-flight dedupe.
    * Prevents concurrent quick-update callers from racing the same cache path.
    * @param {string} repoPath - Absolute cache repo path
-   * @param {Object} metadata - Parsed .bmad-source.json metadata
+   * @param {Object} metadata - Parsed .acl-source.json metadata
    */
   async _refreshRepoCacheOnce(repoPath, metadata) {
     if (CustomModuleManager._refreshedRepoPaths.has(repoPath)) return;
@@ -818,7 +818,7 @@ class CustomModuleManager {
    * Used as fallback when the module was installed from a local source (no cache entry).
    * Returns the path only if it still exists on disk; never removes installed files.
    * @param {string} moduleCode - Module code to search for
-   * @param {Object} [options] - Options (must include bmadDir or will search common locations)
+   * @param {Object} [options] - Options (must include aclDir or will search common locations)
    * @returns {string|null} Path to the local module source or null
    */
   async _findLocalSourceFromManifest(moduleCode, options = {}) {
@@ -826,11 +826,11 @@ class CustomModuleManager {
       const { Manifest } = require('../core/manifest');
       const manifestObj = new Manifest();
 
-      // Try to find bmadDir from options or common locations
-      const bmadDir = options.bmadDir;
-      if (!bmadDir) return null;
+      // Try to find aclDir from options or common locations
+      const aclDir = options.aclDir;
+      if (!aclDir) return null;
 
-      const manifestData = await manifestObj.read(bmadDir);
+      const manifestData = await manifestObj.read(aclDir);
       if (!manifestData?.modulesDetailed) return null;
 
       const moduleEntry = manifestData.modulesDetailed.find((m) => m.name === moduleCode);
@@ -849,7 +849,7 @@ class CustomModuleManager {
 
   /**
    * Recursively find repo root directories within the cache.
-   * A repo root is identified by containing .bmad-source.json (new) or .claude-plugin/ (legacy).
+   * A repo root is identified by containing .acl-source.json (new) or .claude-plugin/ (legacy).
    * Handles both 3-level (host/owner/repo) and legacy 2-level (owner/repo) cache layouts.
    * @param {string} dir - Directory to search
    * @param {number} [depth=0] - Current recursion depth
@@ -860,7 +860,7 @@ class CustomModuleManager {
     const results = [];
 
     // Check if this directory is a repo root
-    const metadataPath = path.join(dir, '.bmad-source.json');
+    const metadataPath = path.join(dir, '.acl-source.json');
     const claudePluginDir = path.join(dir, '.claude-plugin');
 
     if (await fs.pathExists(metadataPath)) {

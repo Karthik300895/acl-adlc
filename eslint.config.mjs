@@ -13,7 +13,7 @@ export default [
       '**/*.min.js',
       'test/template-test-generator/**',
       'test/fixtures/**',
-      '_bmad*/**',
+      '_acl*/**',
       // Build output
       'build/**',
       // Website uses ESM/Astro - separate linting ecosystem

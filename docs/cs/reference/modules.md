@@ -5,19 +5,19 @@ sidebar:
   order: 5
 ---
 
-BMad se rozšiřuje prostřednictvím oficiálních modulů, které vyberete během instalace. Tyto doplňkové moduly poskytují specializované agenty, workflow a úkoly pro specifické domény nad rámec vestavěného jádra a BMM (Agile suite).
+ACL se rozšiřuje prostřednictvím oficiálních modulů, které vyberete během instalace. Tyto doplňkové moduly poskytují specializované agenty, workflow a úkoly pro specifické domény nad rámec vestavěného jádra a ACL (Agile suite).
 
 :::tip[Instalace modulů]
-Spusťte `npx bmad-method install` a vyberte požadované moduly. Instalátor se postará o stažení, konfiguraci a integraci s IDE automaticky.
+Spusťte `npx acl-adlc install` a vyberte požadované moduly. Instalátor se postará o stažení, konfiguraci a integraci s IDE automaticky.
 :::
 
-## BMad Builder
+## ACL Builder
 
-Vytvářejte vlastní agenty, workflow a doménově specifické moduly s řízenou asistencí. BMad Builder je meta-modul pro rozšiřování samotného frameworku.
+Vytvářejte vlastní agenty, workflow a doménově specifické moduly s řízenou asistencí. ACL Builder je meta-modul pro rozšiřování samotného frameworku.
 
 - **Kód:** `bmb`
-- **npm:** [`bmad-builder`](https://www.npmjs.com/package/bmad-builder)
-- **GitHub:** [bmad-code-org/bmad-builder](https://github.com/bmad-code-org/bmad-builder)
+- **npm:** [`acl-builder`](https://www.npmjs.com/package/acl-builder)
+- **GitHub:** [acl-code-org/acl-builder](https://github.com/acl-code-org/acl-builder)
 
 **Poskytuje:**
 
@@ -31,8 +31,8 @@ Vytvářejte vlastní agenty, workflow a doménově specifické moduly s řízen
 AI nástroje pro strukturovanou kreativitu, ideaci a inovace v rané fázi vývoje. Suite poskytuje více agentů, kteří facilitují brainstorming, design thinking a řešení problémů pomocí osvědčených frameworků.
 
 - **Kód:** `cis`
-- **npm:** [`bmad-creative-intelligence-suite`](https://www.npmjs.com/package/bmad-creative-intelligence-suite)
-- **GitHub:** [bmad-code-org/bmad-module-creative-intelligence-suite](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
+- **npm:** [`acl-creative-intelligence-suite`](https://www.npmjs.com/package/acl-creative-intelligence-suite)
+- **GitHub:** [acl-code-org/acl-module-creative-intelligence-suite](https://github.com/acl-code-org/acl-module-creative-intelligence-suite)
 
 **Poskytuje:**
 
@@ -46,8 +46,8 @@ AI nástroje pro strukturovanou kreativitu, ideaci a inovace v rané fázi vývo
 Strukturované workflow pro vývoj her adaptované pro Unity, Unreal, Godot a vlastní enginy. Podporuje hloubku plánování od rychlého prototypování po plnoscálovou produkci; implementace se sbíhá do Quick Dev.
 
 - **Kód:** `gds`
-- **npm:** [`bmad-game-dev-studio`](https://www.npmjs.com/package/bmad-game-dev-studio)
-- **GitHub:** [bmad-code-org/bmad-module-game-dev-studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
+- **npm:** [`acl-game-dev-studio`](https://www.npmjs.com/package/acl-game-dev-studio)
+- **GitHub:** [acl-code-org/acl-module-game-dev-studio](https://github.com/acl-code-org/acl-module-game-dev-studio)
 
 **Poskytuje:**
 
@@ -61,8 +61,8 @@ Strukturované workflow pro vývoj her adaptované pro Unity, Unreal, Godot a vl
 Podniková testovací strategie, vedení automatizace a rozhodování o release gate prostřednictvím expertního agenta a devíti strukturovaných workflow. TEA jde daleko za vestavěného QA agenta s prioritizací založenou na riziku a trasovatelností požadavků.
 
 - **Kód:** `tea`
-- **npm:** [`bmad-method-test-architecture-enterprise`](https://www.npmjs.com/package/bmad-method-test-architecture-enterprise)
-- **GitHub:** [bmad-code-org/bmad-method-test-architecture-enterprise](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise)
+- **npm:** [`acl-adlc-test-architecture-enterprise`](https://www.npmjs.com/package/acl-adlc-test-architecture-enterprise)
+- **GitHub:** [acl-code-org/acl-adlc-test-architecture-enterprise](https://github.com/acl-code-org/acl-adlc-test-architecture-enterprise)
 
 **Poskytuje:**
 
@@ -73,4 +73,4 @@ Podniková testovací strategie, vedení automatizace a rozhodování o release 
 
 ## Komunitní moduly
 
-Komunitní moduly a marketplace modulů přicházejí. Sledujte [organizaci BMad na GitHubu](https://github.com/bmad-code-org) pro aktualizace.
+Komunitní moduly a marketplace modulů přicházejí. Sledujte [organizaci ACL na GitHubu](https://github.com/acl-code-org) pro aktualizace.

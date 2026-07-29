@@ -15,7 +15,7 @@ Les corrections de bugs, refactorisations et petites modifications ciblées peuv
 - Mises à jour de dépendances
 
 :::note[Prérequis]
-- Méthode BMad installée (`npx bmad-method install`)
+- Méthode ACL installée (`npx acl-adlc install`)
 - Un IDE IA (Claude Code, Cursor, ou similaire)
 :::
 
@@ -38,7 +38,7 @@ quick-dev — corrige https://github.com/org/repo/issues/42
 ```
 
 ```text
-quick-dev — implémente _bmad-output/implementation-artifacts/my-intent.md
+quick-dev — implémente _acl-output/implementation-artifacts/my-intent.md
 ```
 
 ```text

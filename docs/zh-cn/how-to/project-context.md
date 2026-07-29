@@ -11,7 +11,7 @@ sidebar:
 `Important project context and conventions are located in [path to project context]/project-context.md`
 
 :::note[前置条件]
-- 已安装 BMad Method
+- 已安装 ACL Method
 - 了解项目的技术栈与团队约定
 :::
 
@@ -34,11 +34,11 @@ sidebar:
 
 ### 选项 A：手动创建
 
-在 `_bmad-output/project-context.md` 创建文件：
+在 `_acl-output/project-context.md` 创建文件：
 
 ```bash
-mkdir -p _bmad-output
-touch _bmad-output/project-context.md
+mkdir -p _acl-output
+touch _acl-output/project-context.md
 ```
 
 然后补充技术栈与实现规则：
@@ -80,7 +80,7 @@ sections_completed: ['technology_stack', 'critical_rules']
 在新的会话中运行：
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 该工作流会扫描架构文档和项目文件，生成能够反映已做决策的上下文文件。
@@ -90,7 +90,7 @@ bmad-generate-project-context
 对于既有项目，运行：
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 该工作流会分析代码库中的约定，然后生成可供你审阅和完善的上下文文件。
@@ -123,7 +123,7 @@ bmad-generate-project-context
 - **保持精简**：此文件会被多数实现工作流加载，过长会浪费上下文窗口。避免写入
   只适用于单一 story 的细节。
 - **按需更新**：当团队约定变化时手动更新，或在架构发生较大变化后重新生成。
-- **适用于统一实施 workflow**：无论直接进入还是经过深入规划，都共享同一个 `bmad-quick-dev` 循环。
+- **适用于统一实施 workflow**：无论直接进入还是经过深入规划，都共享同一个 `acl-quick-dev` 循环。
 :::
 
 ## 后续步骤

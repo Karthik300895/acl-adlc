@@ -1,11 +1,11 @@
 ---
 title: "Pressure-Test an Idea"
-description: Use the bmad-forge-idea skill to harden, prove, or kill an idea before you invest in it
+description: Use the acl-forge-idea skill to harden, prove, or kill an idea before you invest in it
 sidebar:
   order: 11
 ---
 
-Use the `bmad-forge-idea` skill to put a half-formed idea under adversarial questioning. It either survives with earned conviction or dies cheaply.
+Use the `acl-forge-idea` skill to put a half-formed idea under adversarial questioning. It either survives with earned conviction or dies cheaply.
 
 ## When to Use This
 
@@ -16,9 +16,9 @@ Use the `bmad-forge-idea` skill to put a half-formed idea under adversarial ques
 
 ## When to Skip This
 
-- You have no idea yet and need to generate options — use `bmad-brainstorming`
-- You've committed to a product and want it proven customer-first — use `bmad-prfaq`
-- You want your agents to debate a decision together — use `bmad-party-mode`
+- You have no idea yet and need to generate options — use `acl-brainstorming`
+- You've committed to a product and want it proven customer-first — use `acl-prfaq`
+- You want your agents to debate a decision together — use `acl-party-mode`
 
 :::note[Prerequisites]
 None. The forge runs in plain conversation. Installed agents and a configured persona roster make the session richer, but it works without them.
@@ -28,7 +28,7 @@ None. The forge runs in plain conversation. Installed agents and a configured pe
 
 ### 1. Invoke the skill
 
-Type `bmad-forge-idea` in your IDE, or say "forge an idea" or "pressure-test this." Name the idea in the same message or wait for the first question.
+Type `acl-forge-idea` in your IDE, or say "forge an idea" or "pressure-test this." Name the idea in the same message or wait for the first question.
 
 ### 2. State your goal
 
@@ -48,7 +48,7 @@ Drive each branch to a resolved answer until the idea is hardened, killed, or si
 
 ## What You Get
 
-The forge writes a self-contained `forge-report.html` every run, stamped to match the outcome. A hardened idea also distills into `forged-idea.md`, which captures the locked decisions and what was killed and why. That file feeds `bmad-spec`, `bmad-prd`, or `bmad-prfaq` for a product concept. A killed or clarified session needs no artifact; the report stands on its own.
+The forge writes a self-contained `forge-report.html` every run, stamped to match the outcome. A hardened idea also distills into `forged-idea.md`, which captures the locked decisions and what was killed and why. That file feeds `acl-spec`, `acl-prd`, or `acl-prfaq` for a product concept. A killed or clarified session needs no artifact; the report stands on its own.
 
 :::tip[Let it kill the idea]
 Finding out cheaply that an idea doesn't hold is the win. Don't steer the session toward a yes.

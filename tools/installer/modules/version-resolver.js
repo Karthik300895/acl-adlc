@@ -141,7 +141,7 @@ async function buildSearchRoots(moduleName, moduleSourcePath) {
 
   await addRoot(moduleSourcePath);
 
-  if (moduleName === 'core' || moduleName === 'bmm') {
+  if (moduleName === 'core' || moduleName === 'acl') {
     await addRoot(getModulePath(moduleName));
   } else {
     await addRoot(getExternalModuleCachePath(moduleName));

@@ -1,27 +1,27 @@
 ---
 title: "Dự án đã tồn tại"
-description: Cách sử dụng BMad Method trên các codebase hiện có
+description: Cách sử dụng ACL Method trên các codebase hiện có
 sidebar:
   order: 7
 ---
 
-Sử dụng BMad Method hiệu quả khi làm việc với các dự án hiện có và codebase legacy.
+Sử dụng ACL Method hiệu quả khi làm việc với các dự án hiện có và codebase legacy.
 
-Tài liệu này mô tả workflow cốt lõi để on-board vào các dự án đã tồn tại bằng BMad Method.
+Tài liệu này mô tả workflow cốt lõi để on-board vào các dự án đã tồn tại bằng ACL Method.
 
 :::note[Điều kiện tiên quyết]
-- Đã cài BMad Method (`npx bmad-method install`)
+- Đã cài ACL Method (`npx acl-adlc install`)
 - Một codebase hiện có mà bạn muốn làm việc cùng
 - Quyền truy cập vào một IDE tích hợp AI (Claude Code hoặc Cursor)
 :::
 
 ## Bước 1: Dọn dẹp các tài liệu lập kế hoạch đã hoàn tất
 
-Nếu bạn đã hoàn thành toàn bộ epic và story trong PRD theo quy trình BMad, hãy dọn dẹp những tệp đó. Bạn có thể lưu trữ, xóa đi, hoặc dựa vào lịch sử phiên bản nếu cần. Không nên giữ các tệp này trong:
+Nếu bạn đã hoàn thành toàn bộ epic và story trong PRD theo quy trình ACL, hãy dọn dẹp những tệp đó. Bạn có thể lưu trữ, xóa đi, hoặc dựa vào lịch sử phiên bản nếu cần. Không nên giữ các tệp này trong:
 
 - `docs/`
-- `_bmad-output/planning-artifacts/`
-- `_bmad-output/implementation-artifacts/`
+- `_acl-output/planning-artifacts/`
+- `_acl-output/implementation-artifacts/`
 
 ## Bước 2: Tạo Project Context
 
@@ -32,7 +32,7 @@ Hãy tạo `project-context.md` để ghi lại các pattern và quy ước tron
 Chạy workflow tạo project context:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Workflow này sẽ quét codebase để nhận diện:
@@ -42,7 +42,7 @@ Workflow này sẽ quét codebase để nhận diện:
 - Cách tiếp cận kiểm thử
 - Các pattern đặc thù framework
 
-Bạn có thể xem lại và chỉnh sửa tệp được tạo, hoặc tự tạo tệp tại `_bmad-output/project-context.md` nếu muốn.
+Bạn có thể xem lại và chỉnh sửa tệp được tạo, hoặc tự tạo tệp tại `_acl-output/project-context.md` nếu muốn.
 
 [Tìm hiểu thêm về project context](../explanation/project-context.md)
 
@@ -55,34 +55,34 @@ Thư mục `docs/` của bạn nên chứa tài liệu ngắn gọn, có tổ ch
 - Kiến trúc
 - Bất kỳ thông tin dự án nào khác có liên quan
 
-Với các dự án phức tạp, hãy cân nhắc dùng workflow `bmad-document-project`. Nó có các biến thể lúc chạy có thể quét toàn bộ dự án và tài liệu hóa trạng thái thực tế hiện tại của hệ thống.
+Với các dự án phức tạp, hãy cân nhắc dùng workflow `acl-document-project`. Nó có các biến thể lúc chạy có thể quét toàn bộ dự án và tài liệu hóa trạng thái thực tế hiện tại của hệ thống.
 
 ## Bước 4: Nhờ trợ giúp
 
-### BMad-Help: Điểm bắt đầu của bạn
+### ACL-Help: Điểm bắt đầu của bạn
 
-**Hãy chạy `bmad-help` bất cứ lúc nào bạn không chắc cần làm gì tiếp theo.** Công cụ hướng dẫn thông minh này:
+**Hãy chạy `acl-help` bất cứ lúc nào bạn không chắc cần làm gì tiếp theo.** Công cụ hướng dẫn thông minh này:
 
 - Kiểm tra dự án để xem những gì đã được hoàn thành
 - Đưa ra tùy chọn dựa trên các module bạn đã cài
 - Hiểu các câu hỏi bằng ngôn ngữ tự nhiên
 
 ```text
-bmad-help Tôi có một ứng dụng Rails đã tồn tại, tôi nên bắt đầu từ đâu?
-bmad-help Thay đổi này cần lập kế hoạch sâu đến đâu trước implementation?
-bmad-help Cho tôi xem những workflow đang có
+acl-help Tôi có một ứng dụng Rails đã tồn tại, tôi nên bắt đầu từ đâu?
+acl-help Thay đổi này cần lập kế hoạch sâu đến đâu trước implementation?
+acl-help Cho tôi xem những workflow đang có
 ```
 
-BMad-Help cũng **tự động chạy ở cuối mỗi workflow**, đưa ra hướng dẫn rõ ràng về việc cần làm tiếp theo.
+ACL-Help cũng **tự động chạy ở cuối mỗi workflow**, đưa ra hướng dẫn rõ ràng về việc cần làm tiếp theo.
 
 ### Chọn độ sâu lập kế hoạch
 
-Mọi implementation đều dùng `bmad-quick-dev`; phạm vi quyết định ngữ cảnh cần chuẩn bị trước:
+Mọi implementation đều dùng `acl-quick-dev`; phạm vi quyết định ngữ cảnh cần chuẩn bị trước:
 
 | Phạm vi | Cách tiếp cận được khuyến nghị |
 | --- | --- |
-| **Cập nhật hoặc bổ sung rõ ràng** | Đi thẳng vào `bmad-quick-dev` với yêu cầu, issue hoặc spec hiện có. |
-| **Thay đổi hoặc bổ sung lớn** | Chuẩn bị PRD, UX, kiến trúc, epic, story và sprint context hữu ích, rồi đưa phần việc đã chọn vào `bmad-quick-dev`. |
+| **Cập nhật hoặc bổ sung rõ ràng** | Đi thẳng vào `acl-quick-dev` với yêu cầu, issue hoặc spec hiện có. |
+| **Thay đổi hoặc bổ sung lớn** | Chuẩn bị PRD, UX, kiến trúc, epic, story và sprint context hữu ích, rồi đưa phần việc đã chọn vào `acl-quick-dev`. |
 
 ### Khi tạo PRD
 

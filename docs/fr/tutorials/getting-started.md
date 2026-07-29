@@ -1,14 +1,14 @@
 ---
 title: "Premiers pas"
-description: Installer BMad et développer votre premier projet
+description: Installer ACL et développer votre premier projet
 ---
 
 Accélérez le développement de vos applications grâce à des workflows alimentés par l’IA et des agents spécialisés qui vous guident dans la planification, l’architecture et l’implémentation.
 
 ## Ce que vous allez apprendre
 
-- Installer et initialiser la méthode BMad pour un nouveau projet
-- Utiliser **BMad-Help** — votre guide intelligent qui sait quoi faire ensuite
+- Installer et initialiser la méthode ACL pour un nouveau projet
+- Utiliser **ACL-Help** — votre guide intelligent qui sait quoi faire ensuite
 - Choisir la profondeur de planification adaptée à votre travail
 - Progresser dans les phases, de la définition des exigences au code fonctionnel
 - Utiliser efficacement les agents et les workflows
@@ -21,35 +21,35 @@ Accélérez le développement de vos applications grâce à des workflows alimen
 :::
 
 :::tip[Le chemin le plus rapide]
-**Installer** → `npx bmad-method install`
-**Demander** → `bmad-help que dois-je faire en premier ?`
-**Développez** → Laissez BMad-Help vous guider, workflow par workflow
+**Installer** → `npx acl-adlc install`
+**Demander** → `acl-help que dois-je faire en premier ?`
+**Développez** → Laissez ACL-Help vous guider, workflow par workflow
 :::
 
-## Découvrez BMad-Help : votre guide intelligent
+## Découvrez ACL-Help : votre guide intelligent
 
-**BMad-Help est le moyen le plus rapide de démarrer avec BMad.** Pas besoin de mémoriser les workflows ou les phases — posez simplement votre question et BMad-Help saura :
+**ACL-Help est le moyen le plus rapide de démarrer avec ACL.** Pas besoin de mémoriser les workflows ou les phases — posez simplement votre question et ACL-Help saura :
 
 - **Inspecter votre projet** pour voir ce qui a déjà été fait
 - **Vous présenter vos options** en fonction des modules installés
 - **Vous recommander la prochaine étape** — y compris la première tâche obligatoire
 - **Répondre à vos questions**, par exemple : « J’ai une idée de SaaS, par où commencer ? »
 
-### Comment utiliser BMad-Help
+### Comment utiliser ACL-Help
 
 Dans votre IDE IA, invoquez le skill :
 
 ```
-bmad-help
+acl-help
 ```
 
 Ou accompagnez-le d’une question pour obtenir des conseils contextualisés :
 
 ```
-bmad-help J'ai une idée de produit SaaS, je connais déjà toutes les fonctionnalités que je veux. Par où dois-je commencer ?
+acl-help J'ai une idée de produit SaaS, je connais déjà toutes les fonctionnalités que je veux. Par où dois-je commencer ?
 ```
 
-BMad-Help vous indiquera :
+ACL-Help vous indiquera :
 
 - Ce qui est recommandé pour votre situation
 - Quelle est la première tâche obligatoire
@@ -57,15 +57,15 @@ BMad-Help vous indiquera :
 
 ### Il intervient aussi dans les workflows
 
-BMad-Help ne se contente pas de répondre aux questions — **il se lance automatiquement à la fin de chaque workflow** pour vous indiquer exactement la suite. Finies les devinettes et les recherches dans la doc : vous recevez des instructions claires sur le prochain workflow à exécuter.
+ACL-Help ne se contente pas de répondre aux questions — **il se lance automatiquement à la fin de chaque workflow** pour vous indiquer exactement la suite. Finies les devinettes et les recherches dans la doc : vous recevez des instructions claires sur le prochain workflow à exécuter.
 
 :::tip[Commencez ici]
-Après avoir installé BMad, invoquez immédiatement le skill `bmad-help`. Il détectera les modules que vous avez installés et vous orientera vers le bon point de départ pour votre projet.
+Après avoir installé ACL, invoquez immédiatement le skill `acl-help`. Il détectera les modules que vous avez installés et vous orientera vers le bon point de départ pour votre projet.
 :::
 
-## Comprendre BMad
+## Comprendre ACL
 
-BMad vous aide à développer des logiciels grâce à des workflows guidés par des agents IA spécialisés. Le processus s’articule en quatre phases :
+ACL vous aide à développer des logiciels grâce à des workflows guidés par des agents IA spécialisés. Le processus s’articule en quatre phases :
 
 | Phase | Nom            | Ce qui se passe                                                |
 |-------|----------------|----------------------------------------------------------------|
@@ -85,7 +85,7 @@ La profondeur de planification reste flexible :
 | **Solutioning complet** | Initiatives coordonnées, risquées ou multi-systèmes | PRD, UX, architecture, epics, stories et plan de sprint |
 
 :::note
-Il ne s’agit pas de voies d’implémentation distinctes. Tous les points d’entrée convergent vers `bmad-quick-dev`; la planification ne change que la quantité de contexte disponible.
+Il ne s’agit pas de voies d’implémentation distinctes. Tous les points d’entrée convergent vers `acl-quick-dev`; la planification ne change que la quantité de contexte disponible.
 :::
 
 ## Installation
@@ -93,30 +93,30 @@ Il ne s’agit pas de voies d’implémentation distinctes. Tous les points d’
 Ouvrez un terminal dans le répertoire de votre projet et exécutez :
 
 ```bash
-npx bmad-method install
+npx acl-adlc install
 ```
 
-Si vous préférez la dernière version préliminaire au lieu du canal de publication par défaut, utilisez `npx bmad-method@next install`.
+Si vous préférez la dernière version préliminaire au lieu du canal de publication par défaut, utilisez `npx acl-adlc@next install`.
 
-À l’invite de sélection des modules, choisissez **BMad Method**.
+À l’invite de sélection des modules, choisissez **ACL Method**.
 
 L’installateur crée deux dossiers :
 
-- `_bmad/` — agents, workflows, tâches et configuration
-- `_bmad-output/` — vide pour le moment, mais c’est là que seront enregistrés vos artefacts
+- `_acl/` — agents, workflows, tâches et configuration
+- `_acl-output/` — vide pour le moment, mais c’est là que seront enregistrés vos artefacts
 
 :::tip[Votre prochaine étape]
 Ouvrez votre IDE avec IA dans le dossier du projet et exécutez :
 
 ```
-bmad-help
+acl-help
 ```
 
-BMad-Help détectera ce que vous avez déjà accompli et vous recommandera exactement la suite. Vous pouvez aussi lui poser des questions comme « Quelles sont mes options ? » ou « J’ai une idée de SaaS, par où devrais-je commencer ? »
+ACL-Help détectera ce que vous avez déjà accompli et vous recommandera exactement la suite. Vous pouvez aussi lui poser des questions comme « Quelles sont mes options ? » ou « J’ai une idée de SaaS, par où devrais-je commencer ? »
 :::
 
 :::note[Comment charger les agents et exécuter les workflows]
-Chaque workflow possède une **skill** que vous invoquez par son nom dans votre IDE (par ex. `bmad-prd`). Votre outil IA reconnaîtra le nom `bmad-*` et l’exécutera — pas besoin de charger les agents séparément. Vous pouvez aussi invoquer directement une skill d’agent pour une conversation générale (par ex. `bmad-agent-pm` pour l’agent PM).
+Chaque workflow possède une **skill** que vous invoquez par son nom dans votre IDE (par ex. `acl-prd`). Votre outil IA reconnaîtra le nom `acl-*` et l’exécutera — pas besoin de charger les agents séparément. Vous pouvez aussi invoquer directement une skill d’agent pour une conversation générale (par ex. `acl-agent-pm` pour l’agent PM).
 :::
 
 :::caution[Nouveaux chats]
@@ -130,26 +130,26 @@ Utilisez les phases 1 à 3 selon les besoins du travail. Pour un changement clai
 :::tip[Contexte projet (optionnel)]
 Avant de commencer, pensez à créer `project-context.md` pour documenter vos préférences techniques et vos règles d’implémentation. Ainsi, tous les agents IA respecteront vos conventions tout au long du projet.
 
-Créez-le manuellement à l’emplacement `_bmad-output/project-context.md`, ou générez-le après l’architecture avec `bmad-generate-project-context`. [En savoir plus](../explanation/project-context.md).
+Créez-le manuellement à l’emplacement `_acl-output/project-context.md`, ou générez-le après l’architecture avec `acl-generate-project-context`. [En savoir plus](../explanation/project-context.md).
 :::
 
 ### Phase 1 : Analyse (optionnelle)
 
 Tous les workflows de cette phase sont optionnels. [**Vous ne savez pas lequel choisir ?**](../explanation/analysis-phase.md)
 
-- **brainstorming** (`bmad-brainstorming`) — Idéation guidée
-- **research** (`bmad-deep-recon`) — Rédigez un prompt de recherche approfondie pour votre propre outil IA, transformez un rapport terminé en synthèse exploitable en aval, ou menez la recherche ici — marché, domaine, technique, concurrentiel, voix des utilisateurs et académique — avec vérification des affirmations et cycle de rafraîchissement
-- **product-brief** (`bmad-product-brief`) — Document fondateur recommandé une fois votre concept bien défini
-- **prfaq** (`bmad-prfaq`) — Exercice Working Backwards pour tester et affiner votre concept produit
+- **brainstorming** (`acl-brainstorming`) — Idéation guidée
+- **research** (`acl-deep-recon`) — Rédigez un prompt de recherche approfondie pour votre propre outil IA, transformez un rapport terminé en synthèse exploitable en aval, ou menez la recherche ici — marché, domaine, technique, concurrentiel, voix des utilisateurs et académique — avec vérification des affirmations et cycle de rafraîchissement
+- **product-brief** (`acl-product-brief`) — Document fondateur recommandé une fois votre concept bien défini
+- **prfaq** (`acl-prfaq`) — Exercice Working Backwards pour tester et affiner votre concept produit
 
 ### Phase 2 : Planification (selon les besoins)
 
 Pour les travaux qui bénéficient d’une planification produit :
 
-1. Exécutez `bmad-prd` dans un nouveau chat — précisez votre intention (Create / Update / Validate) ou laissez le skill vous la demander
+1. Exécutez `acl-prd` dans un nouveau chat — précisez votre intention (Create / Update / Validate) ou laissez le skill vous la demander
 2. Résultat : `prd.md`, `addendum.md`, `.memlog.md`
 
-:::note[Intentions de `bmad-prd`]
+:::note[Intentions de `acl-prd`]
 
 - **Create** — exploration guidée à partir de zéro ; le skill nomme le dossier de travail et vous accompagne jusqu’à l’obtention d’un PRD dont vous serez fier
 - **Update** — pointez vers un PRD existant et un changement à apporter ; le skill met en évidence les conflits avant d’appliquer les modifications
@@ -158,15 +158,15 @@ Pour les travaux qui bénéficient d’une planification produit :
 
 
 :::note[Design UX (optionnel)]
-Si votre projet comporte une interface utilisateur, invoquez l'**agent UX Designer** (`bmad-agent-ux-designer`) et lancez le workflow de design UX (`bmad-ux`) après avoir créé votre PRD.
+Si votre projet comporte une interface utilisateur, invoquez l'**agent UX Designer** (`acl-agent-ux-designer`) et lancez le workflow de design UX (`acl-ux`) après avoir créé votre PRD.
 :::
 
 ### Phase 3 : Solutioning (selon les besoins)
 
 **Créer l’architecture**
 
-1. Invoquez l'**agent Architecte** (`bmad-agent-architect`) dans un nouveau chat
-2. Exécutez `bmad-architecture` (`bmad-architecture`)
+1. Invoquez l'**agent Architecte** (`acl-agent-architect`) dans un nouveau chat
+2. Exécutez `acl-architecture` (`acl-architecture`)
 3. Résultat : document d’architecture avec les décisions techniques
 
 **Créer les epics et les stories**
@@ -175,25 +175,25 @@ Si votre projet comporte une interface utilisateur, invoquez l'**agent UX Design
 Les epics et stories sont désormais créés *après* l’architecture. Cela produit des stories de meilleure qualité, car les décisions d’architecture (choix de la base de données, patterns d’API, pile technologique) influencent directement la façon dont le travail doit être découpé.
 :::
 
-1. Invoquez l'**agent PM** (`bmad-agent-pm`) dans un nouveau chat
-2. Exécutez `bmad-create-epics-and-stories` (`bmad-create-epics-and-stories`)
+1. Invoquez l'**agent PM** (`acl-agent-pm`) dans un nouveau chat
+2. Exécutez `acl-create-epics-and-stories` (`acl-create-epics-and-stories`)
 3. Le workflow s’appuie sur le PRD et l’architecture pour créer des stories techniquement fondées
 
 **Vérification de la préparation à l’implémentation** *(fortement recommandée)*
 
-1. Invoquez l'**agent Architecte** (`bmad-agent-architect`) dans un nouveau chat
-2. Exécutez `bmad-check-implementation-readiness` (`bmad-check-implementation-readiness`)
+1. Invoquez l'**agent Architecte** (`acl-agent-architect`) dans un nouveau chat
+2. Exécutez `acl-check-implementation-readiness` (`acl-check-implementation-readiness`)
 3. Valide la cohérence de l’ensemble des documents de planification
 
 ## Étape 2 : Développer votre projet
 
 Passez à l’implémentation avec le contexte disponible : demande directe, issue, spécification ou story entièrement planifiée. **Chaque workflow doit être exécuté dans un nouveau chat.**
 
-Pour un travail planifié, invoquez `bmad-quick-dev` et indiquez la story ou l’élément de sprint sélectionné, par exemple : `Implémente la story 2.3 depuis _bmad-output/planning-artifacts/epics.md`.
+Pour un travail planifié, invoquez `acl-quick-dev` et indiquez la story ou l’élément de sprint sélectionné, par exemple : `Implémente la story 2.3 depuis _acl-output/planning-artifacts/epics.md`.
 
 ### Initialiser la planification de sprint (pour le travail planifié)
 
-Invoquez l'**agent Développeur** (`bmad-agent-dev`) et exécutez `bmad-sprint-planning` (`bmad-sprint-planning`). Cette commande crée `sprint-status.yaml` pour suivre tous les epics et stories.
+Invoquez l'**agent Développeur** (`acl-agent-dev`) et exécutez `acl-sprint-planning` (`acl-sprint-planning`). Cette commande crée `sprint-status.yaml` pour suivre tous les epics et stories.
 
 Lorsque Quick Dev retrouve la story sélectionnée dans ce fichier, il la passe à `in-progress` pendant l’implémentation, puis à `review` quand l’implémentation est terminée.
 
@@ -203,18 +203,18 @@ Pour chaque changement direct ou story planifiée, répétez ce cycle dans de no
 
 | Étape | Agent | Workflow            | Commande            | Objectif                             |
 |-------|-------|---------------------|---------------------|--------------------------------------|
-| 1     | DEV   | `bmad-quick-dev`    | `bmad-quick-dev`    | Clarifier, planifier, implémenter, réviser et présenter |
-| 2     | DEV   | `bmad-code-review`  | `bmad-code-review`  | Validation qualité supplémentaire *(recommandée)* |
+| 1     | DEV   | `acl-quick-dev`    | `acl-quick-dev`    | Clarifier, planifier, implémenter, réviser et présenter |
+| 2     | DEV   | `acl-code-review`  | `acl-code-review`  | Validation qualité supplémentaire *(recommandée)* |
 
-La revue de Quick Dev fait partie de chaque exécution. `bmad-code-review` est une couche facultative de validation indépendante dans un contexte neuf.
+La revue de Quick Dev fait partie de chaque exécution. `acl-code-review` est une couche facultative de validation indépendante dans un contexte neuf.
 
-Après avoir terminé toutes les stories d’un epic, invoquez l'**agent Développeur** (`bmad-agent-dev`) et exécutez `bmad-retrospective` (`bmad-retrospective`).
+Après avoir terminé toutes les stories d’un epic, invoquez l'**agent Développeur** (`acl-agent-dev`) et exécutez `acl-retrospective` (`acl-retrospective`).
 
 ## Ce que vous avez accompli
 
-Vous maîtrisez maintenant les bases du développement avec BMad :
+Vous maîtrisez maintenant les bases du développement avec ACL :
 
-- Installation et configuration de BMad pour votre IDE
+- Installation et configuration de ACL pour votre IDE
 - Choix d’une profondeur de planification adaptée au travail
 - Création des documents de planification (PRD, Architecture, Epics & Stories)
 - Compréhension du cycle de développement pour l’implémentation
@@ -223,8 +223,8 @@ Votre projet contient désormais :
 
 ```text
 your-project/
-├── _bmad/                                   # Configuration BMad
-├── _bmad-output/
+├── _acl/                                   # Configuration ACL
+├── _acl-output/
 │   ├── planning-artifacts/
 │   │   ├── PRD.md                           # Document d'exigences
 │   │   ├── architecture.md                  # Décisions techniques
@@ -239,56 +239,56 @@ your-project/
 
 | Workflow                              | Commande                              | Agent     | Objectif                                                        |
 |---------------------------------------|---------------------------------------|-----------|-----------------------------------------------------------------|
-| **`bmad-help`** ⭐                    | `bmad-help`                           | Tous      | **Votre guide intelligent — posez n’importe quelle question !**  |
-| `bmad-prd`                            | `bmad-prd`                            | Tous      | Créer, mettre à jour ou valider un PRD                          |
-| `bmad-architecture`            | `bmad-architecture`            | Architect | Créer le document d’architecture                                |
-| `bmad-generate-project-context`       | `bmad-generate-project-context`       | Analyst   | Créer le fichier de contexte projet                             |
-| `bmad-create-epics-and-stories`       | `bmad-create-epics-and-stories`       | PM        | Décomposer le PRD en epics                                      |
-| `bmad-check-implementation-readiness` | `bmad-check-implementation-readiness` | Architect | Valider la cohérence de la planification                        |
-| `bmad-sprint-planning`                | `bmad-sprint-planning`                | DEV       | Initialiser le suivi de sprint                                  |
-| `bmad-quick-dev`                      | `bmad-quick-dev`                      | DEV       | Implémenter une intention, une issue, une fonctionnalité, un correctif ou une story |
-| `bmad-code-review`                    | `bmad-code-review`                    | DEV       | Revoir le code implémenté                                       |
+| **`acl-help`** ⭐                    | `acl-help`                           | Tous      | **Votre guide intelligent — posez n’importe quelle question !**  |
+| `acl-prd`                            | `acl-prd`                            | Tous      | Créer, mettre à jour ou valider un PRD                          |
+| `acl-architecture`            | `acl-architecture`            | Architect | Créer le document d’architecture                                |
+| `acl-generate-project-context`       | `acl-generate-project-context`       | Analyst   | Créer le fichier de contexte projet                             |
+| `acl-create-epics-and-stories`       | `acl-create-epics-and-stories`       | PM        | Décomposer le PRD en epics                                      |
+| `acl-check-implementation-readiness` | `acl-check-implementation-readiness` | Architect | Valider la cohérence de la planification                        |
+| `acl-sprint-planning`                | `acl-sprint-planning`                | DEV       | Initialiser le suivi de sprint                                  |
+| `acl-quick-dev`                      | `acl-quick-dev`                      | DEV       | Implémenter une intention, une issue, une fonctionnalité, un correctif ou une story |
+| `acl-code-review`                    | `acl-code-review`                    | DEV       | Revoir le code implémenté                                       |
 
 ## Questions fréquentes
 
 **Ai-je toujours besoin d’une architecture ?**
-Non. Utilisez l’architecture lorsque les décisions techniques ou contraintes multi-systèmes doivent être explicites. Un travail clair peut entrer directement dans `bmad-quick-dev`; une initiative plus vaste fournit ses artefacts de planification au même workflow.
+Non. Utilisez l’architecture lorsque les décisions techniques ou contraintes multi-systèmes doivent être explicites. Un travail clair peut entrer directement dans `acl-quick-dev`; une initiative plus vaste fournit ses artefacts de planification au même workflow.
 
 **Puis-je modifier mon plan en cours de route ?**
-Oui. Le workflow `bmad-correct-course` gère les changements de périmètre en cours d’implémentation.
+Oui. Le workflow `acl-correct-course` gère les changements de périmètre en cours d’implémentation.
 
 **Et si je veux d’abord brainstormer ?**
-Invoquez l’agent Analyste (`bmad-agent-analyst`) et exécutez `bmad-brainstorming` (`bmad-brainstorming`) avant de commencer votre PRD.
+Invoquez l’agent Analyste (`acl-agent-analyst`) et exécutez `acl-brainstorming` (`acl-brainstorming`) avant de commencer votre PRD.
 
 **Dois-je suivre un ordre strict ?**
 Pas strictement. Une fois le flux maîtrisé, vous pouvez exécuter les workflows directement en vous référant au tableau ci-dessus.
 
 ## Obtenir de l’aide
 
-:::tip[Premier réflexe : BMad-Help]
-**Invoquez `bmad-help` à tout moment** — c’est le moyen le plus rapide de vous débloquer. Posez-lui n’importe quelle question :
+:::tip[Premier réflexe : ACL-Help]
+**Invoquez `acl-help` à tout moment** — c’est le moyen le plus rapide de vous débloquer. Posez-lui n’importe quelle question :
 
 - « Que dois-je faire après l’installation ? »
 - « Je suis bloqué sur le workflow X »
 - « Quelles sont mes options pour Y ? »
 - « Montre-moi ce qui a été fait jusqu’ici »
 
-BMad-Help inspecte votre projet, détecte ce que vous avez accompli et vous indique exactement la prochaine étape.
+ACL-Help inspecte votre projet, détecte ce que vous avez accompli et vous indique exactement la prochaine étape.
 :::
 
 - **Pendant les workflows** — Les agents vous guident à l’aide de questions et d’explications
-- **Communauté** — [Discord](https://discord.gg/gk8jAdXWmj) (#bmad-method-help, #report-bugs-and-issues)
+- **Communauté** — [Discord](https://discord.gg/gk8jAdXWmj) (#acl-adlc-help, #report-bugs-and-issues)
 
 ## Points clés à retenir
 
 :::tip[Retenez ceci]
-- **Commencez par `bmad-help`** — Votre guide intelligent qui connaît votre projet et vos options
+- **Commencez par `acl-help`** — Votre guide intelligent qui connaît votre projet et vos options
 - **Utilisez toujours de nouveaux chats** — Démarrez un nouveau chat pour chaque workflow
-- **La profondeur de planification varie** — une intention directe et une story entièrement planifiée entrent toutes deux dans `bmad-quick-dev`
-- **BMad-Help se lance automatiquement** — Chaque workflow se termine par des conseils sur la prochaine étape
+- **La profondeur de planification varie** — une intention directe et une story entièrement planifiée entrent toutes deux dans `acl-quick-dev`
+- **ACL-Help se lance automatiquement** — Chaque workflow se termine par des conseils sur la prochaine étape
 :::
 
-Prêt à commencer ? Installez BMad, invoquez `bmad-help`, et laissez votre guide intelligent vous accompagner.
+Prêt à commencer ? Installez ACL, invoquez `acl-help`, et laissez votre guide intelligent vous accompagner.
 
 ## Glossaire
 

@@ -1,29 +1,29 @@
 ---
 title: "Carte des Workflows"
-description: Référence visuelle des phases et des livrables des workflows de la méthode BMad
+description: Référence visuelle des phases et des livrables des workflows de la méthode ACL
 sidebar:
   order: 1
 ---
 
-La méthode BMad (BMM) est un module de l’écosystème BMad, conçu pour appliquer les meilleures pratiques d’ingénierie du
+La méthode ACL (ACL) est un module de l’écosystème ACL, conçu pour appliquer les meilleures pratiques d’ingénierie du
 contexte et de planification. Les agents IA sont plus performants lorsqu’ils disposent d’un contexte clair et structuré. Le
-système BMM construit ce contexte de manière progressive, en 4 phases distinctes — chaque phase, ainsi que les workflows
+système ACL construit ce contexte de manière progressive, en 4 phases distinctes — chaque phase, ainsi que les workflows
 optionnels qu’elle contient, produit des documents qui nourrissent la phase suivante. Ainsi, les agents savent toujours
 ce qu’ils doivent construire et pourquoi.
 
 La logique et les concepts sous-jacents s’appuient sur les méthodologies agiles, largement éprouvées dans l’industrie
 comme cadre de référence.
 
-Si vous ne savez plus où vous en êtes, le skill `bmad-help` vous remettra sur la bonne voie ou vous indiquera la prochaine
-étape. Cette page reste une référence utile, mais `bmad-help` est interactif et bien plus rapide si vous avez déjà installé
-la méthode BMad. Par ailleurs, si vous utilisez des modules ayant étendu la méthode BMad ou ajouté d’autres modules
-complémentaires non extensibles, `bmad-help` s’adapte automatiquement pour couvrir tout ce qui est disponible et vous
+Si vous ne savez plus où vous en êtes, le skill `acl-help` vous remettra sur la bonne voie ou vous indiquera la prochaine
+étape. Cette page reste une référence utile, mais `acl-help` est interactif et bien plus rapide si vous avez déjà installé
+la méthode ACL. Par ailleurs, si vous utilisez des modules ayant étendu la méthode ACL ou ajouté d’autres modules
+complémentaires non extensibles, `acl-help` s’adapte automatiquement pour couvrir tout ce qui est disponible et vous
 fournir les meilleurs conseils en temps réel.
 
 Note importante : chaque workflow ci-dessous peut être exécuté directement via un skill avec l’outil de votre choix, ou
 en chargeant d’abord un agent depuis le menu des agents.
 
-<iframe src="/workflow-map-diagram-fr.html" title="Diagramme de la carte des workflows de la méthode BMad" width="100%" height="100%" style="border-radius: 8px; border: 1px solid #334155; min-height: 900px;"></iframe>
+<iframe src="/workflow-map-diagram-fr.html" title="Diagramme de la carte des workflows de la méthode ACL" width="100%" height="100%" style="border-radius: 8px; border: 1px solid #334155; min-height: 900px;"></iframe>
 
 <p style="font-size: 0.8rem; text-align: right; margin-top: -0.5rem; margin-bottom: 1rem;">
   <a href="/workflow-map-diagram-fr.html" target="_blank" rel="noopener noreferrer">Ouvrir le diagramme dans un nouvel onglet ↗</a>
@@ -36,10 +36,10 @@ chaque outil et quand l’utiliser**](../explanation/analysis-phase.md).
 
 | Workflow                                                                  | Objectif                                                                       | Livrable                  |
 |---------------------------------------------------------------------------|--------------------------------------------------------------------------------|---------------------------|
-| `bmad-brainstorming`                                                      | Brainstormez des idées de projet, animé par un coach de brainstorming dédié    | `brainstorming-report.md` |
-| `bmad-deep-recon` | Validez vos hypothèses ou choisissez entre des options — rédigez un prompt pour votre outil de recherche approfondie, traitez son rapport, ou menez la recherche ici ; marché, domaine, technique, concurrentiel, voix des utilisateurs, académique ; vérifiée, citée, actualisable | Rapport ou synthèse de recherche + briefing HTML optionnel |
-| `bmad-product-brief`                                                      | Formalisez la vision stratégique — idéal lorsque votre concept est bien défini | `product-brief.md`        |
-| `bmad-prfaq`                                                              | Working Backwards — mettez à l’épreuve et affinez votre concept produit        | `prfaq-{project}.md`      |
+| `acl-brainstorming`                                                      | Brainstormez des idées de projet, animé par un coach de brainstorming dédié    | `brainstorming-report.md` |
+| `acl-deep-recon` | Validez vos hypothèses ou choisissez entre des options — rédigez un prompt pour votre outil de recherche approfondie, traitez son rapport, ou menez la recherche ici ; marché, domaine, technique, concurrentiel, voix des utilisateurs, académique ; vérifiée, citée, actualisable | Rapport ou synthèse de recherche + briefing HTML optionnel |
+| `acl-product-brief`                                                      | Formalisez la vision stratégique — idéal lorsque votre concept est bien défini | `product-brief.md`        |
+| `acl-prfaq`                                                              | Working Backwards — mettez à l’épreuve et affinez votre concept produit        | `prfaq-{project}.md`      |
 
 ## Phase 2 : Planification
 
@@ -47,20 +47,20 @@ Définissez ce qu’il faut construire et pour qui.
 
 | Workflow   | Objectif                                                                                               | Livrable                                                                                                          |
 |------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `bmad-prd` | Créez, mettez à jour ou validez un PRD[^1] — découverte accompagnée, trois intentions en un seul skill | Création/Mise à jour : `prd.md`, `addendum.md`, `.memlog.md` ; Validation : `validation-report.html` + `.md` |
-| `bmad-ux`  | Concevez l’expérience utilisateur (lorsque l’UX compte)                                                | `DESIGN.md`, `EXPERIENCE.md`                                                                                      |
-| `bmad-spec` | Distillez toute intention (brief, PRD, transcription, notes) en un contrat `SPEC.md` succinct + fichiers compagnons — fige le QUOI avant le COMMENT | `SPEC.md` + compagnons sous `{output_folder}/specs/spec-{slug}/` |
+| `acl-prd` | Créez, mettez à jour ou validez un PRD[^1] — découverte accompagnée, trois intentions en un seul skill | Création/Mise à jour : `prd.md`, `addendum.md`, `.memlog.md` ; Validation : `validation-report.html` + `.md` |
+| `acl-ux`  | Concevez l’expérience utilisateur (lorsque l’UX compte)                                                | `DESIGN.md`, `EXPERIENCE.md`                                                                                      |
+| `acl-spec` | Distillez toute intention (brief, PRD, transcription, notes) en un contrat `SPEC.md` succinct + fichiers compagnons — fige le QUOI avant le COMMENT | `SPEC.md` + compagnons sous `{output_folder}/specs/spec-{slug}/` |
 
 :::tip[Trois intentions en un seul skill]
-`bmad-prd` couvre l’intégralité du cycle de vie du PRD. Précisez votre intention lors de l’appel, sinon le skill vous la demandera :
+`acl-prd` couvre l’intégralité du cycle de vie du PRD. Précisez votre intention lors de l’appel, sinon le skill vous la demandera :
 
 - **Créer** — nouveau PRD à partir de zéro via une découverte accompagnée ; produit `prd.md`, `addendum.md` et `.memlog.md`
 - **Mettre à jour** — réconcilie un PRD existant avec un signal de changement, en mettant en évidence les conflits avant d’appliquer les modifications
 - **Valider** — évalue un PRD à l’aide d’une liste de contrôle configurable et produit un rapport de constats structuré au format HTML
 :::
 
-:::tip[En amont : `bmad-product-brief`]
-`bmad-product-brief` (Phase 1) produit un `product-brief.md` que `bmad-prd` peut exploiter lors de la découverte, réduisant les redondances et gardant les deux documents alignés. Aucun des deux skills ne nécessite l’autre — commencez directement par `bmad-prd` si vous savez déjà ce que vous construisez.
+:::tip[En amont : `acl-product-brief`]
+`acl-product-brief` (Phase 1) produit un `product-brief.md` que `acl-prd` peut exploiter lors de la découverte, réduisant les redondances et gardant les deux documents alignés. Aucun des deux skills ne nécessite l’autre — commencez directement par `acl-prd` si vous savez déjà ce que vous construisez.
 :::
 
 ## Phase 3 : Conception de la Solution
@@ -69,26 +69,26 @@ Décidez comment le construire et décomposez le travail en stories.
 
 | Workflow                              | Objectif                                          | Livrable                        |
 |---------------------------------------|---------------------------------------------------|---------------------------------|
-| `bmad-architecture`            | Rendez explicites les décisions techniques        | `architecture.md` avec ADRs[^2] |
-| `bmad-create-epics-and-stories`       | Décomposez les exigences en tâches implémentables | Fichiers d’epic avec stories    |
-| `bmad-check-implementation-readiness` | Jalon de validation avant implémentation          | Décision OK / RÉSERVES / ÉCHEC  |
+| `acl-architecture`            | Rendez explicites les décisions techniques        | `architecture.md` avec ADRs[^2] |
+| `acl-create-epics-and-stories`       | Décomposez les exigences en tâches implémentables | Fichiers d’epic avec stories    |
+| `acl-check-implementation-readiness` | Jalon de validation avant implémentation          | Décision OK / RÉSERVES / ÉCHEC  |
 
 ## Phase 4 : Implémentation
 
-Tous les points d’entrée convergent vers `bmad-quick-dev`. Il accepte une intention directe, une issue, une spécification ou une story planifiée, puis choisit le niveau de clarification, de planification, d’implémentation et de revue nécessaire.
+Tous les points d’entrée convergent vers `acl-quick-dev`. Il accepte une intention directe, une issue, une spécification ou une story planifiée, puis choisit le niveau de clarification, de planification, d’implémentation et de revue nécessaire.
 
 | Workflow               | Objectif                                                                             | Livrable                         |
 |------------------------|--------------------------------------------------------------------------------------|----------------------------------|
-| `bmad-quick-dev`       | Transformez une intention directe ou une story planifiée en code implémenté et révisé | `spec-*.md` + code              |
-| `bmad-sprint-planning` | Initialisez le suivi (une fois par projet, pour séquencer le cycle de développement) | `sprint-status.yaml`             |
-| `bmad-code-review`     | Validez la qualité de l’implémentation                                               | Approuvé ou changements demandés |
-| `bmad-correct-course`  | Gérez les changements significatifs en cours de sprint                               | Plan mis à jour ou réorientation |
-| `bmad-sprint-status`   | Suivez la progression du sprint et le statut des stories                             | Mise à jour du statut du sprint  |
-| `bmad-retrospective`   | Bilan après l’achèvement d’un epic                                                   | Leçons apprises                  |
+| `acl-quick-dev`       | Transformez une intention directe ou une story planifiée en code implémenté et révisé | `spec-*.md` + code              |
+| `acl-sprint-planning` | Initialisez le suivi (une fois par projet, pour séquencer le cycle de développement) | `sprint-status.yaml`             |
+| `acl-code-review`     | Validez la qualité de l’implémentation                                               | Approuvé ou changements demandés |
+| `acl-correct-course`  | Gérez les changements significatifs en cours de sprint                               | Plan mis à jour ou réorientation |
+| `acl-sprint-status`   | Suivez la progression du sprint et le statut des stories                             | Mise à jour du statut du sprint  |
+| `acl-retrospective`   | Bilan après l’achèvement d’un epic                                                   | Leçons apprises                  |
 
 ### Entrée directe ou planifiée
 
-Un travail clair peut entrer directement dans `bmad-quick-dev`. Une initiative plus vaste peut d’abord produire un PRD, une conception UX, une architecture, des epics, des stories, un contrôle de préparation et un plan de sprint. Ces artefacts ajoutent du contexte sans sélectionner un autre workflow d’implémentation.
+Un travail clair peut entrer directement dans `acl-quick-dev`. Une initiative plus vaste peut d’abord produire un PRD, une conception UX, une architecture, des epics, des stories, un contrôle de préparation et un plan de sprint. Ces artefacts ajoutent du contexte sans sélectionner un autre workflow d’implémentation.
 
 ## Gestion du Contexte
 
@@ -107,8 +107,8 @@ optionnel peut être généré à la fin de la création de l’architecture, ou
 
 **Comment le créer :**
 
-- **Manuellement** — Créez `_bmad-output/project-context.md` avec votre stack technique et vos règles d’implémentation
-- **Générez-le** — Exécutez `bmad-generate-project-context` pour l’auto-générer à partir de votre architecture ou de votre codebase
+- **Manuellement** — Créez `_acl-output/project-context.md` avec votre stack technique et vos règles d’implémentation
+- **Générez-le** — Exécutez `acl-generate-project-context` pour l’auto-générer à partir de votre architecture ou de votre codebase
 
 [**En savoir plus sur project-context.md**](../explanation/project-context.md)
 

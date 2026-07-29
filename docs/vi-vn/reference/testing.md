@@ -5,14 +5,14 @@ sidebar:
   order: 6
 ---
 
-BMad cung cấp hai hướng kiểm thử: workflow QA tích hợp sẵn để tạo test nhanh và module Test Architect có thể cài thêm cho chiến lược kiểm thử c��p doanh nghiệp.
+ACL cung cấp hai hướng kiểm thử: workflow QA tích hợp sẵn để tạo test nhanh và module Test Architect có thể cài thêm cho chiến lược kiểm thử c��p doanh nghiệp.
 
 ## Nên Dùng Cái Nào?
 
 | Yếu tố | QA tích hợp sẵn | Module TEA |
 | --- | --- | --- |
 | **Phù hợp nhất với** | Dự án nhỏ-trung bình, cần bao phủ nhanh | Dự án lớn, miền nghiệp vụ bị ràng buộc hoặc phức tạp |
-| **Thiết lập** | Không cần cài thêm, đã có sẵn trong BMM | Cài riêng qua `npx bmad-method install` |
+| **Thiết lập** | Không cần cài thêm, đã có sẵn trong ACL | Cài riêng qua `npx acl-adlc install` |
 | **Cách tiếp cận** | Tạo test nhanh, lặp tinh chỉnh sau | Lập kế hoạch trước rồi mới tạo test có truy vết |
 | **Loại test** | API và E2E | API, E2E, ATDD, NFR và nhiều loại khác |
 | **Chiến lược** | Happy path + edge case quan trọng | Ưu tiên theo rủi ro (P0-P3) |
@@ -24,9 +24,9 @@ Phần lớn dự án nên bắt đầu với workflow QA tích hợp sẵn. N�
 
 ## Workflow QA Tích Hợp Sẵn
 
-Workflow QA tích hợp sẵn (`bmad-qa-generate-e2e-tests`) nằm trong module BMM (Agile suite), khả dụng thông qua Developer agent. Nó tạo test chạy được rất nhanh bằng framework kiểm thử hiện có của dự án, không cần thêm cấu hình hay bước cài đặt bổ sung.
+Workflow QA tích hợp sẵn (`acl-qa-generate-e2e-tests`) nằm trong module ACL (Agile suite), khả dụng thông qua Developer agent. Nó tạo test chạy được rất nhanh bằng framework kiểm thử hiện có của dự án, không cần thêm cấu hình hay bước cài đặt bổ sung.
 
-**Trigger:** `QA` (thông qua Developer agent) hoặc `bmad-qa-generate-e2e-tests`
+**Trigger:** `QA` (thông qua Developer agent) hoặc `acl-qa-generate-e2e-tests`
 
 ### Workflow Làm Gì
 
@@ -65,9 +65,9 @@ Workflow QA chỉ tạo test. Nếu bạn cần code review hoặc xác nhận s
 
 TEA là một module độc lập cung cấp agent chuyên gia Murat cùng chín workflow có cấu trúc cho kiểm thử cấp doanh nghiệp. Nó vượt ra ngoài việc tạo test để bao gồm chiến lược kiểm thử, lập kế hoạch theo rủi ro, quality gate và truy vết yêu cầu.
 
-- **Tài liệu:** [TEA Module Docs](https://bmad-code-org.github.io/bmad-method-test-architecture-enterprise/)
-- **Cài đặt:** `npx bmad-method install` rồi chọn module TEA
-- **npm:** [`bmad-method-test-architecture-enterprise`](https://www.npmjs.com/package/bmad-method-test-architecture-enterprise)
+- **Tài liệu:** [TEA Module Docs](https://acl-code-org.github.io/acl-adlc-test-architecture-enterprise/)
+- **Cài đặt:** `npx acl-adlc install` rồi chọn module TEA
+- **npm:** [`acl-adlc-test-architecture-enterprise`](https://www.npmjs.com/package/acl-adlc-test-architecture-enterprise)
 
 ### TEA Cung Cấp Gì
 
@@ -95,11 +95,11 @@ TEA cũng hỗ trợ ưu tiên theo rủi ro P0-P3 và tích hợp tùy chọn v
 
 ## Kiểm Thử Nằm Ở Đâu Trong Workflow
 
-Workflow QA Automate xuất hiện ở Phase 4 (Implementation) trong workflow map của BMad Method. Nó được thiết kế để chạy **sau khi hoàn tất trọn vẹn một epic** — tức là khi mọi story trong epic đó đã được triển khai và code review xong. Trình tự điển hình là:
+Workflow QA Automate xuất hiện ở Phase 4 (Implementation) trong workflow map của ACL Method. Nó được thiết kế để chạy **sau khi hoàn tất trọn vẹn một epic** — tức là khi mọi story trong epic đó đã được triển khai và code review xong. Trình tự điển hình là:
 
-1. Với mỗi story trong epic: triển khai bằng Quick Dev (`QD` / `bmad-quick-dev`), sau đó thêm Code Review (`CR`) khi cần
+1. Với mỗi story trong epic: triển khai bằng Quick Dev (`QD` / `acl-quick-dev`), sau đó thêm Code Review (`CR`) khi cần
 2. Sau khi epic hoàn tất: tạo test bằng `QA` (thông qua Developer agent) hoặc workflow Automate của TEA
-3. Chạy retrospective (`bmad-retrospective`) để ghi nhận bài học rút ra
+3. Chạy retrospective (`acl-retrospective`) để ghi nhận bài học rút ra
 
 Workflow QA tích hợp sẵn làm việc trực tiếp từ source code mà không cần nạp tài liệu lập kế hoạch như PRD hay architecture. Các workflow của TEA có thể tích hợp với artifact lập kế hoạch ở các bước trước để phục vụ truy vết.
 

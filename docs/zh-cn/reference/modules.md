@@ -1,28 +1,28 @@
 ---
 title: "官方模块"
-description: BMad 可选模块参考：能力边界、适用场景与外部资源
+description: ACL 可选模块参考：能力边界、适用场景与外部资源
 sidebar:
   order: 5
 ---
 
-BMad 通过可选模块扩展能力。你可以在安装时按需选择模块，为当前项目增加特定领域的 `agent`、`workflow` 与 `skill`。
+ACL 通过可选模块扩展能力。你可以在安装时按需选择模块，为当前项目增加特定领域的 `agent`、`workflow` 与 `skill`。
 
 :::tip[安装模块]
-运行 `npx bmad-method install`，在交互步骤中勾选所需模块。安装器会自动生成对应 skills 并写入当前 IDE 的 skills 目录。
+运行 `npx acl-adlc install`，在交互步骤中勾选所需模块。安装器会自动生成对应 skills 并写入当前 IDE 的 skills 目录。
 :::
 
 ## 先看总览
 
 | 模块 | 代码 | 最适合 | 核心能力 |
 | --- | --- | --- | --- |
-| BMad Builder | `bmb` | 扩展 BMad 本身 | 构建自定义 agent / workflow / module |
+| ACL Builder | `bmb` | 扩展 ACL 本身 | 构建自定义 agent / workflow / module |
 | Creative Intelligence Suite | `cis` | 前期创意与问题探索 | 头脑风暴、设计思维、创新策略 |
 | Game Dev Studio | `gds` | 游戏方向研发 | 游戏设计文档、原型推进、叙事支持 |
 | Test Architect（TEA） | `tea` | 企业级测试治理 | 测试策略、可追溯性、质量门控 |
 
-## BMad Builder（`bmb`）
+## ACL Builder（`bmb`）
 
-用于“构建 BMad”的元模块，重点是把你的方法沉淀成可复用能力。
+用于“构建 ACL”的元模块，重点是把你的方法沉淀成可复用能力。
 
 **你会得到：**
 - Agent Builder：创建具备特定专业能力的 agent
@@ -31,8 +31,8 @@ BMad 通过可选模块扩展能力。你可以在安装时按需选择模块，
 - 交互式配置与发布支持（YAML + npm）
 
 **外部资源（英文）：**
-- npm: [`bmad-builder`](https://www.npmjs.com/package/bmad-builder)
-- GitHub: [bmad-code-org/bmad-builder](https://github.com/bmad-code-org/bmad-builder)
+- npm: [`acl-builder`](https://www.npmjs.com/package/acl-builder)
+- GitHub: [acl-code-org/acl-builder](https://github.com/acl-code-org/acl-builder)
 
 ## Creative Intelligence Suite（`cis`）
 
@@ -44,8 +44,8 @@ BMad 通过可选模块扩展能力。你可以在安装时按需选择模块，
 - 常见构思框架（含 SCAMPER、逆向头脑风暴等）
 
 **外部资源（英文）：**
-- npm: [`bmad-creative-intelligence-suite`](https://www.npmjs.com/package/bmad-creative-intelligence-suite)
-- GitHub: [bmad-code-org/bmad-module-creative-intelligence-suite](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
+- npm: [`acl-creative-intelligence-suite`](https://www.npmjs.com/package/acl-creative-intelligence-suite)
+- GitHub: [acl-code-org/acl-module-creative-intelligence-suite](https://github.com/acl-code-org/acl-module-creative-intelligence-suite)
 
 ## Game Dev Studio（`gds`）
 
@@ -58,8 +58,8 @@ BMad 通过可选模块扩展能力。你可以在安装时按需选择模块，
 - 多引擎适配建议（Unity/Unreal/Godot 等）
 
 **外部资源（英文）：**
-- npm: [`bmad-game-dev-studio`](https://www.npmjs.com/package/bmad-game-dev-studio)
-- GitHub: [bmad-code-org/bmad-module-game-dev-studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
+- npm: [`acl-game-dev-studio`](https://www.npmjs.com/package/acl-game-dev-studio)
+- GitHub: [acl-code-org/acl-module-game-dev-studio](https://github.com/acl-code-org/acl-module-game-dev-studio)
 
 ## Test Architect（TEA，`tea`）
 
@@ -72,9 +72,9 @@ BMad 通过可选模块扩展能力。你可以在安装时按需选择模块，
 - P0-P3 风险优先级策略与可选工具集成
 
 **外部资源（英文）：**
-- 文档: [TEA Module Docs](https://bmad-code-org.github.io/bmad-method-test-architecture-enterprise/)
-- npm: [`bmad-method-test-architecture-enterprise`](https://www.npmjs.com/package/bmad-method-test-architecture-enterprise)
-- GitHub: [bmad-code-org/bmad-method-test-architecture-enterprise](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise)
+- 文档: [TEA Module Docs](https://acl-code-org.github.io/acl-adlc-test-architecture-enterprise/)
+- npm: [`acl-adlc-test-architecture-enterprise`](https://www.npmjs.com/package/acl-adlc-test-architecture-enterprise)
+- GitHub: [acl-code-org/acl-adlc-test-architecture-enterprise](https://github.com/acl-code-org/acl-adlc-test-architecture-enterprise)
 
 ## 如何选择模块
 

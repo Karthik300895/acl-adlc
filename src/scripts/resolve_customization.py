@@ -27,7 +27,7 @@ _MISSING = object()
 def find_project_root(start: Path) -> Path | None:
     current = start.resolve()
     while True:
-        if (current / "_bmad").exists() or (current / ".git").exists():
+        if (current / "_acl").exists() or (current / ".git").exists():
             return current
         if current.parent == current:
             return None
@@ -61,7 +61,7 @@ def main() -> int:
     parser.add_argument(
         "--project-root",
         "-p",
-        help="Explicit project root containing _bmad/ (recommended)",
+        help="Explicit project root containing _acl/ (recommended)",
     )
     parser.add_argument(
         "--key",

@@ -65,7 +65,7 @@ function buildModuleLabel(name, latestVersion, installedVersion = '') {
  * Resolve the version to show for a module picker entry. External modules use
  * the same channel/tag resolver as installs; bundled modules fall back to local
  * source metadata.
- * @param {string} moduleCode - Module code (e.g., 'core', 'bmm', 'cis')
+ * @param {string} moduleCode - Module code (e.g., 'core', 'acl', 'cis')
  * @param {Object} options
  * @param {string|null} [options.repoUrl] - Module repository URL for tag resolution
  * @param {string|null} [options.registryDefault] - Registry default channel
@@ -110,7 +110,7 @@ async function getModuleVersion(moduleCode, { repoUrl = null, registryDefault = 
  * UI utilities for the installer
  */
 class UI {
-  async _retainUnavailableInstalledModules(selectedModules, installedModuleIds, bmadDir, options = {}) {
+  async _retainUnavailableInstalledModules(selectedModules, installedModuleIds, aclDir, options = {}) {
     const { OfficialModules } = require('./modules/official-modules');
     const officialCodes = new Set(['core']);
 
@@ -133,14 +133,14 @@ class UI {
     for (const moduleId of installedModuleIds) {
       if (moduleId === 'core') continue;
       if (!selectedSet.has(moduleId) && !options.preserveUnselected) continue;
-      // Resolve a possibly-renamed module code (e.g. `bauto` -> `bmad-loop`)
+      // Resolve a possibly-renamed module code (e.g. `bauto` -> `acl-loop`)
       // before checking availability, so a registry rename doesn't freeze
       // the install here the way it would have prior to the alias support
       // in ExternalModuleManager.getModuleByCode().
       const canonicalId = await externalManager.resolveCanonicalCode(moduleId);
       if (officialCodes.has(canonicalId)) continue;
 
-      const customSource = await customMgr.findModuleSourceByCode(moduleId, { bmadDir });
+      const customSource = await customMgr.findModuleSourceByCode(moduleId, { aclDir });
       if (!customSource) {
         preserveModules.push(moduleId);
       }
@@ -167,7 +167,7 @@ class UI {
     await messageLoader.displayStartMessage();
 
     // Probe for `uv` before any other prompts: it's becoming the de facto
-    // runner for the Python scripts BMAD workflows shell out to
+    // runner for the Python scripts ACL workflows shell out to
     // (`uv run <script>`), and uv provisions the interpreter itself, so it's
     // the single thing worth checking for. The migration is still in progress
     // (some skills still call `python3` directly), so this is informational —
@@ -184,7 +184,7 @@ class UI {
       await prompts.log.warn(warning);
     }
 
-    // When the user launched the installer from a prerelease (npx bmad-method@next),
+    // When the user launched the installer from a prerelease (npx acl-adlc@next),
     // mirror that intent for external modules: seed the global channel to 'next' so
     // the module picker's version labels resolve from main HEAD (matching what
     // actually gets installed) and the interactive channel gate skips — the user
@@ -219,10 +219,10 @@ class UI {
 
     const { Installer } = require('./core/installer');
     const installer = new Installer();
-    const { bmadDir } = await installer.findBmadDir(confirmedDirectory);
+    const { aclDir } = await installer.findAclDir(confirmedDirectory);
 
-    // Check if there's an existing BMAD installation
-    const hasExistingInstall = await fs.pathExists(bmadDir);
+    // Check if there's an existing ACL installation
+    const hasExistingInstall = await fs.pathExists(aclDir);
 
     // Track action type (only set if there's an existing installation)
     let actionType;
@@ -230,7 +230,7 @@ class UI {
     // Only show action menu if there's an existing installation
     if (hasExistingInstall) {
       // Get version information
-      const { existingInstall, bmadDir } = await this.getExistingInstallation(confirmedDirectory);
+      const { existingInstall, aclDir } = await this.getExistingInstallation(confirmedDirectory);
 
       // Build menu choices dynamically
       const choices = [];
@@ -244,7 +244,7 @@ class UI {
       }
 
       // Common actions
-      choices.push({ name: 'Modify BMAD Installation', value: 'update' });
+      choices.push({ name: 'Modify ACL Installation', value: 'update' });
 
       // Check if action is provided via command-line
       if (options.action) {
@@ -327,7 +327,7 @@ class UI {
           selectedModules.unshift('core');
         }
 
-        const retainedModuleResult = await this._retainUnavailableInstalledModules(selectedModules, installedModuleIds, bmadDir, {
+        const retainedModuleResult = await this._retainUnavailableInstalledModules(selectedModules, installedModuleIds, aclDir, {
           preserveUnselected: options.yes && !options.modules,
         });
         selectedModules = retainedModuleResult.selectedModules;
@@ -345,7 +345,7 @@ class UI {
         // default Y, major default N). Legacy entries with no channel are
         // migrated here too. Mutates channelOptions.pins to lock rejections.
         await this._resolveUpdateChannels({
-          bmadDir,
+          aclDir,
           selectedModules,
           channelOptions,
           yes: options.yes || false,
@@ -360,7 +360,7 @@ class UI {
         });
 
         // Warn about --pin/--next flags that refer to modules the user didn't
-        // select, or that target bundled modules (core/bmm) where channel
+        // select, or that target bundled modules (core/acl) where channel
         // flags don't apply.
         {
           const bundledCodes = await this._bundledModuleCodes();
@@ -439,7 +439,7 @@ class UI {
     });
 
     // Warn about --pin/--next flags that refer to modules the user didn't
-    // select, or that target bundled modules (core/bmm) where channel
+    // select, or that target bundled modules (core/acl) where channel
     // flags don't apply.
     {
       const bundledCodes = await this._bundledModuleCodes();
@@ -509,8 +509,8 @@ class UI {
     const { ExistingInstall } = require('./core/existing-install');
     const { Installer } = require('./core/installer');
     const installer = new Installer();
-    const { bmadDir } = await installer.findBmadDir(projectDir || process.cwd());
-    const existingInstall = await ExistingInstall.detect(bmadDir);
+    const { aclDir } = await installer.findAclDir(projectDir || process.cwd());
+    const existingInstall = await ExistingInstall.detect(aclDir);
     const configuredIdes = existingInstall.ides;
 
     // Get IDE manager to fetch available IDEs dynamically
@@ -637,9 +637,9 @@ class UI {
             '--tools is required for non-interactive install (--yes / -y) when no tools are previously configured.',
             '',
             'Common: claude-code, cursor, copilot, windsurf, cline',
-            'See all supported tools: bmad-method install --list-tools',
+            'See all supported tools: acl-adlc install --list-tools',
             '',
-            'Example: bmad-method install --modules bmm --tools claude-code -y',
+            'Example: acl-adlc install --modules acl --tools claude-code -y',
           ].join('\n'),
         );
         err.expected = true;
@@ -738,17 +738,17 @@ class UI {
   /**
    * Get existing installation info and installed modules
    * @param {string} directory - Installation directory
-   * @returns {Object} Object with existingInstall, installedModuleIds, installedModuleVersions, and bmadDir
+   * @returns {Object} Object with existingInstall, installedModuleIds, installedModuleVersions, and aclDir
    */
   async getExistingInstallation(directory) {
     const { ExistingInstall } = require('./core/existing-install');
     const { Installer } = require('./core/installer');
     const installer = new Installer();
-    const { bmadDir } = await installer.findBmadDir(directory);
-    const existingInstall = await ExistingInstall.detect(bmadDir);
+    const { aclDir } = await installer.findAclDir(directory);
+    const existingInstall = await ExistingInstall.detect(aclDir);
     const installedModuleIds = new Set(existingInstall.moduleIds);
     const installedModuleVersions = new Map();
-    const manifestModules = await manifest.getAllModuleVersions(bmadDir);
+    const manifestModules = await manifest.getAllModuleVersions(aclDir);
 
     for (const module of manifestModules) {
       if (module?.name && module.version) {
@@ -766,7 +766,7 @@ class UI {
       installedModuleVersions.set('core', existingInstall.version);
     }
 
-    return { existingInstall, installedModuleIds, installedModuleVersions, bmadDir };
+    return { existingInstall, installedModuleIds, installedModuleVersions, aclDir };
   }
 
   /**
@@ -846,7 +846,7 @@ class UI {
           project_name: path.basename(directory),
           communication_language: 'English',
           document_output_language: 'English',
-          output_folder: '_bmad-output',
+          output_folder: '_acl-output',
         };
       }
       configCollector.collectedConfig.core = { ...defaultConfig, ...existingConfig, ...coreConfig };
@@ -878,7 +878,7 @@ class UI {
           project_name: path.basename(directory),
           communication_language: 'English',
           document_output_language: 'English',
-          output_folder: '_bmad-output',
+          output_folder: '_acl-output',
         };
         await prompts.log.info('Using default configuration (--yes flag)');
       }
@@ -908,7 +908,7 @@ class UI {
     // they can be managed via --custom-source, uninstall, or a dedicated installer.
     const externalManager = new ExternalModuleManager();
     const registryModules = await externalManager.listAvailable();
-    const officialRegistryCodes = new Set(['core', 'bmm', ...registryModules.map((m) => m.code)]);
+    const officialRegistryCodes = new Set(['core', 'acl', ...registryModules.map((m) => m.code)]);
     const installedNonOfficial = [...installedModuleIds].filter((id) => !officialRegistryCodes.has(id));
 
     // Phase 2: Custom URL modules
@@ -928,7 +928,7 @@ class UI {
    * @returns {Array} Selected official module codes
    */
   async _selectOfficialModules(installedModuleIds = new Set(), installedModuleVersions = new Map(), channelOptions = null) {
-    // Built-in modules (core, bmm) come from local source, not the registry
+    // Built-in modules (core, acl) come from local source, not the registry
     const { OfficialModules } = require('./modules/official-modules');
     const builtInModules = (await new OfficialModules().listAvailable()).modules || [];
 
@@ -1078,7 +1078,7 @@ class UI {
         await prompts.log.info('LOCAL MODULE: Pointing directly at local source (changes take effect on reinstall).');
       } else {
         await prompts.log.warn(
-          'UNVERIFIED MODULE: This module has not been reviewed by the BMad team.\n' + '  Only install modules from sources you trust.',
+          'UNVERIFIED MODULE: This module has not been reviewed by the ACL team.\n' + '  Only install modules from sources you trust.',
         );
       }
 
@@ -1340,9 +1340,9 @@ class UI {
       }
     }
 
-    // If no defaults found, use 'bmm' as the fallback default
+    // If no defaults found, use 'acl' as the fallback default
     if (defaultModules.length === 0) {
-      defaultModules.push('bmm');
+      defaultModules.push('acl');
     }
 
     return defaultModules;
@@ -1386,15 +1386,15 @@ class UI {
       if (stats.isDirectory()) {
         const files = await fs.readdir(directory);
         if (files.length > 0) {
-          // Check for any bmad installation (any folder with _config/manifest.yaml)
+          // Check for any acl installation (any folder with _config/manifest.yaml)
           const { Installer } = require('./core/installer');
           const installer = new Installer();
-          const bmadResult = await installer.findBmadDir(directory);
-          const hasBmadInstall =
-            (await fs.pathExists(bmadResult.bmadDir)) && (await fs.pathExists(path.join(bmadResult.bmadDir, '_config', 'manifest.yaml')));
+          const aclResult = await installer.findAclDir(directory);
+          const hasAclInstall =
+            (await fs.pathExists(aclResult.aclDir)) && (await fs.pathExists(path.join(aclResult.aclDir, '_config', 'manifest.yaml')));
 
-          const bmadNote = hasBmadInstall ? ` including existing BMAD installation (${path.basename(bmadResult.bmadDir)})` : '';
-          await prompts.log.message(`Directory exists and contains ${files.length} item(s)${bmadNote}`);
+          const aclNote = hasAclInstall ? ` including existing ACL installation (${path.basename(aclResult.aclDir)})` : '';
+          await prompts.log.message(`Directory exists and contains ${files.length} item(s)${aclNote}`);
         } else {
           await prompts.log.message('Directory exists and is empty');
         }
@@ -1632,8 +1632,8 @@ class UI {
     const { ExistingInstall } = require('./core/existing-install');
     const { Installer } = require('./core/installer');
     const installer = new Installer();
-    const { bmadDir } = await installer.findBmadDir(directory);
-    const existingInstall = await ExistingInstall.detect(bmadDir);
+    const { aclDir } = await installer.findAclDir(directory);
+    const existingInstall = await ExistingInstall.detect(aclDir);
     return existingInstall.ides;
   }
 
@@ -1726,17 +1726,17 @@ class UI {
    * @param {Object} statusData - Status data with modules, installation info, and available updates
    */
   async displayStatus(statusData) {
-    const { installation, modules, availableUpdates, bmadDir } = statusData;
+    const { installation, modules, availableUpdates, aclDir } = statusData;
 
     // Installation info
     const infoLines = [
       `Version:       ${installation.version || 'unknown'}`,
-      `Location:      ${bmadDir}`,
+      `Location:      ${aclDir}`,
       `Installed:     ${new Date(installation.installDate).toLocaleDateString()}`,
       `Last Updated:  ${installation.lastUpdated ? new Date(installation.lastUpdated).toLocaleDateString() : 'unknown'}`,
     ];
 
-    await prompts.note(infoLines.join('\n'), 'BMAD Status');
+    await prompts.note(infoLines.join('\n'), 'ACL Status');
 
     // Module versions
     await this.displayModuleVersions(modules, availableUpdates);
@@ -1744,7 +1744,7 @@ class UI {
     // Update summary
     if (availableUpdates.length > 0) {
       await prompts.log.warn(`${availableUpdates.length} update(s) available`);
-      await prompts.log.message('Run \'bmad install\' and select "Quick Update" to update');
+      await prompts.log.message('Run \'acl install\' and select "Quick Update" to update');
     } else {
       await prompts.log.success('All modules are up to date');
     }
@@ -1770,7 +1770,7 @@ class UI {
   }
 
   /**
-   * Return the set of module codes the registry marks as built-in (core, bmm).
+   * Return the set of module codes the registry marks as built-in (core, acl).
    * These ship with the installer binary and have no per-module channel.
    */
   async _bundledModuleCodes() {
@@ -1780,7 +1780,7 @@ class UI {
       return modules.filter((m) => m.builtIn).map((m) => m.code);
     } catch {
       // Registry unreachable — fall back to the known bundled codes.
-      return ['core', 'bmm'];
+      return ['core', 'acl'];
     }
   }
 
@@ -1804,7 +1804,7 @@ class UI {
     if (haveFlagIntent) return;
 
     // Figure out which selected modules actually get a channel (externals only).
-    // Bundled core/bmm and custom modules skip the picker.
+    // Bundled core/acl and custom modules skip the picker.
     const externalManager = new ExternalModuleManager();
     const externals = await externalManager.listAvailable();
     const externalByCode = new Map(externals.map((m) => [m.code, m]));
@@ -1886,10 +1886,10 @@ class UI {
    * Decisions that freeze the current version are applied by adding a pin to
    * `channelOptions.pins` so downstream clone logic honors them.
    */
-  async _resolveUpdateChannels({ bmadDir, selectedModules, channelOptions, yes }) {
+  async _resolveUpdateChannels({ aclDir, selectedModules, channelOptions, yes }) {
     const { Manifest } = require('./core/manifest');
     const manifestObj = new Manifest();
-    const manifest = await manifestObj.read(bmadDir);
+    const manifest = await manifestObj.read(aclDir);
     const existingByName = new Map();
     for (const m of manifest?.modulesDetailed || []) {
       if (m?.name) existingByName.set(m.name, m);
@@ -1928,9 +1928,9 @@ class UI {
 
       const info = externalByCode.get(code);
       if (!info) continue;
-      // Bundled modules (core/bmm) ship with the installer binary itself —
+      // Bundled modules (core/acl) ship with the installer binary itself —
       // their version is stapled to the CLI version, not a git tag. Skip
-      // tag-API lookups for them; the "upgrade" mechanism is `npx bmad@X install`.
+      // tag-API lookups for them; the "upgrade" mechanism is `npx acl@X install`.
       if (info.builtIn) continue;
 
       const repoUrl = info.url;

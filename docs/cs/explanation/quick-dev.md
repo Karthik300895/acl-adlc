@@ -5,7 +5,7 @@ sidebar:
   order: 6
 ---
 
-`bmad-quick-dev` je standardní implementační workflow pro veškerou vývojovou práci. Přijímá vše od volně formulovaného záměru nebo issue po plně naplánovanou story a vytváří změny kódu s minimem bezpečných human-in-the-loop kroků.
+`acl-quick-dev` je standardní implementační workflow pro veškerou vývojovou práci. Přijímá vše od volně formulovaného záměru nebo issue po plně naplánovanou story a vytváří změny kódu s minimem bezpečných human-in-the-loop kroků.
 
 Upstream plánování je volitelné a jeho hloubka se liší. Jasná změna může vstoupit přímo; větší iniciativa může přinést PRD, UX, architekturu, epicy, stories, kontrolu připravenosti a sprint plán. Tyto artefakty posilují kontext, nevybírají jiný vývojový workflow.
 
@@ -21,7 +21,7 @@ Human-in-the-loop kroky jsou nutné a nákladné.
 
 Současné LLM stále selhávají předvídatelnými způsoby: chybně čtou záměr, vyplňují mezery sebevědomými odhady, odchylují se k nesouvisející práci a generují šumový výstup revize. Současně neustálá lidská intervence limituje rychlost vývoje. Lidská pozornost je úzké hrdlo.
 
-`bmad-quick-dev` přenastavuje tento kompromis. Důvěřuje modelu, aby běžel bez dozoru delší úseky, ale pouze poté, co workflow vytvořil dostatečně silnou hranici, aby to bylo bezpečné.
+`acl-quick-dev` přenastavuje tento kompromis. Důvěřuje modelu, aby běžel bez dozoru delší úseky, ale pouze poté, co workflow vytvořil dostatečně silnou hranici, aby to bylo bezpečné.
 
 ## Základní design
 
@@ -29,7 +29,7 @@ Současné LLM stále selhávají předvídatelnými způsoby: chybně čtou zá
 
 Workflow začíná tím, že člověk a model zkomprimují požadavek do jednoho koherentního cíle. Vstup může začínat jako hrubé vyjádření záměru, ale předtím, než workflow poběží autonomně, musí být dostatečně malý, jasný a bez protimluvů pro provedení.
 
-Záměr může přijít v mnoha formách: pár frází, odkaz na bug tracker, výstup z plan mode, text zkopírovaný z chatové relace nebo naplánovaná story z epiců a sprint artefaktů BMad. Workflow použije veškerý dostupný upstream kontext a vyřeší mezery potřebné pro bezpečnou implementaci.
+Záměr může přijít v mnoha formách: pár frází, odkaz na bug tracker, výstup z plan mode, text zkopírovaný z chatové relace nebo naplánovaná story z epiců a sprint artefaktů ACL. Workflow použije veškerý dostupný upstream kontext a vyřeší mezery potřebné pro bezpečnou implementaci.
 
 Tento workflow neodstraňuje lidskou kontrolu. Přemisťuje ji na malý počet vysoce hodnotných momentů:
 

@@ -2,13 +2,13 @@ const prompts = require('./prompts');
 
 const CLIUtils = {
   /**
-   * Display BMAD logo and version using @clack intro + box
+   * Display ACL logo and version using @clack intro + box
    */
   async displayLogo() {
     const color = await prompts.getColor();
     const termWidth = process.stdout.columns || 80;
 
-    // Full "BMad Method" logo for wide terminals, "BMad" only for narrow
+    // Full "ACL Method" logo for wide terminals, "ACL" only for narrow
     const logoWide = [
       ' ██████╗ ███╗   ███╗ █████╗ ██████╗     ███╗   ███╗███████╗████████╗██╗  ██╗ ██████╗ ██████╗ ™',
       '██╔══██╗████╗ ████║██╔══██╗██╔══██╗    ████╗ ████║██╔════╝╚══██╔══╝██║  ██║██╔═══██╗██╔══██╗',
@@ -29,7 +29,7 @@ const CLIUtils = {
 
     const logoLines = termWidth >= 95 ? logoWide : logoNarrow;
     const logo = logoLines.map((line) => color.blue(line)).join('\n');
-    const tagline = color.white('    Build More, Architect Dreams\n    © BMad Code');
+    const tagline = color.white('    Build More, Architect Dreams\n    © ACL Code');
 
     await prompts.box(`${logo}\n${tagline}`, '', {
       contentAlign: 'center',

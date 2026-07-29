@@ -8,7 +8,7 @@ sidebar:
 Sử dụng tệp `project-context.md` để đảm bảo các agent AI tuân theo ưu tiên kỹ thuật và quy tắc triển khai của dự án trong suốt mọi workflow. Để đảm bảo tệp này luôn sẵn có, bạn cũng có thể thêm dòng `Important project context and conventions are located in [path to project context]/project-context.md` vào file context của công cụ hoặc file always rules của bạn (như `AGENTS.md`).
 
 :::note[Điều kiện tiên quyết]
-- Đã cài BMad Method
+- Đã cài ACL Method
 - Hiểu stack công nghệ và các quy ước của dự án
 :::
 
@@ -31,11 +31,11 @@ Sử dụng tệp `project-context.md` để đảm bảo các agent AI tuân th
 
 ### Lựa chọn A: Tạo thủ công
 
-Tạo tệp tại `_bmad-output/project-context.md`:
+Tạo tệp tại `_acl-output/project-context.md`:
 
 ```bash
-mkdir -p _bmad-output
-touch _bmad-output/project-context.md
+mkdir -p _acl-output
+touch _acl-output/project-context.md
 ```
 
 Thêm stack công nghệ và các quy tắc triển khai của bạn:
@@ -77,7 +77,7 @@ sections_completed: ['technology_stack', 'critical_rules']
 Chạy workflow trong một phiên chat mới:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Workflow sẽ quét tài liệu kiến trúc và tệp dự án để tạo tệp context ghi lại các quyết định đã được đưa ra.
@@ -87,7 +87,7 @@ Workflow sẽ quét tài liệu kiến trúc và tệp dự án để tạo tệ
 Với các dự án hiện có, chạy:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Workflow sẽ phân tích codebase để nhận diện quy ước, sau đó tạo tệp context để bạn xem lại và chỉnh sửa.
@@ -118,7 +118,7 @@ Một tệp `project-context.md` sẽ:
 - **Tập trung vào điều không hiển nhiên** - Ghi lại những pattern agent dễ bỏ sót (ví dụ: "Dùng JSDoc cho mọi lớp public"), thay vì các quy tắc phổ quát như "đặt tên biến có ý nghĩa".
 - **Gọn nhẹ** - Tệp này được nạp trong mọi workflow triển khai. Tệp quá dài sẽ tốn context. Hãy bỏ qua nội dung chỉ áp dụng cho phạm vi hẹp hoặc một vài story cụ thể.
 - **Cập nhật khi cần** - Sửa thủ công khi pattern thay đổi, hoặc tạo lại sau các thay đổi kiến trúc lớn.
-- Hỗ trợ cùng loop `bmad-quick-dev` dù công việc vào trực tiếp hay sau planning sâu.
+- Hỗ trợ cùng loop `acl-quick-dev` dù công việc vào trực tiếp hay sau planning sâu.
 :::
 
 ## Bước tiếp theo

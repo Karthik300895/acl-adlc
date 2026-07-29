@@ -18,26 +18,26 @@ function isValidNpmPackageName(packageName) {
 class Manifest {
   /**
    * Create a new manifest
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @param {Object} data - Manifest data
    * @param {Array} installedFiles - List of installed files (no longer used, files tracked in files-manifest.csv)
    */
-  async create(bmadDir, data, installedFiles = []) {
-    const manifestPath = path.join(bmadDir, '_config', 'manifest.yaml');
+  async create(aclDir, data, installedFiles = []) {
+    const manifestPath = path.join(aclDir, '_config', 'manifest.yaml');
     const yaml = require('yaml');
 
     // Ensure _config directory exists
     await fs.ensureDir(path.dirname(manifestPath));
 
-    // Get the BMad version from package.json
-    const bmadVersion = data.version || require(path.join(process.cwd(), 'package.json')).version;
+    // Get the ACL version from package.json
+    const aclVersion = data.version || require(path.join(process.cwd(), 'package.json')).version;
 
     // Convert module list to new detailed format
     const moduleDetails = [];
     if (data.modules && Array.isArray(data.modules)) {
       for (const moduleName of data.modules) {
-        // Core and BMM modules use the BMad version
-        const moduleVersion = moduleName === 'core' || moduleName === 'bmm' ? bmadVersion : null;
+        // Core and ACL modules use the ACL version
+        const moduleVersion = moduleName === 'core' || moduleName === 'acl' ? aclVersion : null;
         const now = data.installDate || new Date().toISOString();
 
         moduleDetails.push({
@@ -45,7 +45,7 @@ class Manifest {
           version: moduleVersion,
           installDate: now,
           lastUpdated: now,
-          source: moduleName === 'core' || moduleName === 'bmm' ? 'built-in' : 'unknown',
+          source: moduleName === 'core' || moduleName === 'acl' ? 'built-in' : 'unknown',
         });
       }
     }
@@ -53,7 +53,7 @@ class Manifest {
     // Structure the manifest data
     const manifestData = {
       installation: {
-        version: bmadVersion,
+        version: aclVersion,
         installDate: data.installDate || new Date().toISOString(),
         lastUpdated: data.lastUpdated || new Date().toISOString(),
       },
@@ -79,11 +79,11 @@ class Manifest {
 
   /**
    * Read existing manifest
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @returns {Object|null} Manifest data or null if not found
    */
-  async read(bmadDir) {
-    const yamlPath = path.join(bmadDir, '_config', 'manifest.yaml');
+  async read(aclDir) {
+    const yamlPath = path.join(aclDir, '_config', 'manifest.yaml');
     const yaml = require('yaml');
 
     if (await fs.pathExists(yamlPath)) {
@@ -120,11 +120,11 @@ class Manifest {
 
   /**
    * Read raw manifest data without flattening
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @returns {Object|null} Raw manifest data or null if not found
    */
-  async _readRaw(bmadDir) {
-    const yamlPath = path.join(bmadDir, '_config', 'manifest.yaml');
+  async _readRaw(aclDir) {
+    const yamlPath = path.join(aclDir, '_config', 'manifest.yaml');
     const yaml = require('yaml');
 
     if (await fs.pathExists(yamlPath)) {
@@ -162,12 +162,12 @@ class Manifest {
   /**
    * Add a module to the manifest with optional version info
    * If module already exists, update its version info
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @param {string} moduleName - Module name to add
    * @param {Object} options - Optional version info
    */
-  async addModule(bmadDir, moduleName, options = {}) {
-    let manifest = await this._readRaw(bmadDir);
+  async addModule(aclDir, moduleName, options = {}) {
+    let manifest = await this._readRaw(aclDir);
     if (!manifest) {
       // Bootstrap a minimal manifest if it doesn't exist yet
       // (e.g., skill-only modules with no agents to compile)
@@ -217,16 +217,16 @@ class Manifest {
       };
     }
 
-    await this._writeRaw(bmadDir, manifest);
+    await this._writeRaw(aclDir, manifest);
   }
 
   /**
    * Get all modules with their version info
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @returns {Array} Array of module info objects
    */
-  async getAllModuleVersions(bmadDir) {
-    const manifest = await this._readRaw(bmadDir);
+  async getAllModuleVersions(aclDir) {
+    const manifest = await this._readRaw(aclDir);
     if (!manifest || !manifest.modules) {
       return [];
     }
@@ -236,12 +236,12 @@ class Manifest {
 
   /**
    * Write raw manifest data to file
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @param {Object} manifestData - Raw manifest data to write
    */
-  async _writeRaw(bmadDir, manifestData) {
+  async _writeRaw(aclDir, manifestData) {
     const yaml = require('yaml');
-    const manifestPath = path.join(bmadDir, '_config', 'manifest.yaml');
+    const manifestPath = path.join(aclDir, '_config', 'manifest.yaml');
 
     await fs.ensureDir(path.dirname(manifestPath));
 
@@ -274,13 +274,13 @@ class Manifest {
   /**
    * Get module version info from source
    * @param {string} moduleName - Module name/code
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @param {string} moduleSourcePath - Optional source path for custom modules
    * @returns {Object} Version info object with version, source, npmPackage, repoUrl
    */
-  async getModuleVersionInfo(moduleName, bmadDir, moduleSourcePath = null) {
+  async getModuleVersionInfo(moduleName, aclDir, moduleSourcePath = null) {
     // Resolve source type first, then read version with the correct path context
-    if (['core', 'bmm'].includes(moduleName)) {
+    if (['core', 'acl'].includes(moduleName)) {
       const versionInfo = await resolveModuleVersion(moduleName, { moduleSourcePath });
       return {
         version: versionInfo.version,
@@ -314,7 +314,7 @@ class Manifest {
     const { CustomModuleManager } = require('../modules/custom-module-manager');
     const customMgr = new CustomModuleManager();
     const resolved = customMgr.getResolution(moduleName);
-    const customSource = await customMgr.findModuleSourceByCode(moduleName, { bmadDir });
+    const customSource = await customMgr.findModuleSourceByCode(moduleName, { aclDir });
     if (customSource || resolved) {
       const versionInfo = await resolveModuleVersion(moduleName, {
         moduleSourcePath: moduleSourcePath || customSource,
@@ -394,12 +394,12 @@ class Manifest {
 
   /**
    * Check for available updates for installed modules
-   * @param {string} bmadDir - Path to bmad directory
+   * @param {string} aclDir - Path to acl directory
    * @returns {Array} Array of update info objects
    */
-  async checkForUpdates(bmadDir) {
+  async checkForUpdates(aclDir) {
     const semver = require('semver');
-    const modules = await this.getAllModuleVersions(bmadDir);
+    const modules = await this.getAllModuleVersions(aclDir);
     const updates = [];
 
     for (const module of modules) {

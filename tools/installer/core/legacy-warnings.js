@@ -3,13 +3,13 @@ const path = require('node:path');
 const semver = require('semver');
 const fs = require('../fs-native');
 const prompts = require('../prompts');
-const { BMAD_FOLDER_NAME } = require('../ide/shared/path-utils');
-const { getInstalledCanonicalIds, isBmadOwnedEntry } = require('../ide/shared/installed-skills');
+const { ACL_FOLDER_NAME } = require('../ide/shared/path-utils');
+const { getInstalledCanonicalIds, isAclOwnedEntry } = require('../ide/shared/installed-skills');
 
 const MIN_NATIVE_SKILLS_VERSION = '6.1.0';
 
-// Pre-v6.1.0 paths: BMAD used to install commands/workflows/etc in tool-specific dirs.
-// In v6.1.0 BMAD switched to native SKILL.md format.
+// Pre-v6.1.0 paths: ACL used to install commands/workflows/etc in tool-specific dirs.
+// In v6.1.0 ACL switched to native SKILL.md format.
 const LEGACY_COMMAND_PATHS = [
   '.agent/workflows',
   '.augment/commands',
@@ -38,7 +38,7 @@ const LEGACY_COMMAND_PATHS = [
 ];
 
 // Skill paths that moved to the cross-tool .agents/skills/ standard.
-// Users upgrading from a prior install may have stale BMAD skills here that
+// Users upgrading from a prior install may have stale ACL skills here that
 // the AI tool will load alongside the new ones, causing duplicates.
 const LEGACY_SKILL_PATHS = [
   '.augment/skills',
@@ -81,8 +81,8 @@ function resolveLegacyPath(projectRoot, p) {
 }
 
 async function findStaleLegacyDirs(projectRoot) {
-  const bmadDir = path.join(projectRoot, BMAD_FOLDER_NAME);
-  const canonicalIds = await getInstalledCanonicalIds(bmadDir);
+  const aclDir = path.join(projectRoot, ACL_FOLDER_NAME);
+  const canonicalIds = await getInstalledCanonicalIds(aclDir);
 
   const findings = [];
   for (const legacyPath of LEGACY_PATHS) {
@@ -90,9 +90,9 @@ async function findStaleLegacyDirs(projectRoot) {
     if (!(await fs.pathExists(resolved))) continue;
     try {
       const entries = await fs.readdir(resolved);
-      const bmadEntries = entries.filter((e) => isBmadOwnedEntry(e, canonicalIds));
-      if (bmadEntries.length > 0) {
-        findings.push({ path: resolved, displayPath: legacyPath, count: bmadEntries.length, entries: bmadEntries });
+      const aclEntries = entries.filter((e) => isAclOwnedEntry(e, canonicalIds));
+      if (aclEntries.length > 0) {
+        findings.push({ path: resolved, displayPath: legacyPath, count: aclEntries.length, entries: aclEntries });
       }
     } catch {
       // Unreadable dir — skip
@@ -116,20 +116,20 @@ async function warnPreNativeSkillsLegacy({ projectRoot, existingVersion } = {}) 
 
   if (versionTriggered) {
     await prompts.log.warn(
-      `Detected previous BMAD install v${existingVersion} (pre-${MIN_NATIVE_SKILLS_VERSION}). ` +
-        `BMAD switched to native skills format in v${MIN_NATIVE_SKILLS_VERSION}; old command/workflow directories from your prior install may still be present.`,
+      `Detected previous ACL install v${existingVersion} (pre-${MIN_NATIVE_SKILLS_VERSION}). ` +
+        `ACL switched to native skills format in v${MIN_NATIVE_SKILLS_VERSION}; old command/workflow directories from your prior install may still be present.`,
     );
   }
 
   if (staleDirs.length > 0) {
     await prompts.log.warn(
-      `Found stale BMAD entries in ${staleDirs.length} legacy location(s) that the new installer no longer manages. ` +
+      `Found stale ACL entries in ${staleDirs.length} legacy location(s) that the new installer no longer manages. ` +
         `Your AI tool may load these alongside the new skills, causing duplicates. Remove them manually:`,
     );
     for (const finding of staleDirs) {
-      // Print each entry by exact name. A `bmad*` glob would (a) miss
+      // Print each entry by exact name. A `acl*` glob would (a) miss
       // custom-module skills the canonicalId scan now picks up, and
-      // (b) match bmad-os-* utility skills the user should keep.
+      // (b) match acl-os-* utility skills the user should keep.
       const entries = finding.entries || [];
       for (const entry of entries) {
         await prompts.log.message(`    rm -rf "${path.join(finding.path, entry)}"`);
@@ -137,7 +137,7 @@ async function warnPreNativeSkillsLegacy({ projectRoot, existingVersion } = {}) 
     }
   } else if (versionTriggered) {
     await prompts.log.message(
-      '  No stale legacy directories detected, but if your AI tool shows duplicate BMAD commands after install, check for old `bmad-*` entries in tool-specific dirs (e.g. .claude/commands, .cursor/commands).',
+      '  No stale legacy directories detected, but if your AI tool shows duplicate ACL commands after install, check for old `acl-*` entries in tool-specific dirs (e.g. .claude/commands, .cursor/commands).',
     );
   }
 }

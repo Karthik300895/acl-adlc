@@ -1,5 +1,5 @@
 /**
- * BMAD Documentation Build Pipeline
+ * ACL Documentation Build Pipeline
  *
  * Consolidates docs from multiple sources, generates LLM-friendly files,
  * and builds the Astro+Starlight site.
@@ -24,7 +24,7 @@ import { validatePublishedImplementationModel } from './validate-published-imple
 const PROJECT_ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const BUILD_DIR = path.join(PROJECT_ROOT, 'build');
 
-const REPO_URL = 'https://github.com/bmad-code-org/BMAD-METHOD';
+const REPO_URL = 'https://github.com/acl-code-org/ACL-ADLC';
 
 // DO NOT CHANGE THESE VALUES!
 // llms-full.txt is consumed by AI agents as context. Most LLMs have ~200k token limits.
@@ -46,7 +46,7 @@ const LLM_EXCLUDE_PATTERNS = [
 // =============================================================================
 // Main Entry Point
 /**
- * Orchestrates the full BMAD documentation build pipeline.
+ * Orchestrates the full ACL documentation build pipeline.
  *
  * Executes the high-level build steps in sequence: prints headers and paths, validates internal
  * documentation links, cleans the build directory, generates artifacts from the `docs/` folder,
@@ -61,7 +61,7 @@ async function main() {
   }
 
   console.log();
-  printBanner('BMAD Documentation Build Pipeline');
+  printBanner('ACL Documentation Build Pipeline');
   console.log();
   console.log(`Project root: ${PROJECT_ROOT}`);
   console.log(`Build directory: ${BUILD_DIR}`);
@@ -150,7 +150,7 @@ function generateLlmsTxt(outputDir) {
 
   const siteUrl = getSiteUrl();
   const content = [
-    '# BMAD Method Documentation',
+    '# ACL Method Documentation',
     '',
     '> AI-driven agile development with specialized agents and workflows that scale from bug fixes to enterprise platforms.',
     '',
@@ -160,8 +160,8 @@ function generateLlmsTxt(outputDir) {
     '',
     '## Quick Start',
     '',
-    `- **[Getting Started](${siteUrl}/tutorials/getting-started/)** - Tutorial: install and learn how BMad works`,
-    `- **[Installation](${siteUrl}/how-to/install-bmad/)** - How to install BMad Method`,
+    `- **[Getting Started](${siteUrl}/tutorials/getting-started/)** - Tutorial: install and learn how ACL works`,
+    `- **[Installation](${siteUrl}/how-to/install-acl/)** - How to install ACL Method`,
     '',
     '## Core Concepts',
     '',
@@ -171,7 +171,7 @@ function generateLlmsTxt(outputDir) {
     '',
     '## Modules',
     '',
-    `- **[Official Modules](${siteUrl}/reference/modules/)** - BMM, BMB, BMGD, and more`,
+    `- **[Official Modules](${siteUrl}/reference/modules/)** - ACL, BMB, BMGD, and more`,
     '',
     '---',
     '',
@@ -200,7 +200,7 @@ function generateLlmsFullTxt(docsDir, outputDir) {
   const files = getAllMarkdownFiles(docsDir).sort(compareLlmDocs);
 
   const output = [
-    '# BMAD Method Documentation (Full)',
+    '# ACL Method Documentation (Full)',
     '',
     '> Complete documentation for AI consumption',
     `> Generated: ${date}`,

@@ -5,13 +5,13 @@ sidebar:
   order: 3
 ---
 
-Use the BMad installer to add modules from the community registry, third-party Git repositories, or local file paths.
+Use the ACL installer to add modules from the community registry, third-party Git repositories, or local file paths.
 
 ## When to Use This
 
-- Installing a community-contributed module from the BMad registry
+- Installing a community-contributed module from the ACL registry
 - Installing a module from a third-party Git repository (GitHub, GitLab, Bitbucket, self-hosted)
-- Testing a module you are developing locally with BMad Builder
+- Testing a module you are developing locally with ACL Builder
 - Installing modules from a private or self-hosted Git server
 
 :::note[Prerequisites]
@@ -20,12 +20,12 @@ Requires [Node.js](https://nodejs.org) v20.12+ and `npx` (included with npm). Cu
 
 ## Community Modules
 
-Community modules are curated in the [BMad plugins marketplace](https://github.com/bmad-code-org/bmad-plugins-marketplace). They are organized by category and are pinned to an approved commit for safety.
+Community modules are curated in the [ACL plugins marketplace](https://github.com/acl-code-org/acl-plugins-marketplace). They are organized by category and are pinned to an approved commit for safety.
 
 ### 1. Run the Installer
 
 ```bash
-npx bmad-method install
+npx acl-adlc install
 ```
 
 ### 2. Browse the Community Catalog
@@ -81,7 +81,7 @@ The installer clones the repository (for URLs) or reads directly from disk (for 
 Use the `--custom-source` flag to install custom modules from the command line:
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory . \
   --custom-source /path/to/my-module \
   --tools claude-code \
@@ -91,9 +91,9 @@ npx bmad-method install \
 When `--custom-source` is provided without `--modules`, only core and the custom modules are installed. To include official modules as well, add `--modules`:
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory . \
-  --modules bmm \
+  --modules acl \
   --custom-source https://gitlab.com/myorg/my-module \
   --tools claude-code \
   --yes
@@ -122,10 +122,10 @@ The `.claude-plugin/marketplace.json` path is a standard convention adopted acro
 
 ## Local Development Workflow
 
-If you are building a module with [BMad Builder](https://github.com/bmad-code-org/bmad-builder), you can install it directly from your working directory:
+If you are building a module with [ACL Builder](https://github.com/acl-code-org/acl-builder), you can install it directly from your working directory:
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory ~/my-project \
   --custom-source ~/my-module-repo/skills \
   --tools claude-code \
@@ -135,18 +135,18 @@ npx bmad-method install \
 Local sources are referenced by path, not copied to a cache. When you update your module source and reinstall, the installer picks up the latest changes.
 
 :::caution[Source Removal]
-If you delete the local source directory after installation, the installed module files in `_bmad/` are preserved. The module will be skipped during updates until the source path is restored.
+If you delete the local source directory after installation, the installed module files in `_acl/` are preserved. The module will be skipped during updates until the source path is restored.
 :::
 
 ## What You Get
 
-After installation, custom modules appear in `_bmad/` alongside official modules:
+After installation, custom modules appear in `_acl/` alongside official modules:
 
 ```
 your-project/
-├── _bmad/
+├── _acl/
 │   ├── core/              # Built-in core module
-│   ├── bmm/               # Official module (if selected)
+│   ├── acl/               # Official module (if selected)
 │   ├── my-module/         # Your custom module
 │   │   ├── my-skill/
 │   │   │   └── SKILL.md
@@ -167,14 +167,14 @@ Custom modules participate in the normal update flow:
 
 ## Creating Your Own Modules
 
-Use [BMad Builder](https://github.com/bmad-code-org/bmad-builder) to create modules that others can install:
+Use [ACL Builder](https://github.com/acl-code-org/acl-builder) to create modules that others can install:
 
-1. Run `bmad-module-builder` to scaffold your module structure
-2. Add skills, agents, and workflows with the various bmad builder tools
+1. Run `acl-module-builder` to scaffold your module structure
+2. Add skills, agents, and workflows with the various acl builder tools
 3. Publish to a Git repository or share the folder collection
 4. Others install with `--custom-source <your-repo-url>`
 
-For modules to support discovery mode, include a `.claude-plugin/marketplace.json` in your repository root (this is a cross-tool convention, not Claude-specific). See the [BMad Builder documentation](https://github.com/bmad-code-org/bmad-builder) for the marketplace.json format.
+For modules to support discovery mode, include a `.claude-plugin/marketplace.json` in your repository root (this is a cross-tool convention, not Claude-specific). See the [ACL Builder documentation](https://github.com/acl-code-org/acl-builder) for the marketplace.json format.
 
 :::tip[Testing Locally First]
 During development, install your module with a local path to iterate quickly before publishing to a Git repository.

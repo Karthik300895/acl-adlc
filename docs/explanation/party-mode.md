@@ -9,7 +9,7 @@ Party mode puts your AI agents in one room and lets them talk, to each other and
 
 ## What is Party Mode?
 
-Run `bmad-party-mode` and the BMad agents you already have installed gather in one conversation: the PM, Architect, Dev, UX Designer, and whoever else your selected modules bring. That installed lineup is your default party, ready with no setup. They answer in character, agree, disagree, and build on each other. You steer the room. Ask a follow-up, push back, pull one voice forward, or change the subject. The conversation runs until you end it.
+Run `acl-party-mode` and the ACL agents you already have installed gather in one conversation: the PM, Architect, Dev, UX Designer, and whoever else your selected modules bring. That installed lineup is your default party, ready with no setup. They answer in character, agree, disagree, and build on each other. You steer the room. Ask a follow-up, push back, pull one voice forward, or change the subject. The conversation runs until you end it.
 
 It works because the personas hold different priorities. The Architect guards the design, the PM guards scope, the Dev guards what's actually buildable. Put them in the same room and the tradeoff surfaces now, in the conversation, instead of three weeks into the sprint.
 
@@ -38,14 +38,14 @@ Invoke the skill and say what you want; it works out whether you mean to run a p
 
 | Goal | Type this |
 | --- | --- |
-| Start a party in the default mode | `/bmad-party-mode` |
-| Start in a specific mode | `/bmad-party-mode --mode auto` (also `session`, `subagent`, `agent-team`) |
-| Run it once, non-interactively | `/bmad-party-mode --non-interactive "review this PR"` |
-| Open a saved party | `/bmad-party-mode --party code-review-crew` |
+| Start a party in the default mode | `/acl-party-mode` |
+| Start in a specific mode | `/acl-party-mode --mode auto` (also `session`, `subagent`, `agent-team`) |
+| Run it once, non-interactively | `/acl-party-mode --non-interactive "review this PR"` |
+| Open a saved party | `/acl-party-mode --party code-review-crew` |
 | Conjure a cast on the spot | "party mode with the bridge crew of the Enterprise" |
 | Create or add a party | "party mode, create a new party" |
 | Edit an existing party | "party mode, edit the writers' room" |
-| Customize the skill | `/bmad-customize bmad-party-mode` |
+| Customize the skill | `/acl-customize acl-party-mode` |
 
 ## How a party runs
 
@@ -70,9 +70,9 @@ A party is interactive by default: the opening ask is a starting topic, not a st
 
 ## Custom parties
 
-Out of the box, a party uses your installed BMad agents. The larger use is building your own cast from any set of personas you can describe, then saving it to reuse. You author a party through the same skill. It detects whether you want to run one or build one, and writes the result to your overrides through [bmad-customize](../how-to/customize-bmad.md).
+Out of the box, a party uses your installed ACL agents. The larger use is building your own cast from any set of personas you can describe, then saving it to reuse. You author a party through the same skill. It detects whether you want to run one or build one, and writes the result to your overrides through [acl-customize](../how-to/customize-acl.md).
 
-Party mode is customizable like every BMad skill. Run `/bmad-customize bmad-party-mode` to set its defaults directly: pin any group you've built as the default party so it loads without a flag, choose which mode it starts in, and set any house rules the room should hold for the whole session.
+Party mode is customizable like every ACL skill. Run `/acl-customize acl-party-mode` to set its defaults directly: pin any group you've built as the default party so it loads without a flag, choose which mode it starts in, and set any house rules the room should hold for the whole session.
 
 Two ideas do most of the work.
 
@@ -108,7 +108,7 @@ These are starting points. Any set of voices you can describe becomes a party: w
 
 ## The Code Review Crew
 
-Your default party is the agents your installed modules provide. The Code Review Crew is a custom party BMad ships alongside that default — a working template to study before you build your own, not a replacement for it. It's a review panel: five lenses that attack a change from different angles and argue about what actually matters, instead of rubber-stamping it.
+Your default party is the agents your installed modules provide. The Code Review Crew is a custom party ACL ships alongside that default — a working template to study before you build your own, not a replacement for it. It's a review panel: five lenses that attack a change from different angles and argue about what actually matters, instead of rubber-stamping it.
 
 | Member | Lens |
 | --- | --- |
@@ -131,7 +131,7 @@ The Anti-Consensus Club helps with decisions, strategy, designs, and fuzzy quest
 | Killjoy | Loop stopper — stops repetition, fake disagreement, and unsupported speculation. |
 | Splinter | Consensus challenger — questions easy agreement and ignored tradeoffs. |
 
-Run it as `/bmad-party-mode --party anti-consensus-club --mode subagent` when the platform supports it. The room recommends that at session start, then stops nagging if you continue in another mode.
+Run it as `/acl-party-mode --party anti-consensus-club --mode subagent` when the platform supports it. The room recommends that at session start, then stops nagging if you continue in another mode.
 
 ## Steering the conversation
 
@@ -156,7 +156,7 @@ It's memory, not a transcript. The room carries the few things worth remembering
 
 A character who turns up on the fly is remembered too — a walk-on from an open-cast scene, or someone you add mid-conversation. At the end of a session the room offers to keep the new arrivals, folding them into the party so they can come back next time.
 
-Memory is set per party. When you create or save a party you're asked whether it should remember; the default installed-agent room remembers unless you turn it off. Set or change any of this through `/bmad-customize bmad-party-mode`.
+Memory is set per party. When you create or save a party you're asked whether it should remember; the default installed-agent room remembers unless you turn it off. Set or change any of this through `/acl-customize acl-party-mode`.
 
 ## A keepsake of the session
 

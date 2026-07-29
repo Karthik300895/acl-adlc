@@ -27,7 +27,7 @@ See [Brainstorming](./brainstorming.md) for a deeper look at how sessions work.
 
 ### Research (Deep Recon)
 
-**What it is.** One research skill, `bmad-deep-recon`, that investigates any dimension of your idea through typed research packs: market (competitors, trends, sizing), domain (subject-matter expertise and terminology), technical (feasibility and implementation approaches), competitive teardowns, user-voice, and academic literature. It works three ways — draft a prompt for the deep-research tool you already subscribe to, process a finished report into a cited summary, or run the research directly.
+**What it is.** One research skill, `acl-deep-recon`, that investigates any dimension of your idea through typed research packs: market (competitors, trends, sizing), domain (subject-matter expertise and terminology), technical (feasibility and implementation approaches), competitive teardowns, user-voice, and academic literature. It works three ways — draft a prompt for the deep-research tool you already subscribe to, process a finished report into a cited summary, or run the research directly.
 
 **Why it's here.** Building on assumptions is the fastest way to build something nobody needs. Research grounds your concept in reality — what competitors already exist, what users actually struggle with, what's technically feasible, and what industry-specific constraints you'll face.
 
@@ -64,7 +64,7 @@ See [Deep Recon](./deep-recon.md) for the three modes, how to choose between the
 Product Brief and PRFAQ both produce input for the PRD — choose one based on how much challenge you want. The brief is collaborative discovery. The PRFAQ is a gauntlet. Both get you to the same destination; the PRFAQ tests whether your concept deserves to get there.
 
 :::tip[Not Sure?]
-Run `bmad-help` and describe your situation. It will recommend the right starting point based on what you've already done and what you're trying to accomplish.
+Run `acl-help` and describe your situation. It will recommend the right starting point based on what you've already done and what you're trying to accomplish.
 :::
 
 ## What Happens After Analysis?

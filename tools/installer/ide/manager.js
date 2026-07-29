@@ -1,4 +1,4 @@
-const { BMAD_FOLDER_NAME } = require('./shared/path-utils');
+const { ACL_FOLDER_NAME } = require('./shared/path-utils');
 const prompts = require('../prompts');
 
 /**
@@ -12,19 +12,19 @@ class IdeManager {
   constructor() {
     this.handlers = new Map();
     this._initialized = false;
-    this.bmadFolderName = BMAD_FOLDER_NAME; // Default, can be overridden
+    this.aclFolderName = ACL_FOLDER_NAME; // Default, can be overridden
   }
 
   /**
-   * Set the bmad folder name for all IDE handlers
-   * @param {string} bmadFolderName - The bmad folder name
+   * Set the acl folder name for all IDE handlers
+   * @param {string} aclFolderName - The acl folder name
    */
-  setBmadFolderName(bmadFolderName) {
-    this.bmadFolderName = bmadFolderName;
+  setAclFolderName(aclFolderName) {
+    this.aclFolderName = aclFolderName;
     // Update all loaded handlers
     for (const handler of this.handlers.values()) {
-      if (typeof handler.setBmadFolderName === 'function') {
-        handler.setBmadFolderName(bmadFolderName);
+      if (typeof handler.setAclFolderName === 'function') {
+        handler.setAclFolderName(aclFolderName);
       }
     }
   }
@@ -61,8 +61,8 @@ class IdeManager {
       if (!platformInfo.installer) continue;
 
       const handler = new ConfigDrivenIdeSetup(platformCode, platformInfo);
-      if (typeof handler.setBmadFolderName === 'function') {
-        handler.setBmadFolderName(this.bmadFolderName);
+      if (typeof handler.setAclFolderName === 'function') {
+        handler.setAclFolderName(this.aclFolderName);
       }
       this.handlers.set(platformCode, handler);
     }
@@ -126,10 +126,10 @@ class IdeManager {
    * Setup IDE configuration
    * @param {string} ideName - Name of the IDE
    * @param {string} projectDir - Project directory
-   * @param {string} bmadDir - BMAD installation directory
+   * @param {string} aclDir - ACL installation directory
    * @param {Object} options - Setup options
    */
-  async setup(ideName, projectDir, bmadDir, options = {}) {
+  async setup(ideName, projectDir, aclDir, options = {}) {
     const handler = this.handlers.get(ideName.toLowerCase());
 
     if (!handler) {
@@ -155,7 +155,7 @@ class IdeManager {
     }
 
     try {
-      const handlerResult = await handler.setup(projectDir, bmadDir, options);
+      const handlerResult = await handler.setup(projectDir, aclDir, options);
       // Build detail string from handler-returned data
       let detail = '';
       if (handlerResult && handlerResult.results) {
@@ -188,11 +188,11 @@ class IdeManager {
    * the first platform owns the directory write, peers skip it.
    * @param {Array<string>} ideList - IDE names to set up
    * @param {string} projectDir
-   * @param {string} bmadDir
+   * @param {string} aclDir
    * @param {Object} [options] - Forwarded to each handler.setup
    * @returns {Promise<Array>} Per-IDE results
    */
-  async setupBatch(ideList, projectDir, bmadDir, options = {}) {
+  async setupBatch(ideList, projectDir, aclDir, options = {}) {
     await this.ensureInitialized();
     const results = [];
     // target_dir → { firstIde, skillCount } from the platform that actually wrote it
@@ -201,7 +201,7 @@ class IdeManager {
     for (const ideName of ideList) {
       const handler = this.handlers.get(ideName.toLowerCase());
       if (!handler) {
-        results.push(await this.setup(ideName, projectDir, bmadDir, options));
+        results.push(await this.setup(ideName, projectDir, aclDir, options));
         continue;
       }
 
@@ -209,7 +209,7 @@ class IdeManager {
       const claim = target ? claimedTargets.get(target) : null;
       const skipTarget = !!claim;
 
-      const result = await this.setup(ideName, projectDir, bmadDir, {
+      const result = await this.setup(ideName, projectDir, aclDir, {
         ...options,
         skipTarget,
         sharedWith: claim?.firstIde || null,

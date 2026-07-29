@@ -1,4 +1,4 @@
-# BMAD Installer Messages
+# ACL Installer Messages
 # These messages are displayed during installation
 # Edit this file to change what users see during the install process
 
@@ -6,29 +6,29 @@
 startMessage: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Agile AI-Driven Development. Powered by BMad Core and a growing module ecosystem.
+  Agile AI-Driven Development. Powered by ACL Core and a growing module ecosystem.
   Install official and community modules during setup to customize your experience.
 
   🌟 100% free. 100% open source. Always.
      No paywalls. No gated content. Knowledge shared, not sold.
 
   🐍 HEADS UP: uv (https://docs.astral.sh/uv/) is becoming the de facto standard
-     for running the Python scripts BMAD workflows rely on (`uv run <script>`).
+     for running the Python scripts ACL workflows rely on (`uv run <script>`).
      If it's not set up yet, ask your AI agent to "install and set up uv for me".
 
   🌐 CONNECT:
-    Website:   https://bmadcode.com/
+    Website:   https://aclcode.com/
     Discord:   https://discord.gg/gk8jAdXWmj
-    YouTube:   https://www.youtube.com/@BMadCode
-    X:         https://x.com/BMadCode
-    Facebook:  https://facebook.com/@BMadCode
+    YouTube:   https://www.youtube.com/@ACLCode
+    X:         https://x.com/ACLCode
+    Facebook:  https://facebook.com/@ACLCode
 
   ⭐ SUPPORT THE PROJECT:
-    Star us:   https://github.com/bmad-code-org/BMAD-METHOD/
-    Donate:    https://buymeacoffee.com/bmad
-    Corporate sponsorship and speaking inquiries: contact@bmadcode.com
+    Star us:   https://github.com/acl-code-org/ACL-ADLC/
+    Donate:    https://buymeacoffee.com/acl
+    Corporate sponsorship and speaking inquiries: contact@aclcode.com
 
-  Docs, blog, and latest updates: https://bmadcode.com/
+  Docs, blog, and latest updates: https://aclcode.com/
 
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

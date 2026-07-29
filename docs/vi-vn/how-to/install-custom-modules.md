@@ -5,13 +5,13 @@ sidebar:
   order: 3
 ---
 
-Sử dụng trình cài đặt BMad để thêm module từ kho cộng đồng (community registry), kho Git của bên thứ ba hoặc đường dẫn file cục bộ.
+Sử dụng trình cài đặt ACL để thêm module từ kho cộng đồng (community registry), kho Git của bên thứ ba hoặc đường dẫn file cục bộ.
 
 ## Khi nào nên dùng
 
-- Cài một module do cộng đồng đóng góp từ BMad registry
+- Cài một module do cộng đồng đóng góp từ ACL registry
 - Cài module từ kho Git của bên thứ ba như GitHub, GitLab, Bitbucket hoặc máy chủ tự host
-- Kiểm thử một module bạn đang phát triển cục bộ với BMad Builder
+- Kiểm thử một module bạn đang phát triển cục bộ với ACL Builder
 - Cài module từ máy chủ Git riêng tư hoặc tự host
 
 :::note[Điều kiện tiên quyết]
@@ -20,12 +20,12 @@ Yêu cầu [Node.js](https://nodejs.org) v20.12+ và `npx` đi kèm npm. Bạn c
 
 ## Module cộng đồng
 
-Các module cộng đồng được tuyển chọn trong [BMad plugins marketplace](https://github.com/bmad-code-org/bmad-plugins-marketplace). Chúng được sắp theo danh mục và được ghim vào commit đã được phê duyệt để tăng độ an toàn.
+Các module cộng đồng được tuyển chọn trong [ACL plugins marketplace](https://github.com/acl-code-org/acl-plugins-marketplace). Chúng được sắp theo danh mục và được ghim vào commit đã được phê duyệt để tăng độ an toàn.
 
 ### 1. Chạy trình cài đặt
 
 ```bash
-npx bmad-method install
+npx acl-adlc install
 ```
 
 ### 2. Duyệt danh mục (catalog) cộng đồng
@@ -81,7 +81,7 @@ Với URL, trình cài đặt sẽ clone repository. Với đường dẫn cục
 Dùng cờ `--custom-source` để cài module tùy chỉnh từ dòng lệnh:
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory . \
   --custom-source /path/to/my-module \
   --tools claude-code \
@@ -91,9 +91,9 @@ npx bmad-method install \
 Khi cung cấp `--custom-source` mà không kèm `--modules`, hệ thống chỉ cài core và các module tùy chỉnh. Nếu muốn cài cả module chính thức, hãy thêm `--modules`:
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory . \
-  --modules bmm \
+  --modules acl \
   --custom-source https://gitlab.com/myorg/my-module \
   --tools claude-code \
   --yes
@@ -122,10 +122,10 @@ Discovery là chế độ phát hiện qua manifest. Direct là chế độ qué
 
 ## Quy trình phát triển cục bộ
 
-Nếu bạn đang xây một module bằng [BMad Builder](https://github.com/bmad-code-org/bmad-builder), bạn có thể cài trực tiếp từ thư mục đang làm việc:
+Nếu bạn đang xây một module bằng [ACL Builder](https://github.com/acl-code-org/acl-builder), bạn có thể cài trực tiếp từ thư mục đang làm việc:
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory ~/my-project \
   --custom-source ~/my-module-repo/skills \
   --tools claude-code \
@@ -135,18 +135,18 @@ npx bmad-method install \
 Nguồn cục bộ được tham chiếu theo đường dẫn, không bị copy vào cache. Khi bạn sửa source của module rồi cài lại, trình cài đặt sẽ lấy đúng các thay đổi mới nhất.
 
 :::caution[Xóa nguồn sau khi cài]
-Nếu bạn xóa thư mục nguồn cục bộ sau khi cài, các file module đã được cài bên trong `_bmad/` vẫn được giữ nguyên. Tuy vậy, module đó sẽ bị bỏ qua trong các lần cập nhật cho tới khi đường dẫn nguồn được khôi phục.
+Nếu bạn xóa thư mục nguồn cục bộ sau khi cài, các file module đã được cài bên trong `_acl/` vẫn được giữ nguyên. Tuy vậy, module đó sẽ bị bỏ qua trong các lần cập nhật cho tới khi đường dẫn nguồn được khôi phục.
 :::
 
 ## Bạn sẽ nhận được gì
 
-Sau khi cài, các module tùy chỉnh sẽ xuất hiện trong `_bmad/` cùng với module chính thức:
+Sau khi cài, các module tùy chỉnh sẽ xuất hiện trong `_acl/` cùng với module chính thức:
 
 ```text
 your-project/
-├── _bmad/
+├── _acl/
 │   ├── core/              # Module core tích hợp
-│   ├── bmm/               # Module chính thức, nếu bạn chọn
+│   ├── acl/               # Module chính thức, nếu bạn chọn
 │   ├── my-module/         # Module tùy chỉnh của bạn
 │   │   ├── my-skill/
 │   │   │   └── SKILL.md
@@ -167,14 +167,14 @@ Module tùy chỉnh tham gia vào luồng cập nhật bình thường:
 
 ## Tạo module của riêng bạn
 
-Hãy dùng [BMad Builder](https://github.com/bmad-code-org/bmad-builder) để tạo module mà người khác có thể cài:
+Hãy dùng [ACL Builder](https://github.com/acl-code-org/acl-builder) để tạo module mà người khác có thể cài:
 
-1. Chạy `bmad-module-builder` để sinh skeleton cho module
+1. Chạy `acl-module-builder` để sinh skeleton cho module
 2. Thêm skill, agent và workflow bằng các công cụ builder tương ứng
 3. Publish lên một kho Git hoặc chia sẻ cả thư mục
 4. Người khác có thể cài bằng `--custom-source <url-kho-cua-ban>`
 
-Nếu muốn module hỗ trợ chế độ Discovery, hãy thêm `.claude-plugin/marketplace.json` ở root repository. Đây là quy ước chung giữa nhiều công cụ, không dành riêng cho Claude. Hãy xem [tài liệu của BMad Builder](https://github.com/bmad-code-org/bmad-builder) để biết định dạng của `marketplace.json`.
+Nếu muốn module hỗ trợ chế độ Discovery, hãy thêm `.claude-plugin/marketplace.json` ở root repository. Đây là quy ước chung giữa nhiều công cụ, không dành riêng cho Claude. Hãy xem [tài liệu của ACL Builder](https://github.com/acl-code-org/acl-builder) để biết định dạng của `marketplace.json`.
 
 :::tip[Hãy thử cục bộ trước]
 Trong quá trình phát triển, hãy cài module bằng đường dẫn cục bộ để lặp nhanh trước khi publish lên kho Git.

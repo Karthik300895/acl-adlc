@@ -9,7 +9,7 @@ sidebar:
 
 ## 什么是 Forge Idea？
 
-运行 `bmad-forge-idea`，一位严苛的审问者会一次只提一个问题，对你的想法穷追不舍，直到留下来的东西，是你凭充分把握就能去行动的那部分。这个 skill 与领域无关——软件功能、商业模式、研究假设，或你反复纠结的人生决定，都能跑。
+运行 `acl-forge-idea`，一位严苛的审问者会一次只提一个问题，对你的想法穷追不舍，直到留下来的东西，是你凭充分把握就能去行动的那部分。这个 skill 与领域无关——软件功能、商业模式、研究假设，或你反复纠结的人生决定，都能跑。
 
 你带走的是更清晰的思路。精炼后的 `forged-idea.md` 只是可能的出口之一，会话也不会把你往「那我们要不要开做？」上赶。
 
@@ -43,7 +43,7 @@ forge 是有声的。话题一定，每个分支都会来两个角色，而不�
 
 | 结果 | 含义 |
 | --- | --- |
-| **Hardened（已强化）** | 想法活下来了。会 distill 成 `forged-idea.md`（锁定的决定，以及被淘汰的内容及原因），可喂给 `bmad-spec`、`bmad-prd` 或 `bmad-prfaq` 做产品概念。 |
+| **Hardened（已强化）** | 想法活下来了。会 distill 成 `forged-idea.md`（锁定的决定，以及被淘汰的内容及原因），可喂给 `acl-spec`、`acl-prd` 或 `acl-prfaq` 做产品概念。 |
 | **Killed（已淘汰）** | 想法没撑住，报告记录死因。廉价地发现这一点，就是赢。 |
 | **Clearer（更清晰）** | 你只是想得更直了。不需要 artifact，会话本身就够了。 |
 
@@ -53,11 +53,11 @@ forge 是有声的。话题一定，每个分支都会来两个角色，而不�
 
 | Skill | 何时使用 | 声音 |
 | --- | --- | --- |
-| `bmad-forge-idea` | 有想法，要压测或淘汰 | 审问者 + 双人房间 |
-| `bmad-prfaq` | 已承诺做产品，要 customer-first 验证 | Working Backwards 教练 |
-| `bmad-brainstorming` | 还没有想法，要生成选项 | 引导教练 |
-| `bmad-party-mode` | 要让 agent 一起讨论或决策 | 整个 roster 同场 |
-| `bmad-review` | 有 artifact，要找 flaw | 寻找真实问题的多视角 reviewer |
+| `acl-forge-idea` | 有想法，要压测或淘汰 | 审问者 + 双人房间 |
+| `acl-prfaq` | 已承诺做产品，要 customer-first 验证 | Working Backwards 教练 |
+| `acl-brainstorming` | 还没有想法，要生成选项 | 引导教练 |
+| `acl-party-mode` | 要让 agent 一起讨论或决策 | 整个 roster 同场 |
+| `acl-review` | 有 artifact，要找 flaw | 寻找真实问题的多视角 reviewer |
 
 ## 示例
 

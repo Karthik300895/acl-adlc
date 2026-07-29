@@ -1,14 +1,14 @@
-# BMad CLI Tool
+# ACL CLI Tool
 
-## Installing external repo BMad official modules
+## Installing external repo ACL official modules
 
 For external official modules to be discoverable during install, ensure an entry for the external repo is added to external-official-modules.yaml.
 
-For community modules - this will be handled in a different way. This file is only for registration of modules under the bmad-code-org.
+For community modules - this will be handled in a different way. This file is only for registration of modules under the acl-code-org.
 
 ## Post-Install Notes
 
-Modules can display setup guidance to users after configuration is collected during `npx bmad-method install`. Notes are defined in the module's own `module.yaml` — no changes to the installer are needed.
+Modules can display setup guidance to users after configuration is collected during `npx acl-adlc install`. Notes are defined in the module's own `module.yaml` — no changes to the installer are needed.
 
 ### Simple Format
 

@@ -1,27 +1,27 @@
 ---
 title: "Existující projekty"
-description: Jak používat BMad Method na existujících kódových bázích
+description: Jak používat ACL Method na existujících kódových bázích
 sidebar:
   order: 6
 ---
 
-Používejte BMad Method efektivně při práci na existujících projektech a starších kódových bázích.
+Používejte ACL Method efektivně při práci na existujících projektech a starších kódových bázích.
 
-Tento návod pokrývá základní workflow pro zapojení se do existujících projektů s BMad Method.
+Tento návod pokrývá základní workflow pro zapojení se do existujících projektů s ACL Method.
 
 :::note[Předpoklady]
-- BMad Method nainstalován (`npx bmad-method install`)
+- ACL Method nainstalován (`npx acl-adlc install`)
 - Existující kódová báze, na které chcete pracovat
 - Přístup k AI-powered IDE (Claude Code nebo Cursor)
 :::
 
 ## Krok 1: Vyčistěte dokončené plánovací artefakty
 
-Pokud jste dokončili všechny PRD epicy a stories procesem BMad, vyčistěte tyto soubory. Archivujte je, smažte nebo se spoléhejte na historii verzí. Nenechávejte tyto soubory v:
+Pokud jste dokončili všechny PRD epicy a stories procesem ACL, vyčistěte tyto soubory. Archivujte je, smažte nebo se spoléhejte na historii verzí. Nenechávejte tyto soubory v:
 
 - `docs/`
-- `_bmad-output/planning-artifacts/`
-- `_bmad-output/implementation-artifacts/`
+- `_acl-output/planning-artifacts/`
+- `_acl-output/implementation-artifacts/`
 
 ## Krok 2: Vytvořte kontext projektu
 
@@ -32,7 +32,7 @@ Vygenerujte `project-context.md` pro zachycení vzorů a konvencí vaší existu
 Spusťte workflow pro generování kontextu projektu:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Toto skenuje vaši kódovou bázi a identifikuje:
@@ -42,7 +42,7 @@ Toto skenuje vaši kódovou bázi a identifikuje:
 - Přístupy k testování
 - Vzory specifické pro framework
 
-Vygenerovaný soubor můžete zkontrolovat a upravit, nebo ho vytvořit ručně na `_bmad-output/project-context.md`.
+Vygenerovaný soubor můžete zkontrolovat a upravit, nebo ho vytvořit ručně na `_acl-output/project-context.md`.
 
 [Zjistit více o kontextu projektu](../explanation/project-context.md)
 
@@ -55,34 +55,34 @@ Vaše složka `docs/` by měla obsahovat stručnou, dobře organizovanou dokumen
 - Architektura
 - Jakékoli další relevantní informace o projektu
 
-Pro složité projekty zvažte použití workflow `bmad-document-project`. Nabízí varianty, které proskenují celý váš projekt a zdokumentují jeho aktuální stav.
+Pro složité projekty zvažte použití workflow `acl-document-project`. Nabízí varianty, které proskenují celý váš projekt a zdokumentují jeho aktuální stav.
 
 ## Krok 3: Získejte pomoc
 
-### BMad-Help: Váš výchozí bod
+### ACL-Help: Váš výchozí bod
 
-**Spusťte `bmad-help` kdykoli si nejste jisti, co dělat dál.** Tento inteligentní průvodce:
+**Spusťte `acl-help` kdykoli si nejste jisti, co dělat dál.** Tento inteligentní průvodce:
 
 - Prozkoumá váš projekt a zjistí, co už bylo uděláno
 - Ukáže možnosti na základě nainstalovaných modulů
 - Rozumí dotazům v přirozeném jazyce
 
 ```
-bmad-help I have an existing Rails app, where should I start?
-bmad-help How much planning does this change need before implementation?
-bmad-help Show me what workflows are available
+acl-help I have an existing Rails app, where should I start?
+acl-help How much planning does this change need before implementation?
+acl-help Show me what workflows are available
 ```
 
-BMad-Help se také **automaticky spouští na konci každého workflow** a poskytuje jasné pokyny, co přesně dělat dál.
+ACL-Help se také **automaticky spouští na konci každého workflow** a poskytuje jasné pokyny, co přesně dělat dál.
 
 ### Volba hloubky plánování
 
-Veškerá implementace používá `bmad-quick-dev`; rozsah určuje, jaký kontext připravíte předem:
+Veškerá implementace používá `acl-quick-dev`; rozsah určuje, jaký kontext připravíte předem:
 
 | Rozsah                         | Doporučený přístup                                                                                                            |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Jasné aktualizace či doplnění** | Vstupte přímo do `bmad-quick-dev` s požadavkem, issue nebo existující specifikací. |
-| **Velké změny či doplnění**    | Připravte užitečné PRD, UX, architekturu, epic, story a sprint kontext a pak předejte vybranou práci do `bmad-quick-dev`. |
+| **Jasné aktualizace či doplnění** | Vstupte přímo do `acl-quick-dev` s požadavkem, issue nebo existující specifikací. |
+| **Velké změny či doplnění**    | Připravte užitečné PRD, UX, architekturu, epic, story a sprint kontext a pak předejte vybranou práci do `acl-quick-dev`. |
 
 ### Během tvorby PRD
 

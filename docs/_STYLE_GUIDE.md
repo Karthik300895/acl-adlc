@@ -64,8 +64,8 @@ Critical warnings only — data loss, security issues
 ```md
 | Skill        | Agent   | Purpose                              |
 | ------------ | ------- | ------------------------------------ |
-| `bmad-brainstorming` | Analyst | Brainstorm a new project             |
-| `bmad-prd`        | PM      | Create Product Requirements Document |
+| `acl-brainstorming` | Analyst | Brainstorm a new project             |
+| `acl-prd`        | PM      | Create Product Requirements Document |
 ```
 
 ## Folder Structure Blocks
@@ -75,8 +75,8 @@ Show in "What You've Accomplished" sections:
 ````md
 ```
 your-project/
-├── _bmad/                                   # BMad configuration
-├── _bmad-output/
+├── _acl/                                   # ACL configuration
+├── _acl-output/
 │   ├── planning-artifacts/
 │   │   └── PRD.md                           # Your requirements document
 │   ├── implementation-artifacts/
@@ -325,7 +325,7 @@ Starlight generates right-side "On this page" navigation from headers:
 Add italic context at definition start for limited-scope terms:
 
 - `*Direct-entry implementation only.*`
-- `*BMad Method/Enterprise.*`
+- `*ACL Method/Enterprise.*`
 - `*Phase N.*`
 - `*BMGD.*`
 - `*Established projects.*`
@@ -353,7 +353,7 @@ Only for work that benefits from architecture. Clear work can enter implementati
 
 ### Can I change my plan later?
 
-Yes. The `bmad-correct-course` workflow handles scope changes mid-implementation.
+Yes. The `acl-correct-course` workflow handles scope changes mid-implementation.
 
 **Have a question not answered here?** [Open an issue](...) or ask in [Discord](...).
 ```

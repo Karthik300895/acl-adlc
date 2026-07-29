@@ -26,7 +26,7 @@ design-artifacts/
 __pycache__/
 .pytest_cache/
 
-# BMad run artifacts (memlogs are per-run working memory, never committed)
+# ACL run artifacts (memlogs are per-run working memory, never committed)
 .memlog.md
 
 # System files
@@ -53,11 +53,11 @@ CLAUDE.local.md
 z*/
 !docs/zh-cn/
 
-_bmad
-_bmad-output
+_acl
+_acl-output
 
 # Personal customization files (team files are committed, personal files are not)
-_bmad/custom/*.user.toml
+_acl/custom/*.user.toml
 .clinerules
 # .augment/ is gitignored except tracked config files — add exceptions explicitly
 .augment/*

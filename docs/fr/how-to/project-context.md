@@ -8,7 +8,7 @@ sidebar:
 Utilisez le fichier `project-context.md` pour garantir que les agents IA respectent les préférences techniques et les règles d’implémentation de votre projet tout au long des workflows. Pour vous assurer qu’il est toujours disponible, vous pouvez également ajouter la ligne `Le contexte et les conventions importantes du projet se trouvent dans [chemin vers le contexte du projet]/project-context.md` à votre fichier de contexte ou de règles permanentes (comme `AGENTS.md`).
 
 :::note[Prérequis]
-- Méthode BMad installée
+- Méthode ACL installée
 - Connaissance de la pile technologique et des conventions de votre projet
 :::
 
@@ -31,11 +31,11 @@ Utilisez le fichier `project-context.md` pour garantir que les agents IA respect
 
 ### Option A : Création manuelle
 
-Créez le fichier à l’emplacement `_bmad-output/project-context.md` :
+Créez le fichier à l’emplacement `_acl-output/project-context.md` :
 
 ```bash
-mkdir -p _bmad-output
-touch _bmad-output/project-context.md
+mkdir -p _acl-output
+touch _acl-output/project-context.md
 ```
 
 Ajoutez votre pile technologique et vos règles d’implémentation :
@@ -77,7 +77,7 @@ sections_completed: ['technology_stack', 'critical_rules']
 Exécutez le workflow dans une nouvelle conversation :
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Le workflow analyse votre document d’architecture et vos fichiers projet pour générer un fichier de contexte qui capture les décisions prises.
@@ -87,7 +87,7 @@ Le workflow analyse votre document d’architecture et vos fichiers projet pour 
 Pour les projets existants, exécutez :
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Le workflow analyse votre base de code pour identifier les conventions, puis génère un fichier de contexte que vous pouvez réviser et affiner.
@@ -118,7 +118,7 @@ Un fichier `project-context.md` qui :
 - **Concentrez-vous sur ce qui n’est pas évident** — Documentez les patterns que les agents pourraient manquer (par ex. « Utiliser JSDoc sur chaque classe publique »), et non les pratiques universelles comme « utiliser des noms de variables significatifs ».
 - **Gardez-le concis** — Ce fichier est chargé par chaque workflow d’implémentation. Les fichiers longs gaspillent le contexte. Excluez le contenu qui ne s’applique qu’à un périmètre restreint ou à des stories spécifiques.
 - **Mettez à jour si nécessaire** — Modifiez manuellement lorsque les patterns changent, ou régénérez après des changements d’architecture significatifs.
-- Prend en charge la même boucle `bmad-quick-dev`, que le travail entre directement ou après une planification approfondie.
+- Prend en charge la même boucle `acl-quick-dev`, que le travail entre directement ou après une planification approfondie.
 :::
 
 ## Prochaines étapes

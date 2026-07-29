@@ -64,13 +64,13 @@ class ConfigUtilsTests(unittest.TestCase):
     def test_filesystem_layer_precedence(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            bmad = root / "_bmad"
-            custom = bmad / "custom"
-            skill = bmad / "bmm" / "sample-skill"
+            acl = root / "_acl"
+            custom = acl / "custom"
+            skill = acl / "acl" / "sample-skill"
             custom.mkdir(parents=True)
             skill.mkdir(parents=True)
-            (bmad / "config.toml").write_text('[value]\norder = "base-team"\n', encoding="utf-8")
-            (bmad / "config.user.toml").write_text('[value]\norder = "base-user"\n', encoding="utf-8")
+            (acl / "config.toml").write_text('[value]\norder = "base-team"\n', encoding="utf-8")
+            (acl / "config.user.toml").write_text('[value]\norder = "base-user"\n', encoding="utf-8")
             (custom / "config.toml").write_text('[value]\norder = "custom-team"\n', encoding="utf-8")
             (custom / "config.user.toml").write_text('[value]\norder = "custom-user"\n', encoding="utf-8")
             (skill / "customize.toml").write_text('[value]\norder = "default"\n', encoding="utf-8")

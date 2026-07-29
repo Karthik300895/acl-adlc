@@ -1,19 +1,19 @@
 ---
 title: "Sơ đồ workflow"
-description: Tài liệu trực quan về các giai đoạn, quy trình và đầu ra của BMad Method
+description: Tài liệu trực quan về các giai đoạn, quy trình và đầu ra của ACL Method
 sidebar:
   order: 1
 ---
 
-BMad Method (BMM) là một module trong hệ sinh thái BMad, tập trung vào các thực hành tốt nhất của kỹ nghệ ngữ cảnh và lập kế hoạch. AI agent hoạt động hiệu quả nhất khi có ngữ cảnh rõ ràng và có cấu trúc. Hệ thống BMM xây dựng ngữ cảnh đó theo tiến trình qua 4 giai đoạn riêng biệt. Mỗi giai đoạn, cùng với nhiều quy trình tùy chọn bên trong nó, tạo ra các tài liệu làm đầu vào cho giai đoạn kế tiếp, nhờ vậy agent luôn biết phải xây gì và vì sao.
+ACL Method (ACL) là một module trong hệ sinh thái ACL, tập trung vào các thực hành tốt nhất của kỹ nghệ ngữ cảnh và lập kế hoạch. AI agent hoạt động hiệu quả nhất khi có ngữ cảnh rõ ràng và có cấu trúc. Hệ thống ACL xây dựng ngữ cảnh đó theo tiến trình qua 4 giai đoạn riêng biệt. Mỗi giai đoạn, cùng với nhiều quy trình tùy chọn bên trong nó, tạo ra các tài liệu làm đầu vào cho giai đoạn kế tiếp, nhờ vậy agent luôn biết phải xây gì và vì sao.
 
 Lý do và các khái niệm nền tảng ở đây đến từ các phương pháp Agile đã được áp dụng rất thành công trong toàn ngành như một khung tư duy.
 
-Nếu có lúc nào bạn không chắc nên làm gì, skill `bmad-help` sẽ giúp bạn giữ đúng hướng hoặc biết bước tiếp theo. Bạn vẫn có thể dùng trang này để tham chiếu, nhưng `bmad-help` mang tính tương tác đầy đủ và nhanh hơn nhiều nếu bạn đã cài BMad Method. Ngoài ra, nếu bạn đang dùng thêm các module mở rộng BMad Method hoặc các module bổ sung khác, `bmad-help` cũng sẽ mở rộng theo để biết mọi thứ đang có sẵn và đưa ra lời khuyên tốt nhất tại thời điểm đó.
+Nếu có lúc nào bạn không chắc nên làm gì, skill `acl-help` sẽ giúp bạn giữ đúng hướng hoặc biết bước tiếp theo. Bạn vẫn có thể dùng trang này để tham chiếu, nhưng `acl-help` mang tính tương tác đầy đủ và nhanh hơn nhiều nếu bạn đã cài ACL Method. Ngoài ra, nếu bạn đang dùng thêm các module mở rộng ACL Method hoặc các module bổ sung khác, `acl-help` cũng sẽ mở rộng theo để biết mọi thứ đang có sẵn và đưa ra lời khuyên tốt nhất tại thời điểm đó.
 
 Lưu ý quan trọng cuối cùng: mọi quy trình dưới đây đều có thể chạy trực tiếp bằng công cụ bạn chọn thông qua skill, hoặc bằng cách nạp agent trước rồi chọn mục tương ứng trong menu agent.
 
-<iframe src="/workflow-map-diagram.html" title="Sơ đồ Workflow Map của BMad Method" width="100%" height="100%" style="border-radius: 8px; border: 1px solid #334155; min-height: 900px;"></iframe>
+<iframe src="/workflow-map-diagram.html" title="Sơ đồ Workflow Map của ACL Method" width="100%" height="100%" style="border-radius: 8px; border: 1px solid #334155; min-height: 900px;"></iframe>
 
 <p style="font-size: 0.8rem; text-align: right; margin-top: -0.5rem; margin-bottom: 1rem;">
   <a href="/workflow-map-diagram.html" target="_blank" rel="noopener noreferrer">Mở sơ đồ trong tab mới ↗</a>
@@ -25,10 +25,10 @@ Khám phá không gian vấn đề và xác nhận ý tưởng trước khi cam 
 
 | Quy trình | Mục đích | Tạo ra |
 | ------------------------------- | -------------------------------------------------------------------------- | ------------------------- |
-| `bmad-brainstorming` | Động não ý tưởng dự án với sự điều phối của người dẫn dắt brainstorming | `brainstorming-report.md` |
-| `bmad-deep-recon` | Xác thực giả định hoặc lựa chọn giữa các phương án — soạn prompt cho công cụ nghiên cứu chuyên sâu của bạn, xử lý báo cáo của nó, hoặc nghiên cứu ngay tại đây; thị trường, miền nghiệp vụ, kỹ thuật, cạnh tranh, tiếng nói người dùng, học thuật; đã kiểm chứng, có trích dẫn, có thể làm mới | Báo cáo hoặc bản tóm tắt nghiên cứu + bản tóm tắt HTML tùy chọn |
-| `bmad-product-brief` | Ghi lại tầm nhìn chiến lược — phù hợp nhất khi concept của bạn đã rõ | `product-brief.md` |
-| `bmad-prfaq` | Working Backwards — stress-test và rèn sắc concept sản phẩm của bạn | `prfaq-{project}.md` |
+| `acl-brainstorming` | Động não ý tưởng dự án với sự điều phối của người dẫn dắt brainstorming | `brainstorming-report.md` |
+| `acl-deep-recon` | Xác thực giả định hoặc lựa chọn giữa các phương án — soạn prompt cho công cụ nghiên cứu chuyên sâu của bạn, xử lý báo cáo của nó, hoặc nghiên cứu ngay tại đây; thị trường, miền nghiệp vụ, kỹ thuật, cạnh tranh, tiếng nói người dùng, học thuật; đã kiểm chứng, có trích dẫn, có thể làm mới | Báo cáo hoặc bản tóm tắt nghiên cứu + bản tóm tắt HTML tùy chọn |
+| `acl-product-brief` | Ghi lại tầm nhìn chiến lược — phù hợp nhất khi concept của bạn đã rõ | `product-brief.md` |
+| `acl-prfaq` | Working Backwards — stress-test và rèn sắc concept sản phẩm của bạn | `prfaq-{project}.md` |
 
 ## Giai đoạn 2: Lập kế hoạch
 
@@ -36,9 +36,9 @@ Xác định cần xây gì và xây cho ai.
 
 | Quy trình | Mục đích | Tạo ra |
 | --------------------------- | ---------------------------------------- | ------------ |
-| `bmad-prd` | Xác định yêu cầu (FR/NFR) | `PRD.md` |
-| `bmad-ux`            | Thiết kế trải nghiệm người dùng khi UX là yếu tố quan trọng | `DESIGN.md`, `EXPERIENCE.md` |
-| `bmad-spec`          | Chưng cất mọi đầu vào ý định (brief, PRD, bản ghi, ghi chú) thành hợp đồng `SPEC.md` súc tích + các tệp đi kèm — chốt CÁI GÌ trước CÁCH LÀM | `SPEC.md` + tệp đi kèm trong `{output_folder}/specs/spec-{slug}/` |
+| `acl-prd` | Xác định yêu cầu (FR/NFR) | `PRD.md` |
+| `acl-ux`            | Thiết kế trải nghiệm người dùng khi UX là yếu tố quan trọng | `DESIGN.md`, `EXPERIENCE.md` |
+| `acl-spec`          | Chưng cất mọi đầu vào ý định (brief, PRD, bản ghi, ghi chú) thành hợp đồng `SPEC.md` súc tích + các tệp đi kèm — chốt CÁI GÌ trước CÁCH LÀM | `SPEC.md` + tệp đi kèm trong `{output_folder}/specs/spec-{slug}/` |
 
 ## Giai đoạn 3: Định hình giải pháp
 
@@ -46,26 +46,26 @@ Quyết định cách xây và chia nhỏ công việc thành các story.
 
 | Quy trình | Mục đích | Tạo ra |
 | ----------------------------------------- | ------------------------------------------ | --------------------------- |
-| `bmad-architecture` | Làm rõ các quyết định kỹ thuật | `architecture.md` kèm ADR |
-| `bmad-create-epics-and-stories` | Phân rã yêu cầu thành các phần việc có thể triển khai | Các file epic chứa các story |
-| `bmad-check-implementation-readiness` | Cổng kiểm tra trước khi triển khai | Quyết định PASS/CONCERNS/FAIL |
+| `acl-architecture` | Làm rõ các quyết định kỹ thuật | `architecture.md` kèm ADR |
+| `acl-create-epics-and-stories` | Phân rã yêu cầu thành các phần việc có thể triển khai | Các file epic chứa các story |
+| `acl-check-implementation-readiness` | Cổng kiểm tra trước khi triển khai | Quyết định PASS/CONCERNS/FAIL |
 
 ## Giai đoạn 4: Triển khai
 
-Mọi đầu vào triển khai đều hội tụ vào `bmad-quick-dev`. Workflow này nhận ý định trực tiếp, issue, đặc tả hoặc story đã lập kế hoạch, rồi chọn mức làm rõ, lập kế hoạch, triển khai và review phù hợp.
+Mọi đầu vào triển khai đều hội tụ vào `acl-quick-dev`. Workflow này nhận ý định trực tiếp, issue, đặc tả hoặc story đã lập kế hoạch, rồi chọn mức làm rõ, lập kế hoạch, triển khai và review phù hợp.
 
 | Quy trình | Mục đích | Tạo ra |
 | -------------------------- | ------------------------------------------------------------------------ | -------------------------------- |
-| `bmad-quick-dev` | Biến ý định trực tiếp hoặc story đã lập kế hoạch thành mã nguồn đã triển khai và review | `spec-*.md` + mã nguồn |
-| `bmad-sprint-planning` | Khởi tạo theo dõi, thường chạy một lần mỗi dự án để sắp thứ tự chu trình phát triển | `sprint-status.yaml` |
-| `bmad-code-review` | Kiểm tra chất lượng phần triển khai | Được duyệt hoặc yêu cầu thay đổi |
-| `bmad-correct-course` | Xử lý thay đổi lớn giữa sprint | Kế hoạch cập nhật hoặc định tuyến lại |
-| `bmad-sprint-status` | Theo dõi tiến độ sprint và trạng thái story | Cập nhật trạng thái sprint |
-| `bmad-retrospective` | Review sau khi hoàn tất epic | Bài học rút ra |
+| `acl-quick-dev` | Biến ý định trực tiếp hoặc story đã lập kế hoạch thành mã nguồn đã triển khai và review | `spec-*.md` + mã nguồn |
+| `acl-sprint-planning` | Khởi tạo theo dõi, thường chạy một lần mỗi dự án để sắp thứ tự chu trình phát triển | `sprint-status.yaml` |
+| `acl-code-review` | Kiểm tra chất lượng phần triển khai | Được duyệt hoặc yêu cầu thay đổi |
+| `acl-correct-course` | Xử lý thay đổi lớn giữa sprint | Kế hoạch cập nhật hoặc định tuyến lại |
+| `acl-sprint-status` | Theo dõi tiến độ sprint và trạng thái story | Cập nhật trạng thái sprint |
+| `acl-retrospective` | Review sau khi hoàn tất epic | Bài học rút ra |
 
 ### Đầu vào trực tiếp và đã lập kế hoạch
 
-Công việc rõ ràng có thể đi thẳng vào `bmad-quick-dev`. Sáng kiến lớn hơn có thể chuẩn bị PRD, UX, kiến trúc, epic, story, kiểm tra mức sẵn sàng và kế hoạch sprint trước. Các artifact này bổ sung ngữ cảnh, không chọn một workflow triển khai khác.
+Công việc rõ ràng có thể đi thẳng vào `acl-quick-dev`. Sáng kiến lớn hơn có thể chuẩn bị PRD, UX, kiến trúc, epic, story, kiểm tra mức sẵn sàng và kế hoạch sprint trước. Các artifact này bổ sung ngữ cảnh, không chọn một workflow triển khai khác.
 
 ## Quản lý ngữ cảnh
 
@@ -79,7 +79,7 @@ Hãy tạo `project-context.md` để bảo đảm AI agent tuân theo quy tắc
 
 **Cách tạo:**
 
-- **Thủ công** — Tạo `_bmad-output/project-context.md` với stack công nghệ và các quy tắc triển khai của bạn
-- **Tự sinh** — Chạy `bmad-generate-project-context` để sinh tự động từ architecture hoặc codebase
+- **Thủ công** — Tạo `_acl-output/project-context.md` với stack công nghệ và các quy tắc triển khai của bạn
+- **Tự sinh** — Chạy `acl-generate-project-context` để sinh tự động từ architecture hoặc codebase
 
 [**Tìm hiểu thêm về project-context.md**](../explanation/project-context.md)

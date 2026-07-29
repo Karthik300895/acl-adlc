@@ -15,7 +15,7 @@ Sửa lỗi, refactor và thay đổi nhỏ có thể đi thẳng vào **Quick D
 - Cập nhật dependency
 
 :::note[Điều kiện tiên quyết]
-- Đã cài BMad Method (`npx bmad-method install`)
+- Đã cài ACL Method (`npx acl-adlc install`)
 - Một IDE tích hợp AI (Claude Code, Cursor, hoặc tương tự)
 :::
 
@@ -38,7 +38,7 @@ run quick-dev — fix https://github.com/org/repo/issues/42
 ```
 
 ```text
-run quick-dev — thực hiện ý định trong _bmad-output/implementation-artifacts/my-intent.md
+run quick-dev — thực hiện ý định trong _acl-output/implementation-artifacts/my-intent.md
 ```
 
 ```text

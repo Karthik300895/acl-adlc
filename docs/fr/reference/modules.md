@@ -5,19 +5,19 @@ sidebar:
   order: 5
 ---
 
-BMad s’étend via des modules officiels que vous sélectionnez lors de l’installation. Ces modules additionnels fournissent des agents, des workflows et des tâches spécialisés pour des domaines spécifiques, au-delà du noyau intégré et de BMM (suite Agile).
+ACL s’étend via des modules officiels que vous sélectionnez lors de l’installation. Ces modules additionnels fournissent des agents, des workflows et des tâches spécialisés pour des domaines spécifiques, au-delà du noyau intégré et de ACL (suite Agile).
 
 :::tip[Installer des Modules]
-Exécutez `npx bmad-method install` et sélectionnez les modules souhaités. L’installateur gère automatiquement le téléchargement, la configuration et l’intégration IDE.
+Exécutez `npx acl-adlc install` et sélectionnez les modules souhaités. L’installateur gère automatiquement le téléchargement, la configuration et l’intégration IDE.
 :::
 
-## BMad Builder
+## ACL Builder
 
-Créez des agents personnalisés, des workflows et des modules spécifiques à un domaine avec une assistance guidée. BMad Builder est le méta-module pour étendre le framework lui-même.
+Créez des agents personnalisés, des workflows et des modules spécifiques à un domaine avec une assistance guidée. ACL Builder est le méta-module pour étendre le framework lui-même.
 
 - **Code :** `bmb`
-- **npm :** [`bmad-builder`](https://www.npmjs.com/package/bmad-builder)
-- **GitHub :** [bmad-code-org/bmad-builder](https://github.com/bmad-code-org/bmad-builder)
+- **npm :** [`acl-builder`](https://www.npmjs.com/package/acl-builder)
+- **GitHub :** [acl-code-org/acl-builder](https://github.com/acl-code-org/acl-builder)
 
 **Fournit :**
 
@@ -31,8 +31,8 @@ Créez des agents personnalisés, des workflows et des modules spécifiques à u
 Outils basés sur l’IA pour la créativité structurée, l’idéation et l’innovation pendant le développement en phase amont. La suite fournit plusieurs agents qui facilitent le brainstorming, le design thinking et la résolution de problèmes en utilisant des cadres éprouvés.
 
 - **Code :** `cis`
-- **npm :** [`bmad-creative-intelligence-suite`](https://www.npmjs.com/package/bmad-creative-intelligence-suite)
-- **GitHub :** [bmad-code-org/bmad-module-creative-intelligence-suite](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
+- **npm :** [`acl-creative-intelligence-suite`](https://www.npmjs.com/package/acl-creative-intelligence-suite)
+- **GitHub :** [acl-code-org/acl-module-creative-intelligence-suite](https://github.com/acl-code-org/acl-module-creative-intelligence-suite)
 
 **Fournit :**
 
@@ -46,8 +46,8 @@ Outils basés sur l’IA pour la créativité structurée, l’idéation et l’
 Workflows de développement de jeux structurés adaptés pour Unity, Unreal, Godot et moteurs personnalisés. Supporte une profondeur de planification allant du prototype à la production à grande échelle ; l’implémentation converge vers Quick Dev.
 
 - **Code :** `gds`
-- **npm :** [`bmad-game-dev-studio`](https://www.npmjs.com/package/bmad-game-dev-studio)
-- **GitHub :** [bmad-code-org/bmad-module-game-dev-studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
+- **npm :** [`acl-game-dev-studio`](https://www.npmjs.com/package/acl-game-dev-studio)
+- **GitHub :** [acl-code-org/acl-module-game-dev-studio](https://github.com/acl-code-org/acl-module-game-dev-studio)
 
 **Fournit :**
 
@@ -61,8 +61,8 @@ Workflows de développement de jeux structurés adaptés pour Unity, Unreal, God
 Stratégie de test de niveau entreprise, conseils d’automatisation et décisions de porte de release via un agent expert et neuf workflows structurés. TEA va bien au-delà du workflow QA intégré avec une priorisation basée sur les risques et une traçabilité des exigences.
 
 - **Code :** `tea`
-- **npm :** [`bmad-method-test-architecture-enterprise`](https://www.npmjs.com/package/bmad-method-test-architecture-enterprise)
-- **GitHub :** [bmad-code-org/bmad-method-test-architecture-enterprise](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise)
+- **npm :** [`acl-adlc-test-architecture-enterprise`](https://www.npmjs.com/package/acl-adlc-test-architecture-enterprise)
+- **GitHub :** [acl-code-org/acl-adlc-test-architecture-enterprise](https://github.com/acl-code-org/acl-adlc-test-architecture-enterprise)
 
 **Fournit :**
 
@@ -73,7 +73,7 @@ Stratégie de test de niveau entreprise, conseils d’automatisation et décisio
 
 ## Modules Communautaires
 
-Les modules communautaires et une marketplace de modules sont à venir. Consultez l'[organisation GitHub BMad](https://github.com/bmad-code-org) pour les mises à jour.
+Les modules communautaires et une marketplace de modules sont à venir. Consultez l'[organisation GitHub ACL](https://github.com/acl-code-org) pour les mises à jour.
 
 ## Glossaire
 

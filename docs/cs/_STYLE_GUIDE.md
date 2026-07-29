@@ -64,8 +64,8 @@ Pouze kritická varování — ztráta dat, bezpečnostní problémy
 ```md
 | Skill                | Agent   | Účel                                 |
 | -------------------- | ------- | ------------------------------------ |
-| `bmad-brainstorming` | Analytik | Brainstorming nového projektu       |
-| `bmad-prd`    | PM      | Vytvoření dokumentu požadavků (PRD) |
+| `acl-brainstorming` | Analytik | Brainstorming nového projektu       |
+| `acl-prd`    | PM      | Vytvoření dokumentu požadavků (PRD) |
 ```
 
 ## Bloky struktury složek
@@ -75,8 +75,8 @@ Zobrazujte v sekcích „Co jste dosáhli“:
 ````md
 ```
 váš-projekt/
-├── _bmad/                                   # Konfigurace BMad
-├── _bmad-output/
+├── _acl/                                   # Konfigurace ACL
+├── _acl-output/
 │   ├── planning-artifacts/
 │   │   └── PRD.md                           # Váš dokument požadavků
 │   ├── implementation-artifacts/
@@ -325,7 +325,7 @@ Starlight generuje navigaci „Na této stránce“ z nadpisů na pravé straně
 Přidejte kurzívní kontext na začátek definice pro termíny s omezeným rozsahem:
 
 - `*Pouze přímý vstup do implementace.*`
-- `*BMad Method/Enterprise.*`
+- `*ACL Method/Enterprise.*`
 - `*Fáze N.*`
 - `*BMGD.*`
 - `*Existující projekty.*`
@@ -353,7 +353,7 @@ Pouze pro práci, které prospívá architektura. Jasná práce může vstoupit 
 
 ### Mohu později změnit svůj plán?
 
-Ano. SM agent má workflow `bmad-correct-course` pro řešení změn rozsahu.
+Ano. SM agent má workflow `acl-correct-course` pro řešení změn rozsahu.
 
 **Máte otázku, na kterou jste zde nenašli odpověď?** [Vytvořte issue](...) nebo se zeptejte na [Discordu](...).
 ```

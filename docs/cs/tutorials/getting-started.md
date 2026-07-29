@@ -1,14 +1,14 @@
 ---
 title: "Začínáme"
-description: Nainstalujte BMad a vytvořte svůj první projekt
+description: Nainstalujte ACL a vytvořte svůj první projekt
 ---
 
 Vytvářejte software rychleji pomocí pracovních postupů řízených AI se specializovanými agenty, kteří vás provedou plánováním, architekturou a implementací.
 
 ## Co se naučíte
 
-- Nainstalovat a inicializovat BMad Method pro nový projekt
-- Používat **BMad-Help** — vašeho inteligentního průvodce, který ví, co dělat dál
+- Nainstalovat a inicializovat ACL Method pro nový projekt
+- Používat **ACL-Help** — vašeho inteligentního průvodce, který ví, co dělat dál
 - Zvolit správnou hloubku plánování pro vaši práci
 - Postupovat fázemi od požadavků k fungujícímu kódu
 - Efektivně používat agenty a pracovní postupy
@@ -21,50 +21,50 @@ Vytvářejte software rychleji pomocí pracovních postupů řízených AI se sp
 :::
 
 :::tip[Nejsnadnější cesta]
-**Instalace** → `npx bmad-method install`
-**Zeptejte se** → `bmad-help what should I do first?`
-**Tvořte** → Nechte BMad-Help vás provést workflow po workflow
+**Instalace** → `npx acl-adlc install`
+**Zeptejte se** → `acl-help what should I do first?`
+**Tvořte** → Nechte ACL-Help vás provést workflow po workflow
 :::
 
-## Seznamte se s BMad-Help: Váš inteligentní průvodce
+## Seznamte se s ACL-Help: Váš inteligentní průvodce
 
-**BMad-Help je nejrychlejší způsob, jak začít s BMad.** Nemusíte si pamatovat workflow nebo fáze — prostě se zeptejte a BMad-Help:
+**ACL-Help je nejrychlejší způsob, jak začít s ACL.** Nemusíte si pamatovat workflow nebo fáze — prostě se zeptejte a ACL-Help:
 
 - **Prozkoumá váš projekt** a zjistí, co už bylo uděláno
 - **Ukáže vaše možnosti** na základě nainstalovaných modulů
 - **Doporučí, co dál** — včetně prvního povinného úkolu
 - **Odpoví na otázky** jako „Mám nápad na SaaS, kde začít?“
 
-### Jak používat BMad-Help
+### Jak používat ACL-Help
 
 Spusťte ho ve vašem AI IDE vyvoláním skillu:
 
 ```
-bmad-help
+acl-help
 ```
 
 Nebo ho spojte s otázkou pro kontextové poradenství:
 
 ```
-bmad-help I have an idea for a SaaS product, I already know all the features I want. where do I get started?
+acl-help I have an idea for a SaaS product, I already know all the features I want. where do I get started?
 ```
 
-BMad-Help odpoví s:
+ACL-Help odpoví s:
 - Co je doporučeno pro vaši situaci
 - Jaký je první povinný úkol
 - Jak vypadá zbytek procesu
 
 ### Řídí i pracovní postupy
 
-BMad-Help nejen odpovídá na otázky — **automaticky se spouští na konci každého workflow** a řekne vám přesně, co dělat dál. Žádné hádání, žádné prohledávání dokumentace — jen jasné pokyny k dalšímu povinnému workflow.
+ACL-Help nejen odpovídá na otázky — **automaticky se spouští na konci každého workflow** a řekne vám přesně, co dělat dál. Žádné hádání, žádné prohledávání dokumentace — jen jasné pokyny k dalšímu povinnému workflow.
 
 :::tip[Začněte zde]
-Po instalaci BMad okamžitě vyvolejte skill `bmad-help`. Detekuje, jaké moduly máte nainstalované, a navede vás ke správnému výchozímu bodu pro váš projekt.
+Po instalaci ACL okamžitě vyvolejte skill `acl-help`. Detekuje, jaké moduly máte nainstalované, a navede vás ke správnému výchozímu bodu pro váš projekt.
 :::
 
-## Pochopení BMad
+## Pochopení ACL
 
-BMad vám pomáhá vytvářet software prostřednictvím řízených pracovních postupů se specializovanými AI agenty. Proces probíhá ve čtyřech fázích:
+ACL vám pomáhá vytvářet software prostřednictvím řízených pracovních postupů se specializovanými AI agenty. Proces probíhá ve čtyřech fázích:
 
 | Fáze | Název          | Co se děje                                              |
 | ---- | -------------- | ------------------------------------------------------- |
@@ -84,7 +84,7 @@ Hloubka plánování je flexibilní:
 | **Plné solutioning** | Koordinované, rizikové nebo mezisystémové iniciativy | PRD, UX, architektura, epicy, stories a sprint plán |
 
 :::note
-Nejde o oddělené implementační cesty. Všechny vstupy se sbíhají do `bmad-quick-dev`; plánování pouze mění množství dostupného kontextu.
+Nejde o oddělené implementační cesty. Všechny vstupy se sbíhají do `acl-quick-dev`; plánování pouze mění množství dostupného kontextu.
 :::
 
 ## Instalace
@@ -92,29 +92,29 @@ Nejde o oddělené implementační cesty. Všechny vstupy se sbíhají do `bmad-
 Otevřete terminál v adresáři vašeho projektu a spusťte:
 
 ```bash
-npx bmad-method install
+npx acl-adlc install
 ```
 
-Pokud chcete nejnovější prereleaseový build místo výchozího release kanálu, použijte `npx bmad-method@next install`.
+Pokud chcete nejnovější prereleaseový build místo výchozího release kanálu, použijte `npx acl-adlc@next install`.
 
-Při výzvě k výběru modulů zvolte **BMad Method**.
+Při výzvě k výběru modulů zvolte **ACL Method**.
 
 Instalátor vytvoří dvě složky:
-- `_bmad/` — agenti, workflow, úkoly a konfigurace
-- `_bmad-output/` — prozatím prázdná, ale zde se budou ukládat vaše artefakty
+- `_acl/` — agenti, workflow, úkoly a konfigurace
+- `_acl-output/` — prozatím prázdná, ale zde se budou ukládat vaše artefakty
 
 :::tip[Váš další krok]
 Otevřete vaše AI IDE ve složce projektu a spusťte:
 
 ```
-bmad-help
+acl-help
 ```
 
-BMad-Help detekuje, co jste dokončili, a doporučí přesně, co dělat dál. Můžete mu také klást otázky jako „Jaké mám možnosti?“ nebo „Mám nápad na SaaS, kde začít?“
+ACL-Help detekuje, co jste dokončili, a doporučí přesně, co dělat dál. Můžete mu také klást otázky jako „Jaké mám možnosti?“ nebo „Mám nápad na SaaS, kde začít?“
 :::
 
 :::note[Jak načítat agenty a spouštět workflow]
-Každý workflow má **skill**, který vyvoláte jménem ve vašem IDE (např. `bmad-prd`). Váš AI nástroj rozpozná název `bmad-*` a spustí ho — nemusíte načítat agenty zvlášť. Můžete také vyvolat agentní skill přímo pro obecnou konverzaci (např. `bmad-agent-pm` pro PM agenta).
+Každý workflow má **skill**, který vyvoláte jménem ve vašem IDE (např. `acl-prd`). Váš AI nástroj rozpozná název `acl-*` a spustí ho — nemusíte načítat agenty zvlášť. Můžete také vyvolat agentní skill přímo pro obecnou konverzaci (např. `acl-agent-pm` pro PM agenta).
 :::
 
 :::caution[Nové chaty]
@@ -128,33 +128,33 @@ Použijte z fází 1–3 tolik, kolik vaše práce potřebuje. U jasné, ohrani�
 :::tip[Kontext projektu (volitelné)]
 Před začátkem zvažte vytvoření `project-context.md` pro dokumentaci vašich technických preferencí a pravidel implementace. Tím zajistíte, že všichni AI agenti budou dodržovat vaše konvence v průběhu celého projektu.
 
-Vytvořte ho ručně na `_bmad-output/project-context.md` nebo ho vygenerujte po architektuře pomocí `bmad-generate-project-context`. [Zjistit více](../explanation/project-context.md).
+Vytvořte ho ručně na `_acl-output/project-context.md` nebo ho vygenerujte po architektuře pomocí `acl-generate-project-context`. [Zjistit více](../explanation/project-context.md).
 :::
 
 ### Fáze 1: Analýza (volitelná)
 
 Všechny workflow v této fázi jsou volitelné:
-- **brainstorming** (`bmad-brainstorming`) — Řízená ideace
-- **průzkum** (`bmad-deep-recon`) — Navrhne prompt pro váš vlastní nástroj hloubkového výzkumu, zpracuje hotovou zprávu do stručného shrnutí pro navazující práci, nebo výzkum provede přímo — tržní, doménový, technický, konkurenční, uživatelský a akademický — s ověřováním tvrzení a životním cyklem obnovy
-- **product-brief** (`bmad-product-brief`) — Doporučený základní dokument, když je váš koncept jasný
-- **prfaq** (`bmad-prfaq`) — Working Backwards výzva pro zátěžový test a zformování vašeho produktového konceptu
+- **brainstorming** (`acl-brainstorming`) — Řízená ideace
+- **průzkum** (`acl-deep-recon`) — Navrhne prompt pro váš vlastní nástroj hloubkového výzkumu, zpracuje hotovou zprávu do stručného shrnutí pro navazující práci, nebo výzkum provede přímo — tržní, doménový, technický, konkurenční, uživatelský a akademický — s ověřováním tvrzení a životním cyklem obnovy
+- **product-brief** (`acl-product-brief`) — Doporučený základní dokument, když je váš koncept jasný
+- **prfaq** (`acl-prfaq`) — Working Backwards výzva pro zátěžový test a zformování vašeho produktového konceptu
 
 ### Fáze 2: Plánování (podle potřeby)
 
 Pro práci, které prospívá produktové plánování:
-1. Vyvolejte **PM agenta** (`bmad-agent-pm`) v novém chatu
-2. Spusťte workflow `bmad-prd` (`bmad-prd`)
+1. Vyvolejte **PM agenta** (`acl-agent-pm`) v novém chatu
+2. Spusťte workflow `acl-prd` (`acl-prd`)
 3. Výstup: `PRD.md`
 
 :::note[UX Design (volitelné)]
-Pokud má váš projekt uživatelské rozhraní, vyvolejte **UX-Designer agenta** (`bmad-agent-ux-designer`) a spusťte UX design workflow (`bmad-ux`) po vytvoření PRD.
+Pokud má váš projekt uživatelské rozhraní, vyvolejte **UX-Designer agenta** (`acl-agent-ux-designer`) a spusťte UX design workflow (`acl-ux`) po vytvoření PRD.
 :::
 
 ### Fáze 3: Solutioning (podle potřeby)
 
 **Vytvoření architektury**
-1. Vyvolejte **Architect agenta** (`bmad-agent-architect`) v novém chatu
-2. Spusťte `bmad-architecture` (`bmad-architecture`)
+1. Vyvolejte **Architect agenta** (`acl-agent-architect`) v novém chatu
+2. Spusťte `acl-architecture` (`acl-architecture`)
 3. Výstup: Dokument architektury s technickými rozhodnutími
 
 **Vytvoření epiců a stories**
@@ -163,24 +163,24 @@ Pokud má váš projekt uživatelské rozhraní, vyvolejte **UX-Designer agenta*
 Epicy a stories se nyní vytvářejí *po* architektuře. Tím vznikají kvalitnější stories, protože architektonická rozhodnutí (databáze, API vzory, tech stack) přímo ovlivňují rozklad práce.
 :::
 
-1. Vyvolejte **PM agenta** (`bmad-agent-pm`) v novém chatu
-2. Spusťte `bmad-create-epics-and-stories` (`bmad-create-epics-and-stories`)
+1. Vyvolejte **PM agenta** (`acl-agent-pm`) v novém chatu
+2. Spusťte `acl-create-epics-and-stories` (`acl-create-epics-and-stories`)
 3. Workflow využívá jak PRD, tak architekturu k vytvoření technicky informovaných stories
 
 **Kontrola připravenosti k implementaci** *(vysoce doporučeno)*
-1. Vyvolejte **Architect agenta** (`bmad-agent-architect`) v novém chatu
-2. Spusťte `bmad-check-implementation-readiness` (`bmad-check-implementation-readiness`)
+1. Vyvolejte **Architect agenta** (`acl-agent-architect`) v novém chatu
+2. Spusťte `acl-check-implementation-readiness` (`acl-check-implementation-readiness`)
 3. Validuje soudržnost všech plánovacích dokumentů
 
 ## Krok 2: Sestavte svůj projekt
 
 Přejděte k implementaci s jakýmkoli dostupným kontextem: přímým požadavkem, issue, specifikací nebo plně naplánovanou story. **Každý workflow by měl běžet v novém chatu.**
 
-U plánované práce spusťte `bmad-quick-dev` a určete vybranou story nebo položku sprintu, například: `Implementuj story 2.3 z _bmad-output/planning-artifacts/epics.md`.
+U plánované práce spusťte `acl-quick-dev` a určete vybranou story nebo položku sprintu, například: `Implementuj story 2.3 z _acl-output/planning-artifacts/epics.md`.
 
 ### Inicializace plánování sprintu (pro plánovanou práci)
 
-Vyvolejte **Developer agenta** (`bmad-agent-dev`) a spusťte `bmad-sprint-planning` (`bmad-sprint-planning`). Tím se vytvoří `sprint-status.yaml` pro sledování všech epiců a stories.
+Vyvolejte **Developer agenta** (`acl-agent-dev`) a spusťte `acl-sprint-planning` (`acl-sprint-planning`). Tím se vytvoří `sprint-status.yaml` pro sledování všech epiců a stories.
 
 Když Quick Dev v tomto souboru rozpozná vybranou story, během implementace ji přesune do stavu `in-progress` a po dokončení implementace do stavu `review`.
 
@@ -190,18 +190,18 @@ Pro každou přímou změnu nebo naplánovanou story opakujte tento cyklus s nov
 
 | Krok | Agent | Workflow             | Příkaz                     | Účel                               |
 | ---- | ----- | -------------------- | -------------------------- | ---------------------------------- |
-| 1    | DEV   | `bmad-quick-dev`     | `bmad-quick-dev`           | Upřesnění, plán, implementace, revize a prezentace |
-| 2    | DEV   | `bmad-code-review`   | `bmad-code-review`         | Dodatečná validace kvality *(doporučeno)* |
+| 1    | DEV   | `acl-quick-dev`     | `acl-quick-dev`           | Upřesnění, plán, implementace, revize a prezentace |
+| 2    | DEV   | `acl-code-review`   | `acl-code-review`         | Dodatečná validace kvality *(doporučeno)* |
 
-Revize v Quick Dev je součástí každého běhu. `bmad-code-review` je volitelná nezávislá validační vrstva v novém kontextu.
+Revize v Quick Dev je součástí každého běhu. `acl-code-review` je volitelná nezávislá validační vrstva v novém kontextu.
 
-Po dokončení všech stories v epicu vyvolejte **Developer agenta** (`bmad-agent-dev`) a spusťte `bmad-retrospective` (`bmad-retrospective`).
+Po dokončení všech stories v epicu vyvolejte **Developer agenta** (`acl-agent-dev`) a spusťte `acl-retrospective` (`acl-retrospective`).
 
 ## Co jste dosáhli
 
-Naučili jste se základy budování s BMad:
+Naučili jste se základy budování s ACL:
 
-- Nainstalovali BMad a nakonfigurovali ho pro vaše IDE
+- Nainstalovali ACL a nakonfigurovali ho pro vaše IDE
 - Zvolili hloubku plánování odpovídající vaší práci
 - Vytvořili plánovací dokumenty (PRD, architektura, epicy a stories)
 - Pochopili cyklus vývoje pro implementaci
@@ -210,8 +210,8 @@ Váš projekt nyní obsahuje:
 
 ```text
 váš-projekt/
-├── _bmad/                                   # Konfigurace BMad
-├── _bmad-output/
+├── _acl/                                   # Konfigurace ACL
+├── _acl-output/
 │   ├── planning-artifacts/
 │   │   ├── PRD.md                           # Váš dokument požadavků
 │   │   ├── architecture.md                  # Technická rozhodnutí
@@ -226,52 +226,52 @@ váš-projekt/
 
 | Workflow                              | Příkaz                                     | Agent     | Účel                                            |
 | ------------------------------------- | ------------------------------------------ | --------- | ----------------------------------------------- |
-| **`bmad-help`** ⭐                    | `bmad-help`                               | Jakýkoli  | **Váš inteligentní průvodce — ptejte se na cokoli!** |
-| `bmad-prd`                     | `bmad-prd`                         | PM        | Vytvoření dokumentu požadavků (PRD)             |
-| `bmad-architecture`            | `bmad-architecture`                | Architect | Vytvoření dokumentu architektury                |
-| `bmad-generate-project-context`       | `bmad-generate-project-context`           | Analyst   | Vytvoření souboru kontextu projektu             |
-| `bmad-create-epics-and-stories`       | `bmad-create-epics-and-stories`           | PM        | Rozklad PRD na epicy                            |
-| `bmad-check-implementation-readiness` | `bmad-check-implementation-readiness`     | Architect | Validace soudržnosti plánování                  |
-| `bmad-sprint-planning`                | `bmad-sprint-planning`                    | DEV       | Inicializace sledování sprintu                  |
-| `bmad-quick-dev`                      | `bmad-quick-dev`                          | DEV       | Implementace záměru, issue, funkce, opravy nebo story |
-| `bmad-code-review`                    | `bmad-code-review`                        | DEV       | Revize implementovaného kódu                    |
+| **`acl-help`** ⭐                    | `acl-help`                               | Jakýkoli  | **Váš inteligentní průvodce — ptejte se na cokoli!** |
+| `acl-prd`                     | `acl-prd`                         | PM        | Vytvoření dokumentu požadavků (PRD)             |
+| `acl-architecture`            | `acl-architecture`                | Architect | Vytvoření dokumentu architektury                |
+| `acl-generate-project-context`       | `acl-generate-project-context`           | Analyst   | Vytvoření souboru kontextu projektu             |
+| `acl-create-epics-and-stories`       | `acl-create-epics-and-stories`           | PM        | Rozklad PRD na epicy                            |
+| `acl-check-implementation-readiness` | `acl-check-implementation-readiness`     | Architect | Validace soudržnosti plánování                  |
+| `acl-sprint-planning`                | `acl-sprint-planning`                    | DEV       | Inicializace sledování sprintu                  |
+| `acl-quick-dev`                      | `acl-quick-dev`                          | DEV       | Implementace záměru, issue, funkce, opravy nebo story |
+| `acl-code-review`                    | `acl-code-review`                        | DEV       | Revize implementovaného kódu                    |
 
 ## Časté otázky
 
 **Potřebuji vždy architekturu?**
-Ne. Architekturu použijte, když je třeba explicitně zachytit technická rozhodnutí nebo mezisystémová omezení. Jasná práce může vstoupit přímo do `bmad-quick-dev`; větší iniciativa přináší do stejného workflow plánovací artefakty.
+Ne. Architekturu použijte, když je třeba explicitně zachytit technická rozhodnutí nebo mezisystémová omezení. Jasná práce může vstoupit přímo do `acl-quick-dev`; větší iniciativa přináší do stejného workflow plánovací artefakty.
 
 **Mohu později změnit svůj plán?**
-Ano. Workflow `bmad-correct-course` (`bmad-correct-course`) řeší změny rozsahu během implementace.
+Ano. Workflow `acl-correct-course` (`acl-correct-course`) řeší změny rozsahu během implementace.
 
 **Co když chci nejdřív brainstormovat?**
-Vyvolejte Analyst agenta (`bmad-agent-analyst`) a spusťte `bmad-brainstorming` (`bmad-brainstorming`) před zahájením PRD.
+Vyvolejte Analyst agenta (`acl-agent-analyst`) a spusťte `acl-brainstorming` (`acl-brainstorming`) před zahájením PRD.
 
 **Musím dodržovat striktní pořadí?**
 Ne striktně. Jakmile se naučíte postup, můžete spouštět workflow přímo pomocí Rychlého přehledu výše.
 
 ## Získání pomoci
 
-:::tip[První zastávka: BMad-Help]
-**Vyvolejte `bmad-help` kdykoli** — je to nejrychlejší způsob, jak se odpoutat. Zeptejte se na cokoli:
+:::tip[První zastávka: ACL-Help]
+**Vyvolejte `acl-help` kdykoli** — je to nejrychlejší způsob, jak se odpoutat. Zeptejte se na cokoli:
 - „Co mám dělat po instalaci?“
 - „Zasekl jsem se na workflow X“
 - „Jaké mám možnosti pro Y?“
 - „Ukaž mi, co bylo dosud uděláno“
 
-BMad-Help prozkoumá váš projekt, detekuje, co jste dokončili, a řekne vám přesně, co dělat dál.
+ACL-Help prozkoumá váš projekt, detekuje, co jste dokončili, a řekne vám přesně, co dělat dál.
 :::
 
 - **Během workflow** — Agenti vás provázejí otázkami a vysvětleními
-- **Komunita** — [Discord](https://discord.gg/gk8jAdXWmj) (#bmad-method-help, #report-bugs-and-issues)
+- **Komunita** — [Discord](https://discord.gg/gk8jAdXWmj) (#acl-adlc-help, #report-bugs-and-issues)
 
 ## Klíčové poznatky
 
 :::tip[Zapamatujte si]
-- **Začněte s `bmad-help`** — Váš inteligentní průvodce, který zná váš projekt a možnosti
+- **Začněte s `acl-help`** — Váš inteligentní průvodce, který zná váš projekt a možnosti
 - **Vždy používejte nové chaty** — Začněte nový chat pro každý workflow
-- **Hloubka plánování se liší** — přímý záměr i plně naplánované stories vstupují do `bmad-quick-dev`
-- **BMad-Help se spouští automaticky** — Každý workflow končí pokyny, co dělat dál
+- **Hloubka plánování se liší** — přímý záměr i plně naplánované stories vstupují do `acl-quick-dev`
+- **ACL-Help se spouští automaticky** — Každý workflow končí pokyny, co dělat dál
 :::
 
-Jste připraveni začít? Nainstalujte BMad, vyvolejte `bmad-help` a nechte svého inteligentního průvodce ukázat cestu.
+Jste připraveni začít? Nainstalujte ACL, vyvolejte `acl-help` a nechte svého inteligentního průvodce ukázat cestu.

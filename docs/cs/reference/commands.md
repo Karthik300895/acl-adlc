@@ -1,26 +1,26 @@
 ---
 title: Skills
-description: Reference BMad skills — co to je, jak fungují a kde je najít.
+description: Reference ACL skills — co to je, jak fungují a kde je najít.
 sidebar:
   order: 4
 ---
 
-Skills jsou předpřipravené prompty, které načítají agenty, spouštějí workflow nebo provádějí úkoly ve vašem IDE. Instalátor BMad je generuje z vašich nainstalovaných modulů při instalaci. Pokud později přidáte, odeberete nebo změníte moduly, přeinstalujte pro synchronizaci skills (viz [Řešení problémů](#řešení-problémů)).
+Skills jsou předpřipravené prompty, které načítají agenty, spouštějí workflow nebo provádějí úkoly ve vašem IDE. Instalátor ACL je generuje z vašich nainstalovaných modulů při instalaci. Pokud později přidáte, odeberete nebo změníte moduly, přeinstalujte pro synchronizaci skills (viz [Řešení problémů](#řešení-problémů)).
 
 ## Skills vs. spouštěče nabídky agentů
 
-BMad nabízí dva způsoby zahájení práce a slouží k různým účelům.
+ACL nabízí dva způsoby zahájení práce a slouží k různým účelům.
 
 | Mechanismus | Jak se vyvolává | Co se stane |
 | --- | --- | --- |
-| **Skill** | Zadejte název skillu (např. `bmad-help`) ve vašem IDE | Přímo načte agenta, spustí workflow nebo provede úkol |
+| **Skill** | Zadejte název skillu (např. `acl-help`) ve vašem IDE | Přímo načte agenta, spustí workflow nebo provede úkol |
 | **Spouštěč nabídky agenta** | Nejprve načtěte agenta, pak zadejte krátký kód (např. `QD`) | Agent interpretuje kód a spustí odpovídající workflow, přičemž zůstává v charakteru |
 
 Spouštěče nabídky agentů vyžadují aktivní relaci agenta. Používejte skills, když víte, který workflow chcete. Používejte spouštěče, když již pracujete s agentem a chcete přepnout úkol bez opuštění konverzace.
 
 ## Jak se skills generují
 
-Když spustíte `npx bmad-method install`, instalátor čte manifesty každého vybraného modulu a zapíše jeden skill na agenta, workflow, úkol a nástroj. Každý skill je adresář obsahující soubor `SKILL.md`, který instruuje AI k načtení odpovídajícího zdrojového souboru a následování jeho instrukcí.
+Když spustíte `npx acl-adlc install`, instalátor čte manifesty každého vybraného modulu a zapíše jeden skill na agenta, workflow, úkol a nástroj. Každý skill je adresář obsahující soubor `SKILL.md`, který instruuje AI k načtení odpovídajícího zdrojového souboru a následování jeho instrukcí.
 
 Instalátor používá šablony pro každý typ skillu:
 
@@ -50,22 +50,22 @@ Každý skill je adresář obsahující soubor `SKILL.md`. Například instalace
 
 ```text
 .claude/skills/
-├── bmad-help/
+├── acl-help/
 │   └── SKILL.md
-├── bmad-prd/
+├── acl-prd/
 │   └── SKILL.md
-├── bmad-agent-dev/
+├── acl-agent-dev/
 │   └── SKILL.md
 └── ...
 ```
 
-Název adresáře určuje název skillu ve vašem IDE. Například adresář `bmad-agent-dev/` registruje skill `bmad-agent-dev`.
+Název adresáře určuje název skillu ve vašem IDE. Například adresář `acl-agent-dev/` registruje skill `acl-agent-dev`.
 
 ## Jak objevit vaše skills
 
 Zadejte název skillu ve vašem IDE pro jeho vyvolání. Některé platformy vyžadují povolení skills v nastavení, než se zobrazí.
 
-Spusťte `bmad-help` pro kontextové poradenství k dalšímu kroku.
+Spusťte `acl-help` pro kontextové poradenství k dalšímu kroku.
 
 :::tip[Rychlé objevování]
 Generované adresáře skills ve vašem projektu jsou kanonický seznam. Otevřete je v prohlížeči souborů, abyste viděli každý skill s jeho popisem.
@@ -79,9 +79,9 @@ Agentní skills načítají specializovanou AI personu s definovanou rolí, komu
 
 | Příklad skillu | Agent | Role |
 | --- | --- | --- |
-| `bmad-agent-dev` | Amelia (Developer) | Implementuje stories s přísným dodržováním specifikací |
-| `bmad-pm` | John (Product Manager) | Vytváří a validuje PRD |
-| `bmad-architect` | Winston (Architect) | Navrhuje systémovou architekturu |
+| `acl-agent-dev` | Amelia (Developer) | Implementuje stories s přísným dodržováním specifikací |
+| `acl-pm` | John (Product Manager) | Vytváří a validuje PRD |
+| `acl-architect` | Winston (Architect) | Navrhuje systémovou architekturu |
 
 Viz [Agenti](./agents.md) pro úplný seznam výchozích agentů a jejich spouštěčů.
 
@@ -91,13 +91,13 @@ Workflow skills spouštějí strukturovaný, vícekrokový proces bez předchoz�
 
 | Příklad skillu | Účel |
 | --- | --- |
-| `bmad-product-brief` | Vytvoření product briefu — řízené discovery, když je váš koncept jasný |
-| `bmad-prfaq` | [Working Backwards PRFAQ](../explanation/analysis-phase.md#prfaq-working-backwards) výzva pro zátěžový test vašeho produktového konceptu |
-| `bmad-prd` | Vytvoření dokumentu požadavků (PRD) |
-| `bmad-architecture` | Návrh systémové architektury |
-| `bmad-create-epics-and-stories` | Vytvoření epiců a stories |
-| `bmad-code-review` | Spuštění revize kódu |
-| `bmad-quick-dev` | Implementace přímého záměru, issue, funkce, opravy nebo naplánované story |
+| `acl-product-brief` | Vytvoření product briefu — řízené discovery, když je váš koncept jasný |
+| `acl-prfaq` | [Working Backwards PRFAQ](../explanation/analysis-phase.md#prfaq-working-backwards) výzva pro zátěžový test vašeho produktového konceptu |
+| `acl-prd` | Vytvoření dokumentu požadavků (PRD) |
+| `acl-architecture` | Návrh systémové architektury |
+| `acl-create-epics-and-stories` | Vytvoření epiců a stories |
+| `acl-code-review` | Spuštění revize kódu |
+| `acl-quick-dev` | Implementace přímého záměru, issue, funkce, opravy nebo naplánované story |
 
 Viz [Mapa pracovních postupů](./workflow-map.md) pro kompletní referenci workflow organizovanou podle fází.
 
@@ -105,15 +105,15 @@ Viz [Mapa pracovních postupů](./workflow-map.md) pro kompletní referenci work
 
 Tasks a tools jsou samostatné operace, které nevyžadují kontext agenta nebo workflow.
 
-**BMad-Help: Váš inteligentní průvodce**
+**ACL-Help: Váš inteligentní průvodce**
 
-`bmad-help` je vaše primární rozhraní pro objevení, co dělat dál. Zkoumá váš projekt, rozumí dotazům v přirozeném jazyce a doporučuje další povinný nebo volitelný krok na základě nainstalovaných modulů.
+`acl-help` je vaše primární rozhraní pro objevení, co dělat dál. Zkoumá váš projekt, rozumí dotazům v přirozeném jazyce a doporučuje další povinný nebo volitelný krok na základě nainstalovaných modulů.
 
 :::note[Příklad]
 ```
-bmad-help
-bmad-help I have a SaaS idea and know all the features. Where do I start?
-bmad-help What are my options for UX design?
+acl-help
+acl-help I have a SaaS idea and know all the features. Where do I start?
+acl-help What are my options for UX design?
 ```
 :::
 
@@ -123,12 +123,12 @@ Základní modul zahrnuje 8 vestavěných nástrojů — nápovědu, revize, zdo
 
 ## Konvence pojmenování
 
-Všechny skills používají prefix `bmad-` následovaný popisným názvem (např. `bmad-dev`, `bmad-prd`, `bmad-help`). Viz [Moduly](./modules.md) pro dostupné moduly.
+Všechny skills používají prefix `acl-` následovaný popisným názvem (např. `acl-dev`, `acl-prd`, `acl-help`). Viz [Moduly](./modules.md) pro dostupné moduly.
 
 ## Řešení problémů
 
 **Skills se nezobrazují po instalaci.** Některé platformy vyžadují explicitní povolení skills v nastavení. Zkontrolujte dokumentaci vašeho IDE nebo se zeptejte AI asistenta, jak skills povolit. Může být také nutné restartovat IDE nebo znovu načíst okno.
 
-**Očekávané skills chybí.** Instalátor generuje skills pouze pro moduly, které jste vybrali. Spusťte `npx bmad-method install` znovu a ověřte výběr modulů. Zkontrolujte, že soubory skills existují v očekávaném adresáři.
+**Očekávané skills chybí.** Instalátor generuje skills pouze pro moduly, které jste vybrali. Spusťte `npx acl-adlc install` znovu a ověřte výběr modulů. Zkontrolujte, že soubory skills existují v očekávaném adresáři.
 
 **Skills z odebraného modulu se stále zobrazují.** Instalátor automaticky nemaže staré soubory skills. Odstraňte zastaralé adresáře z adresáře skills vašeho IDE, nebo smažte celý adresář skills a přeinstalujte pro čistou sadu.

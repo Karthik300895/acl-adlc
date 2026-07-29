@@ -5,7 +5,7 @@ sidebar:
   order: 7
 ---
 
-`bmad-quick-dev` is the canonical implementation workflow for all development work. It accepts anything from free-form intent or an issue to a fully planned story, and produces code changes with as few human-in-the-loop turns as safety allows.
+`acl-quick-dev` is the canonical implementation workflow for all development work. It accepts anything from free-form intent or an issue to a fully planned story, and produces code changes with as few human-in-the-loop turns as safety allows.
 
 Upstream planning remains optional and variable. A clear change can enter directly; a larger initiative can arrive with a PRD, UX design, architecture, epics, stories, readiness results, and sprint plan. Those artifacts strengthen the implementation context rather than selecting a different development workflow.
 
@@ -21,7 +21,7 @@ Human-in-the-loop turns are necessary and expensive.
 
 Current LLMs still fail in predictable ways: they misread intent, fill gaps with confident guesses, drift into unrelated work, and generate noisy review output. At the same time, constant human intervention limits development velocity. Human attention is the bottleneck.
 
-`bmad-quick-dev` rebalances that tradeoff. It trusts the model to run unsupervised for longer stretches, but only after the workflow has created a strong enough boundary to make that safe.
+`acl-quick-dev` rebalances that tradeoff. It trusts the model to run unsupervised for longer stretches, but only after the workflow has created a strong enough boundary to make that safe.
 
 ## The Core Design
 
@@ -29,7 +29,7 @@ Current LLMs still fail in predictable ways: they misread intent, fill gaps with
 
 The workflow starts by having the human and the model compress the request into one coherent goal. The input can begin as a rough expression of intent, but before the workflow runs autonomously it has to become small enough, clear enough, and contradiction-free enough to execute.
 
-Intent can come in many forms: a couple of phrases, a bug tracker link, output from plan mode, text copied from a chat session, or a planned story from BMad's own epics and sprint artifacts. The workflow uses whatever upstream context exists and resolves any gaps it needs to implement safely.
+Intent can come in many forms: a couple of phrases, a bug tracker link, output from plan mode, text copied from a chat session, or a planned story from ACL's own epics and sprint artifacts. The workflow uses whatever upstream context exists and resolves any gaps it needs to implement safely.
 
 This workflow does not eliminate human control. It relocates it to a small number of high-value moments:
 

@@ -5,14 +5,14 @@ sidebar:
   order: 6
 ---
 
-BMad propose deux approches de test : un workflow QA[^1] intégré pour une génération rapide de tests et un module Test Architect installable pour une stratégie de test de qualité entreprise.
+ACL propose deux approches de test : un workflow QA[^1] intégré pour une génération rapide de tests et un module Test Architect installable pour une stratégie de test de qualité entreprise.
 
 ## Lequel Choisir ?
 
 | Facteur                 | QA Intégré                                   | Module TEA                                                          |
 |-------------------------|----------------------------------------------|---------------------------------------------------------------------|
 | **Idéal pour**          | Projets petits et moyens, couverture rapide  | Grands projets, domaines réglementés ou complexes                   |
-| **Installation**        | Rien à installer — inclus dans BMM           | Installer séparément via `npx bmad-method install`                  |
+| **Installation**        | Rien à installer — inclus dans ACL           | Installer séparément via `npx acl-adlc install`                  |
 | **Approche**            | Générer les tests rapidement, itérer ensuite | Planifier d’abord, puis générer avec traçabilité                    |
 | **Types de tests**      | Tests API et E2E                             | API, E2E, ATDD[^2], NFR, et plus                                    |
 | **Stratégie**           | Chemin nominal + cas limites critiques       | Priorisation basée sur les risques (P0-P3)                          |
@@ -24,9 +24,9 @@ La plupart des projets devraient commencer avec le workflow QA intégré. Si vou
 
 ## Workflow QA Intégré
 
-Le workflow QA intégré (`bmad-qa-generate-e2e-tests`) fait partie du module BMM (suite Agile), disponible via l’agent Developer. Il génère rapidement des tests fonctionnels en utilisant le framework de test existant de votre projet — aucune configuration ni installation supplémentaire requise.
+Le workflow QA intégré (`acl-qa-generate-e2e-tests`) fait partie du module ACL (suite Agile), disponible via l’agent Developer. Il génère rapidement des tests fonctionnels en utilisant le framework de test existant de votre projet — aucune configuration ni installation supplémentaire requise.
 
-**Déclencheur :** `QA` (via l’agent Developer) ou `bmad-qa-generate-e2e-tests`
+**Déclencheur :** `QA` (via l’agent Developer) ou `acl-qa-generate-e2e-tests`
 
 ### Ce que le Workflow QA Fait
 
@@ -65,9 +65,9 @@ Le workflow QA génère uniquement des tests. Pour la revue de code et la valida
 
 TEA est un module autonome qui fournit un agent expert (Murat) et neuf workflows structurés pour des tests de qualité entreprise. Il va au-delà de la génération de tests pour inclure la stratégie de test, la planification basée sur les risques, les murs de qualité et la traçabilité des exigences.
 
-- **Documentation :** [TEA Module Docs](https://bmad-code-org.github.io/bmad-method-test-architecture-enterprise/)
-- **Installation :** `npx bmad-method install` et sélectionnez le module TEA
-- **npm :** [`bmad-method-test-architecture-enterprise`](https://www.npmjs.com/package/bmad-method-test-architecture-enterprise)
+- **Documentation :** [TEA Module Docs](https://acl-code-org.github.io/acl-adlc-test-architecture-enterprise/)
+- **Installation :** `npx acl-adlc install` et sélectionnez le module TEA
+- **npm :** [`acl-adlc-test-architecture-enterprise`](https://www.npmjs.com/package/acl-adlc-test-architecture-enterprise)
 
 ### Ce que TEA Fournit
 
@@ -95,11 +95,11 @@ TEA supporte également la priorisation basée sur les risques P0-P3 et des int�
 
 ## Comment les Tests S’Intègrent dans les Workflows
 
-Le workflow Automate du QA intégré apparaît dans la Phase 4 (Implémentation) de la carte de workflow méthode BMad. Il est conçu pour s’exécuter **après qu’un epic complet soit terminé** — une fois que toutes les stories d’un epic ont été implémentées et revues. Une séquence typique :
+Le workflow Automate du QA intégré apparaît dans la Phase 4 (Implémentation) de la carte de workflow méthode ACL. Il est conçu pour s’exécuter **après qu’un epic complet soit terminé** — une fois que toutes les stories d’un epic ont été implémentées et revues. Une séquence typique :
 
-1. Pour chaque story de l’epic : implémenter avec Quick Dev (`QD` / `bmad-quick-dev`), puis ajouter Code Review (`CR`) si nécessaire
+1. Pour chaque story de l’epic : implémenter avec Quick Dev (`QD` / `acl-quick-dev`), puis ajouter Code Review (`CR`) si nécessaire
 2. Après la fin de l’epic : générer les tests avec `QA` (via l’agent Developer) ou le workflow Automate de TEA
-3. Lancer la rétrospective (`bmad-retrospective`) pour capturer les leçons apprises
+3. Lancer la rétrospective (`acl-retrospective`) pour capturer les leçons apprises
 
 Le workflow QA travaille directement à partir du code source sans charger les documents de planification (PRD, architecture). Les workflows TEA peuvent s’intégrer avec les artefacts de planification en amont pour la traçabilité.
 

@@ -96,20 +96,20 @@ def merge_layers(layers: Iterable[dict[str, Any]]) -> dict[str, Any]:
 
 
 def load_central_config(project_root: Path) -> dict[str, Any]:
-    bmad_dir = project_root / "_bmad"
+    acl_dir = project_root / "_acl"
     return merge_layers(
         (
-            load_toml(bmad_dir / "config.toml", required=True),
-            load_toml(bmad_dir / "config.user.toml"),
-            load_toml(bmad_dir / "custom" / "config.toml"),
-            load_toml(bmad_dir / "custom" / "config.user.toml"),
+            load_toml(acl_dir / "config.toml", required=True),
+            load_toml(acl_dir / "config.user.toml"),
+            load_toml(acl_dir / "custom" / "config.toml"),
+            load_toml(acl_dir / "custom" / "config.user.toml"),
         )
     )
 
 
 def load_customization(project_root: Path | None, skill_dir: Path) -> dict[str, Any]:
     skill_name = skill_dir.name
-    custom_dir = project_root / "_bmad" / "custom" if project_root else None
+    custom_dir = project_root / "_acl" / "custom" if project_root else None
     return merge_layers(
         (
             load_toml(skill_dir / "customize.toml", required=True),

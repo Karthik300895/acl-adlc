@@ -15,7 +15,7 @@ Opravy chyb, refaktoringy a malé cílené změny mohou vstoupit do **Quick Dev*
 - Aktualizace závislostí
 
 :::note[Předpoklady]
-- BMad Method nainstalován (`npx bmad-method install`)
+- ACL Method nainstalován (`npx acl-adlc install`)
 - AI-powered IDE (Claude Code, Cursor nebo podobné)
 :::
 
@@ -38,7 +38,7 @@ run quick-dev — fix https://github.com/org/repo/issues/42
 ```
 
 ```text
-run quick-dev — implement the intent in _bmad-output/implementation-artifacts/my-intent.md
+run quick-dev — implement the intent in _acl-output/implementation-artifacts/my-intent.md
 ```
 
 ```text

@@ -5,13 +5,13 @@ sidebar:
   order: 3
 ---
 
-使用 BMad 安装程序从社区注册表、第三方 Git 仓库或本地文件路径添加模块。
+使用 ACL 安装程序从社区注册表、第三方 Git 仓库或本地文件路径添加模块。
 
 ## 何时使用
 
-- 从 BMad 注册表安装社区贡献的模块
+- 从 ACL 注册表安装社区贡献的模块
 - 从第三方 Git 仓库安装模块（GitHub、GitLab、Bitbucket、自托管）
-- 使用 BMad Builder 测试本地开发中的模块
+- 使用 ACL Builder 测试本地开发中的模块
 - 从私有或自托管 Git 服务器安装模块
 
 :::note[前置条件]
@@ -20,12 +20,12 @@ sidebar:
 
 ## 社区模块
 
-社区模块收录在 [BMad 插件市场](https://github.com/bmad-code-org/bmad-plugins-marketplace)。它们按类别组织，并锁定在经过审核的 commit 上以确保安全。
+社区模块收录在 [ACL 插件市场](https://github.com/acl-code-org/acl-plugins-marketplace)。它们按类别组织，并锁定在经过审核的 commit 上以确保安全。
 
 ### 1. 运行安装程序
 
 ```bash
-npx bmad-method install
+npx acl-adlc install
 ```
 
 ### 2. 浏览社区目录
@@ -81,7 +81,7 @@ Would you like to install from a custom source (Git URL or local path)?
 使用 `--custom-source` 标志从命令行安装自定义模块：
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory . \
   --custom-source /path/to/my-module \
   --tools claude-code \
@@ -91,9 +91,9 @@ npx bmad-method install \
 提供 `--custom-source` 但未指定 `--modules` 时，只安装 core 和自定义模块。要同时包含官方模块，需添加 `--modules`：
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory . \
-  --modules bmm \
+  --modules acl \
   --custom-source https://gitlab.com/myorg/my-module \
   --tools claude-code \
   --yes
@@ -122,10 +122,10 @@ npx bmad-method install \
 
 ## 本地开发工作流
 
-如果你正在使用 [BMad Builder](https://github.com/bmad-code-org/bmad-builder) 构建模块，可以直接从工作目录安装：
+如果你正在使用 [ACL Builder](https://github.com/acl-code-org/acl-builder) 构建模块，可以直接从工作目录安装：
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory ~/my-project \
   --custom-source ~/my-module-repo/skills \
   --tools claude-code \
@@ -135,18 +135,18 @@ npx bmad-method install \
 本地来源通过路径引用，不会复制到缓存。当你更新模块源码并重新安装时，安装程序会获取最新变更。
 
 :::caution[来源移除]
-如果你在安装后删除了本地来源目录，`_bmad/` 中已安装的模块文件会保留。在恢复来源路径之前，该模块在更新时会被跳过。
+如果你在安装后删除了本地来源目录，`_acl/` 中已安装的模块文件会保留。在恢复来源路径之前，该模块在更新时会被跳过。
 :::
 
 ## 安装结果
 
-安装后，自定义模块与官方模块一起出现在 `_bmad/` 中：
+安装后，自定义模块与官方模块一起出现在 `_acl/` 中：
 
 ```
 your-project/
-├── _bmad/
+├── _acl/
 │   ├── core/              # 内置核心模块
-│   ├── bmm/               # 官方模块（如已选择）
+│   ├── acl/               # 官方模块（如已选择）
 │   ├── my-module/         # 你的自定义模块
 │   │   ├── my-skill/
 │   │   │   └── SKILL.md
@@ -167,14 +167,14 @@ manifest 记录每个自定义模块的来源（Git 来源为 `repoUrl`，本地
 
 ## 创建自己的模块
 
-使用 [BMad Builder](https://github.com/bmad-code-org/bmad-builder) 创建可供他人安装的模块：
+使用 [ACL Builder](https://github.com/acl-code-org/acl-builder) 创建可供他人安装的模块：
 
-1. 运行 `bmad-module-builder` 搭建模块结构
-2. 使用各种 BMad Builder 工具添加 skill、agent 和 workflow
+1. 运行 `acl-module-builder` 搭建模块结构
+2. 使用各种 ACL Builder 工具添加 skill、agent 和 workflow
 3. 发布到 Git 仓库或共享文件夹集合
 4. 他人使用 `--custom-source <your-repo-url>` 安装
 
-要让模块支持发现模式，请在仓库根目录包含 `.claude-plugin/marketplace.json`（这是跨工具约定，非 Claude 专属）。格式详见 [BMad Builder 文档](https://github.com/bmad-code-org/bmad-builder)。
+要让模块支持发现模式，请在仓库根目录包含 `.claude-plugin/marketplace.json`（这是跨工具约定，非 Claude 专属）。格式详见 [ACL Builder 文档](https://github.com/acl-code-org/acl-builder)。
 
 :::tip[先在本地测试]
 开发期间，使用本地路径安装模块以快速迭代，发布到 Git 仓库之前先确认一切正常。

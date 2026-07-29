@@ -43,7 +43,7 @@ export default defineConfig({
       filter: (page) => !/\/404(\/|$)/.test(new URL(page).pathname),
     }),
     starlight({
-      title: 'BMAD Method',
+      title: 'ACL Method',
       tagline: 'AI-driven agile development with specialized agents and workflows that scale from bug fixes to enterprise platforms.',
 
       // i18n: locale config from shared module (website/src/lib/locales.mjs)
@@ -55,8 +55,8 @@ export default defineConfig({
       // Social links
       social: [
         { icon: 'discord', label: 'Discord', href: 'https://discord.gg/gk8jAdXWmj' },
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/bmad-code-org/BMAD-METHOD' },
-        { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@BMadCode' },
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/acl-code-org/ACL-ADLC' },
+        { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@ACLCode' },
       ],
 
       // Show last updated timestamps
@@ -68,7 +68,7 @@ export default defineConfig({
           tag: 'meta',
           attrs: {
             name: 'ai-terms',
-            content: `AI-optimized documentation: ${siteUrl}/llms-full.txt (plain text, ~100k tokens, complete BMAD reference). Index: ${siteUrl}/llms.txt`,
+            content: `AI-optimized documentation: ${siteUrl}/llms-full.txt (plain text, ~100k tokens, complete ACL reference). Index: ${siteUrl}/llms.txt`,
           },
         },
         {
@@ -126,16 +126,16 @@ export default defineConfig({
           collapsed: true,
           items: [{ autogenerate: { directory: 'reference' } }],
         },
-        // TEA docs moved to standalone module site; keep BMM sidebar focused.
+        // TEA docs moved to standalone module site; keep ACL sidebar focused.
         {
-          label: 'BMad Ecosystem',
-          translations: { 'vi-VN': 'Hệ sinh thái BMad', 'zh-CN': 'BMad 生态系统', 'fr-FR': 'Écosystème BMad', 'cs-CZ': 'Ekosystém BMad' },
+          label: 'ACL Ecosystem',
+          translations: { 'vi-VN': 'Hệ sinh thái ACL', 'zh-CN': 'ACL 生态系统', 'fr-FR': 'Écosystème ACL', 'cs-CZ': 'Ekosystém ACL' },
           collapsed: false,
           items: [
             {
-              label: 'BMad Builder',
-              translations: { 'vi-VN': 'BMad Builder', 'zh-CN': 'BMad 构建器', 'fr-FR': 'BMad Builder', 'cs-CZ': 'BMad Builder' },
-              link: 'https://bmad-builder-docs.bmad-method.org/',
+              label: 'ACL Builder',
+              translations: { 'vi-VN': 'ACL Builder', 'zh-CN': 'ACL 构建器', 'fr-FR': 'ACL Builder', 'cs-CZ': 'ACL Builder' },
+              link: 'https://acl-builder-docs.acl-adlc.org/',
               attrs: { target: '_blank' },
             },
             {
@@ -146,7 +146,7 @@ export default defineConfig({
                 'fr-FR': "Suite d'Intelligence Créative",
                 'cs-CZ': 'Sada kreativní inteligence',
               },
-              link: 'https://cis-docs.bmad-method.org/',
+              link: 'https://cis-docs.acl-adlc.org/',
               attrs: { target: '_blank' },
             },
             {
@@ -157,7 +157,7 @@ export default defineConfig({
                 'fr-FR': 'Studio de Développement de Jeux',
                 'cs-CZ': 'Herní vývojové studio',
               },
-              link: 'https://game-dev-studio-docs.bmad-method.org/',
+              link: 'https://game-dev-studio-docs.acl-adlc.org/',
               attrs: { target: '_blank' },
             },
             {
@@ -168,7 +168,7 @@ export default defineConfig({
                 'fr-FR': 'Architecte de Tests (TEA)',
                 'cs-CZ': 'Testovací architekt (TEA)',
               },
-              link: 'https://bmad-code-org.github.io/bmad-method-test-architecture-enterprise/',
+              link: 'https://acl-code-org.github.io/acl-adlc-test-architecture-enterprise/',
               attrs: { target: '_blank' },
             },
           ],

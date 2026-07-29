@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "bmad-method",
+  "name": "acl-adlc",
   "version": "6.10.0",
   "description": "Breakthrough Method of Agile AI-driven Development",
   "keywords": [
@@ -10,22 +10,22 @@
     "development",
     "methodology",
     "agents",
-    "bmad"
+    "acl"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bmad-code-org/BMAD-METHOD.git"
+    "url": "git+https://github.com/acl-code-org/ACL-ADLC.git"
   },
   "license": "MIT",
-  "author": "Brian (BMad) Madison",
-  "main": "tools/installer/bmad-cli.js",
+  "author": "Brian (ACL) Madison",
+  "main": "tools/installer/acl-cli.js",
   "bin": {
-    "bmad": "tools/installer/bmad-cli.js",
-    "bmad-method": "tools/installer/bmad-cli.js"
+    "acl": "tools/installer/acl-cli.js",
+    "acl-adlc": "tools/installer/acl-cli.js"
   },
   "scripts": {
-    "bmad:install": "node tools/installer/bmad-cli.js install",
-    "bmad:uninstall": "node tools/installer/bmad-cli.js uninstall",
+    "acl:install": "node tools/installer/acl-cli.js install",
+    "acl:uninstall": "node tools/installer/acl-cli.js uninstall",
     "docs:build": "node tools/build-docs.mjs",
     "docs:dev": "astro dev --root website",
     "docs:fix-links": "node tools/fix-doc-links.js",
@@ -35,7 +35,7 @@
     "format:check": "prettier --check \"**/*.{js,cjs,mjs,json,yaml}\"",
     "format:fix": "prettier --write \"**/*.{js,cjs,mjs,json,yaml}\"",
     "format:fix:staged": "prettier --write",
-    "install:bmad": "node tools/installer/bmad-cli.js install",
+    "install:acl": "node tools/installer/acl-cli.js install",
     "lint": "eslint . --ext .js,.cjs,.mjs,.yaml --max-warnings=0",
     "lint:fix": "eslint . --ext .js,.cjs,.mjs,.yaml --fix",
     "lint:md": "markdownlint-cli2 \"**/*.md\"",

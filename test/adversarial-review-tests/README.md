@@ -1,6 +1,6 @@
 # Adversarial Review Test Suite
 
-Tests for the `also_consider` optional input in the `bmad-review` skill, run with only the `adversarial` lens.
+Tests for the `also_consider` optional input in the `acl-review` skill, run with only the `adversarial` lens.
 
 ## Purpose
 
@@ -19,12 +19,12 @@ All tests use `sample-content.md` - a deliberately imperfect User Authentication
 
 ## Running Tests
 
-For each test case in `test-cases.yaml`, invoke the `bmad-review` skill with only the `adversarial` lens.
+For each test case in `test-cases.yaml`, invoke the `acl-review` skill with only the `adversarial` lens.
 
 ### Manual Test Invocation
 
 ```
-Invoke the `bmad-review` skill with only the `adversarial` lens on this content:
+Invoke the `acl-review` skill with only the `adversarial` lens on this content:
 
 <content>
 [paste sample-content.md]

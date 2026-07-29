@@ -1,10 +1,10 @@
 ---
 title: "FAQ pro existující projekty"
-description: Časté otázky o používání BMad Method na existujících projektech
+description: Časté otázky o používání ACL Method na existujících projektech
 sidebar:
   order: 10
 ---
-Rychlé odpovědi na časté otázky o práci na existujících projektech s BMad Method (BMM).
+Rychlé odpovědi na časté otázky o práci na existujících projektech s ACL Method (ACL).
 
 ## Otázky
 
@@ -29,7 +29,7 @@ Nedělejte si starosti — můžete to udělat kdykoli. Můžete to udělat i b�
 
 ### Jak funguje implementace v existujících projektech?
 
-Spusťte `bmad-quick-dev`, stejně jako u nového vývoje. Umí:
+Spusťte `acl-quick-dev`, stejně jako u nového vývoje. Umí:
 
 - Automaticky detekovat váš existující stack
 - Analyzovat existující vzory kódu
@@ -45,6 +45,6 @@ Quick Dev detekuje vaše konvence a zeptá se: „Mám dodržovat tyto existují
 - **Ano** → Zachovat konzistenci se současnou kódovou bází
 - **Ne** → Zavést nové standardy (zdokumentujte proč ve specifikaci)
 
-BMM respektuje vaši volbu — nevynucuje modernizaci, ale nabídne ji.
+ACL respektuje vaši volbu — nevynucuje modernizaci, ale nabídne ji.
 
-**Máte otázku, na kterou jste zde nenašli odpověď?** Prosím [vytvořte issue](https://github.com/bmad-code-org/BMAD-METHOD/issues) nebo se zeptejte na [Discordu](https://discord.gg/gk8jAdXWmj), abychom ji mohli přidat!
+**Máte otázku, na kterou jste zde nenašli odpověď?** Prosím [vytvořte issue](https://github.com/acl-code-org/ACL-ADLC/issues) nebo se zeptejte na [Discordu](https://discord.gg/gk8jAdXWmj), abychom ji mohli přidat!

@@ -1,9 +1,9 @@
 ---
 title: '使用 Web Bundles'
-description: 将 BMad web bundle 安装为 Google Gemini Gem 或 ChatGPT Custom GPT
+description: 将 ACL web bundle 安装为 Google Gemini Gem 或 ChatGPT Custom GPT
 ---
 
-Web bundles 从 **[bmadcode.com/web-bundles](https://bmadcode.com/web-bundles/)** 安装。
+Web bundles 从 **[aclcode.com/web-bundles](https://aclcode.com/web-bundles/)** 安装。
 
 ## 为什么只有一个入口
 
@@ -28,7 +28,7 @@ Web bundles 从 **[bmadcode.com/web-bundles](https://bmadcode.com/web-bundles/)*
 
 ## 你会得到什么
 
-- 一个可复用的 Gem 或 Custom GPT，scoped 到一项 BMad 规划能力。
+- 一个可复用的 Gem 或 Custom GPT，scoped 到一项 ACL 规划能力。
 - 打磨好的 artifact（brief、PRD、研究报告、UX spec），可直接丢进 IDE 做实现。
 - 规划对话跑在现有 Web LLM 订阅上，而不是 metered IDE token。
 
@@ -38,4 +38,4 @@ Web LLM 偶尔在长会话中途掉 persona。若模型开始 out of character�
 
 ## 自己构建
 
-要把现有 BMad skill 变成 web bundle，用 [bmad-utility-skills](https://github.com/bmad-code-org/bmad-utility-skills) 里的 `bmad-os-skill-to-bundle` 工具 skill。它产出 bundle 文件，persona 从所属 agent 继承，并带 swap-example 对比 voice。提交 bundle 到架子：在 [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) 开 PR，添加 bundle 目录并在 `web-bundles/bundles.json` 里加条目。
+要把现有 ACL skill 变成 web bundle，用 [acl-utility-skills](https://github.com/acl-code-org/acl-utility-skills) 里的 `acl-os-skill-to-bundle` 工具 skill。它产出 bundle 文件，persona 从所属 agent 继承，并带 swap-example 对比 voice。提交 bundle 到架子：在 [ACL-ADLC](https://github.com/acl-code-org/ACL-ADLC) 开 PR，添加 bundle 目录并在 `web-bundles/bundles.json` 里加条目。

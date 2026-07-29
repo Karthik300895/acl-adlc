@@ -5,7 +5,7 @@ sidebar:
   order: 7
 ---
 
-`bmad-quick-dev` là workflow triển khai chuẩn cho mọi công việc phát triển. Nó nhận mọi đầu vào từ ý định tự do hoặc issue đến story đã lập kế hoạch đầy đủ, rồi tạo thay đổi mã nguồn với số vòng tương tác con người tối thiểu nhưng an toàn.
+`acl-quick-dev` là workflow triển khai chuẩn cho mọi công việc phát triển. Nó nhận mọi đầu vào từ ý định tự do hoặc issue đến story đã lập kế hoạch đầy đủ, rồi tạo thay đổi mã nguồn với số vòng tương tác con người tối thiểu nhưng an toàn.
 
 Planning upstream vẫn tùy chọn và có độ sâu khác nhau. Thay đổi rõ ràng có thể vào trực tiếp; sáng kiến lớn có thể mang theo PRD, UX, kiến trúc, epic, story, kiểm tra sẵn sàng và kế hoạch sprint. Các artifact này tăng cường ngữ cảnh, không chọn workflow phát triển khác.
 
@@ -21,7 +21,7 @@ Các lượt có người trong vòng lặp vừa cần thiết vừa tốn kém
 
 LLM hiện tại vẫn thất bại theo những cách dễ đoán: hiểu sai ý định, tự điền vào khoảng trống bằng những phán đoán tự tin, lệch sang công việc không liên quan, và tạo ra các bản review nhiễu. Đồng thời, việc cần con người nhảy vào liên tục làm giảm tốc độ phát triển. Sự chú ý của con người là nút thắt.
 
-`bmad-quick-dev` cân bằng lại đánh đổi đó. Nó tin mô hình có thể chạy tự chủ lâu hơn, nhưng chỉ sau khi quy trình đã tạo được một ranh giới đủ mạnh để làm điều đó an toàn.
+`acl-quick-dev` cân bằng lại đánh đổi đó. Nó tin mô hình có thể chạy tự chủ lâu hơn, nhưng chỉ sau khi quy trình đã tạo được một ranh giới đủ mạnh để làm điều đó an toàn.
 
 ## Thiết kế cốt lõi
 
@@ -29,7 +29,7 @@ LLM hiện tại vẫn thất bại theo những cách dễ đoán: hiểu sai �
 
 Quy trình bắt đầu bằng việc để con người và mô hình nén yêu cầu thành một mục tiêu thống nhất. Đầu vào có thể bắt đầu như một ý định thô, nhưng trước khi quy trình tự vận hành thì nó phải đủ nhỏ, đủ rõ ràng, và đủ ít mâu thuẫn để có thể thực thi.
 
-Ý định có thể đến từ nhiều dạng: vài cụm từ, liên kết trình theo dõi lỗi, đầu ra từ chế độ lập kế hoạch, đoạn văn bản sao chép từ phiên chat, hoặc story đã lập kế hoạch từ epic và artifact sprint của BMad. Workflow sử dụng mọi ngữ cảnh upstream hiện có và giải quyết các khoảng trống cần thiết để triển khai an toàn.
+Ý định có thể đến từ nhiều dạng: vài cụm từ, liên kết trình theo dõi lỗi, đầu ra từ chế độ lập kế hoạch, đoạn văn bản sao chép từ phiên chat, hoặc story đã lập kế hoạch từ epic và artifact sprint của ACL. Workflow sử dụng mọi ngữ cảnh upstream hiện có và giải quyết các khoảng trống cần thiết để triển khai an toàn.
 
 Quy trình này không loại bỏ quyền kiểm soát của con người. Nó chuyển nó về một số thời điểm có giá trị cao:
 

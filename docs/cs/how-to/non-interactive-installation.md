@@ -1,11 +1,11 @@
 ---
 title: Neinteraktivní instalace
-description: Instalace BMad pomocí příznaků příkazové řádky pro CI/CD pipelines a automatizované nasazení
+description: Instalace ACL pomocí příznaků příkazové řádky pro CI/CD pipelines a automatizované nasazení
 sidebar:
   order: 2
 ---
 
-Použijte příznaky příkazové řádky k neinteraktivní instalaci BMad. To je užitečné pro:
+Použijte příznaky příkazové řádky k neinteraktivní instalaci ACL. To je užitečné pro:
 
 ## Kdy to použít
 
@@ -25,7 +25,7 @@ Vyžaduje [Node.js](https://nodejs.org) v20.12+ a `npx` (součástí npm).
 | Příznak | Popis | Příklad |
 |---------|-------|---------|
 | `--directory <cesta>` | Instalační adresář | `--directory ~/projects/myapp` |
-| `--modules <moduly>` | Čárkou oddělená ID modulů | `--modules bmm,bmb` |
+| `--modules <moduly>` | Čárkou oddělená ID modulů | `--modules acl,bmb` |
 | `--tools <nástroje>` | Čárkou oddělená ID nástrojů/IDE (použijte `none` pro přeskočení) | `--tools claude-code,cursor` nebo `--tools none` |
 | `--action <typ>` | Akce pro existující instalace: `install` (výchozí), `update` nebo `quick-update` | `--action quick-update` |
 
@@ -36,7 +36,7 @@ Vyžaduje [Node.js](https://nodejs.org) v20.12+ a `npx` (součástí npm).
 | `--user-name <jméno>` | Jméno, které agenti použijí | Systémové uživatelské jméno |
 | `--communication-language <jazyk>` | Jazyk komunikace agentů | English |
 | `--document-output-language <jazyk>` | Jazyk výstupních dokumentů | English |
-| `--output-folder <cesta>` | Cesta k výstupní složce | _bmad-output |
+| `--output-folder <cesta>` | Cesta k výstupní složce | _acl-output |
 
 ### Další možnosti
 
@@ -49,10 +49,10 @@ Vyžaduje [Node.js](https://nodejs.org) v20.12+ a `npx` (součástí npm).
 
 Dostupná ID modulů pro příznak `--modules`:
 
-- `bmm` — BMad Method Master
-- `bmb` — BMad Builder
+- `acl` — ACL Method Master
+- `bmb` — ACL Builder
 
-Zkontrolujte [registr BMad](https://github.com/bmad-code-org) pro dostupné externí moduly.
+Zkontrolujte [registr ACL](https://github.com/acl-code-org) pro dostupné externí moduly.
 
 ## ID nástrojů/IDE
 
@@ -60,16 +60,16 @@ Dostupná ID nástrojů pro příznak `--tools`:
 
 **Preferované:** `claude-code`, `cursor`
 
-Spusťte `npx bmad-method install` interaktivně jednou pro zobrazení aktuálního seznamu podporovaných nástrojů, nebo zkontrolujte [konfiguraci kódů platforem](https://github.com/bmad-code-org/BMAD-METHOD/blob/main/tools/installer/ide/platform-codes.yaml).
+Spusťte `npx acl-adlc install` interaktivně jednou pro zobrazení aktuálního seznamu podporovaných nástrojů, nebo zkontrolujte [konfiguraci kódů platforem](https://github.com/acl-code-org/ACL-ADLC/blob/main/tools/installer/ide/platform-codes.yaml).
 
 ## Režimy instalace
 
 | Režim | Popis | Příklad |
 |-------|-------|---------|
-| Plně neinteraktivní | Zadejte všechny příznaky pro přeskočení výzev | `npx bmad-method install --directory . --modules bmm --tools claude-code --yes` |
-| Polo-interaktivní | Zadejte některé příznaky; BMad se zeptá na zbytek | `npx bmad-method install --directory . --modules bmm` |
-| Pouze výchozí | Přijměte vše výchozí s `-y` | `npx bmad-method install --yes` |
-| Bez nástrojů | Přeskočte konfiguraci nástrojů/IDE | `npx bmad-method install --modules bmm --tools none` |
+| Plně neinteraktivní | Zadejte všechny příznaky pro přeskočení výzev | `npx acl-adlc install --directory . --modules acl --tools claude-code --yes` |
+| Polo-interaktivní | Zadejte některé příznaky; ACL se zeptá na zbytek | `npx acl-adlc install --directory . --modules acl` |
+| Pouze výchozí | Přijměte vše výchozí s `-y` | `npx acl-adlc install --yes` |
+| Bez nástrojů | Přeskočte konfiguraci nástrojů/IDE | `npx acl-adlc install --modules acl --tools none` |
 
 ## Příklady
 
@@ -77,45 +77,45 @@ Spusťte `npx bmad-method install` interaktivně jednou pro zobrazení aktuáln�
 
 ```bash
 #!/bin/bash
-# install-bmad.sh
+# install-acl.sh
 
-npx bmad-method install \
+npx acl-adlc install \
   --directory "${GITHUB_WORKSPACE}" \
-  --modules bmm \
+  --modules acl \
   --tools claude-code \
   --user-name "CI Bot" \
   --communication-language English \
   --document-output-language English \
-  --output-folder _bmad-output \
+  --output-folder _acl-output \
   --yes
 ```
 
 ### Aktualizace existující instalace
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory ~/projects/myapp \
   --action update \
-  --modules bmm,bmb,custom-module
+  --modules acl,bmb,custom-module
 ```
 
 ### Rychlá aktualizace (zachování nastavení)
 
 ```bash
-npx bmad-method install \
+npx acl-adlc install \
   --directory ~/projects/myapp \
   --action quick-update
 ```
 
 ## Co získáte
 
-- Plně nakonfigurovaný adresář `_bmad/` ve vašem projektu
+- Plně nakonfigurovaný adresář `_acl/` ve vašem projektu
 - Agenty a workflow nakonfigurované pro vybrané moduly a nástroje
-- Složku `_bmad-output/` pro generované artefakty
+- Složku `_acl-output/` pro generované artefakty
 
 ## Validace a zpracování chyb
 
-BMad validuje všechny zadané příznaky:
+ACL validuje všechny zadané příznaky:
 
 - **Adresář** — Musí být platná cesta s oprávněním k zápisu
 - **Moduly** — Upozorní na neplatná ID modulů (ale nespadne)
@@ -149,5 +149,5 @@ Neplatné hodnoty buď:
 - Externí moduly musí být dostupné v registru
 
 :::note[Stále jste uvízli?]
-Spusťte s `--debug` pro detailní výstup, zkuste interaktivní režim pro izolaci problému, nebo nahlaste na <https://github.com/bmad-code-org/BMAD-METHOD/issues>.
+Spusťte s `--debug` pro detailní výstup, zkuste interaktivní režim pro izolaci problému, nebo nahlaste na <https://github.com/acl-code-org/ACL-ADLC/issues>.
 :::

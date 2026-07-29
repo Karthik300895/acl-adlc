@@ -1,4 +1,4 @@
-# BMAD-METHOD
+# ACL-ADLC
 
 Open source framework for structured, agent-assisted software delivery.
 

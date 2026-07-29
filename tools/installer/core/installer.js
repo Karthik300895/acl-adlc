@@ -8,7 +8,7 @@ const { Config } = require('./config');
 const { getProjectRoot, getSourcePath } = require('../project-root');
 const { ManifestGenerator } = require('./manifest-generator');
 const prompts = require('../prompts');
-const { BMAD_FOLDER_NAME } = require('../ide/shared/path-utils');
+const { ACL_FOLDER_NAME } = require('../ide/shared/path-utils');
 const { InstallPaths } = require('./install-paths');
 const { ExternalModuleManager } = require('../modules/external-manager');
 const { resolveModuleVersion } = require('../modules/version-resolver');
@@ -24,7 +24,7 @@ class Installer {
     this.ideManager = new IdeManager();
     this.fileOps = new FileOps();
     this.installedFiles = new Set(); // Track all installed files
-    this.bmadFolderName = BMAD_FOLDER_NAME;
+    this.aclFolderName = ACL_FOLDER_NAME;
   }
 
   /**
@@ -41,7 +41,7 @@ class Installer {
       const config = Config.build(originalConfig);
       const paths = await InstallPaths.create(config);
       const officialModules = await OfficialModules.build(config, paths);
-      const existingInstall = await ExistingInstall.detect(paths.bmadDir);
+      const existingInstall = await ExistingInstall.detect(paths.aclDir);
 
       try {
         await warnPreNativeSkillsLegacy({
@@ -50,7 +50,7 @@ class Installer {
         });
       } catch (error) {
         // Legacy-dir scan is informational; never let it abort install.
-        await prompts.log.warn(`Warning: Could not check for legacy BMAD entries: ${error.message}`);
+        await prompts.log.warn(`Warning: Could not check for legacy ACL entries: ${error.message}`);
       }
 
       if (existingInstall.installed) {
@@ -64,7 +64,7 @@ class Installer {
       // Capture pre-install module versions for from→to display
       const preInstallVersions = new Map();
       if (existingInstall.installed) {
-        const existingModules = await this.manifest.getAllModuleVersions(paths.bmadDir);
+        const existingModules = await this.manifest.getAllModuleVersions(paths.aclDir);
         for (const mod of existingModules) {
           if (mod.name && mod.version) {
             preInstallVersions.set(mod.name, mod.version);
@@ -78,7 +78,7 @@ class Installer {
 
       // Capture previously installed skill rows before they get overwritten
       const preservedModules = originalConfig._preserveModules || [];
-      const previousSkillManifestRows = await this._readSkillManifestRows(paths.bmadDir);
+      const previousSkillManifestRows = await this._readSkillManifestRows(paths.aclDir);
       const previousSkillIds = this._getPreviousSkillIdsForCleanup(previousSkillManifestRows, preservedModules);
 
       const allModules = config.modules || [];
@@ -96,20 +96,20 @@ class Installer {
 
       await this._setupIdes(config, allModules, paths, addResult, previousSkillIds);
 
-      // Skills are now in IDE directories — remove redundant copies from _bmad/.
+      // Skills are now in IDE directories — remove redundant copies from _acl/.
       // Also cleans up skill dirs left by older installer versions.
-      await this._cleanupSkillDirs(paths.bmadDir);
+      await this._cleanupSkillDirs(paths.aclDir);
 
       const restoreResult = await this._restoreUserFiles(paths, updateState);
 
       // Surface any "action needed" post-install messages for installed modules
       // (e.g. run a setup skill) and let the user acknowledge them before the
-      // final summary, so "BMAD is ready to use!" stays the last thing shown.
+      // final summary, so "ACL is ready to use!" stays the last thing shown.
       await this._displayPostInstallMessages(config, officialModules);
 
       // Render consolidated summary
       await this.renderInstallSummary(results, {
-        bmadDir: paths.bmadDir,
+        aclDir: paths.aclDir,
         modules: config.modules,
         ides: config.ides,
         customFiles: restoreResult.customFiles.length > 0 ? restoreResult.customFiles : undefined,
@@ -119,7 +119,7 @@ class Installer {
 
       return {
         success: true,
-        path: paths.bmadDir,
+        path: paths.aclDir,
         modules: config.modules,
         ides: config.ides,
         projectDir: paths.projectRoot,
@@ -183,7 +183,7 @@ class Installer {
         await prompts.log.error(`${handler.displayName || ide}: ${handler.platformConfig.suspended}`);
       }
       throw new Error(
-        `All selected tool(s) are suspended: ${suspendedIdes.join(', ')}. Installation aborted to prevent upgrading _bmad/ without a working IDE configuration.`,
+        `All selected tool(s) are suspended: ${suspendedIdes.join(', ')}. Installation aborted to prevent upgrading _acl/ without a working IDE configuration.`,
       );
     }
   }
@@ -261,7 +261,7 @@ class Installer {
     installTasks.push({
       title: 'Creating module directories',
       task: async (message) => {
-        const verboseMode = process.env.BMAD_VERBOSE_INSTALL === 'true' || config.verbose;
+        const verboseMode = process.env.ACL_VERBOSE_INSTALL === 'true' || config.verbose;
         const moduleLogger = {
           log: async (msg) => (verboseMode ? await prompts.log.message(msg) : undefined),
           error: async (msg) => await prompts.log.error(msg),
@@ -271,7 +271,7 @@ class Installer {
         if (config.modules && config.modules.length > 0) {
           for (const moduleName of config.modules) {
             message(`Setting up ${moduleName}...`);
-            const result = await officialModules.createModuleDirectories(moduleName, paths.bmadDir, {
+            const result = await officialModules.createModuleDirectories(moduleName, paths.aclDir, {
               installedIDEs: config.ides || [],
               moduleConfig: moduleConfigs[moduleName] || {},
               existingModuleConfig: officialModules.existingConfig?.[moduleName] || {},
@@ -295,7 +295,7 @@ class Installer {
     const configTask = {
       title: 'Generating configurations',
       task: async (message) => {
-        await this.generateModuleConfigs(paths.bmadDir, moduleConfigs);
+        await this.generateModuleConfigs(paths.aclDir, moduleConfigs);
         addResult('Configurations', 'ok', 'generated');
 
         this.installedFiles.add(paths.manifestFile());
@@ -319,22 +319,22 @@ class Installer {
           modulesForCsvPreserve = preservedModules.length > 0 ? [...allModules, ...preservedModules] : allModules;
         }
 
-        await this._trackPreservedModuleFiles(paths.bmadDir, preservedModules);
+        await this._trackPreservedModuleFiles(paths.aclDir, preservedModules);
 
-        await manifestGen.generateManifests(paths.bmadDir, allModulesForManifest, [...this.installedFiles], {
+        await manifestGen.generateManifests(paths.aclDir, allModulesForManifest, [...this.installedFiles], {
           ides: config.ides || [],
           preservedModules: modulesForCsvPreserve,
           moduleConfigs,
         });
-        await this._appendPreservedSkillManifestRows(paths.bmadDir, previousSkillManifestRows, preservedModules);
+        await this._appendPreservedSkillManifestRows(paths.aclDir, previousSkillManifestRows, preservedModules);
 
         // Apply post-install --set TOML patches. Runs after writeCentralConfig
         // (inside generateManifests above) so the patch operates on the
-        // freshly written `_bmad/config.toml` / `_bmad/config.user.toml`.
+        // freshly written `_acl/config.toml` / `_acl/config.user.toml`.
         // See `tools/installer/set-overrides.js` for routing rules.
         if (config.setOverrides && Object.keys(config.setOverrides).length > 0) {
           const { applySetOverrides } = require('../set-overrides');
-          const applied = await applySetOverrides(config.setOverrides, paths.bmadDir);
+          const applied = await applySetOverrides(config.setOverrides, paths.aclDir);
           if (applied.length > 0) {
             const summary = applied.map((a) => `${a.module}.${a.key} → ${a.file}`).join(', ');
             await prompts.log.info(`Applied --set overrides: ${summary}`);
@@ -342,7 +342,7 @@ class Installer {
         }
 
         message('Generating help catalog...');
-        await this.mergeModuleHelpCatalogs(paths.bmadDir, manifestGen.agents);
+        await this.mergeModuleHelpCatalogs(paths.aclDir, manifestGen.agents);
         addResult('Help catalog', 'ok');
 
         return 'Configurations generated';
@@ -385,7 +385,7 @@ class Installer {
       return;
     }
 
-    const setupResults = await this.ideManager.setupBatch(validIdes, paths.projectRoot, paths.bmadDir, {
+    const setupResults = await this.ideManager.setupBatch(validIdes, paths.projectRoot, paths.aclDir, {
       selectedModules: allModules || [],
       verbose: config.verbose,
       previousSkillIds,
@@ -402,45 +402,45 @@ class Installer {
   }
 
   /**
-   * Remove skill directories from _bmad/ after IDE installation.
-   * Skills are self-contained in IDE directories, so _bmad/ only needs
+   * Remove skill directories from _acl/ after IDE installation.
+   * Skills are self-contained in IDE directories, so _acl/ only needs
    * module-level files (config.yaml, _config/, etc.).
    * Also cleans up skill dirs left by older installer versions.
-   * @param {string} bmadDir - BMAD installation directory
+   * @param {string} aclDir - ACL installation directory
    */
-  async _cleanupSkillDirs(bmadDir) {
+  async _cleanupSkillDirs(aclDir) {
     const csv = require('csv-parse/sync');
-    const csvPath = path.join(bmadDir, '_config', 'skill-manifest.csv');
+    const csvPath = path.join(aclDir, '_config', 'skill-manifest.csv');
     if (!(await fs.pathExists(csvPath))) return;
 
     const csvContent = await fs.readFile(csvPath, 'utf8');
     const records = csv.parse(csvContent, { columns: true, skip_empty_lines: true });
-    const bmadFolderName = path.basename(bmadDir);
-    const bmadPrefix = bmadFolderName + '/';
+    const aclFolderName = path.basename(aclDir);
+    const aclPrefix = aclFolderName + '/';
 
     for (const record of records) {
       if (!record.path) continue;
-      const relativePath = record.path.startsWith(bmadPrefix) ? record.path.slice(bmadPrefix.length) : record.path;
-      const sourceDir = path.dirname(path.join(bmadDir, relativePath));
+      const relativePath = record.path.startsWith(aclPrefix) ? record.path.slice(aclPrefix.length) : record.path;
+      const sourceDir = path.dirname(path.join(aclDir, relativePath));
       if (await fs.pathExists(sourceDir)) {
         await fs.remove(sourceDir);
-        await this._removeEmptyParents(path.dirname(sourceDir), bmadDir);
+        await this._removeEmptyParents(path.dirname(sourceDir), aclDir);
       }
     }
   }
 
   /**
    * Remove now-empty parent directories left behind after skill dir cleanup.
-   * Walks up from dir, stopping at (and never removing) bmadDir. Best-effort:
+   * Walks up from dir, stopping at (and never removing) aclDir. Best-effort:
    * a directory that vanishes or fills in mid-walk just ends the walk.
    * @param {string} dir - Directory to start walking up from
-   * @param {string} bmadDir - BMAD installation directory (boundary)
+   * @param {string} aclDir - ACL installation directory (boundary)
    */
-  async _removeEmptyParents(dir, bmadDir) {
+  async _removeEmptyParents(dir, aclDir) {
     let current = dir;
     while (true) {
-      // Path-boundary check (not a string prefix, so siblings like _bmad2 don't match).
-      const rel = path.relative(bmadDir, current);
+      // Path-boundary check (not a string prefix, so siblings like _acl2 don't match).
+      const rel = path.relative(aclDir, current);
       if (rel === '' || rel.startsWith('..') || path.isAbsolute(rel)) break;
       try {
         const entries = await fs.readdir(current);
@@ -453,8 +453,8 @@ class Installer {
     }
   }
 
-  async _readSkillManifestRows(bmadDir) {
-    const csvPath = path.join(bmadDir, '_config', 'skill-manifest.csv');
+  async _readSkillManifestRows(aclDir) {
+    const csvPath = path.join(aclDir, '_config', 'skill-manifest.csv');
     if (!(await fs.pathExists(csvPath))) return [];
 
     try {
@@ -478,17 +478,17 @@ class Installer {
     return ids;
   }
 
-  async _appendPreservedSkillManifestRows(bmadDir, previousRows, preservedModules = []) {
+  async _appendPreservedSkillManifestRows(aclDir, previousRows, preservedModules = []) {
     if (!previousRows || previousRows.length === 0 || preservedModules.length === 0) return;
 
     const preservedModuleSet = new Set(preservedModules);
     const rowsToPreserve = previousRows.filter((row) => row.canonicalId && row.module && preservedModuleSet.has(row.module));
     if (rowsToPreserve.length === 0) return;
 
-    const csvPath = path.join(bmadDir, '_config', 'skill-manifest.csv');
+    const csvPath = path.join(aclDir, '_config', 'skill-manifest.csv');
     if (!(await fs.pathExists(csvPath))) return;
 
-    const currentRows = await this._readSkillManifestRows(bmadDir);
+    const currentRows = await this._readSkillManifestRows(aclDir);
     const activeIds = new Set(currentRows.map((row) => row.canonicalId).filter(Boolean));
     const appendedRows = [];
 
@@ -534,7 +534,7 @@ class Installer {
             message(`Restoring ${updateState.customFiles.length} custom files...`);
 
             for (const originalPath of updateState.customFiles) {
-              const relativePath = path.relative(paths.bmadDir, originalPath);
+              const relativePath = path.relative(paths.aclDir, originalPath);
               const backupPath = path.join(updateState.tempBackupDir, relativePath);
 
               if (await fs.pathExists(backupPath)) {
@@ -557,7 +557,7 @@ class Installer {
               message(`Restoring ${restoredModifiedFiles.length} modified files as .bak...`);
 
               for (const modifiedFile of restoredModifiedFiles) {
-                const relativePath = path.relative(paths.bmadDir, modifiedFile.path);
+                const relativePath = path.relative(paths.aclDir, modifiedFile.path);
                 const tempBackupPath = path.join(updateState.tempModifiedBackupDir, relativePath);
                 const bakPath = modifiedFile.path + '.bak';
 
@@ -589,8 +589,8 @@ class Installer {
    */
   async _prepareUpdateState(paths, config, existingInstall, officialModules) {
     // Detect custom and modified files BEFORE updating (compare current files vs files-manifest.csv)
-    const existingFilesManifest = await this.readFilesManifest(paths.bmadDir);
-    const { customFiles, modifiedFiles } = await this.detectCustomFiles(paths.bmadDir, existingFilesManifest);
+    const existingFilesManifest = await this.readFilesManifest(paths.aclDir);
+    const { customFiles, modifiedFiles } = await this.detectCustomFiles(paths.aclDir, existingFilesManifest);
 
     // Preserve existing core configuration during updates
     // (no-op for quick-update which already has core config from collectModuleConfigQuick)
@@ -631,11 +631,11 @@ class Installer {
     let tempModifiedBackupDir;
 
     if (customFiles.length > 0) {
-      tempBackupDir = path.join(paths.projectRoot, '_bmad-custom-backup-temp');
+      tempBackupDir = path.join(paths.projectRoot, '_acl-custom-backup-temp');
       await fs.ensureDir(tempBackupDir);
 
       for (const customFile of customFiles) {
-        const relativePath = path.relative(paths.bmadDir, customFile);
+        const relativePath = path.relative(paths.aclDir, customFile);
         const backupPath = path.join(tempBackupDir, relativePath);
         await fs.ensureDir(path.dirname(backupPath));
         await fs.copy(customFile, backupPath);
@@ -643,11 +643,11 @@ class Installer {
     }
 
     if (modifiedFiles.length > 0) {
-      tempModifiedBackupDir = path.join(paths.projectRoot, '_bmad-modified-backup-temp');
+      tempModifiedBackupDir = path.join(paths.projectRoot, '_acl-modified-backup-temp');
       await fs.ensureDir(tempModifiedBackupDir);
 
       for (const modifiedFile of modifiedFiles) {
-        const relativePath = path.relative(paths.bmadDir, modifiedFile.path);
+        const relativePath = path.relative(paths.aclDir, modifiedFile.path);
         const tempBackupPath = path.join(tempModifiedBackupDir, relativePath);
         await fs.ensureDir(path.dirname(tempBackupPath));
         await fs.copy(modifiedFile.path, tempBackupPath, { overwrite: true });
@@ -658,7 +658,7 @@ class Installer {
   }
 
   /**
-   * Sync src/scripts/* → _bmad/scripts/ so shared Python scripts
+   * Sync src/scripts/* → _acl/scripts/ so shared Python scripts
    * (e.g. resolve_customization.py) are available at install time.
    * Excludes dev-only tests and Python caches so they don't ship to users.
    * Wipes the destination first so files removed or renamed in source
@@ -687,7 +687,7 @@ class Installer {
       this.installedFiles.add(customGitignore);
     }
 
-    const renderDir = path.join(paths.bmadDir, 'render');
+    const renderDir = path.join(paths.aclDir, 'render');
     const renderGitignore = path.join(renderDir, '.gitignore');
     if (!(await fs.pathExists(renderGitignore))) {
       await fs.ensureDir(renderDir);
@@ -708,9 +708,9 @@ class Installer {
     }
   }
 
-  async _trackPreservedModuleFiles(bmadDir, preservedModules = []) {
+  async _trackPreservedModuleFiles(aclDir, preservedModules = []) {
     for (const moduleName of preservedModules) {
-      const modulePath = path.join(bmadDir, moduleName);
+      const modulePath = path.join(aclDir, moduleName);
       if (await fs.pathExists(modulePath)) {
         await this._trackFilesRecursive(modulePath);
       }
@@ -739,7 +739,7 @@ class Installer {
       const moduleConfig = officialModules.moduleConfigs[moduleName] || {};
       const installResult = await officialModules.install(
         moduleName,
-        paths.bmadDir,
+        paths.aclDir,
         (filePath) => {
           this.installedFiles.add(filePath);
         },
@@ -781,11 +781,11 @@ class Installer {
 
   /**
    * Read files-manifest.csv
-   * @param {string} bmadDir - BMAD installation directory
+   * @param {string} aclDir - ACL installation directory
    * @returns {Array} Array of file entries from files-manifest.csv
    */
-  async readFilesManifest(bmadDir) {
-    const filesManifestPath = path.join(bmadDir, '_config', 'files-manifest.csv');
+  async readFilesManifest(aclDir) {
+    const filesManifestPath = path.join(aclDir, '_config', 'files-manifest.csv');
     if (!(await fs.pathExists(filesManifestPath))) {
       return [];
     }
@@ -837,19 +837,19 @@ class Installer {
 
   /**
    * Detect custom and modified files
-   * @param {string} bmadDir - BMAD installation directory
+   * @param {string} aclDir - ACL installation directory
    * @param {Array} existingFilesManifest - Previous files from files-manifest.csv
    * @returns {Object} Object with customFiles and modifiedFiles arrays
    */
-  async detectCustomFiles(bmadDir, existingFilesManifest) {
+  async detectCustomFiles(aclDir, existingFilesManifest) {
     const customFiles = [];
     const modifiedFiles = [];
 
-    // Memory subtrees (v6.1: _bmad/_memory, current: _bmad/memory) hold
+    // Memory subtrees (v6.1: _acl/_memory, current: _acl/memory) hold
     // per-user runtime data generated by agents with sidecars. These files
     // aren't installer-managed and must never be reported as "custom" or
     // "modified" — they're user state, not user overrides.
-    const bmadMemoryPaths = ['_memory', 'memory'];
+    const aclMemoryPaths = ['_memory', 'memory'];
 
     // Check if the manifest has hashes - if not, we can't detect modifications
     let manifestHasHashes = false;
@@ -861,7 +861,7 @@ class Installer {
     const installedFilesMap = new Map();
     for (const fileEntry of existingFilesManifest) {
       if (fileEntry.path) {
-        const absolutePath = path.join(bmadDir, fileEntry.path);
+        const absolutePath = path.join(aclDir, fileEntry.path);
         installedFilesMap.set(path.normalize(absolutePath), {
           hash: fileEntry.hash,
           relativePath: fileEntry.path,
@@ -869,7 +869,7 @@ class Installer {
       }
     }
 
-    // Recursively scan bmadDir for all files
+    // Recursively scan aclDir for all files
     const scanDirectory = async (dir) => {
       try {
         const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -877,7 +877,7 @@ class Installer {
           const fullPath = path.join(dir, entry.name);
 
           if (entry.isDirectory()) {
-            const relativeDir = path.relative(bmadDir, fullPath);
+            const relativeDir = path.relative(aclDir, fullPath);
             // Render snapshots are generated state, not user-authored customization.
             if (entry.name === 'node_modules' || entry.name === '.git' || relativeDir === 'render') {
               continue;
@@ -888,7 +888,7 @@ class Installer {
             const fileInfo = installedFilesMap.get(normalizedPath);
 
             // Skip certain system files that are auto-generated
-            const relativePath = path.relative(bmadDir, fullPath);
+            const relativePath = path.relative(aclDir, fullPath);
             const fileName = path.basename(fullPath);
 
             // Skip _config directory EXCEPT for modified agent customizations
@@ -896,7 +896,7 @@ class Installer {
               // Special handling for .customize.yaml files - only preserve if modified
               if (relativePath.includes('/agents/') && fileName.endsWith('.customize.yaml')) {
                 // Check if the customization file has been modified from manifest
-                const manifestPath = path.join(bmadDir, '_config', 'manifest.yaml');
+                const manifestPath = path.join(aclDir, '_config', 'manifest.yaml');
                 if (await fs.pathExists(manifestPath)) {
                   const crypto = require('node:crypto');
                   const currentContent = await fs.readFile(fullPath, 'utf8');
@@ -916,7 +916,7 @@ class Installer {
               continue;
             }
 
-            if (bmadMemoryPaths.some((mp) => relativePath === mp || relativePath.startsWith(mp + '/'))) {
+            if (aclMemoryPaths.some((mp) => relativePath === mp || relativePath.startsWith(mp + '/'))) {
               continue;
             }
 
@@ -950,29 +950,29 @@ class Installer {
       }
     };
 
-    await scanDirectory(bmadDir);
+    await scanDirectory(aclDir);
     return { customFiles, modifiedFiles };
   }
 
   /**
    * Generate clean config.yaml files for each installed module
-   * @param {string} bmadDir - BMAD installation directory
+   * @param {string} aclDir - ACL installation directory
    * @param {Object} moduleConfigs - Collected configuration values
    */
-  async generateModuleConfigs(bmadDir, moduleConfigs) {
+  async generateModuleConfigs(aclDir, moduleConfigs) {
     const yaml = require('yaml');
 
     // Extract core config values to share with other modules
     const coreConfig = moduleConfigs.core || {};
 
     // Get all installed module directories
-    const entries = await fs.readdir(bmadDir, { withFileTypes: true });
+    const entries = await fs.readdir(aclDir, { withFileTypes: true });
     const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'scripts', 'custom', 'render']);
     const installedModules = entries.filter((entry) => entry.isDirectory() && !nonModuleDirs.has(entry.name)).map((entry) => entry.name);
 
     // Generate config.yaml for each installed module
     for (const moduleName of installedModules) {
-      const modulePath = path.join(bmadDir, moduleName);
+      const modulePath = path.join(aclDir, moduleName);
 
       // Get module-specific config or use empty object if none
       const config = moduleConfigs[moduleName] || {};
@@ -983,7 +983,7 @@ class Installer {
         // Create header
         const packageJson = require(path.join(getProjectRoot(), 'package.json'));
         const header = `# ${moduleName.toUpperCase()} Module Configuration
-# Generated by BMAD installer
+# Generated by ACL installer
 # Version: ${packageJson.version}
 # Date: ${new Date().toISOString()}
 
@@ -1050,20 +1050,20 @@ class Installer {
   }
 
   /**
-   * Merge all module-help.csv files into a single bmad-help.csv.
+   * Merge all module-help.csv files into a single acl-help.csv.
    * Scans all installed modules for module-help.csv and merges them.
    * Output preserves the source schema verbatim — see schema below.
-   * @param {string} bmadDir - BMAD installation directory
+   * @param {string} aclDir - ACL installation directory
    * @param {Array<Object>} _agentEntries - Unused; retained for call-site compatibility
    */
-  async mergeModuleHelpCatalogs(bmadDir, _agentEntries = []) {
+  async mergeModuleHelpCatalogs(aclDir, _agentEntries = []) {
     const allRows = [];
     const headerRow = MODULE_HELP_CSV_HEADER;
     const COLUMN_COUNT = 13;
     const PHASE_INDEX = 7;
 
     // Get all installed module directories
-    const entries = await fs.readdir(bmadDir, { withFileTypes: true });
+    const entries = await fs.readdir(aclDir, { withFileTypes: true });
     const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'scripts', 'custom', 'render']);
     const installedModules = entries.filter((entry) => entry.isDirectory() && !nonModuleDirs.has(entry.name)).map((entry) => entry.name);
 
@@ -1078,7 +1078,7 @@ class Installer {
 
     // Map installed module paths
     for (const moduleName of installedModules) {
-      const modulePath = path.join(bmadDir, moduleName);
+      const modulePath = path.join(aclDir, moduleName);
       modulePaths.set(moduleName, modulePath);
     }
 
@@ -1124,7 +1124,7 @@ class Installer {
             allRows.push(padded.map((c) => this.escapeCSVField(c)).join(','));
           }
 
-          if (process.env.BMAD_VERBOSE_INSTALL === 'true') {
+          if (process.env.ACL_VERBOSE_INSTALL === 'true') {
             await prompts.log.message(`  Merged module-help from: ${moduleName}`);
           }
         } catch (error) {
@@ -1149,9 +1149,9 @@ class Installer {
     const sortedRows = decorated.map((d) => d.row);
 
     // Write merged catalog
-    const outputDir = path.join(bmadDir, '_config');
+    const outputDir = path.join(aclDir, '_config');
     await fs.ensureDir(outputDir);
-    const outputPath = path.join(outputDir, 'bmad-help.csv');
+    const outputPath = path.join(outputDir, 'acl-help.csv');
 
     const mergedContent = [headerRow, ...sortedRows].join('\n');
     await fs.writeFile(outputPath, mergedContent, 'utf8');
@@ -1159,15 +1159,15 @@ class Installer {
     // Track the installed file
     this.installedFiles.add(outputPath);
 
-    if (process.env.BMAD_VERBOSE_INSTALL === 'true') {
-      await prompts.log.message(`  Generated bmad-help.csv: ${sortedRows.length} workflows`);
+    if (process.env.ACL_VERBOSE_INSTALL === 'true') {
+      await prompts.log.message(`  Generated acl-help.csv: ${sortedRows.length} workflows`);
     }
   }
 
   /**
    * Render a consolidated install summary using prompts.note()
    * @param {Array} results - Array of {step, status: 'ok'|'error'|'warn', detail}
-   * @param {Object} context - {bmadDir, modules, ides, customFiles, modifiedFiles}
+   * @param {Object} context - {aclDir, modules, ides, customFiles, modifiedFiles}
    */
   async renderInstallSummary(results, context = {}) {
     const color = await prompts.getColor();
@@ -1224,13 +1224,13 @@ class Installer {
     }
 
     if ((context.ides || []).length === 0) {
-      lines.push(`  ${color.green('\u2713')}  No IDE selected (installed in _bmad only)`);
+      lines.push(`  ${color.green('\u2713')}  No IDE selected (installed in _acl only)`);
     }
 
     // Context and warnings
     lines.push('');
-    if (context.bmadDir) {
-      lines.push(`  Installed to: ${context.bmadDir}`);
+    if (context.aclDir) {
+      lines.push(`  Installed to: ${context.aclDir}`);
     }
     if (context.customFiles && context.customFiles.length > 0) {
       lines.push(`  ${color.cyan(`Custom files preserved: ${context.customFiles.length}`)}`);
@@ -1244,16 +1244,16 @@ class Installer {
       '',
       '  Get started:',
       `    1. Launch your AI agent from your project folder`,
-      `    2. Not sure what to do? Invoke the ${color.cyan('bmad-help')} skill and ask it what to do!`,
+      `    2. Not sure what to do? Invoke the ${color.cyan('acl-help')} skill and ask it what to do!`,
       '',
-      `    ${color.cyan('Tip:')} BMAD workflows increasingly run Python scripts via ${color.cyan('uv run')} — uv is`,
+      `    ${color.cyan('Tip:')} ACL workflows increasingly run Python scripts via ${color.cyan('uv run')} — uv is`,
       `    becoming the de facto standard. If you don't have it yet, ask your agent to set it up.`,
       '',
-      `    Blog, Docs and Guides: ${color.blue('https://bmadcode.com/')}`,
+      `    Blog, Docs and Guides: ${color.blue('https://aclcode.com/')}`,
       `    Community: ${color.blue('https://discord.gg/gk8jAdXWmj')}`,
     );
 
-    await prompts.box(lines.join('\n'), 'BMAD is ready to use!', {
+    await prompts.box(lines.join('\n'), 'ACL is ready to use!', {
       rounded: true,
       formatBorder: color.green,
     });
@@ -1261,9 +1261,9 @@ class Installer {
 
   /**
    * Display registry-defined post-install messages for the modules installed in
-   * this run. These are "action needed" notices (e.g. "run the bmad-loop-setup
+   * this run. These are "action needed" notices (e.g. "run the acl-loop-setup
    * skill") that the user must see to finish setup. They are defined via the
-   * `post-install-message` property on a module's bmad-modules.yaml entry.
+   * `post-install-message` property on a module's acl-modules.yaml entry.
    *
    * Interactive installs require the user to acknowledge each message (press
    * Enter); non-interactive (--yes / skipPrompts) installs print the message
@@ -1286,7 +1286,7 @@ class Installer {
       try {
         moduleInfo = await externalManager.getModuleByCode(code);
       } catch {
-        continue; // Built-in modules (core/bmm) aren't in the registry — skip.
+        continue; // Built-in modules (core/acl) aren't in the registry — skip.
       }
 
       const message = moduleInfo && moduleInfo.postInstallMessage;
@@ -1316,20 +1316,20 @@ class Installer {
    */
   async quickUpdate(config) {
     const projectDir = path.resolve(config.directory);
-    const { bmadDir } = await this.findBmadDir(projectDir);
+    const { aclDir } = await this.findAclDir(projectDir);
 
-    // Check if bmad directory exists
-    if (!(await fs.pathExists(bmadDir))) {
-      throw new Error(`BMAD not installed at ${bmadDir}. Use regular install for first-time setup.`);
+    // Check if acl directory exists
+    if (!(await fs.pathExists(aclDir))) {
+      throw new Error(`ACL not installed at ${aclDir}. Use regular install for first-time setup.`);
     }
 
     // Detect existing installation
-    const existingInstall = await ExistingInstall.detect(bmadDir);
+    const existingInstall = await ExistingInstall.detect(aclDir);
     const configuredIdes = existingInstall.ides;
-    const projectRoot = path.dirname(bmadDir);
+    const projectRoot = path.dirname(aclDir);
 
     // Resolve any legacy/aliased module codes (e.g. an install recorded as
-    // `bauto` before the registry renamed it to `bmad-loop`) to their current
+    // `bauto` before the registry renamed it to `acl-loop`) to their current
     // canonical code up front. Without this, a renamed module's old installs
     // would fall out of `availableModuleIds` below and get silently frozen
     // (see the `baut` → `automator` incident in CHANGELOG v6.7.1) instead of
@@ -1373,7 +1373,7 @@ class Installer {
     const customMgr = new CustomModuleManager();
     for (const moduleId of installedModules) {
       if (!availableModules.some((m) => m.id === moduleId)) {
-        const customSource = await customMgr.findModuleSourceByCode(moduleId, { bmadDir });
+        const customSource = await customMgr.findModuleSourceByCode(moduleId, { aclDir });
         if (customSource) {
           availableModules.push({
             id: moduleId,
@@ -1401,7 +1401,7 @@ class Installer {
     // silently redecide it. Without this, modules previously on 'next' or
     // 'pinned' would trigger a stable-channel tag lookup at config-collection
     // time, burning GitHub API quota and potentially failing.
-    const manifestData = await this.manifest.read(bmadDir);
+    const manifestData = await this.manifest.read(aclDir);
     const channelOptions = { global: null, nextSet: new Set(), pins: new Map(), warnings: [] };
     if (manifestData?.modulesDetailed) {
       const { fetchStableTags, classifyUpgrade, parseGitHubRepo } = require('../modules/channel-resolver');
@@ -1431,7 +1431,7 @@ class Installer {
               channelOptions.pins.set(entry.name, entry.version);
               await prompts.log.warn(
                 `${entry.name} ${entry.version} → ${topTag} is a new major release; staying on ${entry.version}. ` +
-                  `Run \`bmad install\` (Modify) with \`--pin ${entry.name}=${topTag}\` to accept.`,
+                  `Run \`acl install\` (Modify) with \`--pin ${entry.name}=${topTag}\` to accept.`,
               );
             }
           } catch (error) {
@@ -1497,10 +1497,10 @@ class Installer {
 
     // Now that the canonical module has been installed successfully, remove
     // the stale directory left behind under its old code so the two don't
-    // coexist (e.g. `_bmad/bauto/` once `_bmad/bmad-loop/` is in place).
+    // coexist (e.g. `_acl/bauto/` once `_acl/acl-loop/` is in place).
     for (const { from, to } of aliasMigrations) {
       if (!modulesToUpdate.includes(to)) continue; // new code wasn't actually installed this run
-      const oldModuleDir = path.join(bmadDir, from);
+      const oldModuleDir = path.join(aclDir, from);
       if (await fs.pathExists(oldModuleDir)) {
         await fs.remove(oldModuleDir);
         await prompts.log.success(`Removed legacy '${from}' directory after migrating to '${to}'.`);
@@ -1518,29 +1518,29 @@ class Installer {
   }
 
   /**
-   * Uninstall BMAD with selective removal options
+   * Uninstall ACL with selective removal options
    * @param {string} directory - Project directory
    * @param {Object} options - Uninstall options
-   * @param {boolean} [options.removeModules=true] - Remove _bmad/ directory
+   * @param {boolean} [options.removeModules=true] - Remove _acl/ directory
    * @param {boolean} [options.removeIdeConfigs=true] - Remove IDE configurations
    * @param {boolean} [options.removeOutputFolder=false] - Remove user artifacts output folder
    * @returns {Object} Result with success status and removed components
    */
   async uninstall(directory, options = {}) {
     const projectDir = path.resolve(directory);
-    const { bmadDir } = await this.findBmadDir(projectDir);
+    const { aclDir } = await this.findAclDir(projectDir);
 
-    if (!(await fs.pathExists(bmadDir))) {
+    if (!(await fs.pathExists(aclDir))) {
       return { success: false, reason: 'not-installed' };
     }
 
     // 1. DETECT: Read state BEFORE deleting anything
-    const existingInstall = await ExistingInstall.detect(bmadDir);
-    const outputFolder = await this._readOutputFolder(bmadDir);
+    const existingInstall = await ExistingInstall.detect(aclDir);
+    const outputFolder = await this._readOutputFolder(aclDir);
 
     const removed = { modules: false, ideConfigs: false, outputFolder: false };
 
-    // 2. IDE CLEANUP (before _bmad/ deletion so configs are accessible)
+    // 2. IDE CLEANUP (before _acl/ deletion so configs are accessible)
     if (options.removeIdeConfigs !== false) {
       await this.uninstallIdeConfigs(projectDir, existingInstall, { silent: options.silent });
       removed.ideConfigs = true;
@@ -1551,7 +1551,7 @@ class Installer {
       removed.outputFolder = await this.uninstallOutputFolder(projectDir, outputFolder);
     }
 
-    // 4. BMAD DIRECTORY (last, after everything that needs it)
+    // 4. ACL DIRECTORY (last, after everything that needs it)
     if (options.removeModules !== false) {
       removed.modules = await this.uninstallModules(projectDir);
     }
@@ -1597,14 +1597,14 @@ class Installer {
   }
 
   /**
-   * Remove the _bmad/ directory
+   * Remove the _acl/ directory
    * @param {string} projectDir - Project directory
    * @returns {Promise<boolean>} Whether the directory was removed
    */
   async uninstallModules(projectDir) {
-    const { bmadDir } = await this.findBmadDir(projectDir);
-    if (await fs.pathExists(bmadDir)) {
-      await fs.remove(bmadDir);
+    const { aclDir } = await this.findAclDir(projectDir);
+    if (await fs.pathExists(aclDir)) {
+      await fs.remove(aclDir);
       return true;
     }
     return false;
@@ -1615,8 +1615,8 @@ class Installer {
    */
   async getStatus(directory) {
     const projectDir = path.resolve(directory);
-    const { bmadDir } = await this.findBmadDir(projectDir);
-    return await ExistingInstall.detect(bmadDir);
+    const { aclDir } = await this.findAclDir(projectDir);
+    return await ExistingInstall.detect(aclDir);
   }
 
   /**
@@ -1628,40 +1628,40 @@ class Installer {
 
   /**
    * Get the configured output folder name for a project
-   * Resolves bmadDir internally from projectDir
+   * Resolves aclDir internally from projectDir
    * @param {string} projectDir - Project directory
-   * @returns {string} Output folder name (relative, default: '_bmad-output')
+   * @returns {string} Output folder name (relative, default: '_acl-output')
    */
   async getOutputFolder(projectDir) {
-    const { bmadDir } = await this.findBmadDir(projectDir);
-    return this._readOutputFolder(bmadDir);
+    const { aclDir } = await this.findAclDir(projectDir);
+    return this._readOutputFolder(aclDir);
   }
 
   /**
-   * Find the bmad installation directory in a project
-   * Always uses the standard _bmad folder name
+   * Find the acl installation directory in a project
+   * Always uses the standard _acl folder name
    * @param {string} projectDir - Project directory
-   * @returns {Promise<Object>} { bmadDir: string }
+   * @returns {Promise<Object>} { aclDir: string }
    */
-  async findBmadDir(projectDir) {
-    const bmadDir = path.join(projectDir, BMAD_FOLDER_NAME);
-    return { bmadDir };
+  async findAclDir(projectDir) {
+    const aclDir = path.join(projectDir, ACL_FOLDER_NAME);
+    return { aclDir };
   }
 
   /**
    * Read the output_folder setting from module config files
-   * Checks bmm/config.yaml first, then other module configs
-   * @param {string} bmadDir - BMAD installation directory
+   * Checks acl/config.yaml first, then other module configs
+   * @param {string} aclDir - ACL installation directory
    * @returns {string} Output folder path or default
    */
-  async _readOutputFolder(bmadDir) {
+  async _readOutputFolder(aclDir) {
     const yaml = require('yaml');
 
-    // Check bmm/config.yaml first (most common)
-    const bmmConfigPath = path.join(bmadDir, 'bmm', 'config.yaml');
-    if (await fs.pathExists(bmmConfigPath)) {
+    // Check acl/config.yaml first (most common)
+    const aclConfigPath = path.join(aclDir, 'acl', 'config.yaml');
+    if (await fs.pathExists(aclConfigPath)) {
       try {
-        const content = await fs.readFile(bmmConfigPath, 'utf8');
+        const content = await fs.readFile(aclConfigPath, 'utf8');
         const config = yaml.parse(content);
         if (config && config.output_folder) {
           // Strip {project-root}/ prefix if present
@@ -1674,10 +1674,10 @@ class Installer {
 
     // Scan other module config.yaml files
     try {
-      const entries = await fs.readdir(bmadDir, { withFileTypes: true });
+      const entries = await fs.readdir(aclDir, { withFileTypes: true });
       for (const entry of entries) {
-        if (!entry.isDirectory() || entry.name === 'bmm' || entry.name.startsWith('_')) continue;
-        const configPath = path.join(bmadDir, entry.name, 'config.yaml');
+        if (!entry.isDirectory() || entry.name === 'acl' || entry.name.startsWith('_')) continue;
+        const configPath = path.join(aclDir, entry.name, 'config.yaml');
         if (await fs.pathExists(configPath)) {
           try {
             const content = await fs.readFile(configPath, 'utf8');
@@ -1695,7 +1695,7 @@ class Installer {
     }
 
     // Default fallback
-    return '_bmad-output';
+    return '_acl-output';
   }
 
   /**

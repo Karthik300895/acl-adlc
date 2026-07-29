@@ -9,7 +9,7 @@ Use the `project-context.md` file to ensure AI agents follow your project's tech
 
 :::note[Prerequisites]
 
-- BMad Method installed
+- ACL Method installed
 - Understanding of your project's technology stack and conventions
   :::
 
@@ -32,11 +32,11 @@ Use the `project-context.md` file to ensure AI agents follow your project's tech
 
 ### Option A: Manual Creation
 
-Create the file at `_bmad-output/project-context.md`:
+Create the file at `_acl-output/project-context.md`:
 
 ```bash
-mkdir -p _bmad-output
-touch _bmad-output/project-context.md
+mkdir -p _acl-output
+touch _acl-output/project-context.md
 ```
 
 Add your technology stack and implementation rules:
@@ -81,7 +81,7 @@ sections_completed: ['technology_stack', 'critical_rules']
 Run the workflow in a fresh chat:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 The workflow scans your architecture document and project files to generate a context file capturing the decisions made.
@@ -91,7 +91,7 @@ The workflow scans your architecture document and project files to generate a co
 For existing projects, run:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 The workflow analyzes your codebase to identify conventions, then generates a context file you can review and refine.
@@ -123,7 +123,7 @@ A `project-context.md` file that:
 - **Focus on the unobvious** — Document patterns agents might miss (e.g., "Use JSDoc on every public class"), not universal practices like "use meaningful variable names."
 - **Keep it lean** — This file is loaded by every implementation workflow. Long files waste context. Exclude content that only applies to narrow scope or specific stories.
 - **Update as needed** — Edit manually when patterns change, or re-generate after significant architecture changes.
-- Supports the same `bmad-quick-dev` loop whether work enters directly or after extensive planning.
+- Supports the same `acl-quick-dev` loop whether work enters directly or after extensive planning.
   :::
 
 ## Next Steps

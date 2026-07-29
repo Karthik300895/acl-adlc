@@ -1,12 +1,12 @@
 const path = require('node:path');
 const fs = require('../fs-native');
 const { getProjectRoot } = require('../project-root');
-const { BMAD_FOLDER_NAME } = require('../ide/shared/path-utils');
+const { ACL_FOLDER_NAME } = require('../ide/shared/path-utils');
 
 class InstallPaths {
   static async create(config) {
     const srcDir = getProjectRoot();
-    await assertReadableDir(srcDir, 'BMAD source root');
+    await assertReadableDir(srcDir, 'ACL source root');
 
     const pkgPath = path.join(srcDir, 'package.json');
     await assertReadableFile(pkgPath, 'package.json');
@@ -15,16 +15,16 @@ class InstallPaths {
     const projectRoot = path.resolve(config.directory);
     await ensureWritableDir(projectRoot, 'project root');
 
-    const bmadDir = path.join(projectRoot, BMAD_FOLDER_NAME);
-    const isUpdate = await fs.pathExists(bmadDir);
+    const aclDir = path.join(projectRoot, ACL_FOLDER_NAME);
+    const isUpdate = await fs.pathExists(aclDir);
 
-    const configDir = path.join(bmadDir, '_config');
-    const coreDir = path.join(bmadDir, 'core');
-    const scriptsDir = path.join(bmadDir, 'scripts');
-    const customDir = path.join(bmadDir, 'custom');
+    const configDir = path.join(aclDir, '_config');
+    const coreDir = path.join(aclDir, 'core');
+    const scriptsDir = path.join(aclDir, 'scripts');
+    const customDir = path.join(aclDir, 'custom');
 
     for (const [dir, label] of [
-      [bmadDir, 'bmad directory'],
+      [aclDir, 'acl directory'],
       [configDir, 'config directory'],
       [coreDir, 'core module directory'],
       [scriptsDir, 'shared scripts directory'],
@@ -37,7 +37,7 @@ class InstallPaths {
       srcDir,
       version,
       projectRoot,
-      bmadDir,
+      aclDir,
       configDir,
       coreDir,
       scriptsDir,
@@ -55,22 +55,22 @@ class InstallPaths {
     return path.join(this.configDir, 'manifest.yaml');
   }
   centralConfig() {
-    return path.join(this.bmadDir, 'config.toml');
+    return path.join(this.aclDir, 'config.toml');
   }
   centralUserConfig() {
-    return path.join(this.bmadDir, 'config.user.toml');
+    return path.join(this.aclDir, 'config.user.toml');
   }
   filesManifest() {
     return path.join(this.configDir, 'files-manifest.csv');
   }
   helpCatalog() {
-    return path.join(this.configDir, 'bmad-help.csv');
+    return path.join(this.configDir, 'acl-help.csv');
   }
   moduleDir(name) {
-    return path.join(this.bmadDir, name);
+    return path.join(this.aclDir, name);
   }
   moduleConfig(name) {
-    return path.join(this.bmadDir, name, 'config.yaml');
+    return path.join(this.aclDir, name, 'config.yaml');
   }
 }
 

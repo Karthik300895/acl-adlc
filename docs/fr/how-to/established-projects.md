@@ -1,27 +1,27 @@
 ---
 title: "Projets existants"
-description: Comment utiliser la méthode BMad sur des bases de code existantes
+description: Comment utiliser la méthode ACL sur des bases de code existantes
 sidebar:
   order: 7
 ---
 
-Utilisez la méthode BMad efficacement lorsque vous travaillez sur des projets existants et des bases de code legacy.
+Utilisez la méthode ACL efficacement lorsque vous travaillez sur des projets existants et des bases de code legacy.
 
-Ce guide couvre le flux de travail essentiel pour l’intégration à des projets existants avec la méthode BMad.
+Ce guide couvre le flux de travail essentiel pour l’intégration à des projets existants avec la méthode ACL.
 
 :::note[Prérequis]
-- méthode BMad installée (`npx bmad-method install`)
+- méthode ACL installée (`npx acl-adlc install`)
 - Une base de code existante sur laquelle vous souhaitez travailler
 - Accès à un IDE IA (Claude Code ou Cursor)
 :::
 
 ## Étape 1 : Nettoyer les artefacts de planification terminés
 
-Si vous avez terminé tous les epics et stories du PRD[^1] via le processus BMad, nettoyez ces fichiers. Archivez-les, supprimez-les, ou appuyez-vous sur l’historique des versions si nécessaire. Ne conservez pas ces fichiers dans :
+Si vous avez terminé tous les epics et stories du PRD[^1] via le processus ACL, nettoyez ces fichiers. Archivez-les, supprimez-les, ou appuyez-vous sur l’historique des versions si nécessaire. Ne conservez pas ces fichiers dans :
 
 - `docs/`
-- `_bmad-output/planning-artifacts/`
-- `_bmad-output/implementation-artifacts/`
+- `_acl-output/planning-artifacts/`
+- `_acl-output/implementation-artifacts/`
 
 ## Étape 2 : Créer le contexte du projet
 
@@ -32,7 +32,7 @@ Générez `project-context.md` pour capturer les patterns et conventions de votr
 Exécutez le workflow de génération de contexte du projet :
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Cela analyse votre base de code pour identifier :
@@ -42,7 +42,7 @@ Cela analyse votre base de code pour identifier :
 - Les approches de test
 - Les patterns spécifiques aux frameworks
 
-Vous pouvez examiner et affiner le fichier généré, ou le créer manuellement à `_bmad-output/project-context.md` si vous préférez.
+Vous pouvez examiner et affiner le fichier généré, ou le créer manuellement à `_acl-output/project-context.md` si vous préférez.
 
 [En savoir plus sur le contexte du projet](../explanation/project-context.md)
 
@@ -55,34 +55,34 @@ Votre dossier `docs/` doit contenir une documentation succincte et bien organis�
 - L’architecture
 - Toute autre information pertinente sur le projet
 
-Pour les projets complexes, envisagez d’utiliser le workflow `bmad-document-project`. Il offre des variantes d’exécution qui analyseront l’ensemble de votre projet et documenteront son état actuel réel.
+Pour les projets complexes, envisagez d’utiliser le workflow `acl-document-project`. Il offre des variantes d’exécution qui analyseront l’ensemble de votre projet et documenteront son état actuel réel.
 
 ## Étape 4 : Obtenir de l’aide
 
-### BMad-Help : Votre point de départ
+### ACL-Help : Votre point de départ
 
-**Exécutez `bmad-help` chaque fois que vous n’êtes pas sûr de la prochaine étape.** Ce guide intelligent :
+**Exécutez `acl-help` chaque fois que vous n’êtes pas sûr de la prochaine étape.** Ce guide intelligent :
 
 - Inspecte votre projet pour voir ce qui a déjà été fait
 - Affiche les options basées sur vos modules installés
 - Comprend les requêtes en langage naturel
 
 ```
-bmad-help J'ai une app Rails existante, par où dois-je commencer ?
-bmad-help Quelle profondeur de planification faut-il avant d’implémenter ce changement ?
-bmad-help Montre-moi quels workflows sont disponibles
+acl-help J'ai une app Rails existante, par où dois-je commencer ?
+acl-help Quelle profondeur de planification faut-il avant d’implémenter ce changement ?
+acl-help Montre-moi quels workflows sont disponibles
 ```
 
-BMad-Help s’exécute également **automatiquement à la fin de chaque workflow**, fournissant des conseils clairs sur exactement quoi faire ensuite.
+ACL-Help s’exécute également **automatiquement à la fin de chaque workflow**, fournissant des conseils clairs sur exactement quoi faire ensuite.
 
 ### Choisir la profondeur de planification
 
-Toute implémentation utilise `bmad-quick-dev` ; la portée détermine le contexte à préparer en amont :
+Toute implémentation utilise `acl-quick-dev` ; la portée détermine le contexte à préparer en amont :
 
 | Portée                              | Approche recommandée                                                                                                                                                                 |
 |-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Mises à jour ou ajouts clairs**   | Entrez directement dans `bmad-quick-dev` avec la demande, l’issue ou la spécification existante. |
-| **Modifications ou ajouts majeurs** | Préparez le PRD, l’UX, l’architecture, les epics, les stories et le contexte de sprint utiles, puis confiez le travail sélectionné à `bmad-quick-dev`. |
+| **Mises à jour ou ajouts clairs**   | Entrez directement dans `acl-quick-dev` avec la demande, l’issue ou la spécification existante. |
+| **Modifications ou ajouts majeurs** | Préparez le PRD, l’UX, l’architecture, les epics, les stories et le contexte de sprint utiles, puis confiez le travail sélectionné à `acl-quick-dev`. |
 
 ### Pendant la création du PRD
 

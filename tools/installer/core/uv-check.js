@@ -2,11 +2,11 @@ const { spawnSync } = require('node:child_process');
 const prompts = require('../prompts');
 
 // `uv` (https://docs.astral.sh/uv/) is becoming the de facto standard for
-// running the Python scripts BMAD workflows shell out to: `uv run <script>`
+// running the Python scripts ACL workflows shell out to: `uv run <script>`
 // resolves the interpreter and any dependencies on demand, so skills don't
 // have to assume a particular `python3` is on PATH. The ecosystem is mid-
 // migration — some skills still call `python3` directly — so a missing `uv`
-// is a warning, not a blocker: BMAD installs and runs either way.
+// is a warning, not a blocker: ACL installs and runs either way.
 const RUNTIME_COMMAND = 'uv';
 
 /**
@@ -49,7 +49,7 @@ function detectUv() {
 
 function setupHints() {
   return [
-    'BMAD workflows increasingly run Python scripts via `uv run`, which manages',
+    'ACL workflows increasingly run Python scripts via `uv run`, which manages',
     'the interpreter and dependencies for you — no manual venv or pip needed.',
     '',
     'Easiest path: ask your AI agent to "install and set up uv for me".',
@@ -66,7 +66,7 @@ function setupHints() {
  * Check whether `uv` is available and inform the user.
  *
  * Warn-don't-block, and no acknowledgement prompt: `uv` is on its way to being
- * the standard runner for BMAD's Python scripts, but the migration is still in
+ * the standard runner for ACL's Python scripts, but the migration is still in
  * progress, so the install never stops on its account. The note tells the user
  * how to set it up (preferably by asking their agent).
  *
@@ -82,8 +82,8 @@ async function checkUvEnvironment() {
   }
 
   await prompts.log.warn(
-    "uv not found on PATH. uv is becoming the de facto standard for running BMAD's Python\n" +
-      'scripts (`uv run <script>`), and it provisions the interpreter for you. BMAD installs\n' +
+    "uv not found on PATH. uv is becoming the de facto standard for running ACL's Python\n" +
+      'scripts (`uv run <script>`), and it provisions the interpreter for you. ACL installs\n' +
       'fine without it, but setting up uv now keeps you ahead as workflows adopt it.',
   );
   await prompts.note(setupHints(), 'uv recommended');

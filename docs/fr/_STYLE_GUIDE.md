@@ -64,8 +64,8 @@ Avertissements critiques uniquement — perte de données, problèmes de sécuri
 ```md
 | Skill                | Agent    | Objectif                              |
 |----------------------|----------|---------------------------------------|
-| `bmad-brainstorming` | Analyste | Brainstorming pour un nouveau projet  |
-| `bmad-prd`           | PM       | Créer un document d'exigences produit |
+| `acl-brainstorming` | Analyste | Brainstorming pour un nouveau projet  |
+| `acl-prd`           | PM       | Créer un document d'exigences produit |
 ```
 
 ## Blocs de structure de dossiers
@@ -75,8 +75,8 @@ Avertissements critiques uniquement — perte de données, problèmes de sécuri
 ````md
 ```
 votre-projet/
-├── _bmad/                                   # Configuration BMad
-├── _bmad-output/
+├── _acl/                                   # Configuration ACL
+├── _acl-output/
 │   ├── planning-artifacts/
 │   │   └── PRD.md                           # Votre document d’exigences
 │   ├── implementation-artifacts/
@@ -326,7 +326,7 @@ Starlight génère la navigation « Sur cette page » à droite à partir de
 Ajouter un contexte en italique au début de la définition pour les termes à portée limitée :
 
 - `*Implémentation en entrée directe uniquement.*`
-- `*méthode BMad/Enterprise.*`
+- `*méthode ACL/Enterprise.*`
 - `*Phase N.*`
 - `*BMGD.*`
 - `*Projets établis.*`
@@ -354,7 +354,7 @@ Uniquement pour les travaux qui bénéficient d'une architecture. Un travail cla
 
 ### Puis-je modifier mon plan plus tard ?
 
-Oui. Utilisez `bmad-correct-course` pour gérer les changements de portée en cours d’implémentation.
+Oui. Utilisez `acl-correct-course` pour gérer les changements de portée en cours d’implémentation.
 
 **Une question sans réponse ici ?** [Ouvrez une issue](...) ou posez votre question sur [Discord](...).
 ```

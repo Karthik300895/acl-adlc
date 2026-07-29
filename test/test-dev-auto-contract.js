@@ -1,5 +1,5 @@
 /**
- * Regression coverage for bmad-dev-auto's deferred-finding contract.
+ * Regression coverage for acl-dev-auto's deferred-finding contract.
  *
  * Ensures the canonical source keeps:
  * 1. Machine-readable `deferred` frontmatter on the spec template.
@@ -58,17 +58,17 @@ function dedent(content) {
   return lines.map((line) => line.slice(width)).join('\n');
 }
 
-console.log(`\n${colors.cyan}bmad-dev-auto deferred contract${colors.reset}\n`);
+console.log(`\n${colors.cyan}acl-dev-auto deferred contract${colors.reset}\n`);
 
 test('spec template exposes machine-readable deferred frontmatter', () => {
-  const relativePath = 'src/bmm-skills/4-implementation/bmad-dev-auto/spec-template.md';
+  const relativePath = 'src/acl-skills/4-implementation/acl-dev-auto/spec-template.md';
   const frontmatter = parseFrontmatter(read(relativePath), relativePath);
   assert(Array.isArray(frontmatter.deferred), 'spec-template.md frontmatter must declare deferred as a list');
   assert(frontmatter.deferred.length === 0, 'spec-template.md deferred list must start empty');
 });
 
 test('dev-auto steps preserve their frontmatter boundaries', () => {
-  const root = 'src/bmm-skills/4-implementation/bmad-dev-auto';
+  const root = 'src/acl-skills/4-implementation/acl-dev-auto';
   const stepOnePath = `${root}/step-01-clarify-and-route.md`;
   const stepOneFrontmatter = parseFrontmatter(read(stepOnePath), stepOnePath);
   assert(stepOneFrontmatter.spec_file === '', 'step-01 must define spec_file in frontmatter');
@@ -83,7 +83,7 @@ test('dev-auto steps preserve their frontmatter boundaries', () => {
 });
 
 test('review step safely records deferred findings only in the spec', () => {
-  const content = read('src/bmm-skills/4-implementation/bmad-dev-auto/step-04-review.md');
+  const content = read('src/acl-skills/4-implementation/acl-dev-auto/step-04-review.md');
   assert(content.includes('If the field is absent'), 'step-04-review.md must initialize deferred for legacy specs');
   assert(content.includes('never add a second `deferred:` key'), 'step-04-review.md must forbid duplicate deferred keys');
   assert(content.includes('parse the complete frontmatter as YAML'), 'step-04-review.md must validate the updated frontmatter');

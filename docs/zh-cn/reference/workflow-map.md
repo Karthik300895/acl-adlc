@@ -1,15 +1,15 @@
 ---
 title: "工作流地图"
-description: BMad Method 各阶段 workflow 与产出速查
+description: ACL Method 各阶段 workflow 与产出速查
 sidebar:
   order: 1
 ---
 
-BMad Method（BMM）通过分阶段 workflow 逐步构建上下文，让智能体始终知道“做什么、为什么做、如何做”。这张地图用于快速查阅阶段目标、关键 workflow 和对应产出。
+ACL Method（ACL）通过分阶段 workflow 逐步构建上下文，让智能体始终知道“做什么、为什么做、如何做”。这张地图用于快速查阅阶段目标、关键 workflow 和对应产出。
 
-如果你不确定下一步，优先运行 `bmad-help`。它会基于你当前项目状态和已安装模块给出实时建议。
+如果你不确定下一步，优先运行 `acl-help`。它会基于你当前项目状态和已安装模块给出实时建议。
 
-<iframe src="/workflow-map-diagram.html" title="BMad Method Workflow Map Diagram" width="100%" height="100%" style="border-radius: 8px; border: 1px solid #334155; min-height: 900px;"></iframe>
+<iframe src="/workflow-map-diagram.html" title="ACL Method Workflow Map Diagram" width="100%" height="100%" style="border-radius: 8px; border: 1px solid #334155; min-height: 900px;"></iframe>
 
 <p style="font-size: 0.8rem; text-align: right; margin-top: -0.5rem; margin-bottom: 1rem;">
   <a href="/workflow-map-diagram.html" target="_blank" rel="noopener noreferrer">在新标签页打开图表 ↗</a>
@@ -21,9 +21,9 @@ BMad Method（BMM）通过分阶段 workflow 逐步构建上下文，让智能�
 
 | Workflow | 目的 | 产出 |
 | --- | --- | --- |
-| `bmad-brainstorming` | 通过引导式创意方法扩展方案空间 | `brainstorming-report.md` |
-| `bmad-deep-recon` | 验证假设或在候选方案间做选择——可为你的深度研究工具起草提示词、加工其报告，或直接在此研究；覆盖市场、领域、技术、竞争、用户之声与学术研究；经核实、有引用、可刷新 | 研究报告或摘要 + 可选 HTML 简报 |
-| `bmad-create-product-brief` | 沉淀产品方向与战略愿景 | `product-brief.md` |
+| `acl-brainstorming` | 通过引导式创意方法扩展方案空间 | `brainstorming-report.md` |
+| `acl-deep-recon` | 验证假设或在候选方案间做选择——可为你的深度研究工具起草提示词、加工其报告，或直接在此研究；覆盖市场、领域、技术、竞争、用户之声与学术研究；经核实、有引用、可刷新 | 研究报告或摘要 + 可选 HTML 简报 |
+| `acl-create-product-brief` | 沉淀产品方向与战略愿景 | `product-brief.md` |
 
 ## 阶段 2：规划
 
@@ -31,9 +31,9 @@ BMad Method（BMM）通过分阶段 workflow 逐步构建上下文，让智能�
 
 | Workflow | 目的 | 产出 |
 | --- | --- | --- |
-| `bmad-prd` | 明确 FR/NFR 与范围边界 | `PRD.md` |
-| `bmad-ux`            | 在 UX 复杂场景下补齐交互与体验方案 | `DESIGN.md`, `EXPERIENCE.md` |
-| `bmad-spec`          | 将任意意图输入（brief、PRD、转录、想法笔记）提炼为精炼的 `SPEC.md` 契约及配套文件 —— 先锁定“做什么”，再谈“怎么做” | `SPEC.md` 及配套文件，位于 `{output_folder}/specs/spec-{slug}/` |
+| `acl-prd` | 明确 FR/NFR 与范围边界 | `PRD.md` |
+| `acl-ux`            | 在 UX 复杂场景下补齐交互与体验方案 | `DESIGN.md`, `EXPERIENCE.md` |
+| `acl-spec`          | 将任意意图输入（brief、PRD、转录、想法笔记）提炼为精炼的 `SPEC.md` 契约及配套文件 —— 先锁定“做什么”，再谈“怎么做” | `SPEC.md` 及配套文件，位于 `{output_folder}/specs/spec-{slug}/` |
 
 ## 阶段 3：解决方案设计（Solutioning）
 
@@ -41,26 +41,26 @@ BMad Method（BMM）通过分阶段 workflow 逐步构建上下文，让智能�
 
 | Workflow | 目的 | 产出 |
 | --- | --- | --- |
-| `bmad-architecture` | 显式记录技术决策与架构边界 | `architecture.md`（含 ADR） |
-| `bmad-create-epics-and-stories` | 将需求拆分为可实施的 epics/stories | epics 文件与 story 条目 |
-| `bmad-check-implementation-readiness` | 实施前 gate 检查 | PASS / CONCERNS / FAIL 结论 |
+| `acl-architecture` | 显式记录技术决策与架构边界 | `architecture.md`（含 ADR） |
+| `acl-create-epics-and-stories` | 将需求拆分为可实施的 epics/stories | epics 文件与 story 条目 |
+| `acl-check-implementation-readiness` | 实施前 gate 检查 | PASS / CONCERNS / FAIL 结论 |
 
 ## 阶段 4：实施
 
-所有实施入口都汇入 `bmad-quick-dev`。它可以接收直接意图、issue、规格或已规划 story，并自行选择所需的澄清、规划、实现和审查深度。
+所有实施入口都汇入 `acl-quick-dev`。它可以接收直接意图、issue、规格或已规划 story，并自行选择所需的澄清、规划、实现和审查深度。
 
 | Workflow | 目的 | 产出 |
 | --- | --- | --- |
-| `bmad-quick-dev` | 将直接意图或已规划 story 转化为完成实现并经过审查的代码 | `spec-*.md` + 代码变更 |
-| `bmad-sprint-planning` | 初始化迭代追踪（通常每项目一次） | `sprint-status.yaml` |
-| `bmad-code-review` | 验证实现质量 | 通过或变更请求 |
-| `bmad-correct-course` | 处理中途重大方向调整 | 更新后的计划或重路由 |
-| `bmad-sprint-status` | 跟踪冲刺与 story 状态 | 状态更新 |
-| `bmad-retrospective` | epic 完成后复盘 | 经验与改进项 |
+| `acl-quick-dev` | 将直接意图或已规划 story 转化为完成实现并经过审查的代码 | `spec-*.md` + 代码变更 |
+| `acl-sprint-planning` | 初始化迭代追踪（通常每项目一次） | `sprint-status.yaml` |
+| `acl-code-review` | 验证实现质量 | 通过或变更请求 |
+| `acl-correct-course` | 处理中途重大方向调整 | 更新后的计划或重路由 |
+| `acl-sprint-status` | 跟踪冲刺与 story 状态 | 状态更新 |
+| `acl-retrospective` | epic 完成后复盘 | 经验与改进项 |
 
 ### 直接入口与规划入口
 
-目标清晰的工作可以直接进入 `bmad-quick-dev`。更大的项目可以先准备 PRD、UX、架构、epics、stories、就绪检查和 sprint 计划。上游产物只会增加实施上下文，不会选择另一条实施工作流。
+目标清晰的工作可以直接进入 `acl-quick-dev`。更大的项目可以先准备 PRD、UX、架构、epics、stories、就绪检查和 sprint 计划。上游产物只会增加实施上下文，不会选择另一条实施工作流。
 
 ## 上下文管理
 
@@ -71,8 +71,8 @@ BMad Method（BMM）通过分阶段 workflow 逐步构建上下文，让智能�
 :::
 
 **创建方式：**
-- **手动创建**：在 `_bmad-output/project-context.md` 记录项目规则
-- **自动生成**：运行 `bmad-generate-project-context` 从架构或代码库提取
+- **手动创建**：在 `_acl-output/project-context.md` 记录项目规则
+- **自动生成**：运行 `acl-generate-project-context` 从架构或代码库提取
 
 ## 相关参考
 

@@ -7,7 +7,7 @@
  * We build the plan from:
  *   1. CLI flags (--channel / --all-* / --next=CODE / --pin CODE=TAG)
  *   2. Interactive answers (the "all stable?" gate + per-module picker)
- *   3. Registry defaults (default_channel from bmad-modules.yaml)
+ *   3. Registry defaults (default_channel from acl-modules.yaml)
  *   4. Hardcoded fallback 'stable'
  *
  * Precedence: --pin > --next=CODE > --channel (global) > registry default > 'stable'.
@@ -131,7 +131,7 @@ function decideChannelForModule({ code, channelOptions, registryDefault }) {
  * @param {Object} args
  * @param {Array<{code: string, defaultChannel?: string, builtIn?: boolean}>} args.modules
  *   Only the modules that need a channel entry; callers should filter out
- *   bundled modules (core/bmm) before calling.
+ *   bundled modules (core/acl) before calling.
  * @param {Object} args.channelOptions - from parseChannelOptions
  * @returns {Map<string, {channel: string, pin?: string, source: string}>}
  */
@@ -171,15 +171,15 @@ function orphanPinWarnings(channelOptions, selectedCodes) {
 }
 
 /**
- * Warn when --pin / --next targets a bundled module (core, bmm). Those are
+ * Warn when --pin / --next targets a bundled module (core, acl). Those are
  * shipped inside the installer binary — there's no git clone to override, so
- * the flag has no effect. Users who actually want a prerelease core/bmm
- * should use `npx bmad-method@next install`.
+ * the flag has no effect. Users who actually want a prerelease core/acl
+ * should use `npx acl-adlc@next install`.
  */
 function bundledTargetWarnings(channelOptions, bundledCodes) {
   const warnings = [];
   const bundled = new Set(bundledCodes || []);
-  const hint = '(bundled module; use `npx bmad-method@next install` for a prerelease)';
+  const hint = '(bundled module; use `npx acl-adlc@next install` for a prerelease)';
   for (const code of channelOptions?.pins?.keys() || []) {
     if (bundled.has(code)) {
       warnings.push(`--pin for '${code}' has no effect ${hint}.`);

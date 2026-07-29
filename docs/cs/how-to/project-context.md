@@ -8,7 +8,7 @@ sidebar:
 Použijte soubor `project-context.md` k zajištění toho, aby AI agenti dodržovali technické preference a pravidla implementace vašeho projektu ve všech workflow. Aby byl vždy dostupný, můžete také přidat řádek `Important project context and conventions are located in [cesta k project context]/project-context.md` do souboru kontextu nebo pravidel vašeho nástroje (jako je `AGENTS.md`).
 
 :::note[Předpoklady]
-- BMad Method nainstalován
+- ACL Method nainstalován
 - Znalost technologického stacku a konvencí vašeho projektu
 :::
 
@@ -31,11 +31,11 @@ Použijte soubor `project-context.md` k zajištění toho, aby AI agenti dodržo
 
 ### Možnost A: Ruční vytvoření
 
-Vytvořte soubor na `_bmad-output/project-context.md`:
+Vytvořte soubor na `_acl-output/project-context.md`:
 
 ```bash
-mkdir -p _bmad-output
-touch _bmad-output/project-context.md
+mkdir -p _acl-output
+touch _acl-output/project-context.md
 ```
 
 Přidejte váš technologický stack a pravidla implementace:
@@ -77,7 +77,7 @@ sections_completed: ['technology_stack', 'critical_rules']
 Spusťte workflow v novém chatu:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Workflow skenuje váš dokument architektury a soubory projektu a generuje kontextový soubor zachycující učiněná rozhodnutí.
@@ -87,7 +87,7 @@ Workflow skenuje váš dokument architektury a soubory projektu a generuje konte
 Pro existující projekty spusťte:
 
 ```bash
-bmad-generate-project-context
+acl-generate-project-context
 ```
 
 Workflow analyzuje vaši kódovou bázi, identifikuje konvence a vygeneruje kontextový soubor, který můžete zkontrolovat a upřesnit.
@@ -118,7 +118,7 @@ Soubor `project-context.md`, který:
 - **Zaměřte se na neočividné** — Dokumentujte vzory, které agenti mohou přehlédnout (např. „Použijte JSDoc na každé veřejné třídě“), ne univerzální postupy jako „používejte smysluplné názvy proměnných.“
 - **Udržujte to stručné** — Tento soubor načítá každý implementační workflow. Dlouhé soubory plýtvají kontextem. Vylučte obsah, který platí pouze pro úzký rozsah nebo specifické stories.
 - **Aktualizujte dle potřeby** — Upravte ručně, když se vzory změní, nebo přegenerujte po významných změnách architektury.
-- Podporuje stejný `bmad-quick-dev` loop při přímém vstupu i po rozsáhlém plánování.
+- Podporuje stejný `acl-quick-dev` loop při přímém vstupu i po rozsáhlém plánování.
 :::
 
 ## Další kroky

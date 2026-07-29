@@ -26,7 +26,7 @@ Běžné revize trpí konfirmačním zkreslením. Proletíte práci, nic nevysko
 
 ## Kde se používá
 
-Adversariální revize se objevuje v celém BMad workflow — revize kódu, kontroly připravenosti implementace, validace specifikací a další. Někdy je to povinný krok, někdy volitelný (jako pokročilá elicitace nebo party mode). Vzor se přizpůsobí jakémukoli artefaktu, který potřebuje kontrolu.
+Adversariální revize se objevuje v celém ACL workflow — revize kódu, kontroly připravenosti implementace, validace specifikací a další. Někdy je to povinný krok, někdy volitelný (jako pokročilá elicitace nebo party mode). Vzor se přizpůsobí jakémukoli artefaktu, který potřebuje kontrolu.
 
 ## Vyžadováno lidské filtrování
 
