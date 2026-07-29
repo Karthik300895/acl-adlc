@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "acl-adlc",
-  "version": "6.10.1",
-  "description": "Breakthrough Method of Agile AI-driven Development",
+  "version": "6.10.2",
+  "description": "AI-driven agile development framework for the ACL Method Module Ecosystem",
   "keywords": [
     "agile",
     "ai",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/karthick1827/ACL-ADLC.git"
   },
   "license": "MIT",
-  "author": "Brian (ACL) Madison",
+  "author": "Karthick N",
   "main": "tools/installer/acl-cli.js",
   "bin": {
     "acl": "tools/installer/acl-cli.js",
