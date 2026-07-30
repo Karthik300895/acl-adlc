@@ -1,13 +1,4 @@
-![ACL Method](banner-acl-adlc.png)
 
-[![Version](https://img.shields.io/npm/v/acl-adlc?color=blue&label=version)](https://www.npmjs.com/package/acl-adlc)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen)](https://nodejs.org)
-[![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue?logo=python&logoColor=white)](https://www.python.org)
-[![uv](https://img.shields.io/badge/uv-package%20manager-blueviolet?logo=uv)](https://docs.astral.sh/uv/)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289da?logo=discord&logoColor=white)](https://discord.gg/gk8jAdXWmj)
-
-[English](README.md) | [简体中文](README_CN.md) | Tiếng Việt
 
 **Build More Architect Dreams** - một mô-đun khung phát triển hướng AI trong hệ sinh thái ACL, có khả năng thích ứng theo quy mô từ sửa lỗi nhỏ đến các hệ thống doanh nghiệp.
 
@@ -24,17 +15,10 @@ Các công cụ AI truyền thống thường làm thay phần suy nghĩ của b
 - **Party Mode** - Đưa nhiều persona agent vào cùng một phiên để cộng tác và thảo luận
 - **Vòng đời hoàn chỉnh** - Từ động não ý tưởng cho đến triển khai
 
-[Tìm hiểu thêm tại **docs.acl-adlc.org**](https://docs.acl-adlc.org/vi-vn/)
+
 
 ---
 
-## 🚀 Điều gì tiếp theo cho ACL?
-
-**V6 đã có mặt và đây mới chỉ là khởi đầu!** ACL Method đang phát triển rất nhanh với các cải tiến như đội agent đa nền tảng và tích hợp sub-agent, kiến trúc Skills, ACL Builder v1, tự động hóa vòng lặp phát triển và nhiều thứ khác vẫn đang được xây dựng.
-
-**[📍 Xem lộ trình đầy đủ →](https://docs.acl-adlc.org/vi-vn/roadmap/)**
-
----
 
 ## Bắt đầu nhanh
 
@@ -54,7 +38,7 @@ Làm theo các lời nhắc của trình cài đặt, sau đó mở AI IDE của
 npx acl-adlc install --directory /path/to/project --modules acl --tools claude-code --yes
 ```
 
-[Xem toàn bộ tùy chọn cài đặt](https://docs.acl-adlc.org/vi-vn/how-to/non-interactive-installation/)
+
 
 > **Chưa chắc nên làm gì?** Hãy hỏi `acl-help` - nó sẽ cho bạn biết chính xác bước nào tiếp theo và bước nào là tùy chọn. Bạn cũng có thể hỏi kiểu như `acl-help Tôi vừa hoàn thành phần kiến trúc, tiếp theo tôi cần làm gì?`
 
@@ -64,33 +48,26 @@ ACL Method có thể được mở rộng bằng các mô-đun chính thức cho
 
 | Module                                                                                                            | Mục đích                                           |
 | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **[ACL Method (ACL)](https://github.com/acl-code-org/ACL-ADLC)**                                             | Khung lõi với hơn 34 quy trình                     |
-| **[ACL Builder (BMB)](https://github.com/acl-code-org/acl-builder)**                                           | Tạo agent và quy trình ACL tùy chỉnh             |
-| **[Test Architect (TEA)](https://github.com/acl-code-org/acl-adlc-test-architecture-enterprise)**             | Chiến lược kiểm thử và tự động hóa dựa trên rủi ro |
-| **[Game Dev Studio (BMGD)](https://github.com/acl-code-org/acl-module-game-dev-studio)**                        | Quy trình phát triển game (Unity, Unreal, Godot)   |
-| **[Creative Intelligence Suite (CIS)](https://github.com/acl-code-org/acl-module-creative-intelligence-suite)** | Đổi mới, động não ý tưởng, tư duy thiết kế         |
+| ACL Method (ACL) | Khung lõi với hơn 34 quy trình                     |
+| ACL Builder (BMB)  | Tạo agent và quy trình ACL tùy chỉnh             |
+| Test Architect (TEA) | Chiến lược kiểm thử và tự động hóa dựa trên rủi ro |
+| Game Dev Studio (BMGD) | Quy trình phát triển game (Unity, Unreal, Godot)   |
+| Creative Intelligence Suite (CIS)| Đổi mới, động não ý tưởng, tư duy thiết kế         |
+
+
+## Web Bundles
+
+Phiên bản V4 đã giới thiệu web bundles. Phiên bản V6 mang chúng trở lại, mới mẻ và cải tiến hơn.
+
+Web bundles đóng gói các kỹ năng ACL được chọn lọc để cài đặt dưới dạng **Google Gemini Gems** và **ChatGPT Custom GPTs**. Hãy sử dụng chúng để thực hiện công việc lập kế hoạch ban đầu (động não ý tưởng, bản tóm tắt sản phẩm, PRD, PRFAQ, thông số UX, nghiên cứu thị trường và ngành) trong gói đăng ký LLM web của bạn, sau đó mang các sản phẩm đã hoàn thiện vào IDE của bạn để thực thi. Việc lập kế hoạch chạy trên gói đăng ký cố định thay vì tính phí theo token trong IDE, giúp tiết kiệm chi phí đáng kể cho các dự án kéo dài. Hãy chọn mô hình tốt nhất có sẵn cho bạn trong Gemini hoặc ChatGPT.
+
+Các gói hiện có: động não ý tưởng, bản tóm tắt sản phẩm, PRFAQ, PRD, UX, nghiên cứu thị trường & ngành.
 
 ## Tài liệu
 
-[Trang tài liệu ACL Method](https://docs.acl-adlc.org/vi-vn/) - bài hướng dẫn, hướng dẫn tác vụ, giải thích khái niệm và tài liệu tham chiếu
+Trang tài liệu ACL Method - bài hướng dẫn, hướng dẫn tác vụ, giải thích khái niệm và tài liệu tham chiếu
 
-**Liên kết nhanh:**
-- [Hướng dẫn bắt đầu](https://docs.acl-adlc.org/vi-vn/tutorials/getting-started/)
-- [Nâng cấp từ các phiên bản trước](https://docs.acl-adlc.org/vi-vn/how-to/upgrade-to-v6/)
-- [Tài liệu Test Architect](https://acl-code-org.github.io/acl-adlc-test-architecture-enterprise/)
 
-## Cộng đồng
-
-- [Discord](https://discord.gg/gk8jAdXWmj) - Nhận trợ giúp, chia sẻ ý tưởng, cộng tác
-- [YouTube](https://youtube.com/@ACLCode) - Video hướng dẫn, master class và nhiều nội dung khác
-- [X / Twitter](https://x.com/ACLCode)
-- [Website](https://aclcode.com)
-- [GitHub Issues](https://github.com/acl-code-org/ACL-ADLC/issues) - Báo lỗi và yêu cầu tính năng
-- [Discussions](https://github.com/acl-code-org/ACL-ADLC/discussions) - Trao đổi cộng đồng
-
-## Hỗ trợ ACL
-
-ACL miễn phí cho tất cả mọi người và sẽ luôn như vậy. Hãy nhấn sao cho repo này, [mời tôi một ly cà phê](https://buymeacoffee.com/acl), hoặc gửi email tới <contact@aclcode.com> nếu bạn muốn tài trợ doanh nghiệp.
 
 ## Đóng góp
 
@@ -104,6 +81,5 @@ Giấy phép MIT - xem [LICENSE](LICENSE) để biết chi tiết.
 
 **ACL** và **ACL-ADLC** là các nhãn hiệu của ACL Code, LLC. Xem [TRADEMARK.md](TRADEMARK.md) để biết chi tiết.
 
-[![Contributors](https://contrib.rocks/image?repo=acl-code-org/ACL-ADLC)](https://github.com/acl-code-org/ACL-ADLC/graphs/contributors)
 
 Xem [CONTRIBUTORS.md](CONTRIBUTORS.md) để biết thông tin về những người đóng góp.
