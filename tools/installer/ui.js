@@ -384,6 +384,7 @@ class UI {
           skipPrompts: options.yes || false,
           channelOptions,
           _preserveModules: preservedModules,
+          withDocsConsole: await this._resolveDocsConsolePreference(options),
         };
       }
     }
@@ -462,6 +463,7 @@ class UI {
       setOverrides,
       skipPrompts: options.yes || false,
       channelOptions,
+      withDocsConsole: await this._resolveDocsConsolePreference(options),
     };
   }
 
@@ -1767,6 +1769,31 @@ class UI {
       return `  \u2022 ${name}${marker}`;
     });
     await prompts.log.message('Selected tools:\n' + toolLines.join('\n'));
+  }
+
+  /**
+   * Resolve whether to scaffold ACL Docs Console assets.
+   * --with-docs-console / --no-docs-console win; --yes defaults to install;
+   * interactive installs ask (default yes).
+   */
+  async _resolveDocsConsolePreference(options = {}) {
+    if (options.noDocsConsole) {
+      await prompts.log.info('Skipping ACL Docs Console scaffold (--no-docs-console)');
+      return false;
+    }
+    if (options.withDocsConsole) {
+      await prompts.log.info('Scaffolding ACL Docs Console (--with-docs-console)');
+      return true;
+    }
+    if (options.yes) {
+      await prompts.log.info('Non-interactive mode (--yes): scaffolding ACL Docs Console');
+      return true;
+    }
+    return await prompts.confirm({
+      message:
+        'Scaffold ACL Docs Console? (acl-docs-console.html + API — managers Approve/Reject MD frontmatter status)',
+      default: true,
+    });
   }
 
   /**

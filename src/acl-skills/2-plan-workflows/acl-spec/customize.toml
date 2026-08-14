@@ -12,7 +12,9 @@
 #   scalars: override wins • arrays: append
 
 # Steps to run before the standard activation (config load, greet).
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-spec`. If exit code is non-zero, HALT. When brief/PRD inputs exist they must be `status: approved` in MD frontmatter via acl-docs-console.html. Pull and retry. Never bypass.",
+]
 
 # Steps to run after greet but before the operation begins.
 activation_steps_append = []

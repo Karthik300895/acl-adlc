@@ -242,6 +242,17 @@ class Installer {
       },
     });
 
+    if (config.withDocsConsole !== false) {
+      installTasks.push({
+        title: 'Scaffolding ACL Docs Console',
+        task: async () => {
+          const detail = await this._installDocsConsole(paths);
+          addResult('ACL Docs Console', 'ok', detail);
+          return detail || 'ACL Docs Console scaffolded';
+        },
+      });
+    }
+
     if (allModules.length > 0) {
       installTasks.push({
         title: isQuickUpdate ? `Updating ${allModules.length} module(s)` : `Installing ${allModules.length} module(s)`,
@@ -696,6 +707,55 @@ class Installer {
     this.installedFiles.add(renderGitignore);
   }
 
+  /**
+   * Scaffold ACL Docs Console assets into the consumer project.
+   * Copies from src/docs-console → project root (+ _acl/docs-console README).
+   */
+  async _installDocsConsole(paths) {
+    const srcDir = path.join(paths.srcDir, 'src', 'docs-console');
+    if (!(await fs.pathExists(srcDir))) {
+      throw new Error(`Docs console source not found: ${srcDir}`);
+    }
+
+    const projectRoot = paths.projectRoot;
+    const copied = [];
+
+    const consoleHtmlSrc = path.join(srcDir, 'acl-docs-console.html');
+    const consoleHtmlDest = path.join(projectRoot, 'acl-docs-console.html');
+    await fs.copy(consoleHtmlSrc, consoleHtmlDest, { overwrite: true });
+    this.installedFiles.add(consoleHtmlDest);
+    copied.push('acl-docs-console.html');
+
+    const apiSrc = path.join(srcDir, 'api', 'update-doc.js');
+    const apiDest = path.join(projectRoot, 'api', 'update-doc.js');
+    await fs.ensureDir(path.dirname(apiDest));
+    await fs.copy(apiSrc, apiDest, { overwrite: true });
+    this.installedFiles.add(apiDest);
+    copied.push('api/update-doc.js');
+
+    const pluginSrc = path.join(srcDir, 'vite-plugin-acl-docs.ts');
+    if (await fs.pathExists(pluginSrc)) {
+      const pluginDest = path.join(projectRoot, 'vite-plugin-acl-docs.ts');
+      await fs.copy(pluginSrc, pluginDest, { overwrite: true });
+      this.installedFiles.add(pluginDest);
+      copied.push('vite-plugin-acl-docs.ts');
+    }
+
+    const readmeSrc = path.join(srcDir, 'README.md');
+    const docsConsoleDir = path.join(paths.aclDir, 'docs-console');
+    await fs.ensureDir(docsConsoleDir);
+    const readmeDest = path.join(docsConsoleDir, 'README.md');
+    await fs.copy(readmeSrc, readmeDest, { overwrite: true });
+    this.installedFiles.add(readmeDest);
+    copied.push('_acl/docs-console/README.md');
+
+    await prompts.log.info(
+      'ACL Docs Console installed. Managers Approve/Reject by updating YAML status in each MD file. See _acl/docs-console/README.md',
+    );
+
+    return copied.join(', ');
+  }
+
   async _trackFilesRecursive(dir) {
     const entries = await fs.readdir(dir, { withFileTypes: true });
     for (const entry of entries) {
@@ -967,7 +1027,7 @@ class Installer {
 
     // Get all installed module directories
     const entries = await fs.readdir(aclDir, { withFileTypes: true });
-    const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'scripts', 'custom', 'render']);
+    const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'docs-console', 'scripts', 'custom', 'render']);
     const installedModules = entries.filter((entry) => entry.isDirectory() && !nonModuleDirs.has(entry.name)).map((entry) => entry.name);
 
     // Generate config.yaml for each installed module
@@ -1064,7 +1124,7 @@ class Installer {
 
     // Get all installed module directories
     const entries = await fs.readdir(aclDir, { withFileTypes: true });
-    const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'scripts', 'custom', 'render']);
+    const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'docs-console', 'scripts', 'custom', 'render']);
     const installedModules = entries.filter((entry) => entry.isDirectory() && !nonModuleDirs.has(entry.name)).map((entry) => entry.name);
 
     // Add core module to scan (it's installed at root level as _config, but we check src/core-skills)

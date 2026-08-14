@@ -123,6 +123,7 @@ If all validations pass:
 
 - Update any remaining placeholders in the document
 - Ensure proper formatting
+- Set epics.md YAML frontmatter `status: pending-review` (manager Approve/Reject via acl-docs-console.html updates only this status line; implementation skills require `approved`)
 - Save the final epics.md
 
 **Present Final Menu:**
@@ -130,7 +131,7 @@ If all validations pass:
 
 HALT — wait for user input before proceeding.
 
-When C is selected, the workflow is complete and the epics.md is ready for development.
+When C is selected, the workflow is complete and the epics.md is awaiting manager approval (`pending-review`) before development skills proceed.
 
 Epics and Stories complete. Invoke the `acl-help` skill.
 

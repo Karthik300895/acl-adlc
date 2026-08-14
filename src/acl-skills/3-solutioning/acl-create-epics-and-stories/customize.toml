@@ -12,7 +12,9 @@
 # Steps to run before the standard activation (config load, greet).
 # Overrides append. Use for pre-flight loads, compliance checks, etc.
 
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-create-epics-and-stories`. If exit code is non-zero, HALT immediately. Show the script output. Architecture (and present PRD/UX) must be `status: approved` in MD frontmatter via acl-docs-console.html. Pull and retry. Never bypass.",
+]
 
 # Steps to run after greet but before the workflow begins.
 # Overrides append. Use for context-heavy setup that should happen
@@ -38,4 +40,4 @@ persistent_facts = [
 # user confirms [C] Complete — after the epics.md is saved and acl-help is invoked.
 # Override wins. Leave empty for no custom post-completion behavior.
 
-on_complete = ""
+on_complete = """Set {planning_artifacts}/epics.md frontmatter `status: pending-review` and `updated: {date}`. Tell the user to push and get manager Approve/Reject via acl-docs-console.html before implementation readiness / sprint planning."""

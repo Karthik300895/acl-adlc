@@ -1,0 +1,45 @@
+# Docs-review hard gates for ACL skills.
+# Used by check_docs_approval.py. Globs are relative to planning_artifacts.
+
+[skills.acl-prd]
+any_of = [
+  { globs = ["briefs/**/brief.md"] },
+  { globs = ["prfaqs/**/*.md", "prfaq/**/*.md"] },
+]
+
+[skills.acl-ux.require_approved]
+globs = ["prds/**/prd.md"]
+
+[skills.acl-architecture.require_approved]
+globs = ["prds/**/prd.md"]
+
+[skills.acl-architecture.require_approved_if_present]
+globs = ["ux/**/*.md", "**/ux-design*.md", "**/experience*.md"]
+
+[skills.acl-create-epics-and-stories.require_approved]
+globs = [
+  "architecture/**/ARCHITECTURE-SPINE.md",
+  "architecture/**/*spine*.md",
+]
+
+[skills.acl-create-epics-and-stories.require_approved_if_present]
+globs = ["prds/**/prd.md", "ux/**/*.md"]
+
+[skills.acl-check-implementation-readiness.require_approved]
+globs = ["epics.md", "**/epics.md"]
+
+[skills.acl-check-implementation-readiness.require_approved_if_present]
+globs = [
+  "prds/**/prd.md",
+  "architecture/**/ARCHITECTURE-SPINE.md",
+  "architecture/**/*spine*.md",
+]
+
+[skills.acl-sprint-planning.require_approved]
+globs = ["epics.md", "**/epics.md"]
+
+[skills.acl-quick-dev.require_approved_if_present]
+globs = ["epics.md", "**/epics.md"]
+
+[skills.acl-spec.require_approved_if_present]
+globs = ["briefs/**/brief.md", "prds/**/prd.md"]

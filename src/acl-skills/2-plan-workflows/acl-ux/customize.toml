@@ -9,7 +9,9 @@
 [workflow]
 
 # Steps to run before/after standard activation. Append-only.
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-ux`. If exit code is non-zero, HALT immediately — do not begin the UX workflow. Show the script output. Upstream PRD must have frontmatter `status: approved` (set via acl-docs-console.html Approve). Pull and retry. Never bypass.",
+]
 activation_steps_append = []
 
 # Persistent facts loaded at activation and kept in mind for the run.
@@ -19,7 +21,7 @@ persistent_facts = [
 ]
 
 # Runs at workflow completion. String or array of instructions.
-on_complete = ""
+on_complete = """Set UX artifact frontmatter `status: pending-review` and `updated: {date}`. Tell the user to push and get manager Approve/Reject via acl-docs-console.html before downstream skills proceed."""
 
 # Reference DESIGN.md spines the distillation subagent reads to anchor shape
 # and editorial richness. Convention-compliant with the Google Labs DESIGN.md

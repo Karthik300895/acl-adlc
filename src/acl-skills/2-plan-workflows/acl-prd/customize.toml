@@ -13,7 +13,9 @@
 
 # Steps to run before the standard activation (config load, greet).
 # Use for pre-flight loads, compliance checks, etc.
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-prd`. If exit code is non-zero, HALT immediately — do not begin Discovery or drafting. Show the script output. Tell the user a manager must set upstream MD frontmatter `status: approved` via acl-docs-console.html Approve (not a GitHub commit check), then pull and retry. Never bypass.",
+]
 
 # Steps to run after greet but before the workflow begins.
 # Use for context-heavy setup that should happen once the user has been acknowledged.
@@ -36,7 +38,7 @@ persistent_facts = [
 # Executed when the workflow completes (after the user has been told the
 # PRD is ready). Accepts either a string scalar (single instruction)
 # or an array of instructions executed in order. Empty for none.
-on_complete = ""
+on_complete = """Confirm prd.md frontmatter is `status: pending-review` (manager gate). Tell the user to push, have a manager Approve/Reject in acl-docs-console.html (updates only the MD `status` line), then pull before acl-ux / acl-architecture / epics can proceed."""
 
 # Default PRD structure. Treated as a starting point — the LLM adapts it
 # to the product, project type, and domain. Override the path in team/user TOML

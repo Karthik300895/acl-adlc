@@ -12,7 +12,9 @@
 # Steps to run before the standard activation (config load, greet).
 # Overrides append. Use for pre-flight loads, compliance checks, etc.
 
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-check-implementation-readiness`. If exit code is non-zero, HALT. Epics (and present PRD/architecture) must be `status: approved` in MD frontmatter via acl-docs-console.html. Pull and retry. Never bypass.",
+]
 
 # Steps to run after greet but before the workflow begins.
 # Overrides append. Use for context-heavy setup that should happen

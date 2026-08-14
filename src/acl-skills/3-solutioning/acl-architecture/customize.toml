@@ -13,7 +13,9 @@
 
 # Steps to run before the standard activation (config load, greet).
 # Use for pre-flight loads, approved-stack policy checks, etc.
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-architecture`. If exit code is non-zero, HALT immediately — do not begin architecture work. Show the script output. Required upstream docs must have frontmatter `status: approved` (acl-docs-console.html Approve). Pull and retry. Never bypass.",
+]
 
 # Steps to run after greet but before the workflow begins.
 # Use for context-heavy setup that should happen once the user has been acknowledged.
@@ -35,7 +37,7 @@ persistent_facts = [
 
 # Executed when the workflow completes (after the spine is final and the user has been told).
 # String scalar (single instruction) or array of instructions executed in order. Empty for none.
-on_complete = ""
+on_complete = """Confirm ARCHITECTURE-SPINE.md frontmatter is `status: pending-review`. Tell the user to push and get manager Approve/Reject via acl-docs-console.html before acl-create-epics-and-stories can proceed."""
 
 # The architecture spine template. Treated as expert prior knowledge, not a checklist — the LLM
 # adapts it to the project, altitude, and domain, and drops sections a project genuinely doesn't

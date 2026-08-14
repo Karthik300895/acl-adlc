@@ -922,7 +922,7 @@ class OfficialModules {
 
     // Fallback: legacy per-module config.yaml files (pre-v6 installations).
     const entries = await fs.readdir(aclDir, { withFileTypes: true });
-    const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'scripts', 'custom', 'render']);
+    const nonModuleDirs = new Set(['_config', '_memory', 'memory', 'docs', 'docs-console', 'scripts', 'custom', 'render']);
     for (const entry of entries) {
       if (entry.isDirectory()) {
         if (nonModuleDirs.has(entry.name)) {

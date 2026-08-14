@@ -40,6 +40,19 @@ project_knowledge: # Artifacts from research, document-project output, other lon
   default: "docs"
   result: "{project-root}/{value}"
 
+docs_review_require_approval:
+  prompt:
+    - "Require manager Approve (MD frontmatter status: approved) before downstream ACL skills can proceed?"
+    - "Approve/Reject only changes the status line inside each markdown file — not GitHub commit checks."
+  scope: project
+  default: "true"
+  result: "{value}"
+  single-select:
+    - value: "true"
+      label: "Yes — hard-gate next skills until upstream docs are approved"
+    - value: "false"
+      label: "No — solo/local mode (skip docs-review gates)"
+
 # No pre-created directories: planning_artifacts, implementation_artifacts, and
 # project_knowledge are created lazily by whichever skill first writes to them.
 

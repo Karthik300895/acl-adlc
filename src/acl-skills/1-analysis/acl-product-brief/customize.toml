@@ -36,7 +36,7 @@ persistent_facts = [
 # Executed when the workflow completes (after the user has been told the
 # brief is ready). Accepts either a string scalar (single instruction)
 # or an array of instructions executed in order. Empty for none.
-on_complete = ""
+on_complete = """Set brief.md YAML frontmatter `status: pending-review` and `updated: {date}` (manager gate — not `final`). Tell the user to push the file, open acl-docs-console.html so a manager can Approve or Reject (that only changes the MD frontmatter `status` line), then pull before any downstream ACL skill (acl-prd, etc.) can proceed."""
 
 # Default brief structure. Treated as a starting point — the LLM adapts it
 # to the product, purpose, and domain. Override the path in team/user TOML

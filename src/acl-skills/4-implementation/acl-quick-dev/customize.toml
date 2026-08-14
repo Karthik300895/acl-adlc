@@ -14,7 +14,9 @@
 
 # Extra instructions to run before config is loaded and before the user is greeted.
 
-activation_steps_prepend = []
+activation_steps_prepend = [
+  "Docs-review hard gate: Run `uv run {project-root}/_acl/scripts/check_docs_approval.py --project-root {project-root} --skill acl-quick-dev`. If exit code is non-zero, HALT. When epics.md exists it must be `status: approved` in MD frontmatter via acl-docs-console.html. Pull and retry. Never bypass.",
+]
 
 # Extra instructions to run after the greeting and before step 01.
 
