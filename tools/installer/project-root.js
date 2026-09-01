@@ -18,7 +18,11 @@ function findProjectRoot(startPath = __dirname) {
       try {
         const pkg = fs.readJsonSync(packagePath);
         // Check if this is the ACL project
-        if (pkg.name === 'acl-adlc' || fs.existsSync(path.join(currentPath, 'src', 'core-skills'))) {
+        if (
+          pkg.name === 'acl-adlc-v1' ||
+          pkg.name === 'acl-adlc' ||
+          fs.existsSync(path.join(currentPath, 'src', 'core-skills'))
+        ) {
           return currentPath;
         }
       } catch {

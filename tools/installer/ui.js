@@ -634,14 +634,15 @@ class UI {
         await this.displaySelectedTools(configuredIdes, preferredIdes, allTools);
         return { ides: configuredIdes, skipIde: false };
       } else {
+        const packageName = require('../../package.json').name;
         const err = new Error(
           [
             '--tools is required for non-interactive install (--yes / -y) when no tools are previously configured.',
             '',
             'Common: claude-code, cursor, copilot, windsurf, cline',
-            'See all supported tools: acl-adlc install --list-tools',
+            `See all supported tools: ${packageName} install --list-tools`,
             '',
-            'Example: acl-adlc install --modules acl --tools claude-code -y',
+            `Example: ${packageName} install --modules acl --tools claude-code -y`,
           ].join('\n'),
         );
         err.expected = true;

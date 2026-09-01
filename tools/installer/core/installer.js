@@ -705,6 +705,71 @@ class Installer {
       await fs.writeFile(renderGitignore, '*\n!.gitignore\n', 'utf8');
     }
     this.installedFiles.add(renderGitignore);
+
+    // Deploy markdown.html studio to target project root and public directory (if present)
+    const projectRoot = paths?.projectRoot;
+    if (projectRoot) {
+      const candidatePaths = [
+        path.join(paths.srcDir || getProjectRoot(), 'src', 'public', 'markdown.html'),
+        path.join(getProjectRoot(), 'src', 'public', 'markdown.html'),
+        path.join(__dirname, '..', '..', '..', 'src', 'public', 'markdown.html'),
+        path.join(paths.srcDir || getProjectRoot(), 'markdown.html'),
+        path.join(paths.srcDir || getProjectRoot(), 'src', 'markdown.html'),
+      ];
+      let srcMarkdown = null;
+      for (const p of candidatePaths) {
+        if (await fs.pathExists(p)) {
+          srcMarkdown = p;
+          break;
+        }
+      }
+      if (srcMarkdown) {
+        let htmlContent = await fs.readFile(srcMarkdown, 'utf8');
+
+        const projectMdFiles = await this._scanProjectMarkdownFiles(projectRoot);
+        if (projectMdFiles.length > 0) {
+          const injection = `  <script>window.__ACL_EMBEDDED_FILES__ = ${JSON.stringify(projectMdFiles)};</script>\n`;
+          htmlContent = htmlContent.replace('</head>', `${injection}</head>`);
+        }
+
+        const publicDir = path.join(projectRoot, 'public');
+        let targetMarkdownFile;
+        if (await fs.pathExists(publicDir)) {
+          targetMarkdownFile = path.join(publicDir, 'markdown.html');
+          const rootDuplicate = path.join(projectRoot, 'markdown.html');
+          if (await fs.pathExists(rootDuplicate)) {
+            await fs.remove(rootDuplicate);
+          }
+        } else {
+          const isWebProject =
+            (await fs.pathExists(path.join(projectRoot, 'vite.config.js'))) ||
+            (await fs.pathExists(path.join(projectRoot, 'vite.config.ts'))) ||
+            (await fs.pathExists(path.join(projectRoot, 'package.json')));
+          if (isWebProject) {
+            await fs.ensureDir(publicDir);
+            targetMarkdownFile = path.join(publicDir, 'markdown.html');
+          } else {
+            targetMarkdownFile = path.join(projectRoot, 'markdown.html');
+          }
+        }
+
+        await fs.writeFile(targetMarkdownFile, htmlContent, 'utf8');
+        this.installedFiles.add(targetMarkdownFile);
+
+        const targetDir = path.dirname(targetMarkdownFile);
+        const svgSrcDir = path.dirname(srcMarkdown);
+        for (const svgName of ['greenfield.svg', 'brownfield.svg']) {
+          const svgSrc = path.join(svgSrcDir, svgName);
+          if (await fs.pathExists(svgSrc)) {
+            const targetSvg = path.join(targetDir, svgName);
+            await fs.copy(svgSrc, targetSvg);
+            this.installedFiles.add(targetSvg);
+          }
+        }
+      }
+
+      await this._configureViteProject(projectRoot);
+    }
   }
 
   /**
@@ -754,6 +819,193 @@ class Installer {
     );
 
     return copied.join(', ');
+  }
+
+  async _configureViteProject(projectRoot) {
+    if (!projectRoot) return;
+    const viteConfigFiles = ['vite.config.js', 'vite.config.ts', 'vite.config.mjs', 'vite.config.cjs'];
+    for (const configFile of viteConfigFiles) {
+      const configPath = path.join(projectRoot, configFile);
+      if (await fs.pathExists(configPath)) {
+        try {
+          let content = await fs.readFile(configPath, 'utf8');
+          if (!content.includes('save-markdown') && !content.includes('aclMarkdownSaverPlugin')) {
+            const pluginCode = `
+// ACL-ADLC Markdown Studio Save Middleware
+function aclMarkdownSaverPlugin() {
+  return {
+    name: 'acl-markdown-saver',
+    configureServer(server) {
+      server.middlewares.use('/api/list-markdown-files', (req, res, next) => {
+        if (req.method === 'GET') {
+          try {
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const projectRoot = process.cwd();
+            const mdFiles = [];
+            const scanCandidates = ['_acl-output', '_acl_output', 'acl-output'];
+
+            function collect(currentDir, relPrefix) {
+              if (!fs.existsSync(currentDir)) return;
+              const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+              for (const entry of entries) {
+                const full = path.join(currentDir, entry.name);
+                const rel = relPrefix ? relPrefix + '/' + entry.name : entry.name;
+                if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== '.git') {
+                  collect(full, rel);
+                } else if (entry.isFile() && entry.name.endsWith('.md')) {
+                  const content = fs.readFileSync(full, 'utf8');
+                  const stat = fs.statSync(full);
+                  let status = 'In Review';
+                  const match = content.match(/status:\\s*([^\\n\\r]+)/i);
+                  if (match && match[1]) {
+                    const raw = match[1].trim().toLowerCase();
+                    if (raw.includes('accept') || raw.includes('approved') || raw.includes('final') || raw.includes('complete')) status = 'Approved';
+                    else if (raw.includes('reject')) status = 'Rejected';
+                    else status = 'In Review';
+                  }
+                  mdFiles.push({
+                    id: rel.replace(/[^a-zA-Z0-9_-]/g, '_'),
+                    folderPath: path.dirname(rel).replace(/\\\\/g, '/'),
+                    filename: entry.name,
+                    status,
+                    updatedAt: stat.mtime ? stat.mtime.toISOString() : new Date().toISOString(),
+                    content
+                  });
+                }
+              }
+            }
+
+            for (const f of scanCandidates) {
+              collect(path.join(projectRoot, f), f);
+            }
+
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ files: mdFiles }));
+          } catch (err) {
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ files: [], error: err.message }));
+          }
+        } else {
+          next();
+        }
+      });
+
+      server.middlewares.use('/api/save-markdown', (req, res, next) => {
+        if (req.method === 'POST') {
+          let body = '';
+          req.on('data', chunk => { body += chunk; });
+          req.on('end', () => {
+            try {
+              const { folderPath, filename, content, status, autoPush } = JSON.parse(body);
+              const fs = require('node:fs');
+              const path = require('node:path');
+              const { exec } = require('node:child_process');
+              const targetDir = path.resolve(process.cwd(), folderPath || '');
+              if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir, { recursive: true });
+              }
+              const targetFile = path.join(targetDir, filename);
+              fs.writeFileSync(targetFile, content, 'utf8');
+
+              if (autoPush) {
+                const gitCmd = 'git add "' + targetFile + '" && git commit -m "docs: update ' + filename + ' [' + (status || 'Approved') + ']" && git push';
+                exec(gitCmd, { cwd: process.cwd(), env: process.env }, (gitErr, gitStdout, gitStderr) => {
+                  if (gitErr) {
+                    console.warn('[ACL Git Auto-Push]', gitErr.message || gitStderr);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ success: true, path: targetFile, gitPushed: false, gitError: gitErr.message }));
+                  } else {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ success: true, path: targetFile, gitPushed: true }));
+                  }
+                });
+              } else {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ success: true, path: targetFile, gitPushed: false }));
+              }
+            } catch (err) {
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: false, error: err.message }));
+            }
+          });
+        } else {
+          next();
+        }
+      });
+    }
+  };
+}
+`;
+            if (content.includes('plugins: [')) {
+              content = pluginCode + '\n' + content.replace('plugins: [', 'plugins: [\n    aclMarkdownSaverPlugin(),');
+            } else {
+              content = content + '\n' + pluginCode;
+            }
+            await fs.writeFile(configPath, content, 'utf8');
+          }
+        } catch {
+          // Best-effort config wiring
+        }
+      }
+    }
+  }
+
+  async _scanProjectMarkdownFiles(projectRoot) {
+    if (!projectRoot) return [];
+    const mdFiles = [];
+    const scanCandidates = ['_acl-output', '_acl_output', 'acl-output'];
+
+    for (const folder of scanCandidates) {
+      const fullDir = path.join(projectRoot, folder);
+      if (await fs.pathExists(fullDir)) {
+        await this._collectMdRecursive(fullDir, folder, mdFiles);
+      }
+    }
+    return mdFiles;
+  }
+
+  async _collectMdRecursive(currentDir, relativePrefix, list) {
+    try {
+      const entries = await fs.readdir(currentDir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(currentDir, entry.name);
+        const relPath = relativePrefix ? `${relativePrefix}/${entry.name}` : entry.name;
+        if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== '.git') {
+          await this._collectMdRecursive(fullPath, relPath, list);
+        } else if (
+          entry.isFile() &&
+          entry.name.endsWith('.md') &&
+          !entry.name.startsWith('.') &&
+          !['addendum.md', 'sources.md', 'review-triage.md', 'patch-plan.md', 'research.md'].includes(entry.name.toLowerCase())
+        ) {
+          const content = await fs.readFile(fullPath, 'utf8');
+          const stat = await fs.stat(fullPath);
+
+          let status = 'In Review';
+          const match = content.match(/status:\s*([^\n\r]+)/i);
+          if (match && match[1]) {
+            const raw = match[1].trim().toLowerCase();
+            if (raw.includes('accept') || raw.includes('approved') || raw.includes('final') || raw.includes('complete')) status = 'Approved';
+            else if (raw.includes('reject')) status = 'Rejected';
+            else status = 'In Review';
+          }
+
+          list.push({
+            id: relPath.replaceAll(/[^a-zA-Z0-9_-]/g, '_'),
+            folderPath: path.dirname(relPath).replaceAll('\\', '/'),
+            filename: entry.name,
+            status,
+            updatedAt: stat.mtime ? stat.mtime.toISOString() : new Date().toISOString(),
+            content,
+          });
+        }
+      }
+    } catch {
+      // Ignore scan errors
+    }
   }
 
   async _trackFilesRecursive(dir) {

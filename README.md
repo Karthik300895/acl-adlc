@@ -21,17 +21,17 @@ Traditional AI tools do the thinking for you, producing average results. ACL age
 **Prerequisites**: [Node.js](https://nodejs.org) v20.12+ · [Python](https://www.python.org) 3.10+ · [uv](https://docs.astral.sh/uv/)
 
 ```bash
-npx acl-adlc install
+npx acl-adlc-v1 install
 ```
 
-> Want the newest prerelease build? Use `npx acl-adlc@next install`. Expect higher churn than the default install.
+> Want the newest prerelease build? Use `npx acl-adlc-v1@next install`. Expect higher churn than the default install.
 
 Follow the installer prompts, then open your AI IDE (Claude Code, Cursor, etc.) in your project folder.
 
 **Non-Interactive Installation** (for CI/CD):
 
 ```bash
-npx acl-adlc install --directory /path/to/project --modules acl --tools claude-code --yes
+npx acl-adlc-v1 install --directory /path/to/project --modules acl --tools claude-code --yes
 ```
 
 Override any module config option with `--set <module>.<key>=<value>` (repeatable). Run `--list-options [module]` to see locally-known official keys (built-in modules plus any external officials cached on this machine):

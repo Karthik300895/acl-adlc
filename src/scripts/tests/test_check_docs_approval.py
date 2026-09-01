@@ -50,6 +50,20 @@ def test_prd_passes_with_approved_brief(project: Path) -> None:
     assert code == 0
 
 
+def test_prd_passes_with_title_case_approved_brief(project: Path) -> None:
+    planning = project / "_acl-output" / "planning-artifacts"
+    write_md(planning / "briefs" / "brief-x" / "brief.md", "Approved")
+    code = gate.main(["--project-root", str(project), "--skill", "acl-prd"])
+    assert code == 0
+
+
+def test_prd_blocked_when_brief_in_review(project: Path) -> None:
+    planning = project / "_acl-output" / "planning-artifacts"
+    write_md(planning / "briefs" / "brief-x" / "brief.md", "In Review")
+    code = gate.main(["--project-root", str(project), "--skill", "acl-prd"])
+    assert code == 1
+
+
 def test_prd_blocked_when_brief_pending(project: Path) -> None:
     planning = project / "_acl-output" / "planning-artifacts"
     write_md(planning / "briefs" / "brief-x" / "brief.md", "pending-review")

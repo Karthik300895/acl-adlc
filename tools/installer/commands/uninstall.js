@@ -148,7 +148,7 @@ module.exports = {
       if (!removeOutputFolder) summary.push(`User artifacts preserved in ${outputFolder}/`);
 
       await prompts.note(summary.join('\n'), 'Summary');
-      await prompts.outro('To reinstall, run: npx acl-adlc install');
+      await prompts.outro(`To reinstall, run: npx ${require('../../../package.json').name} install`);
 
       process.exit(0);
     } catch (error) {

@@ -23,8 +23,11 @@ import tomllib
 from pathlib import Path
 from typing import Any
 
-STATUS_RE = re.compile(r"^status:\s*[\"']?([A-Za-z0-9_-]+)[\"']?\s*$", re.MULTILINE)
+STATUS_RE = re.compile(
+    r"^status:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", re.MULTILINE
+)
 # Legacy author-complete values still count as approved for back-compat.
+# Markdown Studio uses Title Case (Approved); older docs-console used lowercase.
 APPROVED = {"approved", "final", "complete"}
 
 
@@ -132,7 +135,7 @@ def check_require_approved(base: Path, globs: list[str], *, required: bool) -> s
         return (
             "Docs-review gate blocked: upstream markdown is not approved.\n"
             "Approve/Reject only updates the YAML `status` line in each MD file "
-            "(via acl-docs-console.html), then pull before retrying.\n"
+            "(via public/markdown.html or acl-docs-console.html), then pull before retrying.\n"
             + "\n".join(describe_statuses(files))
         )
     if required and not good:

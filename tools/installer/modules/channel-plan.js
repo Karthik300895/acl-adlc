@@ -174,12 +174,13 @@ function orphanPinWarnings(channelOptions, selectedCodes) {
  * Warn when --pin / --next targets a bundled module (core, acl). Those are
  * shipped inside the installer binary — there's no git clone to override, so
  * the flag has no effect. Users who actually want a prerelease core/acl
- * should use `npx acl-adlc@next install`.
+ * should use `npx acl-adlc-v1@next install`.
  */
 function bundledTargetWarnings(channelOptions, bundledCodes) {
   const warnings = [];
   const bundled = new Set(bundledCodes || []);
-  const hint = '(bundled module; use `npx acl-adlc@next install` for a prerelease)';
+  const packageName = require('../../../package.json').name;
+  const hint = `(bundled module; use \`npx ${packageName}@next install\` for a prerelease)`;
   for (const code of channelOptions?.pins?.keys() || []) {
     if (bundled.has(code)) {
       warnings.push(`--pin for '${code}' has no effect ${hint}.`);
