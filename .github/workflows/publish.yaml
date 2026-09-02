@@ -38,7 +38,7 @@ permissions:
 
 jobs:
   publish:
-    if: github.repository == 'karthick1827/ACL-ADLC' && (github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main')
+    if: github.repository == 'Karthis300895/acl-adlc' && (github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     steps:
       - name: Generate GitHub App token
