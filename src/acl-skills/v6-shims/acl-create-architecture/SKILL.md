@@ -18,7 +18,6 @@ This skill was consolidated into `acl-architecture`. It is retained as a thin co
    > Notice: `acl-create-architecture` is deprecated and will be removed in a future release. It now forwards to `acl-architecture` with create intent. To silence this notice and access the full new customization surface (`spine_template`, `spine_output_path`, `run_folder_pattern`, `doc_standards`, `external_sources`, `external_handoffs`, `finalize_reviewers`), migrate `_acl/custom/acl-create-architecture.toml` to `_acl/custom/acl-architecture.toml` and invoke `acl-architecture` directly next time. Customization fields that were in this version still remain in the new version and will be respected if present in `_acl/custom/acl-architecture.toml`, but the new version also supports additional fields that you can take advantage of by migrating.
 
 4. Invoke `acl-architecture` with the following context. Pass these as the activating context so `acl-architecture` honors them instead of resolving its own customization from scratch:
-
    - **Intent:** `create` — skip `acl-architecture`'s usual intent detection step.
    - **Pre-resolved legacy customization** — use these in place of resolving from `acl-architecture`'s own `customize.toml` for the four legacy fields. For everything else (`spine_template`, `spine_output_path`, `run_folder_pattern`, `doc_standards`, `external_sources`, `external_handoffs`, `finalize_reviewers`), use `acl-architecture`'s own defaults and overrides as normal:
      - `activation_steps_prepend` = the resolved value from step 1

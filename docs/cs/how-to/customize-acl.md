@@ -1,5 +1,5 @@
 ---
-title: "Jak přizpůsobit ACL"
+title: 'Jak přizpůsobit ACL'
 description: Přizpůsobení agentů, workflow a modulů se zachováním kompatibility s aktualizacemi
 sidebar:
   order: 7
@@ -15,9 +15,10 @@ Použijte soubory `.customize.yaml` k přizpůsobení chování agentů, person 
 - Chcete, aby agenti prováděli specifické akce při každém spuštění
 
 :::note[Předpoklady]
+
 - ACL nainstalován ve vašem projektu (viz [Jak nainstalovat ACL](./install-acl.md))
 - Textový editor pro YAML soubory
-:::
+  :::
 
 :::caution[Chraňte svá přizpůsobení]
 Vždy používejte soubory `.customize.yaml` popsané zde místo přímé editace souborů agentů. Instalátor přepíše soubory agentů během aktualizací, ale zachová vaše změny v `.customize.yaml`.
@@ -136,9 +137,9 @@ npx acl-adlc install
 
 Instalátor detekuje existující instalaci a nabídne tyto možnosti:
 
-| Možnost                      | Co udělá                                                               |
-| ---------------------------- | ---------------------------------------------------------------------- |
-| **Quick Update**             | Aktualizuje všechny moduly na nejnovější verzi a aplikuje přizpůsobení |
+| Možnost                     | Co udělá                                                               |
+| --------------------------- | ---------------------------------------------------------------------- |
+| **Quick Update**            | Aktualizuje všechny moduly na nejnovější verzi a aplikuje přizpůsobení |
 | **Modify ACL Installation** | Plný instalační postup pro přidání nebo odebrání modulů                |
 
 Pro změny pouze přizpůsobení je **Quick Update** nejrychlejší možnost.

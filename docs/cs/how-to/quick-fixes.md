@@ -1,5 +1,5 @@
 ---
-title: "Rychlé opravy"
+title: 'Rychlé opravy'
 description: Jak provádět rychlé opravy a ad-hoc změny
 sidebar:
   order: 5
@@ -15,9 +15,10 @@ Opravy chyb, refaktoringy a malé cílené změny mohou vstoupit do **Quick Dev*
 - Aktualizace závislostí
 
 :::note[Předpoklady]
+
 - ACL Method nainstalován (`npx acl-adlc install`)
 - AI-powered IDE (Claude Code, Cursor nebo podobné)
-:::
+  :::
 
 ## Kroky
 

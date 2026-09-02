@@ -21,7 +21,7 @@ sidebar:
 
 ## 前置条件
 
-该 skill 依赖运行 subagent 的能力。若 subagent 不可用，workflow 会以 `blocked` 和 `no subagents`  halt。若你在 subagent 会话里调用 skill 本身（例如「嘿 Claude，用 acl-dev-auto skill 跑 story 2–10，每个 story 一个 subagent」），该会话需要能 spawn 自己的 subagent。
+该 skill 依赖运行 subagent 的能力。若 subagent 不可用，workflow 会以 `blocked` 和 `no subagents` halt。若你在 subagent 会话里调用 skill 本身（例如「嘿 Claude，用 acl-dev-auto skill 跑 story 2–10，每个 story 一个 subagent」），该会话需要能 spawn 自己的 subagent。
 
 版本控制可选但强烈建议。若使用，working tree 必须 clean，且 agent 必须能够更新 repository metadata。
 
@@ -43,14 +43,14 @@ sidebar:
 
 若调用指向 frontmatter 里 `status` 为已知值的既有 spec 文件，workflow 从该状态恢复：
 
-| Spec status | 入口 |
-| --- | --- |
-| `draft` | plan |
-| `ready-for-dev` | implement |
-| `in-progress` | implement |
-| `in-review` | review |
-| `done` | 作为新的 follow-up pass 再 review |
-| `blocked` | 立即 halt |
+| Spec status     | 入口                              |
+| --------------- | --------------------------------- |
+| `draft`         | plan                              |
+| `ready-for-dev` | implement                         |
+| `in-progress`   | implement                         |
+| `in-review`     | review                            |
+| `done`          | 作为新的 follow-up pass 再 review |
+| `blocked`       | 立即 halt                         |
 
 ### Folder+ID Dispatch
 
@@ -60,11 +60,11 @@ workflow 读取 `<spec-folder>/stories.yaml`，查找 `id` 匹配的条目。它
 
 然后检查 `<spec-folder>/stories/<story-id>-*.md`（id 前缀匹配），区分首次 dispatch 与 resume：
 
-| 磁盘匹配 | 结果 |
-| --- | --- |
-| 无 | 首次 dispatch。要求 `<spec-folder>/SPEC.md` 存在（否则 halt `blocked` / `no epic spec found`）。加载 `SPEC.md` 及其 companion，然后进入 planning。 |
+| 磁盘匹配 | 结果                                                                                                                                                                                                                                                                                                             |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 无       | 首次 dispatch。要求 `<spec-folder>/SPEC.md` 存在（否则 halt `blocked` / `no epic spec found`）。加载 `SPEC.md` 及其 companion，然后进入 planning。                                                                                                                                                               |
 | 恰好一个 | Resume：按该文件 `status` 路由，与 Resume Input 表相同。此处 `blocked` 报告 blocking condition `story already blocked`，不是 `blocked spec supplied` —— dev-auto 通过 id 发现文件，caller 没有 handed blocked spec。缺失或无法识别的 `status` 则 halt `blocked` / `unrecognized status in existing story file`。 |
-| 多于一个 | Halt `blocked` / `ambiguous story file match`。 |
+| 多于一个 | Halt `blocked` / `ambiguous story file match`。                                                                                                                                                                                                                                                                  |
 
 `blocked` story 文件是永久的：该 id 的后续 dispatch 都会 halt `story already blocked`，即使原因已修复。要重试，删除 story 文件 —— id 会读作 pending，下次 dispatch 从头开始。
 
@@ -92,14 +92,14 @@ workflow 读取 `<spec-folder>/stories.yaml`，查找 `id` 匹配的条目。它
 
 spec frontmatter 的 `status` 是 orchestration 的主要 machine-readable 状态：
 
-| Spec Status | 含义 |
-| --- | --- |
-| `draft` | Spec 存在但未通过 ready-for-dev 校验 |
-| `ready-for-dev` | Spec 足够完整可 implement |
-| `in-progress` | Implementation 进行中 |
-| `in-review` | Review/triage 进行中 |
-| `done` | Workflow 成功完成 |
-| `blocked` | Workflow 无法安全 unattended 继续 |
+| Spec Status     | 含义                                 |
+| --------------- | ------------------------------------ |
+| `draft`         | Spec 存在但未通过 ready-for-dev 校验 |
+| `ready-for-dev` | Spec 足够完整可 implement            |
+| `in-progress`   | Implementation 进行中                |
+| `in-review`     | Review/triage 进行中                 |
+| `done`          | Workflow 成功完成                    |
+| `blocked`       | Workflow 无法安全 unattended 继续    |
 
 ### Deferred Findings
 
@@ -124,7 +124,7 @@ spec frontmatter 的 `status` 是 orchestration 的主要 machine-readable 状�
 - 含以下内容的 `Auto Run Result` 节：
   - 已实现变更摘要
   - 变更文件
-  - Review findings  breakdown
+  - Review findings breakdown
   - 已执行 verification
   - Residual risks
 - `followup_review_recommended` 标志。若 LLM 认为值得再 review 一轮则为 true。只是建议，非必须。最简单的二次 review 是重新运行 skill 并指向 spec 文件。
@@ -184,13 +184,13 @@ workflow 总是尽量留下 durable artifact 描述发生了什么。
 
 folder+id dispatch 下，workflow 写入 `<spec-folder>/stories/<story-id>-<slug>.md`，而不是 primary spec 或 fallback result 路径 —— 包括 planning 开始前的 halt。此模式下不使用下文 fallback result artifact。
 
-halt 发生在尚无法从 story title  derive slug 时，write-back 回退到固定 slug segment：
+halt 发生在尚无法从 story title derive slug 时，write-back 回退到固定 slug segment：
 
-| 情况 | 使用的 slug segment |
-| --- | --- |
-| `stories.yaml` 缺失/无法解析，或无条目匹配 story id | `unresolved` |
-| 多于一个磁盘文件已匹配 `<story-id>-*.md` | `ambiguous` |
-| 条目已 resolve 且无磁盘歧义 | 从 `title` derive slug（必要时加 `description`） |
+| 情况                                                | 使用的 slug segment                              |
+| --------------------------------------------------- | ------------------------------------------------ |
+| `stories.yaml` 缺失/无法解析，或无条目匹配 story id | `unresolved`                                     |
+| 多于一个磁盘文件已匹配 `<story-id>-*.md`            | `ambiguous`                                      |
+| 条目已 resolve 且无磁盘歧义                         | 从 `title` derive slug（必要时加 `description`） |
 
 若 resolved 路径已存在，workflow 更新其 `status` frontmatter 并在 `## Auto Run Result` 下追加 result detail，与 primary spec artifact 相同。若不存在，workflow 创建 skeletal story spec：frontmatter status、标题（条目的 title，或无法 resolve/磁盘匹配 ambiguous 时为 `Story <story_id>`）、`## Auto Run Result` 节。
 

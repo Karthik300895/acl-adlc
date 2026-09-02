@@ -4,8 +4,8 @@ Skills in this folder are forwarders kept for backward compatibility with v6 ski
 Each one holds no logic of its own — it forwards to the skill that replaced it, pinning
 the legacy output contract so existing callers keep working.
 
-| Shim                              | Forwards to                              |
-| --------------------------------- | ---------------------------------------- |
+| Shim                             | Forwards to                             |
+| -------------------------------- | --------------------------------------- |
 | `acl-editorial-review`           | `acl-review` (structure + prose lenses) |
 | `acl-editorial-review-prose`     | `acl-review` (prose lens)               |
 | `acl-editorial-review-structure` | `acl-review` (structure lens)           |

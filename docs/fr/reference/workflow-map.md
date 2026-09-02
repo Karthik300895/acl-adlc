@@ -1,5 +1,5 @@
 ---
-title: "Carte des Workflows"
+title: 'Carte des Workflows'
 description: Référence visuelle des phases et des livrables des workflows de la méthode ACL
 sidebar:
   order: 1
@@ -34,22 +34,22 @@ en chargeant d’abord un agent depuis le menu des agents.
 Explorez l’espace problème et validez vos idées avant de vous lancer dans la planification. [**Découvrez ce que fait
 chaque outil et quand l’utiliser**](../explanation/analysis-phase.md).
 
-| Workflow                                                                  | Objectif                                                                       | Livrable                  |
-|---------------------------------------------------------------------------|--------------------------------------------------------------------------------|---------------------------|
-| `acl-brainstorming`                                                      | Brainstormez des idées de projet, animé par un coach de brainstorming dédié    | `brainstorming-report.md` |
-| `acl-deep-recon` | Validez vos hypothèses ou choisissez entre des options — rédigez un prompt pour votre outil de recherche approfondie, traitez son rapport, ou menez la recherche ici ; marché, domaine, technique, concurrentiel, voix des utilisateurs, académique ; vérifiée, citée, actualisable | Rapport ou synthèse de recherche + briefing HTML optionnel |
-| `acl-product-brief`                                                      | Formalisez la vision stratégique — idéal lorsque votre concept est bien défini | `product-brief.md`        |
-| `acl-prfaq`                                                              | Working Backwards — mettez à l’épreuve et affinez votre concept produit        | `prfaq-{project}.md`      |
+| Workflow            | Objectif                                                                                                                                                                                                                                                                            | Livrable                                                   |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `acl-brainstorming` | Brainstormez des idées de projet, animé par un coach de brainstorming dédié                                                                                                                                                                                                         | `brainstorming-report.md`                                  |
+| `acl-deep-recon`    | Validez vos hypothèses ou choisissez entre des options — rédigez un prompt pour votre outil de recherche approfondie, traitez son rapport, ou menez la recherche ici ; marché, domaine, technique, concurrentiel, voix des utilisateurs, académique ; vérifiée, citée, actualisable | Rapport ou synthèse de recherche + briefing HTML optionnel |
+| `acl-product-brief` | Formalisez la vision stratégique — idéal lorsque votre concept est bien défini                                                                                                                                                                                                      | `product-brief.md`                                         |
+| `acl-prfaq`         | Working Backwards — mettez à l’épreuve et affinez votre concept produit                                                                                                                                                                                                             | `prfaq-{project}.md`                                       |
 
 ## Phase 2 : Planification
 
 Définissez ce qu’il faut construire et pour qui.
 
-| Workflow   | Objectif                                                                                               | Livrable                                                                                                          |
-|------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `acl-prd` | Créez, mettez à jour ou validez un PRD[^1] — découverte accompagnée, trois intentions en un seul skill | Création/Mise à jour : `prd.md`, `addendum.md`, `.memlog.md` ; Validation : `validation-report.html` + `.md` |
-| `acl-ux`  | Concevez l’expérience utilisateur (lorsque l’UX compte)                                                | `DESIGN.md`, `EXPERIENCE.md`                                                                                      |
-| `acl-spec` | Distillez toute intention (brief, PRD, transcription, notes) en un contrat `SPEC.md` succinct + fichiers compagnons — fige le QUOI avant le COMMENT | `SPEC.md` + compagnons sous `{output_folder}/specs/spec-{slug}/` |
+| Workflow   | Objectif                                                                                                                                            | Livrable                                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `acl-prd`  | Créez, mettez à jour ou validez un PRD[^1] — découverte accompagnée, trois intentions en un seul skill                                              | Création/Mise à jour : `prd.md`, `addendum.md`, `.memlog.md` ; Validation : `validation-report.html` + `.md` |
+| `acl-ux`   | Concevez l’expérience utilisateur (lorsque l’UX compte)                                                                                             | `DESIGN.md`, `EXPERIENCE.md`                                                                                 |
+| `acl-spec` | Distillez toute intention (brief, PRD, transcription, notes) en un contrat `SPEC.md` succinct + fichiers compagnons — fige le QUOI avant le COMMENT | `SPEC.md` + compagnons sous `{output_folder}/specs/spec-{slug}/`                                             |
 
 :::tip[Trois intentions en un seul skill]
 `acl-prd` couvre l’intégralité du cycle de vie du PRD. Précisez votre intention lors de l’appel, sinon le skill vous la demandera :
@@ -57,7 +57,7 @@ Définissez ce qu’il faut construire et pour qui.
 - **Créer** — nouveau PRD à partir de zéro via une découverte accompagnée ; produit `prd.md`, `addendum.md` et `.memlog.md`
 - **Mettre à jour** — réconcilie un PRD existant avec un signal de changement, en mettant en évidence les conflits avant d’appliquer les modifications
 - **Valider** — évalue un PRD à l’aide d’une liste de contrôle configurable et produit un rapport de constats structuré au format HTML
-:::
+  :::
 
 :::tip[En amont : `acl-product-brief`]
 `acl-product-brief` (Phase 1) produit un `product-brief.md` que `acl-prd` peut exploiter lors de la découverte, réduisant les redondances et gardant les deux documents alignés. Aucun des deux skills ne nécessite l’autre — commencez directement par `acl-prd` si vous savez déjà ce que vous construisez.
@@ -67,9 +67,9 @@ Définissez ce qu’il faut construire et pour qui.
 
 Décidez comment le construire et décomposez le travail en stories.
 
-| Workflow                              | Objectif                                          | Livrable                        |
-|---------------------------------------|---------------------------------------------------|---------------------------------|
-| `acl-architecture`            | Rendez explicites les décisions techniques        | `architecture.md` avec ADRs[^2] |
+| Workflow                             | Objectif                                          | Livrable                        |
+| ------------------------------------ | ------------------------------------------------- | ------------------------------- |
+| `acl-architecture`                   | Rendez explicites les décisions techniques        | `architecture.md` avec ADRs[^2] |
 | `acl-create-epics-and-stories`       | Décomposez les exigences en tâches implémentables | Fichiers d’epic avec stories    |
 | `acl-check-implementation-readiness` | Jalon de validation avant implémentation          | Décision OK / RÉSERVES / ÉCHEC  |
 
@@ -77,14 +77,14 @@ Décidez comment le construire et décomposez le travail en stories.
 
 Tous les points d’entrée convergent vers `acl-quick-dev`. Il accepte une intention directe, une issue, une spécification ou une story planifiée, puis choisit le niveau de clarification, de planification, d’implémentation et de revue nécessaire.
 
-| Workflow               | Objectif                                                                             | Livrable                         |
-|------------------------|--------------------------------------------------------------------------------------|----------------------------------|
-| `acl-quick-dev`       | Transformez une intention directe ou une story planifiée en code implémenté et révisé | `spec-*.md` + code              |
-| `acl-sprint-planning` | Initialisez le suivi (une fois par projet, pour séquencer le cycle de développement) | `sprint-status.yaml`             |
-| `acl-code-review`     | Validez la qualité de l’implémentation                                               | Approuvé ou changements demandés |
-| `acl-correct-course`  | Gérez les changements significatifs en cours de sprint                               | Plan mis à jour ou réorientation |
-| `acl-sprint-status`   | Suivez la progression du sprint et le statut des stories                             | Mise à jour du statut du sprint  |
-| `acl-retrospective`   | Bilan après l’achèvement d’un epic                                                   | Leçons apprises                  |
+| Workflow              | Objectif                                                                              | Livrable                         |
+| --------------------- | ------------------------------------------------------------------------------------- | -------------------------------- |
+| `acl-quick-dev`       | Transformez une intention directe ou une story planifiée en code implémenté et révisé | `spec-*.md` + code               |
+| `acl-sprint-planning` | Initialisez le suivi (une fois par projet, pour séquencer le cycle de développement)  | `sprint-status.yaml`             |
+| `acl-code-review`     | Validez la qualité de l’implémentation                                                | Approuvé ou changements demandés |
+| `acl-correct-course`  | Gérez les changements significatifs en cours de sprint                                | Plan mis à jour ou réorientation |
+| `acl-sprint-status`   | Suivez la progression du sprint et le statut des stories                              | Mise à jour du statut du sprint  |
+| `acl-retrospective`   | Bilan après l’achèvement d’un epic                                                    | Leçons apprises                  |
 
 ### Entrée directe ou planifiée
 
@@ -114,9 +114,12 @@ optionnel peut être généré à la fin de la création de l’architecture, ou
 
 ## Glossaire
 
-[^1]: PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins
-utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur
-ce qui doit être construit et pourquoi.
-[^2]: ADR (Architecture Decision Record) : document qui consigne une décision d’architecture, son contexte, les options
-envisagées, le choix retenu et ses conséquences, afin d’assurer la traçabilité et la compréhension des décisions
-techniques dans le temps.
+[^1]:
+    PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins
+    utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur
+    ce qui doit être construit et pourquoi.
+
+[^2]:
+    ADR (Architecture Decision Record) : document qui consigne une décision d’architecture, son contexte, les options
+    envisagées, le choix retenu et ses conséquences, afin d’assurer la traçabilité et la compréhension des décisions
+    techniques dans le temps.

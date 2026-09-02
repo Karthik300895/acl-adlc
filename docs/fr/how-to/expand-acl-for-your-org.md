@@ -12,23 +12,23 @@ Le système de personnalisation de ACL permet à une organisation d’adapter le
 - ACL installé dans votre projet (voir [Comment installer ACL](./install-acl.md))
 - Connaissance du modèle de personnalisation (voir [Comment personnaliser ACL](./customize-acl.md))
 - Python 3.11+ sur le PATH (pour le résolveur — bibliothèque standard uniquement, pas de `pip install`)
-:::
+  :::
 
 :::tip[Appliquer ces recettes]
-Les **recettes par skill** ci-dessous (Recettes 1–4) peuvent être appliquées en exécutant le skill `acl-customize` et en décrivant l’intention — il sélectionnera le bon point de personnalisation, générera le fichier d’override et vérifiera la fusion. La Recette 5 (overrides de la configuration centrale du registre des agents) n’est pas couverte par la v1 du skill et reste rédigée manuellement. Les recettes ici constituent la source de vérité sur *quoi* personnaliser ; `acl-customize` gère le *comment* pour la surface agent/workflow.
+Les **recettes par skill** ci-dessous (Recettes 1–4) peuvent être appliquées en exécutant le skill `acl-customize` et en décrivant l’intention — il sélectionnera le bon point de personnalisation, générera le fichier d’override et vérifiera la fusion. La Recette 5 (overrides de la configuration centrale du registre des agents) n’est pas couverte par la v1 du skill et reste rédigée manuellement. Les recettes ici constituent la source de vérité sur _quoi_ personnaliser ; `acl-customize` gère le _comment_ pour la surface agent/workflow.
 :::
 
 ## Le modèle mental à trois couches
 
 Avant de choisir une recette, comprenez où votre override se situe :
 
-| Couche                                       | Où vivent les overrides                                               | Périmètre                                                                                                                                       |
-|----------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Agent** (ex. Amelia, Mary, John)           | Section `[agent]` de `_acl/custom/acl-agent-{role}.toml`            | Se propage avec le persona dans **chaque workflow que l’agent dispatche**                                                                       |
+| Couche                                       | Où vivent les overrides                                              | Périmètre                                                                                                                                       |
+| -------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agent** (ex. Amelia, Mary, John)           | Section `[agent]` de `_acl/custom/acl-agent-{role}.toml`             | Se propage avec le persona dans **chaque workflow que l’agent dispatche**                                                                       |
 | **Workflow** (ex. product-brief, create-prd) | Section `[workflow]` de `_acl/custom/{workflow-name}.toml`           | S’applique uniquement à l’exécution de ce workflow                                                                                              |
 | **Configuration centrale**                   | `[agents.*]`, `[core]`, `[modules.*]` dans `_acl/custom/config.toml` | Registre des agents (qui est disponible pour party-mode, retrospective, elicitation), paramètres d’installation figés pour toute l’organisation |
 
-En règle générale : si la règle doit s’appliquer partout où un ingénieur travaille sur le développement, personnalisez l'**agent dev**. Si elle s’applique uniquement quand quelqu’un rédige un product brief, personnalisez le **workflow product-brief**. Si elle change *qui participe* (renommer un agent, ajouter une voix personnalisée, imposer un chemin d’artefact partagé), modifiez la **configuration centrale**.
+En règle générale : si la règle doit s’appliquer partout où un ingénieur travaille sur le développement, personnalisez l'**agent dev**. Si elle s’applique uniquement quand quelqu’un rédige un product brief, personnalisez le **workflow product-brief**. Si elle change _qui participe_ (renommer un agent, ajouter une voix personnalisée, imposer un chemin d’artefact partagé), modifiez la **configuration centrale**.
 
 ## Recette 1 : Façonner un agent à travers tous les workflows qu’il dispatche
 
@@ -52,12 +52,13 @@ persistent_facts = [
 **Pourquoi ça marche :** Deux phrases suffisent à reconfigurer tous les workflows de dev de l’organisation, sans duplication par workflow ni modification du code source. Chaque nouvel ingénieur qui clone le dépôt hérite automatiquement des conventions.
 
 **Fichier d’équipe vs fichier personnel :**
+
 - `acl-agent-dev.toml` : versionné dans git ; s’applique à toute l’équipe
 - `acl-agent-dev.user.toml` : ignoré par git ; préférences personnelles ajoutées par-dessus
 
 ## Recette 2 : Imposer les conventions de l’organisation dans un workflow spécifique
 
-**Cas d’usage :** Façonner le *contenu* de la sortie d’un workflow pour qu’il réponde aux exigences de conformité, d’audit ou des consommateurs en aval.
+**Cas d’usage :** Façonner le _contenu_ de la sortie d’un workflow pour qu’il réponde aux exigences de conformité, d’audit ou des consommateurs en aval.
 
 **Exemple : chaque product brief doit inclure des champs de conformité, et l’agent connaît les conventions de publication de l’organisation.**
 
@@ -115,6 +116,7 @@ et demander à l'utilisateur de publier manuellement.
 **Pourquoi `on_complete` et pas `activation_steps_append` :** `on_complete` s’exécute exactement une fois, au stade terminal, après que le workflow a écrit sa sortie principale. C’est le bon moment pour publier des artefacts. `activation_steps_append` s’exécute à chaque activation, avant que le workflow ne fasse son travail.
 
 **Arbitrages :**
+
 - **La publication Confluence est non-destructive** et s’exécute toujours à la fin
 - **La création d’epic Jira est visible par toute l’équipe** et déclenche un processus de planification de sprint, conditionnez-la donc à la confirmation de l’utilisateur
 - **Dégradation gracieuse :** si les outils MCP échouent, passer la main à l’utilisateur plutôt que de silencieusement abandonner le livrable
@@ -135,13 +137,14 @@ brief_template = "{project-root}/docs/enterprise/brief-template.md"
 **Comment ça marche :** Le `customize.toml` du workflow est fourni avec `brief_template = "resources/brief-template.md"` (chemin relatif, résolu depuis la racine du skill). Votre override pointe vers un fichier sous `{project-root}`, donc l’agent lit votre template à l’étape 4 au lieu de celui livré par défaut.
 
 **Conseils pour la rédaction de templates :**
+
 - Gardez les templates dans `{project-root}/docs/` ou `{project-root}/_acl/custom/templates/` pour qu’ils soient versionnés avec le fichier d’override
 - Utilisez les mêmes conventions structurelles que le template livré (titres de sections, frontmatter) ; l’agent s’adapte à ce qu’il trouve
 - Pour les dépôts multi-organisations, utilisez `.user.toml` pour permettre à chaque équipe de pointer vers ses propres templates sans toucher au fichier d’équipe versionné dans git
 
 ## Recette 5 : Personnaliser le registre des agents
 
-**Cas d’usage :** Changer *qui sera présent dans la pièce* pour les skills basés sur le registre comme `acl-party-mode`, `acl-retrospective` et `acl-advanced-elicitation`, sans modifier le code source ni forker. Voici trois variantes courantes.
+**Cas d’usage :** Changer _qui sera présent dans la pièce_ pour les skills basés sur le registre comme `acl-party-mode`, `acl-retrospective` et `acl-advanced-elicitation`, sans modifier le code source ni forker. Voici trois variantes courantes.
 
 ### 5a. Renommer un agent ACL pour toute l’organisation
 
@@ -197,13 +200,14 @@ document_output_language = "English"
 
 Les paramètres personnels comme `user_name`, `communication_language` ou `user_skill_level` restent dans leur propre fichier `_acl/config.user.toml` de chaque développeur. Le fichier d’équipe ne doit pas les modifier.
 
-**Pourquoi la configuration centrale vs le customize.toml par agent :** Les fichiers par agent façonnent la façon dont *un seul* agent se comporte quand il s’active. La configuration centrale façonne ce que les consommateurs du registre *voient* : quels agents existent, comment ils s’appellent, à quelle équipe ils appartiennent, et les paramètres d’installation partagés sur lesquels tout le dépôt s’accorde. Deux surfaces, des rôles différents.
+**Pourquoi la configuration centrale vs le customize.toml par agent :** Les fichiers par agent façonnent la façon dont _un seul_ agent se comporte quand il s’active. La configuration centrale façonne ce que les consommateurs du registre *voient* : quels agents existent, comment ils s’appellent, à quelle équipe ils appartiennent, et les paramètres d’installation partagés sur lesquels tout le dépôt s’accorde. Deux surfaces, des rôles différents.
 
 ## Renforcer les règles globales dans le fichier de session de votre IDE
 
 Les personnalisations ACL se chargent quand un skill est activé. Beaucoup d’outils IDE chargent aussi un fichier d’instructions global au **début de chaque session**, avant tout skill (`CLAUDE.md`, `AGENTS.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, etc.). Pour les règles qui doivent s’appliquer même en dehors des skills ACL, reproduisez-y les plus critiques.
 
 **Quand les utiliser ensemble :**
+
 - Une règle est suffisamment importante pour qu’une conversation simple (sans skill actif) doive la respecter
 - Vous voulez une double sécurisation parce que les défauts des données d’entraînement pourraient autrement détourner le modèle
 - La règle est assez concise pour être répétée sans alourdir le fichier de session
@@ -219,11 +223,11 @@ avant de s'appuyer sur les connaissances des données d'entraînement. -->
 Une phrase, chargée à chaque session. Elle s’associe à la personnalisation `acl-agent-dev.toml` pour que la règle s’applique à la fois dans les workflows d’Amelia et lors des chats ad hoc avec l’assistant. Chaque couche possède son propre périmètre :
 
 | Couche                                             | Périmètre                                                | Utilisée pour                                                           |
-|----------------------------------------------------|----------------------------------------------------------|-------------------------------------------------------------------------|
-| Fichier de session IDE (`CLAUDE.md` / `AGENTS.md`) | Chaque session, avant toute activation de skill          | Règles courtes et universelles qui doivent survivre hors de ACL        |
-| Personnalisation d’agent ACL                      | Chaque workflow que l’agent dispatche                    | Comportement spécifique au persona de l’agent                           |
-| Personnalisation de workflow ACL                  | Une exécution de workflow                                | Forme de sortie spécifique au workflow, hooks de publication, templates |
-| Configuration centrale ACL                        | Registre des agents + paramètres d’installation partagés | Qui est dans la pièce et quels chemins partagés l’équipe utilise        |
+| -------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Fichier de session IDE (`CLAUDE.md` / `AGENTS.md`) | Chaque session, avant toute activation de skill          | Règles courtes et universelles qui doivent survivre hors de ACL         |
+| Personnalisation d’agent ACL                       | Chaque workflow que l’agent dispatche                    | Comportement spécifique au persona de l’agent                           |
+| Personnalisation de workflow ACL                   | Une exécution de workflow                                | Forme de sortie spécifique au workflow, hooks de publication, templates |
+| Configuration centrale ACL                         | Registre des agents + paramètres d’installation partagés | Qui est dans la pièce et quels chemins partagés l’équipe utilise        |
 
 Gardez le fichier IDE **concis**. Une douzaine de lignes bien choisies sont plus efficaces qu’une liste étendue. Les modèles le lisent à chaque tour, et le superflu noie l’information utile.
 

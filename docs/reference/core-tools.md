@@ -15,17 +15,17 @@ Run any tool by typing its skill name (e.g., `acl-help`) in your IDE. No agent s
 
 **Core module (always installed):**
 
-| Tool                                                      | Purpose                                                                                                      |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Tool                                                    | Purpose                                                                                                      |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [`acl-help`](#acl-help)                                 | Get context-aware guidance on what to do next                                                                |
 | [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Push LLM output through iterative refinement methods                                                         |
 | [`acl-review`](#acl-review)                             | Multi-lens review — adversarial, edge-case, and verification-gap for code; structure and prose for documents |
-| [`acl-customize`](#acl-customize)                       | Create and verify ACL customization overrides                                                               |
+| [`acl-customize`](#acl-customize)                       | Create and verify ACL customization overrides                                                                |
 
 **Thinking skills:**
 
-| Tool                                        | Purpose                                                             |
-| ------------------------------------------- | ------------------------------------------------------------------- |
+| Tool                                      | Purpose                                                             |
+| ----------------------------------------- | ------------------------------------------------------------------- |
 | [`acl-brainstorming`](#acl-brainstorming) | Facilitate interactive brainstorming sessions                       |
 | [`acl-deep-recon`](#acl-deep-recon)       | Decision-grade research: draft, process, or run — any subject       |
 | [`acl-forge-idea`](#acl-forge-idea)       | Pressure-test an idea until it hardens, proves out, or dies cheaply |
@@ -85,13 +85,13 @@ Run any tool by typing its skill name (e.g., `acl-help`) in your IDE. No agent s
 
 **The shipped lenses:**
 
-| Lens                 | Applies to             | Method                                                                                      |
-| -------------------- | ---------------------- | ------------------------------------------------------------------------------------------- |
-| **Adversarial**      | Anything               | Skeptical review that assumes problems exist — hunts what's missing, not just what's wrong  |
-| **Edge case**        | Anything               | Walks every branching path and boundary condition in content that defines behavior          |
-| **Verification gap** | Code                   | Finds changed behavior that could regress without reliable verification catching it         |
-| **Structure**        | Documents              | Proposes cuts, merges, moves, and condensing — does the document's shape serve its purpose? |
-| **Prose**            | Documents              | Copy-edits for communication issues that impede comprehension                               |
+| Lens                 | Applies to | Method                                                                                      |
+| -------------------- | ---------- | ------------------------------------------------------------------------------------------- |
+| **Adversarial**      | Anything   | Skeptical review that assumes problems exist — hunts what's missing, not just what's wrong  |
+| **Edge case**        | Anything   | Walks every branching path and boundary condition in content that defines behavior          |
+| **Verification gap** | Code       | Finds changed behavior that could regress without reliable verification catching it         |
+| **Structure**        | Documents  | Proposes cuts, merges, moves, and condensing — does the document's shape serve its purpose? |
+| **Prose**            | Documents  | Copy-edits for communication issues that impede comprehension                               |
 
 The two editorial lenses hold content sacrosanct: they never challenge your ideas, only how they're organized and expressed, and they propose rather than execute. Prose runs on top of the structure findings when both are selected.
 

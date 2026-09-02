@@ -27,10 +27,10 @@ Installez ACL et utilisez le skill[^3] `acl-help` — il vous guidera pas à pas
 Cette documentation est organisée en quatre sections, selon votre objectif :
 
 | Section              | Objectif                                                                                                                                     |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Tutoriels**        | Orientés apprentissage. Guides pas à pas pour vous accompagner dans la réalisation d’un projet. Le point de départ idéal si vous débutez.    |
 | **Guides pratiques** | Orientés tâches. Guides concrets pour résoudre des problèmes spécifiques. Vous y trouverez par exemple « Comment personnaliser un agent ? ». |
-| **Explications**     | Orientés compréhension. Plongées dans les concepts et l’architecture. À consulter pour comprendre le *pourquoi*.                             |
+| **Explications**     | Orientés compréhension. Plongées dans les concepts et l’architecture. À consulter pour comprendre le _pourquoi_.                             |
 | **Référence**        | Orientés information. Spécifications techniques des agents, workflows et configuration.                                                      |
 
 ## Étendre et personnaliser
@@ -60,6 +60,7 @@ Trouvez de l’aide, partagez vos projets ou contribuez à ACL :
 Prêt à vous lancer ? **[Commencez avec ACL](./tutorials/getting-started.md)** et réalisez votre premier projet.
 
 ---
+
 ## Glossaire
 
 [^1]: **Module** : composant autonome du système ACL qui peut être installé et utilisé indépendamment, offrant des fonctionnalités spécifiques.

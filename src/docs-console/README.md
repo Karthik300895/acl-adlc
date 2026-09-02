@@ -8,21 +8,21 @@ Manager review UI for ACL-generated markdown under `_acl-output` / planning arti
 
 Intended vocabulary:
 
-| Status | Meaning |
-| --- | --- |
-| `draft` | Author still working |
-| `pending-review` | Ready for manager |
+| Status                  | Meaning                         |
+| ----------------------- | ------------------------------- |
+| `draft`                 | Author still working            |
+| `pending-review`        | Ready for manager               |
 | `approved` / `rejected` | Manager decision in the MD file |
 
 Downstream ACL skills halt until required upstream docs are `approved`.
 
 ## Files installed into your project
 
-| Path | Purpose |
-| --- | --- |
-| `acl-docs-console.html` | Review UI (Approve / Reject / Edit) |
-| `api/update-doc.js` | Vercel-style API that commits MD via GitHub Contents API |
-| `vite-plugin-acl-docs.ts` | Optional local/static serve of `_acl-output` + manifest |
+| Path                          | Purpose                                                              |
+| ----------------------------- | -------------------------------------------------------------------- |
+| `acl-docs-console.html`       | Review UI (Approve / Reject / Edit)                                  |
+| `api/update-doc.js`           | Vercel-style API that commits MD via GitHub Contents API             |
+| `vite-plugin-acl-docs.ts`     | Optional local/static serve of `_acl-output` + manifest              |
 | `_acl/docs-console/README.md` | This guide (copy may also land at project root depending on install) |
 
 ## Hosted setup (managers)
@@ -47,11 +47,11 @@ Downstream ACL skills halt until required upstream docs are `approved`.
 ## Optional Vite wiring
 
 ```ts
-import { aclDocsPlugin } from './vite-plugin-acl-docs'
+import { aclDocsPlugin } from './vite-plugin-acl-docs';
 
 export default {
   plugins: [aclDocsPlugin()],
-}
+};
 ```
 
 ## Disable the hard gate (solo use)

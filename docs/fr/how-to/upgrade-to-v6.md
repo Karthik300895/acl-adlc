@@ -1,5 +1,5 @@
 ---
-title: "Comment passer à la v6"
+title: 'Comment passer à la v6'
 description: Migrer de ACL v4 vers v6
 sidebar:
   order: 4
@@ -14,9 +14,10 @@ Utilisez l’installateur ACL pour passer de la v4 à la v6, qui inclut une dét
 - Vous avez des artefacts de planification existants à préserver
 
 :::note[Prérequis]
+
 - Node.js 20.12+
 - Installation ACL v4 existante
-:::
+  :::
 
 ## Étapes
 
@@ -82,8 +83,8 @@ votre-projet/
 
 ## Migration des modules
 
-| Module v4                     | Statut v6                                         |
-|-------------------------------|---------------------------------------------------|
+| Module v4                    | Statut v6                                         |
+| ---------------------------- | ------------------------------------------------- |
 | `.acl-2d-phaser-game-dev`    | Intégré dans le Module BMGD                       |
 | `.acl-2d-unity-game-dev`     | Intégré dans le Module BMGD                       |
 | `.acl-godot-game-dev`        | Intégré dans le Module BMGD                       |
@@ -92,16 +93,19 @@ votre-projet/
 
 ## Changements clés
 
-| Concept       | v4                                                      | v6                                       |
-|---------------|---------------------------------------------------------|------------------------------------------|
-| **Core**      | `_acl-core` correspondait en réalité à la méthode ACL | `_acl/core/` est le framework universel |
-| **Method**    | `_acl-adlc`                                          | `_acl/acl/`                             |
-| **Config**    | Fichiers modifiés directement                           | `config.yaml` par module                 |
-| **Documents** | Division en fragments obligatoire ou optionnelle        | Totalement flexible, analyse automatique |
-
+| Concept       | v4                                                    | v6                                       |
+| ------------- | ----------------------------------------------------- | ---------------------------------------- |
+| **Core**      | `_acl-core` correspondait en réalité à la méthode ACL | `_acl/core/` est le framework universel  |
+| **Method**    | `_acl-adlc`                                           | `_acl/acl/`                              |
+| **Config**    | Fichiers modifiés directement                         | `config.yaml` par module                 |
+| **Documents** | Division en fragments obligatoire ou optionnelle      | Totalement flexible, analyse automatique |
 
 ## Glossaire
+
 [^1]: PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur ce qui doit être construit et pourquoi.
+
 [^2]: Epic : dans les méthodologies agiles, une grande unité de travail qui peut être décomposée en plusieurs stories. Un epic représente généralement une fonctionnalité majeure ou un ensemble de capacités livrable sur plusieurs sprints.
+
 [^3]: Story (User Story) : une description courte et simple d’une fonctionnalité du point de vue de l’utilisateur. Les stories sont des unités de travail suffisamment petites pour être complétées en un sprint.
+
 [^4]: Sprint : dans Scrum, une période de temps fixe (généralement 1 à 4 semaines) pendant laquelle l’équipe travaille à livrer un incrément de produit potentiellement libérable.

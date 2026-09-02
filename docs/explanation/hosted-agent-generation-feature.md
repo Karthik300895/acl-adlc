@@ -1,5 +1,5 @@
 ---
-title: "Hosted Agent Generation from Markdown Studio"
+title: 'Hosted Agent Generation from Markdown Studio'
 description: Specification and migration guide for Markdown Studio agent generation, Next Step modal, local testing, and hosted deployment
 sidebar:
   order: 15
@@ -37,13 +37,13 @@ npx acl-adlc-v1 install
 
 ### What gets installed into a target project
 
-| Artifact | Purpose |
-|----------|---------|
-| `_acl/` | Framework config, scripts, installed skills |
-| `_acl-output/` | Sequential deliverable markdown files (brief → PRD → architecture → epics → implementation) |
-| `public/markdown.html` | **Markdown Studio** — browser UI for listing, editing, approving, and generating deliverables |
-| `public/greenfield.svg`, `public/brownfield.svg` | Workflow diagrams shown in Studio |
-| `.cursor/skills/` or `.agents/skills/` (IDE-dependent) | Agent personas and workflow skills for the IDE |
+| Artifact                                               | Purpose                                                                                       |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| `_acl/`                                                | Framework config, scripts, installed skills                                                   |
+| `_acl-output/`                                         | Sequential deliverable markdown files (brief → PRD → architecture → epics → implementation)   |
+| `public/markdown.html`                                 | **Markdown Studio** — browser UI for listing, editing, approving, and generating deliverables |
+| `public/greenfield.svg`, `public/brownfield.svg`       | Workflow diagrams shown in Studio                                                             |
+| `.cursor/skills/` or `.agents/skills/` (IDE-dependent) | Agent personas and workflow skills for the IDE                                                |
 
 ### Core delivery model
 
@@ -72,17 +72,17 @@ The manager never auto-runs the whole pipeline. Each step requires explicit sele
 
 ## 2. Implementation status (what exists today)
 
-| Feature | Old repo (`ACL-ADLC-V1`) | Current repo (`ACL-ACLC/ACL-ADLC-V1`) |
-|---------|--------------------------|--------------------------------------|
-| Manager review UI | `acl-docs-console.html` | `public/markdown.html` (Markdown Studio) |
-| Approve / Reject / Edit MD | ✅ GitHub API (`api/update-doc.js`) | ✅ Local disk + optional git push |
-| List `_acl-output` files | ✅ via `manifest.json` + Vite plugin | ✅ `/api/list-markdown-files` |
-| Agent generation from browser | ❌ Not built | ✅ `/api/generate-step` via `studio-server.js` |
-| Next Step suggestion modal | ❌ Not built | ✅ **Implemented** — see Section 3 |
-| Hosted GitHub read/write for generation | ✅ Approve/Reject only | ⚠️ Save works locally; hosted generation still TODO |
-| Status vocabulary | `draft`, `pending-review`, `approved`, `rejected` | `In Review`, `Approved`, `Rejected` |
-| `studio-server.js` | ❌ Does not exist | ✅ `tools/studio-server.js` on port 3333 |
-| Installer deploys Studio HTML | `acl-docs-console.html` at project root | `public/markdown.html` |
+| Feature                                 | Old repo (`ACL-ADLC-V1`)                          | Current repo (`ACL-ACLC/ACL-ADLC-V1`)               |
+| --------------------------------------- | ------------------------------------------------- | --------------------------------------------------- |
+| Manager review UI                       | `acl-docs-console.html`                           | `public/markdown.html` (Markdown Studio)            |
+| Approve / Reject / Edit MD              | ✅ GitHub API (`api/update-doc.js`)               | ✅ Local disk + optional git push                   |
+| List `_acl-output` files                | ✅ via `manifest.json` + Vite plugin              | ✅ `/api/list-markdown-files`                       |
+| Agent generation from browser           | ❌ Not built                                      | ✅ `/api/generate-step` via `studio-server.js`      |
+| Next Step suggestion modal              | ❌ Not built                                      | ✅ **Implemented** — see Section 3                  |
+| Hosted GitHub read/write for generation | ✅ Approve/Reject only                            | ⚠️ Save works locally; hosted generation still TODO |
+| Status vocabulary                       | `draft`, `pending-review`, `approved`, `rejected` | `In Review`, `Approved`, `Rejected`                 |
+| `studio-server.js`                      | ❌ Does not exist                                 | ✅ `tools/studio-server.js` on port 3333            |
+| Installer deploys Studio HTML           | `acl-docs-console.html` at project root           | `public/markdown.html`                              |
 
 ---
 
@@ -107,34 +107,34 @@ When the manager clicks **Next Step ➔** in Markdown Studio:
 
 ### Gate rules enforced in the modal
 
-| stepKey | Skill | Requires upstream Approved |
-|---------|-------|---------------------------|
-| `project_context` | `acl-generate-project-context` | None (brownfield start) |
-| `brief` | `acl-product-brief` | `project_context` (brownfield only, if context file exists) |
-| `prd` | `acl-prd` | `brief.md` |
-| `architecture` | `acl-architecture` | `prd.md` |
-| `ux` | `acl-ux` | `prd.md` |
-| `epics_stories` | `acl-create-epics-and-stories` | `prd.md` + (`architecture.md` OR `ux.md`) |
-| `implementation_scaffold` | `acl-dev-auto` | `epics.md` (greenfield) |
-| `quick_dev` | `acl-quick-dev` | `epics.md` (brownfield) |
-| `story_impl` | `acl-dev-auto` | `epics.md` |
+| stepKey                   | Skill                          | Requires upstream Approved                                  |
+| ------------------------- | ------------------------------ | ----------------------------------------------------------- |
+| `project_context`         | `acl-generate-project-context` | None (brownfield start)                                     |
+| `brief`                   | `acl-product-brief`            | `project_context` (brownfield only, if context file exists) |
+| `prd`                     | `acl-prd`                      | `brief.md`                                                  |
+| `architecture`            | `acl-architecture`             | `prd.md`                                                    |
+| `ux`                      | `acl-ux`                       | `prd.md`                                                    |
+| `epics_stories`           | `acl-create-epics-and-stories` | `prd.md` + (`architecture.md` OR `ux.md`)                   |
+| `implementation_scaffold` | `acl-dev-auto`                 | `epics.md` (greenfield)                                     |
+| `quick_dev`               | `acl-quick-dev`                | `epics.md` (brownfield)                                     |
+| `story_impl`              | `acl-dev-auto`                 | `epics.md`                                                  |
 
 ### Proceed button states
 
-| State | Button |
-|-------|--------|
-| No files yet | **Next Step ➔** enabled — modal suggests first agent |
-| Active file `In Review` | **Gate Locked** — disabled |
-| Active file `Approved` | **Next Step ➔** enabled — opens suggestion modal |
-| All steps complete | **Pipeline Complete** — disabled |
+| State                   | Button                                               |
+| ----------------------- | ---------------------------------------------------- |
+| No files yet            | **Next Step ➔** enabled — modal suggests first agent |
+| Active file `In Review` | **Gate Locked** — disabled                           |
+| Active file `Approved`  | **Next Step ➔** enabled — opens suggestion modal     |
+| All steps complete      | **Pipeline Complete** — disabled                     |
 
 ### Source code (current repo only)
 
-| File | What to port |
-|------|--------------|
-| `src/public/markdown.html` | Full Studio UI including `AGENT_STEP_CATALOG`, `buildNextStepSuggestions()`, `renderNextStepModal()`, `openNextStepModal()`, `handleProceedNextStep()` |
-| `tools/studio-server.js` | `generateWithAgent()`, `readUpstreamArtifacts()`, `/api/generate-step` |
-| `tools/installer/core/installer.js` | Copies `markdown.html` → target `public/` on install |
+| File                                | What to port                                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/public/markdown.html`          | Full Studio UI including `AGENT_STEP_CATALOG`, `buildNextStepSuggestions()`, `renderNextStepModal()`, `openNextStepModal()`, `handleProceedNextStep()` |
+| `tools/studio-server.js`            | `generateWithAgent()`, `readUpstreamArtifacts()`, `/api/generate-step`                                                                                 |
+| `tools/installer/core/installer.js` | Copies `markdown.html` → target `public/` on install                                                                                                   |
 
 ### Architecture (local)
 
@@ -178,12 +178,12 @@ ACL-ADLC-V1/
 
 **Install output in target project:**
 
-| File | Location |
-|------|----------|
-| `acl-docs-console.html` | Project root |
-| `vite-plugin-acl-docs.ts` | Project root |
-| `api/update-doc.js` | Project `api/` (for Vercel) |
-| `_acl/docs-console/README.md` | Installed guide |
+| File                          | Location                    |
+| ----------------------------- | --------------------------- |
+| `acl-docs-console.html`       | Project root                |
+| `vite-plugin-acl-docs.ts`     | Project root                |
+| `api/update-doc.js`           | Project `api/` (for Vercel) |
+| `_acl/docs-console/README.md` | Installed guide             |
 
 **Status frontmatter (old):**
 
@@ -207,11 +207,11 @@ ACL-ACLC/ACL-ADLC-V1/
 
 **Install output in target project:**
 
-| File | Location |
-|------|----------|
-| `markdown.html` | `public/markdown.html` |
-| `greenfield.svg`, `brownfield.svg` | `public/` |
-| Vite middleware | Injected into `vite.config.*` for `/api/list-markdown-files` and `/api/save-markdown` |
+| File                               | Location                                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------------------- |
+| `markdown.html`                    | `public/markdown.html`                                                                |
+| `greenfield.svg`, `brownfield.svg` | `public/`                                                                             |
+| Vite middleware                    | Injected into `vite.config.*` for `/api/list-markdown-files` and `/api/save-markdown` |
 
 **Status frontmatter (current):**
 
@@ -273,10 +273,10 @@ Validated test project: `c:\Users\karthik.r\Documents\react\fleet-360-new`
 
 ### Sample test files created
 
-| File | Status | Path |
-|------|--------|------|
-| `brief.md` | Approved | `_acl-output/1-analysis/acl-product-brief/brief.md` |
-| `prd.md` | In Review | `_acl-output/2-plan-workflows/acl-prd/prd.md` |
+| File       | Status    | Path                                                |
+| ---------- | --------- | --------------------------------------------------- |
+| `brief.md` | Approved  | `_acl-output/1-analysis/acl-product-brief/brief.md` |
+| `prd.md`   | In Review | `_acl-output/2-plan-workflows/acl-prd/prd.md`       |
 
 ### Start servers
 
@@ -305,15 +305,15 @@ Does **not** support `/api/generate-step` (agent generation falls back to empty 
 
 ### Test checklist
 
-| # | Action | Expected result |
-|---|--------|-----------------|
-| 1 | Open Studio URL | Sidebar shows `brief.md` and `prd.md` |
-| 2 | Select `brief.md` | Status = Approved, preview renders |
-| 3 | Click **Next Step ➔** | Modal opens; PRD card is **Recommended** |
-| 4 | Select `prd.md` | Status = In Review |
-| 5 | Click **Next Step** on `prd.md` | Button disabled — Gate Locked |
-| 6 | Approve `prd.md`, click **Next Step** | Architecture + UX both **Recommended** |
-| 7 | Run one agent from modal | New `.md` file appears with `status: In Review` |
+| #   | Action                                | Expected result                                 |
+| --- | ------------------------------------- | ----------------------------------------------- |
+| 1   | Open Studio URL                       | Sidebar shows `brief.md` and `prd.md`           |
+| 2   | Select `brief.md`                     | Status = Approved, preview renders              |
+| 3   | Click **Next Step ➔**                 | Modal opens; PRD card is **Recommended**        |
+| 4   | Select `prd.md`                       | Status = In Review                              |
+| 5   | Click **Next Step** on `prd.md`       | Button disabled — Gate Locked                   |
+| 6   | Approve `prd.md`, click **Next Step** | Architecture + UX both **Recommended**          |
+| 7   | Run one agent from modal              | New `.md` file appears with `status: In Review` |
 
 ### Verify API directly
 
@@ -331,14 +331,14 @@ Use this checklist to bring `Documents/react/ACL-ADLC-V1` in line with the curre
 
 Copy from `ACL-ACLC/ACL-ADLC-V1` → `ACL-ADLC-V1`:
 
-| Source (current) | Destination (your old repo) | Required? |
-|------------------|----------------------------|-----------|
-| `src/public/markdown.html` | `src/public/markdown.html` *(create `src/public/` if missing)* | **Yes** |
-| `src/public/greenfield.svg` | `src/public/greenfield.svg` | **Yes** |
-| `src/public/brownfield.svg` | `src/public/brownfield.svg` | **Yes** |
-| `tools/studio-server.js` | `tools/studio-server.js` *(new file)* | **Yes** |
-| `tools/adlc-gate-guard.cjs` | `tools/adlc-gate-guard.cjs` *(if missing)* | Recommended |
-| `docs/explanation/hosted-agent-generation-feature.md` | `docs/explanation/hosted-agent-generation-feature.md` | This guide |
+| Source (current)                                      | Destination (your old repo)                                    | Required?   |
+| ----------------------------------------------------- | -------------------------------------------------------------- | ----------- |
+| `src/public/markdown.html`                            | `src/public/markdown.html` _(create `src/public/` if missing)_ | **Yes**     |
+| `src/public/greenfield.svg`                           | `src/public/greenfield.svg`                                    | **Yes**     |
+| `src/public/brownfield.svg`                           | `src/public/brownfield.svg`                                    | **Yes**     |
+| `tools/studio-server.js`                              | `tools/studio-server.js` _(new file)_                          | **Yes**     |
+| `tools/adlc-gate-guard.cjs`                           | `tools/adlc-gate-guard.cjs` _(if missing)_                     | Recommended |
+| `docs/explanation/hosted-agent-generation-feature.md` | `docs/explanation/hosted-agent-generation-feature.md`          | This guide  |
 
 **PowerShell one-liner (run from any directory):**
 
@@ -409,11 +409,11 @@ Ensure `tools/` is in the npm `"files"` array so `studio-server.js` ships with t
 If existing projects use old status values, migrate frontmatter:
 
 | Old (`ACL-ADLC-V1`) | New (Markdown Studio) |
-|---------------------|----------------------|
-| `draft` | `In Review` |
-| `pending-review` | `In Review` |
-| `approved` | `Approved` |
-| `rejected` | `Rejected` |
+| ------------------- | --------------------- |
+| `draft`             | `In Review`           |
+| `pending-review`    | `In Review`           |
+| `approved`          | `Approved`            |
+| `rejected`          | `Rejected`            |
 
 Update `src/scripts/check_docs_approval.py` and `docs_review_gates.toml` if they check for `approved` lowercase — ensure they also accept `Approved` / `In Review`.
 
@@ -435,24 +435,24 @@ Or publish to npm and run `npx acl-adlc-v1 install` from the updated package.
 
 ### Phase 6 — Deprecation notes
 
-| Old artifact | Replacement |
-|--------------|-------------|
-| `acl-docs-console.html` | `public/markdown.html` |
-| `vite-plugin-acl-docs.ts` | Vite middleware in `installer.js` + `studio-server.js` |
-| `api/update-doc.js` | `POST /api/save-markdown` (local) + future GitHub provider |
-| `status: pending-review` | `status: In Review` |
+| Old artifact              | Replacement                                                |
+| ------------------------- | ---------------------------------------------------------- |
+| `acl-docs-console.html`   | `public/markdown.html`                                     |
+| `vite-plugin-acl-docs.ts` | Vite middleware in `installer.js` + `studio-server.js`     |
+| `api/update-doc.js`       | `POST /api/save-markdown` (local) + future GitHub provider |
+| `status: pending-review`  | `status: In Review`                                        |
 
 ### Phase 7 — Known fixes after copying (do not skip)
 
-| Issue | Where | Fix |
-|-------|-------|-----|
-| Hardcoded LLM API key in browser | `markdown.html` ~line 2300 | Move key to `studio-server.js` env var `LLM_API_KEY`; remove from HTML request body |
-| Hardcoded `projectTitle: 'Fleet 360 Delivery'` | `markdown.html` `executeStepGeneration()` | Read from config or `_acl-output` brief title |
-| `studio-server.js` wrong skill path for project context | `readSkillInstructions()` skillMap | Both repos store skill at `3-solutioning/acl-generate-project-context/` — update map from `0-context/...` to `3-solutioning/...` |
-| `studio-server.js` hardcoded `SAMPLE_DIR` | Line 7 | Rely on `ACL_PROJECT_ROOT` env var only; remove hardcoded path |
-| Vite middleware missing `generate-step` | Target `vite.config.ts` | Agent generation only works via `studio-server.js` on port 3333, not Vite dev server |
-| Old `check_docs_approval.py` expects `approved` lowercase | `src/scripts/check_docs_approval.py` | Accept both `approved` and `Approved` / `In Review` |
-| Status mismatch in Vite plugin | Injected `aclMarkdownSaverPlugin` | Maps `In Review` incorrectly if `includes('updated')` — test status parsing after install |
+| Issue                                                     | Where                                     | Fix                                                                                                                              |
+| --------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Hardcoded LLM API key in browser                          | `markdown.html` ~line 2300                | Move key to `studio-server.js` env var `LLM_API_KEY`; remove from HTML request body                                              |
+| Hardcoded `projectTitle: 'Fleet 360 Delivery'`            | `markdown.html` `executeStepGeneration()` | Read from config or `_acl-output` brief title                                                                                    |
+| `studio-server.js` wrong skill path for project context   | `readSkillInstructions()` skillMap        | Both repos store skill at `3-solutioning/acl-generate-project-context/` — update map from `0-context/...` to `3-solutioning/...` |
+| `studio-server.js` hardcoded `SAMPLE_DIR`                 | Line 7                                    | Rely on `ACL_PROJECT_ROOT` env var only; remove hardcoded path                                                                   |
+| Vite middleware missing `generate-step`                   | Target `vite.config.ts`                   | Agent generation only works via `studio-server.js` on port 3333, not Vite dev server                                             |
+| Old `check_docs_approval.py` expects `approved` lowercase | `src/scripts/check_docs_approval.py`      | Accept both `approved` and `Approved` / `In Review`                                                                              |
+| Status mismatch in Vite plugin                            | Injected `aclMarkdownSaverPlugin`         | Maps `In Review` incorrectly if `includes('updated')` — test status parsing after install                                        |
 
 ---
 
@@ -462,27 +462,27 @@ The **Next Step modal** and **local `generate-step`** are implemented. Full **ho
 
 ### What works today (local)
 
-| Capability | Status |
-|------------|--------|
-| Next Step suggestion modal | ✅ Done |
-| One agent per generation call | ✅ Done |
-| Gate rules in modal UI | ✅ Done |
-| `generate-step` with SKILL.md + upstream context | ✅ Done (`studio-server.js`) |
-| LLM generation (NVIDIA API) | ✅ Done (move API key to server env — not browser) |
-| Local disk read/write | ✅ Done |
-| Git auto-push on save | ⚠️ Implemented but `autoPush: false` in UI |
+| Capability                                       | Status                                             |
+| ------------------------------------------------ | -------------------------------------------------- |
+| Next Step suggestion modal                       | ✅ Done                                            |
+| One agent per generation call                    | ✅ Done                                            |
+| Gate rules in modal UI                           | ✅ Done                                            |
+| `generate-step` with SKILL.md + upstream context | ✅ Done (`studio-server.js`)                       |
+| LLM generation (NVIDIA API)                      | ✅ Done (move API key to server env — not browser) |
+| Local disk read/write                            | ✅ Done                                            |
+| Git auto-push on save                            | ⚠️ Implemented but `autoPush: false` in UI         |
 
 ### What is still needed for hosted
 
-| Capability | Status |
-|------------|--------|
-| GitHub-backed file list (not local disk) | ❌ TODO — `tools/github-storage.js` |
-| GitHub-backed write on generate/save | ❌ TODO — port from old `api/update-doc.js` |
-| `GET /api/gate-check` server-side | ❌ TODO |
-| Secure LLM key on server only | ❌ TODO — remove hardcoded key from `markdown.html` |
-| Manager auth (GitHub OAuth) | ❌ TODO |
-| `window.__ACL_API_BASE__` for cross-origin hosted API | ❌ TODO |
-| Deploy `studio-server.js` or serverless equivalent | ❌ TODO |
+| Capability                                            | Status                                              |
+| ----------------------------------------------------- | --------------------------------------------------- |
+| GitHub-backed file list (not local disk)              | ❌ TODO — `tools/github-storage.js`                 |
+| GitHub-backed write on generate/save                  | ❌ TODO — port from old `api/update-doc.js`         |
+| `GET /api/gate-check` server-side                     | ❌ TODO                                             |
+| Secure LLM key on server only                         | ❌ TODO — remove hardcoded key from `markdown.html` |
+| Manager auth (GitHub OAuth)                           | ❌ TODO                                             |
+| `window.__ACL_API_BASE__` for cross-origin hosted API | ❌ TODO                                             |
+| Deploy `studio-server.js` or serverless equivalent    | ❌ TODO                                             |
 
 ### Recommended hosted architecture
 
@@ -545,17 +545,17 @@ Port the `getFileSha`, `putFile`, and auth patterns from that file into `tools/g
 
 ## 9. Agent → skill mapping reference
 
-| Modal card | Agent | skill id | stepKey | Output path |
-|------------|-------|----------|---------|-------------|
-| 🔍 Project Context | Mary | `acl-generate-project-context` | `project_context` | `_acl-output/0-context/acl-generate-project-context/project-context.md` |
-| 📊 Product Brief | Mary | `acl-product-brief` | `brief` | `_acl-output/1-analysis/acl-product-brief/brief.md` |
-| 📋 PRD | John | `acl-prd` | `prd` | `_acl-output/2-plan-workflows/acl-prd/prd.md` |
-| 🏛️ Architecture | Winston | `acl-architecture` | `architecture` | `_acl-output/3-solutioning/acl-architecture/architecture.md` |
-| 🎨 UX | Sally | `acl-ux` | `ux` | `_acl-output/3-solutioning/acl-ux/ux.md` |
-| 📑 Epics & Stories | John | `acl-create-epics-and-stories` | `epics_stories` | `_acl-output/3-solutioning/acl-create-epics-and-stories/epics.md` |
-| 💻 Implementation Scaffold | Amelia | `acl-dev-auto` | `implementation_scaffold` | `_acl-output/4-implementation/acl-dev-auto/step-01-scaffold.md` |
-| ⚡ Quick Dev | Amelia | `acl-quick-dev` | `quick_dev` | `_acl-output/4-implementation/acl-quick-dev/quick-dev.md` |
-| 🚀 Story Implementation | Amelia | `acl-dev-auto` | `story_impl` | `_acl-output/4-implementation/acl-dev-auto/story-{id}.md` |
+| Modal card                 | Agent   | skill id                       | stepKey                   | Output path                                                             |
+| -------------------------- | ------- | ------------------------------ | ------------------------- | ----------------------------------------------------------------------- |
+| 🔍 Project Context         | Mary    | `acl-generate-project-context` | `project_context`         | `_acl-output/0-context/acl-generate-project-context/project-context.md` |
+| 📊 Product Brief           | Mary    | `acl-product-brief`            | `brief`                   | `_acl-output/1-analysis/acl-product-brief/brief.md`                     |
+| 📋 PRD                     | John    | `acl-prd`                      | `prd`                     | `_acl-output/2-plan-workflows/acl-prd/prd.md`                           |
+| 🏛️ Architecture            | Winston | `acl-architecture`             | `architecture`            | `_acl-output/3-solutioning/acl-architecture/architecture.md`            |
+| 🎨 UX                      | Sally   | `acl-ux`                       | `ux`                      | `_acl-output/3-solutioning/acl-ux/ux.md`                                |
+| 📑 Epics & Stories         | John    | `acl-create-epics-and-stories` | `epics_stories`           | `_acl-output/3-solutioning/acl-create-epics-and-stories/epics.md`       |
+| 💻 Implementation Scaffold | Amelia  | `acl-dev-auto`                 | `implementation_scaffold` | `_acl-output/4-implementation/acl-dev-auto/step-01-scaffold.md`         |
+| ⚡ Quick Dev               | Amelia  | `acl-quick-dev`                | `quick_dev`               | `_acl-output/4-implementation/acl-quick-dev/quick-dev.md`               |
+| 🚀 Story Implementation    | Amelia  | `acl-dev-auto`                 | `story_impl`              | `_acl-output/4-implementation/acl-dev-auto/story-{id}.md`               |
 
 Named persona agents (`acl-agent-pm`, `acl-agent-architect`, etc.) are **menus that route to these skills** — the modal triggers the **skill** (`acl-prd`), not the persona wrapper.
 
@@ -576,25 +576,25 @@ Named persona agents (`acl-agent-pm`, `acl-agent-architect`, etc.) are **menus t
 
 ### What this document IS
 
-| ✅ Included | Description |
-|-------------|-------------|
-| Feature specification | What Markdown Studio + Next Step modal does |
-| Old vs new repo comparison | What changed between `ACL-ADLC-V1` and current |
-| Migration phases | Ordered steps to update your framework repo |
-| Copy manifest + PowerShell script | Exact files to copy |
-| Local testing guide | `fleet-360-new` + studio-server commands |
-| Hosted roadmap | What still needs building for GitHub-hosted generation |
-| Gate rules & agent mapping | Reference tables |
+| ✅ Included                       | Description                                            |
+| --------------------------------- | ------------------------------------------------------ |
+| Feature specification             | What Markdown Studio + Next Step modal does            |
+| Old vs new repo comparison        | What changed between `ACL-ADLC-V1` and current         |
+| Migration phases                  | Ordered steps to update your framework repo            |
+| Copy manifest + PowerShell script | Exact files to copy                                    |
+| Local testing guide               | `fleet-360-new` + studio-server commands               |
+| Hosted roadmap                    | What still needs building for GitHub-hosted generation |
+| Gate rules & agent mapping        | Reference tables                                       |
 
 ### What this document IS NOT
 
-| ❌ Not included | What to do instead |
-|----------------|-------------------|
-| Full source code of `markdown.html` (~2,800 lines) | Copy `src/public/markdown.html` from current repo |
-| Full source code of `studio-server.js` (~1,400 lines) | Copy `tools/studio-server.js` from current repo |
-| Complete merged `installer.js` | Diff and merge manually (see Phase 2) |
-| Automated migration script | Run the PowerShell copy commands in Phase 1 |
-| Hosted GitHub backend | Still TODO — see Section 8 |
+| ❌ Not included                                       | What to do instead                                |
+| ----------------------------------------------------- | ------------------------------------------------- |
+| Full source code of `markdown.html` (~2,800 lines)    | Copy `src/public/markdown.html` from current repo |
+| Full source code of `studio-server.js` (~1,400 lines) | Copy `tools/studio-server.js` from current repo   |
+| Complete merged `installer.js`                        | Diff and merge manually (see Phase 2)             |
+| Automated migration script                            | Run the PowerShell copy commands in Phase 1       |
+| Hosted GitHub backend                                 | Still TODO — see Section 8                        |
 
 ### For you (updating `ACL-ADLC-V1`)
 
@@ -610,13 +610,13 @@ Named persona agents (`acl-agent-pm`, `acl-agent-architect`, etc.) are **menus t
 
 ### Feature status
 
-| Question | Answer |
-|----------|--------|
-| Next Step modal with agent suggestions? | ✅ **Done** in current `markdown.html` |
-| One agent at a time generation? | ✅ **Done** |
-| Local test with `_acl-output`? | ✅ **Done** — see Section 6 |
-| Hosted GitHub read for generation? | ❌ **TODO** |
-| Hosted GitHub write for generation? | ❌ **TODO** (old repo has approve/reject write only) |
+| Question                                    | Answer                                                    |
+| ------------------------------------------- | --------------------------------------------------------- |
+| Next Step modal with agent suggestions?     | ✅ **Done** in current `markdown.html`                    |
+| One agent at a time generation?             | ✅ **Done**                                               |
+| Local test with `_acl-output`?              | ✅ **Done** — see Section 6                               |
+| Hosted GitHub read for generation?          | ❌ **TODO**                                               |
+| Hosted GitHub write for generation?         | ❌ **TODO** (old repo has approve/reject write only)      |
 | Per-agent toolbar buttons (always visible)? | ❌ Not built — modal on **Next Step** instead (by design) |
 
 ---
@@ -625,20 +625,20 @@ Named persona agents (`acl-agent-pm`, `acl-agent-architect`, etc.) are **menus t
 
 ### Current repo (`ACL-ACLC/ACL-ADLC-V1`)
 
-| File | Role |
-|------|------|
-| `src/public/markdown.html` | Markdown Studio UI + Next Step modal |
-| `tools/studio-server.js` | Local API: list, save, generate-step |
-| `tools/installer/core/installer.js` | Deploys Studio to target `public/` |
-| `tools/adlc-gate-guard.cjs` | CLI gate validator |
-| `src/acl-skills/**/SKILL.md` | Agent instructions loaded by `readSkillInstructions()` |
-| `AGENTS.md` | Protocol rules |
+| File                                | Role                                                   |
+| ----------------------------------- | ------------------------------------------------------ |
+| `src/public/markdown.html`          | Markdown Studio UI + Next Step modal                   |
+| `tools/studio-server.js`            | Local API: list, save, generate-step                   |
+| `tools/installer/core/installer.js` | Deploys Studio to target `public/`                     |
+| `tools/adlc-gate-guard.cjs`         | CLI gate validator                                     |
+| `src/acl-skills/**/SKILL.md`        | Agent instructions loaded by `readSkillInstructions()` |
+| `AGENTS.md`                         | Protocol rules                                         |
 
 ### Your old repo (`ACL-ADLC-V1`)
 
-| File | Role |
-|------|------|
-| `src/docs-console/acl-docs-console.html` | Legacy manager UI |
-| `src/docs-console/api/update-doc.js` | GitHub Contents API — **reuse for hosted writes** |
-| `src/docs-console/vite-plugin-acl-docs.ts` | Legacy Vite plugin |
-| `tools/installer/core/installer.js` | Installs docs-console (needs update) |
+| File                                       | Role                                              |
+| ------------------------------------------ | ------------------------------------------------- |
+| `src/docs-console/acl-docs-console.html`   | Legacy manager UI                                 |
+| `src/docs-console/api/update-doc.js`       | GitHub Contents API — **reuse for hosted writes** |
+| `src/docs-console/vite-plugin-acl-docs.ts` | Legacy Vite plugin                                |
+| `tools/installer/core/installer.js`        | Installs docs-console (needs update)              |

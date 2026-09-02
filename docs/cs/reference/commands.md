@@ -11,9 +11,9 @@ Skills jsou předpřipravené prompty, které načítají agenty, spouštějí w
 
 ACL nabízí dva způsoby zahájení práce a slouží k různým účelům.
 
-| Mechanismus | Jak se vyvolává | Co se stane |
-| --- | --- | --- |
-| **Skill** | Zadejte název skillu (např. `acl-help`) ve vašem IDE | Přímo načte agenta, spustí workflow nebo provede úkol |
+| Mechanismus                 | Jak se vyvolává                                             | Co se stane                                                                         |
+| --------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Skill**                   | Zadejte název skillu (např. `acl-help`) ve vašem IDE        | Přímo načte agenta, spustí workflow nebo provede úkol                               |
 | **Spouštěč nabídky agenta** | Nejprve načtěte agenta, pak zadejte krátký kód (např. `QD`) | Agent interpretuje kód a spustí odpovídající workflow, přičemž zůstává v charakteru |
 
 Spouštěče nabídky agentů vyžadují aktivní relaci agenta. Používejte skills, když víte, který workflow chcete. Používejte spouštěče, když již pracujete s agentem a chcete přepnout úkol bez opuštění konverzace.
@@ -24,12 +24,12 @@ Když spustíte `npx acl-adlc install`, instalátor čte manifesty každého vyb
 
 Instalátor používá šablony pro každý typ skillu:
 
-| Typ skillu | Co generovaný soubor dělá |
-| --- | --- |
+| Typ skillu          | Co generovaný soubor dělá                                                 |
+| ------------------- | ------------------------------------------------------------------------- |
 | **Spouštěč agenta** | Načte soubor persony agenta, aktivuje jeho nabídku a zůstává v charakteru |
-| **Workflow skill** | Načte konfiguraci workflow a následuje jeho kroky |
-| **Task skill** | Načte samostatný soubor úkolu a následuje jeho instrukce |
-| **Tool skill** | Načte samostatný soubor nástroje a následuje jeho instrukce |
+| **Workflow skill**  | Načte konfiguraci workflow a následuje jeho kroky                         |
+| **Task skill**      | Načte samostatný soubor úkolu a následuje jeho instrukce                  |
+| **Tool skill**      | Načte samostatný soubor nástroje a následuje jeho instrukce               |
 
 :::note[Opětovné spuštění instalátoru]
 Pokud přidáte nebo odeberete moduly, spusťte instalátor znovu. Přegeneruje všechny soubory skills tak, aby odpovídaly vašemu aktuálnímu výběru modulů.
@@ -39,12 +39,12 @@ Pokud přidáte nebo odeberete moduly, spusťte instalátor znovu. Přegeneruje 
 
 Instalátor zapisuje soubory skills do adresáře specifického pro IDE uvnitř vašeho projektu. Přesná cesta závisí na IDE, které jste vybrali během instalace.
 
-| IDE / CLI | Adresář skills |
-| --- | --- |
-| Claude Code | `.claude/skills/` |
-| Cursor | `.cursor/skills/` |
-| Windsurf | `.windsurf/skills/` |
-| Další IDE | Viz výstup instalátoru pro cílovou cestu |
+| IDE / CLI   | Adresář skills                           |
+| ----------- | ---------------------------------------- |
+| Claude Code | `.claude/skills/`                        |
+| Cursor      | `.cursor/skills/`                        |
+| Windsurf    | `.windsurf/skills/`                      |
+| Další IDE   | Viz výstup instalátoru pro cílovou cestu |
 
 Každý skill je adresář obsahující soubor `SKILL.md`. Například instalace Claude Code vypadá takto:
 
@@ -77,11 +77,11 @@ Generované adresáře skills ve vašem projektu jsou kanonický seznam. Otevře
 
 Agentní skills načítají specializovanou AI personu s definovanou rolí, komunikačním stylem a nabídkou workflow. Po načtení agent zůstává v charakteru a reaguje na spouštěče nabídky.
 
-| Příklad skillu | Agent | Role |
-| --- | --- | --- |
-| `acl-agent-dev` | Amelia (Developer) | Implementuje stories s přísným dodržováním specifikací |
-| `acl-pm` | John (Product Manager) | Vytváří a validuje PRD |
-| `acl-architect` | Winston (Architect) | Navrhuje systémovou architekturu |
+| Příklad skillu  | Agent                  | Role                                                   |
+| --------------- | ---------------------- | ------------------------------------------------------ |
+| `acl-agent-dev` | Amelia (Developer)     | Implementuje stories s přísným dodržováním specifikací |
+| `acl-pm`        | John (Product Manager) | Vytváří a validuje PRD                                 |
+| `acl-architect` | Winston (Architect)    | Navrhuje systémovou architekturu                       |
 
 Viz [Agenti](./agents.md) pro úplný seznam výchozích agentů a jejich spouštěčů.
 
@@ -89,15 +89,15 @@ Viz [Agenti](./agents.md) pro úplný seznam výchozích agentů a jejich spouš
 
 Workflow skills spouštějí strukturovaný, vícekrokový proces bez předchozího načtení persony agenta. Načtou konfiguraci workflow a následují jeho kroky.
 
-| Příklad skillu | Účel |
-| --- | --- |
-| `acl-product-brief` | Vytvoření product briefu — řízené discovery, když je váš koncept jasný |
-| `acl-prfaq` | [Working Backwards PRFAQ](../explanation/analysis-phase.md#prfaq-working-backwards) výzva pro zátěžový test vašeho produktového konceptu |
-| `acl-prd` | Vytvoření dokumentu požadavků (PRD) |
-| `acl-architecture` | Návrh systémové architektury |
-| `acl-create-epics-and-stories` | Vytvoření epiců a stories |
-| `acl-code-review` | Spuštění revize kódu |
-| `acl-quick-dev` | Implementace přímého záměru, issue, funkce, opravy nebo naplánované story |
+| Příklad skillu                 | Účel                                                                                                                                     |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `acl-product-brief`            | Vytvoření product briefu — řízené discovery, když je váš koncept jasný                                                                   |
+| `acl-prfaq`                    | [Working Backwards PRFAQ](../explanation/analysis-phase.md#prfaq-working-backwards) výzva pro zátěžový test vašeho produktového konceptu |
+| `acl-prd`                      | Vytvoření dokumentu požadavků (PRD)                                                                                                      |
+| `acl-architecture`             | Návrh systémové architektury                                                                                                             |
+| `acl-create-epics-and-stories` | Vytvoření epiců a stories                                                                                                                |
+| `acl-code-review`              | Spuštění revize kódu                                                                                                                     |
+| `acl-quick-dev`                | Implementace přímého záměru, issue, funkce, opravy nebo naplánované story                                                                |
 
 Viz [Mapa pracovních postupů](./workflow-map.md) pro kompletní referenci workflow organizovanou podle fází.
 
@@ -110,11 +110,13 @@ Tasks a tools jsou samostatné operace, které nevyžadují kontext agenta nebo 
 `acl-help` je vaše primární rozhraní pro objevení, co dělat dál. Zkoumá váš projekt, rozumí dotazům v přirozeném jazyce a doporučuje další povinný nebo volitelný krok na základě nainstalovaných modulů.
 
 :::note[Příklad]
+
 ```
 acl-help
 acl-help I have a SaaS idea and know all the features. Where do I start?
 acl-help What are my options for UX design?
 ```
+
 :::
 
 **Další základní tasks a tools**

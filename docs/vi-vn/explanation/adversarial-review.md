@@ -1,5 +1,5 @@
 ---
-title: "Đánh giá đối kháng"
+title: 'Đánh giá đối kháng'
 description: Kỹ thuật lập luận ép buộc giúp tránh các bản review lười kiểu "nhìn ổn"
 sidebar:
   order: 9
@@ -9,7 +9,7 @@ Buộc quá trình phân tích đi sâu hơn bằng cách ép phải tìm ra v�
 
 ## Đánh giá đối kháng là gì?
 
-Đây là một kỹ thuật review mà người review *bắt buộc* phải tìm thấy vấn đề. Không có chuyện "nhìn ổn". Người review chọn lập trường hoài nghi - giả sử vấn đề có tồn tại và đi tìm chúng.
+Đây là một kỹ thuật review mà người review _bắt buộc_ phải tìm thấy vấn đề. Không có chuyện "nhìn ổn". Người review chọn lập trường hoài nghi - giả sử vấn đề có tồn tại và đi tìm chúng.
 
 Đây không phải là việc cố tình tiêu cực. Đây là cách ép buộc phân tích thật sự, thay vì chỉ liếc qua và đóng dấu chấp nhận những gì vừa được nộp lên.
 
@@ -30,7 +30,7 @@ Những lần review thông thường dễ bị confirmation bias. Bạn lướt
 
 ## Vẫn cần bộ lọc của con người
 
-Vì AI *được lệnh* phải tìm vấn đề, nó sẽ tìm vấn đề - ngay cả khi chúng không tồn tại. Hãy kỳ vọng false positive: bắt bẻ những lỗi vặt, hiểu sai ý định, hoặc thậm chí tưởng tượng ra vấn đề.
+Vì AI _được lệnh_ phải tìm vấn đề, nó sẽ tìm vấn đề - ngay cả khi chúng không tồn tại. Hãy kỳ vọng false positive: bắt bẻ những lỗi vặt, hiểu sai ý định, hoặc thậm chí tưởng tượng ra vấn đề.
 
 **Bạn là người quyết định cái nào là thật.** Xem từng phát hiện, bỏ qua nhiễu, sửa những gì quan trọng.
 

@@ -15,17 +15,17 @@ Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `acl
 
 **Module principal (toujours installé) :**
 
-| Outil                                                     | Objectif                                                                                                                               |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Outil                                                   | Objectif                                                                                                                               |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [`acl-help`](#acl-help)                                 | Obtenir des conseils contextuels sur la prochaine étape                                                                                |
 | [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Soumettre la sortie LLM à des méthodes de raffinement itératives                                                                       |
 | [`acl-review`](#acl-review)                             | Revue multi-perspectives — contradictoire, cas limites et lacunes de vérification pour le code ; structure et prose pour les documents |
-| [`acl-customize`](#acl-customize)                       | Créer et vérifier des personnalisations ACL                                                                                           |
+| [`acl-customize`](#acl-customize)                       | Créer et vérifier des personnalisations ACL                                                                                            |
 
 **Compétences de réflexion :**
 
-| Outil                                       | Objectif                                                                               |
-| ------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Outil                                     | Objectif                                                                               |
+| ----------------------------------------- | -------------------------------------------------------------------------------------- |
 | [`acl-brainstorming`](#acl-brainstorming) | Faciliter des sessions de brainstorming interactives                                   |
 | [`acl-forge-idea`](#acl-forge-idea)       | Éprouver une idée jusqu’à ce qu’elle se consolide, se confirme ou meure à moindre coût |
 | [`acl-party-mode`](#acl-party-mode)       | Orchestrer des discussions de groupe multi-agents                                      |
@@ -84,13 +84,13 @@ Exécutez n’importe quel outil en tapant son nom de compétence (par ex., `acl
 
 **Les perspectives livrées :**
 
-| Perspective                 | S’applique à                         | Méthode                                                                                                                |
-| --------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| **Contradictoire**          | Tout contenu                         | Revue sceptique qui part du principe que des problèmes existent — traque ce qui manque, pas seulement ce qui ne va pas |
-| **Cas limites**             | Tout contenu                         | Parcourt chaque chemin de branchement et condition aux limites d’un contenu qui définit un comportement                |
-| **Lacunes de vérification** | Code                                 | Trouve les comportements modifiés qui pourraient régresser sans qu’une vérification fiable ne le détecte               |
-| **Structure**               | Documents                            | Propose coupes, fusions, déplacements et condensations — la forme du document sert-elle son objectif ?                 |
-| **Prose**                   | Documents                            | Corrige les problèmes de communication qui nuisent à la compréhension                                                  |
+| Perspective                 | S’applique à | Méthode                                                                                                                |
+| --------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| **Contradictoire**          | Tout contenu | Revue sceptique qui part du principe que des problèmes existent — traque ce qui manque, pas seulement ce qui ne va pas |
+| **Cas limites**             | Tout contenu | Parcourt chaque chemin de branchement et condition aux limites d’un contenu qui définit un comportement                |
+| **Lacunes de vérification** | Code         | Trouve les comportements modifiés qui pourraient régresser sans qu’une vérification fiable ne le détecte               |
+| **Structure**               | Documents    | Propose coupes, fusions, déplacements et condensations — la forme du document sert-elle son objectif ?                 |
+| **Prose**                   | Documents    | Corrige les problèmes de communication qui nuisent à la compréhension                                                  |
 
 Les deux perspectives éditoriales tiennent le contenu pour sacro-saint : elles ne remettent jamais en cause vos idées, seulement leur organisation et leur expression, et elles proposent sans exécuter. La perspective prose s’exécute sur les constatations de la perspective structure lorsque les deux sont sélectionnées.
 

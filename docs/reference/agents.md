@@ -15,14 +15,14 @@ This page lists the default ACL (Agile suite) agents that install with ACL Metho
 - Triggers are the short menu codes (e.g., `PRD`) and fuzzy matches shown in each agent menu.
 - QA test generation is handled by the `acl-qa-generate-e2e-tests` workflow skill, available through the Developer agent. The full Test Architect (TEA) lives in its own module.
 
-| Agent                       | Skill ID             | Triggers                           | Primary workflows                                                                                   |
-| --------------------------- | -------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Analyst (Mary)              | `acl-agent-analyst` | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP` | Brainstorm, Market Research, Domain Research, Technical Research, Create Brief, PRFAQ Challenge, Document Project |
-| Product Manager (John)      | `acl-agent-pm`      | `PRD`, `CE`, `IR`, `CC`            | Create/Update/Validate PRD, Create Epics and Stories, Implementation Readiness, Correct Course      |
-| Architect (Winston)         | `acl-agent-architect` | `CA`, `IR`                       | Create Architecture, Implementation Readiness                                                       |
-| Developer (Amelia)          | `acl-agent-dev`     | `QD`, `QA`, `CR`, `SP`, `ER` | Quick Dev, QA Test Generation, Code Review, Sprint Planning, Epic Retrospective |
-| UX Designer (Sally)         | `acl-agent-ux-designer` | `CU`                           | Create UX Design                                                                                    |
-| Technical Writer (Paige)    | `acl-agent-tech-writer` | `DP`, `WD`, `MG`, `VD`, `EC`   | Document Project, Write Document, Mermaid Generate, Validate Doc, Explain Concept                   |
+| Agent                    | Skill ID                | Triggers                                 | Primary workflows                                                                                                 |
+| ------------------------ | ----------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Analyst (Mary)           | `acl-agent-analyst`     | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP` | Brainstorm, Market Research, Domain Research, Technical Research, Create Brief, PRFAQ Challenge, Document Project |
+| Product Manager (John)   | `acl-agent-pm`          | `PRD`, `CE`, `IR`, `CC`                  | Create/Update/Validate PRD, Create Epics and Stories, Implementation Readiness, Correct Course                    |
+| Architect (Winston)      | `acl-agent-architect`   | `CA`, `IR`                               | Create Architecture, Implementation Readiness                                                                     |
+| Developer (Amelia)       | `acl-agent-dev`         | `QD`, `QA`, `CR`, `SP`, `ER`             | Quick Dev, QA Test Generation, Code Review, Sprint Planning, Epic Retrospective                                   |
+| UX Designer (Sally)      | `acl-agent-ux-designer` | `CU`                                     | Create UX Design                                                                                                  |
+| Technical Writer (Paige) | `acl-agent-tech-writer` | `DP`, `WD`, `MG`, `VD`, `EC`             | Document Project, Write Document, Mermaid Generate, Validate Doc, Explain Concept                                 |
 
 ## Trigger Types
 
@@ -38,12 +38,12 @@ Examples: `PRD` (Create, update, or validate PRD), `CA` (Create Architecture), `
 
 Some triggers start a free-form conversation instead of a structured workflow. These expect you to describe what you need alongside the trigger code.
 
-| Agent | Trigger | What to provide |
-| --- | --- | --- |
-| Technical Writer (Paige) | `WD` | Description of the document to write |
-| Technical Writer (Paige) | `MG` | Diagram description and type (sequence, flowchart, etc.) |
-| Technical Writer (Paige) | `VD` | Document to validate and focus areas |
-| Technical Writer (Paige) | `EC` | Concept name to explain |
+| Agent                    | Trigger | What to provide                                          |
+| ------------------------ | ------- | -------------------------------------------------------- |
+| Technical Writer (Paige) | `WD`    | Description of the document to write                     |
+| Technical Writer (Paige) | `MG`    | Diagram description and type (sequence, flowchart, etc.) |
+| Technical Writer (Paige) | `VD`    | Document to validate and focus areas                     |
+| Technical Writer (Paige) | `EC`    | Concept name to explain                                  |
 
 **Example:**
 

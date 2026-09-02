@@ -68,22 +68,22 @@ After installing ACL, invoke the `acl-help` skill immediately. It will detect wh
 
 ACL helps you build software through guided workflows with specialized AI agents. The process follows four phases:
 
-| Phase | Name           | What Happens                                                 |
-| ----- | -------------- | ------------------------------------------------------------ |
-| 1     | Analysis       | Brainstorming, research, forge idea, product brief or PRFAQ _(optional)_ |
-| 2     | Planning       | Create requirements and design PRD, UX, SPEC                 |
-| 3     | Solutioning    | Design architecture spine or detailed project or system architectures          |
+| Phase | Name           | What Happens                                                                        |
+| ----- | -------------- | ----------------------------------------------------------------------------------- |
+| 1     | Analysis       | Brainstorming, research, forge idea, product brief or PRFAQ _(optional)_            |
+| 2     | Planning       | Create requirements and design PRD, UX, SPEC                                        |
+| 3     | Solutioning    | Design architecture spine or detailed project or system architectures               |
 | 4     | Implementation | Implement every change or planned story, optionally through automated orchestration |
 
 **[Open the Workflow Map](../reference/workflow-map.md)** to explore phases, workflows, and context management.
 
 Planning depth is flexible. Start implementation directly when the intent is already clear, or add the planning artifacts that reduce risk for larger work:
 
-| Planning depth | Best For | Context Available Before Implementation |
-| --- | --- | --- |
-| **Direct** | Clear fixes, features, issues, or existing specifications | User intent, issue, or spec |
-| **Product planning** | Products, platforms, and complex features | PRD and optional UX design |
-| **Full solutioning** | Cross-system, high-risk, or coordinated initiatives | PRD, UX, architecture, epics, stories, and sprint plan |
+| Planning depth       | Best For                                                  | Context Available Before Implementation                |
+| -------------------- | --------------------------------------------------------- | ------------------------------------------------------ |
+| **Direct**           | Clear fixes, features, issues, or existing specifications | User intent, issue, or spec                            |
+| **Product planning** | Products, platforms, and complex features                 | PRD and optional UX design                             |
+| **Full solutioning** | Cross-system, high-risk, or coordinated initiatives       | PRD, UX, architecture, epics, stories, and sprint plan |
 
 :::note
 These are entry points, not separate implementation tracks. Every path converges on `acl-quick-dev`; planning only changes how much context the workflow receives.
@@ -202,10 +202,10 @@ When Quick Dev resolves a selected story in that file, it moves the story to `in
 
 For each direct change or planned story, repeat this cycle with fresh chats:
 
-| Step | Agent | Workflow | Command | Purpose |
-| ---- | ----- | -------- | ------- | ------- |
-| 1    | DEV   | `acl-quick-dev` | `acl-quick-dev` | Clarify as needed, plan, implement, review, present |
-| 2    | DEV   | `acl-code-review` | `acl-code-review` | Additional quality validation _(recommended)_ |
+| Step | Agent | Workflow          | Command           | Purpose                                             |
+| ---- | ----- | ----------------- | ----------------- | --------------------------------------------------- |
+| 1    | DEV   | `acl-quick-dev`   | `acl-quick-dev`   | Clarify as needed, plan, implement, review, present |
+| 2    | DEV   | `acl-code-review` | `acl-code-review` | Additional quality validation _(recommended)_       |
 
 Quick Dev's review is part of every run. `acl-code-review` is an optional fresh-context, independent validation layer.
 
@@ -238,8 +238,8 @@ your-project/
 
 ## Quick Reference
 
-| Workflow                              | Command                               | Agent     | Purpose                                    |
-| ------------------------------------- | ------------------------------------- | --------- | ------------------------------------------ |
+| Workflow                             | Command                              | Agent     | Purpose                                    |
+| ------------------------------------ | ------------------------------------ | --------- | ------------------------------------------ |
 | **`acl-help`** ⭐                    | `acl-help`                           | Any       | **Your intelligent guide — ask anything!** |
 | `acl-prd`                            | `acl-prd`                            | Any       | Create, update, or validate a PRD          |
 | `acl-architecture`                   | `acl-architecture`                   | Architect | Create architecture document               |

@@ -15,17 +15,17 @@ Spusťte jakýkoli nástroj zadáním jeho názvu skillu (např. `acl-help`) ve 
 
 **Základní modul (vždy nainstalován):**
 
-| Nástroj                                                   | Účel                                                                                                                      |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Nástroj                                                 | Účel                                                                                                                      |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [`acl-help`](#acl-help)                                 | Kontextové poradenství, co dělat dál                                                                                      |
 | [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Iterativní zdokonalování LLM výstupu                                                                                      |
 | [`acl-review`](#acl-review)                             | Revize z více perspektiv — adversariální, hraniční případy a mezery ve verifikaci pro kód; struktura a text pro dokumenty |
-| [`acl-customize`](#acl-customize)                       | Vytváření a ověřování přizpůsobení ACL                                                                                   |
+| [`acl-customize`](#acl-customize)                       | Vytváření a ověřování přizpůsobení ACL                                                                                    |
 
 **Myšlenkové skills:**
 
-| Nástroj                                     | Účel                                                                   |
-| ------------------------------------------- | ---------------------------------------------------------------------- |
+| Nástroj                                   | Účel                                                                   |
+| ----------------------------------------- | ---------------------------------------------------------------------- |
 | [`acl-brainstorming`](#acl-brainstorming) | Facilitace interaktivních brainstormingových sezení                    |
 | [`acl-forge-idea`](#acl-forge-idea)       | Zátěžový test nápadu, dokud se nezpevní, nepotvrdí, nebo levně nezemře |
 | [`acl-party-mode`](#acl-party-mode)       | Orchestrace skupinových diskuzí více agentů                            |
@@ -84,13 +84,13 @@ Spusťte jakýkoli nástroj zadáním jeho názvu skillu (např. `acl-help`) ve 
 
 **Dodávané perspektivy:**
 
-| Perspektiva              | Vztahuje se na            | Metoda                                                                                       |
-| ------------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
-| **Adversariální**        | Jakýkoli obsah            | Skeptická revize předpokládající existenci problémů — hledá, co chybí, ne jen co je špatně   |
-| **Hraniční případy**     | Jakýkoli obsah            | Projde každou větvící se cestu a hraniční podmínku v obsahu, který definuje chování          |
-| **Mezery ve verifikaci** | Kód                       | Hledá změněné chování, které by mohlo regredovat, aniž by to spolehlivá verifikace zachytila |
-| **Struktura**            | Dokumenty                 | Navrhuje škrty, sloučení, přesuny a zhuštění — slouží tvar dokumentu jeho účelu?             |
-| **Text**                 | Dokumenty                 | Redakčně upravuje komunikační problémy, které brání porozumění                               |
+| Perspektiva              | Vztahuje se na | Metoda                                                                                       |
+| ------------------------ | -------------- | -------------------------------------------------------------------------------------------- |
+| **Adversariální**        | Jakýkoli obsah | Skeptická revize předpokládající existenci problémů — hledá, co chybí, ne jen co je špatně   |
+| **Hraniční případy**     | Jakýkoli obsah | Projde každou větvící se cestu a hraniční podmínku v obsahu, který definuje chování          |
+| **Mezery ve verifikaci** | Kód            | Hledá změněné chování, které by mohlo regredovat, aniž by to spolehlivá verifikace zachytila |
+| **Struktura**            | Dokumenty      | Navrhuje škrty, sloučení, přesuny a zhuštění — slouží tvar dokumentu jeho účelu?             |
+| **Text**                 | Dokumenty      | Redakčně upravuje komunikační problémy, které brání porozumění                               |
 
 Obě redakční perspektivy považují obsah za nedotknutelný: nikdy nezpochybňují vaše myšlenky, pouze jejich uspořádání a vyjádření, a navrhují místo toho, aby zasahovaly. Je-li vybráno obojí, textová perspektiva běží nad nálezy strukturní.
 

@@ -1,10 +1,9 @@
 ---
-title: "Why Solutioning Matters"
+title: 'Why Solutioning Matters'
 description: Understanding why the solutioning phase is critical for multi-epic projects
 sidebar:
   order: 5
 ---
-
 
 Phase 3 (Solutioning) translates **what** to build (from Planning) into **how** to build it (technical design). This phase prevents agent conflicts in multi-epic projects by documenting architectural decisions before implementation begins.
 
@@ -44,6 +43,7 @@ By documenting technical decisions explicitly, all agents implement consistently
 **Make technical decisions explicit and documented** so all agents implement consistently.
 
 This prevents:
+
 - API style conflicts (REST vs GraphQL)
 - Database design inconsistencies
 - State management disagreements
@@ -52,12 +52,12 @@ This prevents:
 
 ## Choosing Solutioning Depth
 
-| Work characteristics | Solutioning guidance |
-|---|---|
-| Clear, local change with established patterns | Usually unnecessary |
-| Several related components with known constraints | Optional, based on coordination risk |
-| Multiple epics or cross-system decisions | Needed to align implementation |
-| Regulated, high-risk, or enterprise initiative | Follow required governance; solutioning is normally required |
+| Work characteristics                              | Solutioning guidance                                         |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Clear, local change with established patterns     | Usually unnecessary                                          |
+| Several related components with known constraints | Optional, based on coordination risk                         |
+| Multiple epics or cross-system decisions          | Needed to align implementation                               |
+| Regulated, high-risk, or enterprise initiative    | Follow required governance; solutioning is normally required |
 
 Solutioning changes the context available to `acl-quick-dev`; it does not change the implementation workflow.
 

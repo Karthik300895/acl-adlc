@@ -18,7 +18,7 @@ La V4 de ACL a introduit les web bundles. La V6 les réintègre, réécrits pour
 Le travail de planification et le travail d’implémentation nécessitent des outils différents. Les web bundles permettent à chacun d’utiliser le bon.
 
 | Aspect               | LLM web (Gem ou GPT)                        | IDE (Claude Code, Cursor)                  |
-|----------------------|---------------------------------------------|--------------------------------------------|
+| -------------------- | ------------------------------------------- | ------------------------------------------ |
 | Modèle de coût       | Abonnement forfaitaire                      | Tokens facturés à l’usage                  |
 | Plus performant pour | Conversation, Canvas, Deep Research, images | Fichiers, terminal, contexte du codebase   |
 | Idéal pour           | Brainstorming, briefs, PRD, recherche       | Implémentation, refactoring, revue de code |
@@ -34,9 +34,9 @@ Les économies se cumulent sur les engagements de longue durée. Un passage de P
 Les bundles actuellement disponibles couvrent les phases d’analyse et de planification :
 
 | Bundle                                                         | Phase         | Origine du persona                        |
-|----------------------------------------------------------------|---------------|-------------------------------------------|
+| -------------------------------------------------------------- | ------------- | ----------------------------------------- |
 | Coach Brainstorming[^1]                                        | Analyse       | Osborn (par défaut), Minto (substitution) |
-| Coach Product Brief[^2]                                        | Analyse       | Mary (analyste ACL)                      |
+| Coach Product Brief[^2]                                        | Analyse       | Mary (analyste ACL)                       |
 | Coach [PRFAQ](./analysis-phase.md#prfaq-working-backwards)[^3] | Analyse       | Working Backwards (Bezos)                 |
 | Coach PRD[^4]                                                  | Planification | Cagan                                     |
 | Coach UX[^5]                                                   | Planification | Norman                                    |
@@ -84,7 +84,11 @@ Installez n’importe quel bundle depuis [aclcode.com/web-bundles](https://aclco
 ## Glossaire
 
 [^1]: Brainstorming : session de créativité facilitée visant à produire et explorer un large éventail d’idées sur un sujet donné, en s’appuyant sur des techniques d’idéation éprouvées.
+
 [^2]: Brief : document synthétique qui formalise le contexte, les objectifs, le périmètre et les contraintes d’un projet ou d’une demande, afin d’aligner rapidement les parties prenantes avant le travail détaillé.
+
 [^3]: PRFAQ (Press Release and Frequently Asked Questions) : méthodologie Working Backwards d’Amazon consistant à rédiger le communiqué de presse d’un produit fini avant son développement, suivie des questions difficiles que clients et parties prenantes poseraient, afin d’éprouver la clarté et la viabilité du concept.
+
 [^4]: PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur ce qui doit être construit et pourquoi.
+
 [^5]: UX (User Experience) : discipline qui conçoit et optimise l’ensemble des interactions entre un utilisateur et un produit — organisation, parcours, accessibilité, ergonomie — pour garantir une expérience efficace, satisfaisante et cohérente.

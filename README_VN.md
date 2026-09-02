@@ -1,5 +1,3 @@
-
-
 **Build More Architect Dreams** - một mô-đun khung phát triển hướng AI trong hệ sinh thái ACL, có khả năng thích ứng theo quy mô từ sửa lỗi nhỏ đến các hệ thống doanh nghiệp.
 
 **100% miễn phí và mã nguồn mở.** Không có tường phí. Không có nội dung bị khóa. Không có Discord giới hạn quyền truy cập. Chúng tôi tin vào việc trao quyền cho mọi người, không chỉ cho những ai có thể trả tiền để vào một cộng đồng hay khóa học khép kín.
@@ -15,10 +13,7 @@ Các công cụ AI truyền thống thường làm thay phần suy nghĩ của b
 - **Party Mode** - Đưa nhiều persona agent vào cùng một phiên để cộng tác và thảo luận
 - **Vòng đời hoàn chỉnh** - Từ động não ý tưởng cho đến triển khai
 
-
-
 ---
-
 
 ## Bắt đầu nhanh
 
@@ -38,22 +33,19 @@ Làm theo các lời nhắc của trình cài đặt, sau đó mở AI IDE của
 npx acl-adlc install --directory /path/to/project --modules acl --tools claude-code --yes
 ```
 
-
-
 > **Chưa chắc nên làm gì?** Hãy hỏi `acl-help` - nó sẽ cho bạn biết chính xác bước nào tiếp theo và bước nào là tùy chọn. Bạn cũng có thể hỏi kiểu như `acl-help Tôi vừa hoàn thành phần kiến trúc, tiếp theo tôi cần làm gì?`
 
 ## Mô-đun
 
 ACL Method có thể được mở rộng bằng các mô-đun chính thức cho những miền chuyên biệt. Chúng có sẵn trong lúc cài đặt hoặc bất kỳ lúc nào sau đó.
 
-| Module                                                                                                            | Mục đích                                           |
-| ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| ACL Method (ACL) | Khung lõi với hơn 34 quy trình                     |
-| ACL Builder (BMB)  | Tạo agent và quy trình ACL tùy chỉnh             |
-| Test Architect (TEA) | Chiến lược kiểm thử và tự động hóa dựa trên rủi ro |
-| Game Dev Studio (BMGD) | Quy trình phát triển game (Unity, Unreal, Godot)   |
-| Creative Intelligence Suite (CIS)| Đổi mới, động não ý tưởng, tư duy thiết kế         |
-
+| Module                            | Mục đích                                           |
+| --------------------------------- | -------------------------------------------------- |
+| ACL Method (ACL)                  | Khung lõi với hơn 34 quy trình                     |
+| ACL Builder (BMB)                 | Tạo agent và quy trình ACL tùy chỉnh               |
+| Test Architect (TEA)              | Chiến lược kiểm thử và tự động hóa dựa trên rủi ro |
+| Game Dev Studio (BMGD)            | Quy trình phát triển game (Unity, Unreal, Godot)   |
+| Creative Intelligence Suite (CIS) | Đổi mới, động não ý tưởng, tư duy thiết kế         |
 
 ## Web Bundles
 
@@ -67,8 +59,6 @@ Các gói hiện có: động não ý tưởng, bản tóm tắt sản phẩm, P
 
 Trang tài liệu ACL Method - bài hướng dẫn, hướng dẫn tác vụ, giải thích khái niệm và tài liệu tham chiếu
 
-
-
 ## Đóng góp
 
 Chúng tôi luôn chào đón đóng góp. Xem [CONTRIBUTING.md](CONTRIBUTING.md) để biết hướng dẫn.
@@ -80,6 +70,5 @@ Giấy phép MIT - xem [LICENSE](LICENSE) để biết chi tiết.
 ---
 
 **ACL** và **ACL-ADLC** là các nhãn hiệu của ACL Code, LLC. Xem [TRADEMARK.md](TRADEMARK.md) để biết chi tiết.
-
 
 Xem [CONTRIBUTORS.md](CONTRIBUTORS.md) để biết thông tin về những người đóng góp.

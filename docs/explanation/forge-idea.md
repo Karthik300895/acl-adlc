@@ -1,5 +1,5 @@
 ---
-title: "Forge an Idea"
+title: 'Forge an Idea'
 description: Pressure-test an idea through persona-driven interrogation until it hardens, proves out, or dies cheaply
 sidebar:
   order: 13
@@ -43,23 +43,23 @@ This is the deliberate inverse of [Adversarial Review](./adversarial-review.md).
 
 The session ends however the thinking lands, and every landing is a real outcome. The forge writes a self-contained report you can keep, stamped to match the result.
 
-| Outcome | What it means |
-| --- | --- |
+| Outcome      | What it means                                                                                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Hardened** | The idea survived. It distills into `forged-idea.md` (the locked decisions, plus what was killed and why), ready to feed `acl-spec`, `acl-prd`, or `acl-prfaq` for a product concept. |
-| **Killed** | The idea didn't survive, and the report records the cause of death. Finding that out cheaply is a win. |
-| **Clearer** | You just think straighter now. No artifact needed, and the session stands on its own. |
+| **Killed**   | The idea didn't survive, and the report records the cause of death. Finding that out cheaply is a win.                                                                                |
+| **Clearer**  | You just think straighter now. No artifact needed, and the session stands on its own.                                                                                                 |
 
 ## When to Use It
 
 Reach for the forge when you already hold an idea and want it hardened or killed before you invest in it. Skip it when you're still generating options or when you need a group decision from your agents.
 
-| Skill | Use it when | Voice |
-| --- | --- | --- |
-| `acl-forge-idea` | You have an idea and want it stress-tested or killed | An interrogator plus a two-person room |
-| `acl-prfaq` | You've committed to a product and want it proven customer-first | A Working Backwards coach |
-| `acl-brainstorming` | You have no idea yet and need to generate options | A facilitation coach |
-| `acl-party-mode` | You want your agents to discuss or decide together | Your whole roster in one conversation |
-| `acl-review` | You have an artifact and need its flaws found | A multi-lens reviewer hunting real issues |
+| Skill               | Use it when                                                     | Voice                                     |
+| ------------------- | --------------------------------------------------------------- | ----------------------------------------- |
+| `acl-forge-idea`    | You have an idea and want it stress-tested or killed            | An interrogator plus a two-person room    |
+| `acl-prfaq`         | You've committed to a product and want it proven customer-first | A Working Backwards coach                 |
+| `acl-brainstorming` | You have no idea yet and need to generate options               | A facilitation coach                      |
+| `acl-party-mode`    | You want your agents to discuss or decide together              | Your whole roster in one conversation     |
+| `acl-review`        | You have an artifact and need its flaws found                   | A multi-lens reviewer hunting real issues |
 
 ## Example
 

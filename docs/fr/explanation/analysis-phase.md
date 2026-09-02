@@ -1,5 +1,5 @@
 ---
-title: "Phase d’analyse : de l’Idée aux Fondations"
+title: 'Phase d’analyse : de l’Idée aux Fondations'
 description: Ce que sont le brainstorming, la recherche, les product briefs et les PRFAQs — et quand les utiliser
 sidebar:
   order: 2
@@ -52,7 +52,7 @@ Voir [Brainstorming](./brainstorming.md) pour un aperçu plus approfondi du fonc
 ## Lequel utiliser ?
 
 | Situation                                                                     | Outil recommandé                           |
-|-------------------------------------------------------------------------------|--------------------------------------------|
+| ----------------------------------------------------------------------------- | ------------------------------------------ |
 | « J’ai une idée vague, je ne sais pas par où commencer »                      | Brainstorming                              |
 | « J’ai besoin de comprendre le marché avant de décider »                      | Recherche                                  |
 | « Je sais ce que je veux construire, j’ai juste besoin de le documenter »     | Product Brief                              |

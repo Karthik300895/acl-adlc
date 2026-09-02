@@ -1,5 +1,5 @@
 ---
-title: "Comment installer ACL"
+title: 'Comment installer ACL'
 description: Installer, mettre à jour et épingler ACL pour le développement local, les équipes et CI
 sidebar:
   order: 1
@@ -56,7 +56,7 @@ Deux axes indépendants contrôlent ce qui se retrouve sur le disque.
 Chaque module externe — bmb, cis, gds, tea, et tout module communautaire — s’installe via l’un des trois canaux suivants :
 
 | Canal             | Ce qui est installé                                                                  | Pour qui                                      |
-|-------------------|--------------------------------------------------------------------------------------|-----------------------------------------------|
+| ----------------- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
 | `stable` (défaut) | Le plus haut tag semver publié. Les préversions comme `v2.0.0-alpha.1` sont exclues. | La plupart des utilisateurs                   |
 | `next`            | Le HEAD de la branche main au moment de l’installation                               | Contributeurs, early adopters                 |
 | `pinned`          | Un tag spécifique de votre choix                                                     | Installations entreprise, reproductibilité CI |
@@ -67,8 +67,8 @@ Les canaux sont définis module par module. Vous pouvez exécuter bmb sur `next`
 
 Le paquet npm `acl-adlc` lui-même a deux dist-tags :
 
-| Commande                              | Ce que vous obtenez                                                                   |
-|---------------------------------------|---------------------------------------------------------------------------------------|
+| Commande                           | Ce que vous obtenez                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------- |
 | `npx acl-adlc install` (`@latest`) | Dernière version stable de l’installateur                                             |
 | `npx acl-adlc@next install`        | Dernière préversion de l’installateur, publiée automatiquement à chaque push sur main |
 
@@ -89,7 +89,7 @@ Ils sont liés au binaire de l’installateur que vous avez exécuté :
 Exécuter `npx acl-adlc install` dans un répertoire contenant déjà `_acl/` affiche un menu :
 
 | Choix              | Ce qu’il fait                                                                                                                                                                                                        |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Quick Update**   | Réexécute l’installation avec vos paramètres existants. Rafraîchit les fichiers, applique les correctifs et les mises à niveau mineures du canal stable, refuse les mises à niveau majeures. Rapide, non interactif. |
 | **Modify Install** | Flux interactif complet. Ajoutez ou retirez des modules, reconfigurez les paramètres, examinez et, si besoin, modifiez les canaux des modules existants.                                                             |
 
@@ -118,7 +118,7 @@ Avec `--yes`, les mises à niveau patch et mineure s’appliquent automatiquemen
 ### Référence des options
 
 | Option                                                                                     | Objectif                                                                                                                                                                    |
-|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--yes`, `-y`                                                                              | Ignorer toutes les invites ; accepter les valeurs des options + les défauts                                                                                                 |
 | `--directory <chemin>`                                                                     | Installer dans ce répertoire (défaut : répertoire de travail courant)                                                                                                       |
 | `--modules <a,b,c>`                                                                        | Ensemble exact de modules. Core est ajouté automatiquement. Ce n’est pas un delta — listez tout ce que vous voulez conserver.                                               |

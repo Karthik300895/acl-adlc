@@ -12,27 +12,27 @@ Bề mặt tùy chỉnh của ACL cho phép một tổ chức định hình lạ
 - ACL đã được cài trong dự án của bạn (xem [Cách cài đặt ACL](./install-acl.md))
 - Đã quen với mô hình tùy chỉnh (xem [Cách tùy chỉnh ACL](./customize-acl.md))
 - Python 3.11+ có trên PATH để chạy resolver, chỉ dùng stdlib, không cần `pip install`
-:::
+  :::
 
 :::tip[Cách áp dụng các công thức mẫu này]
-Những **công thức mẫu theo từng skill** bên dưới, tức Recipe 1 đến Recipe 4, có thể được áp dụng bằng cách chạy skill `acl-customize` rồi mô tả ý định. Skill này sẽ tự chọn đúng bề mặt, viết file override và xác minh kết quả merge. Riêng Recipe 5, tức override cấu hình trung tâm để chỉnh danh sách agent (agent roster), hiện chưa nằm trong phạm vi v1 của skill nên vẫn cần viết tay. Các recipe trong trang này là nguồn sự thật cho phần *nên override cái gì*; `acl-customize` phụ trách phần *thực hiện ra sao* ở lớp agent/workflow.
+Những **công thức mẫu theo từng skill** bên dưới, tức Recipe 1 đến Recipe 4, có thể được áp dụng bằng cách chạy skill `acl-customize` rồi mô tả ý định. Skill này sẽ tự chọn đúng bề mặt, viết file override và xác minh kết quả merge. Riêng Recipe 5, tức override cấu hình trung tâm để chỉnh danh sách agent (agent roster), hiện chưa nằm trong phạm vi v1 của skill nên vẫn cần viết tay. Các recipe trong trang này là nguồn sự thật cho phần _nên override cái gì_; `acl-customize` phụ trách phần _thực hiện ra sao_ ở lớp agent/workflow.
 :::
 
 ## Mô hình ba lớp để suy nghĩ
 
 Trước khi chọn recipe, bạn cần biết override của mình sẽ rơi vào đâu:
 
-| Lớp | Nơi override sống | Phạm vi |
-|---|---|---|
-| **Agent** như Amelia, Mary, John | section `[agent]` trong `_acl/custom/acl-agent-{role}.toml` | Đi cùng persona vào **mọi workflow mà agent đó dispatch** |
-| **Workflow** như `product-brief`, `create-prd` | section `[workflow]` trong `_acl/custom/{workflow-name}.toml` | Chỉ áp dụng cho lần chạy của workflow đó |
-| **Cấu hình trung tâm** | `[agents.*]`, `[core]`, `[modules.*]` trong `_acl/custom/config.toml` | Agent roster và các thiết lập lúc cài đặt cần ghim cho cả tổ chức |
+| Lớp                                            | Nơi override sống                                                     | Phạm vi                                                           |
+| ---------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Agent** như Amelia, Mary, John               | section `[agent]` trong `_acl/custom/acl-agent-{role}.toml`           | Đi cùng persona vào **mọi workflow mà agent đó dispatch**         |
+| **Workflow** như `product-brief`, `create-prd` | section `[workflow]` trong `_acl/custom/{workflow-name}.toml`         | Chỉ áp dụng cho lần chạy của workflow đó                          |
+| **Cấu hình trung tâm**                         | `[agents.*]`, `[core]`, `[modules.*]` trong `_acl/custom/config.toml` | Agent roster và các thiết lập lúc cài đặt cần ghim cho cả tổ chức |
 
 Nguyên tắc ngón tay cái:
 
 - Nếu quy tắc nên áp dụng ở mọi nơi một engineer làm dev work, hãy tùy chỉnh **dev agent**
 - Nếu nó chỉ áp dụng khi ai đó viết product brief, hãy tùy chỉnh **workflow product-brief**
-- Nếu nó thay đổi *ai đang ngồi trong phòng* như đổi thương hiệu agent, thêm custom voice hoặc ép chung một artifact path, hãy sửa **cấu hình trung tâm**
+- Nếu nó thay đổi _ai đang ngồi trong phòng_ như đổi thương hiệu agent, thêm custom voice hoặc ép chung một artifact path, hãy sửa **cấu hình trung tâm**
 
 ## Recipe 1: định hình một agent trên mọi workflow mà nó điều phối (dispatch)
 
@@ -62,7 +62,7 @@ persistent_facts = [
 
 ## Recipe 2: ép convention của tổ chức bên trong một workflow cụ thể
 
-**Trường hợp dùng (use case):** Định hình *nội dung đầu ra* của một workflow để nó đáp ứng yêu cầu compliance, audit hoặc hệ thống downstream.
+**Trường hợp dùng (use case):** Định hình _nội dung đầu ra_ của một workflow để nó đáp ứng yêu cầu compliance, audit hoặc hệ thống downstream.
 
 **Ví dụ:** mọi product brief đều phải có các trường compliance, và agent biết convention xuất bản của tổ chức.
 
@@ -148,7 +148,7 @@ brief_template = "{project-root}/docs/enterprise/brief-template.md"
 
 ## Recipe 5: tùy chỉnh danh sách agent (agent roster)
 
-**Trường hợp dùng (use case):** Thay đổi *ai đang ngồi trong phòng* cho những skill dựa trên roster như `acl-party-mode`, `acl-retrospective` và `acl-advanced-elicitation`, mà không cần sửa source hay fork. Dưới đây là ba biến thể thường gặp.
+**Trường hợp dùng (use case):** Thay đổi _ai đang ngồi trong phòng_ cho những skill dựa trên roster như `acl-party-mode`, `acl-retrospective` và `acl-advanced-elicitation`, mà không cần sửa source hay fork. Dưới đây là ba biến thể thường gặp.
 
 ### 5a. Rebrand một agent của ACL trên toàn tổ chức
 
@@ -204,7 +204,7 @@ document_output_language = "English"
 
 Những thiết lập cá nhân như `user_name`, `communication_language` hoặc `user_skill_level` nên vẫn nằm trong `_acl/config.user.toml` riêng của từng developer. File chung của team không nên đụng vào các giá trị đó.
 
-**Vì sao việc này nằm ở cấu hình trung tâm thay vì per-agent customize.toml:** File per-agent chỉ định hình cách *một* agent hành xử khi nó được kích hoạt. Cấu hình trung tâm lại định hình những gì các roster consumer *nhìn thấy khi quan sát cánh đồng chung*: agent nào tồn tại, tên gì, thuộc team nào và các thiết lập cài đặt dùng chung mà toàn repo đã thống nhất. Hai bề mặt khác nhau, hai công việc khác nhau.
+**Vì sao việc này nằm ở cấu hình trung tâm thay vì per-agent customize.toml:** File per-agent chỉ định hình cách _một_ agent hành xử khi nó được kích hoạt. Cấu hình trung tâm lại định hình những gì các roster consumer _nhìn thấy khi quan sát cánh đồng chung_: agent nào tồn tại, tên gì, thuộc team nào và các thiết lập cài đặt dùng chung mà toàn repo đã thống nhất. Hai bề mặt khác nhau, hai công việc khác nhau.
 
 ## Củng cố các quy tắc toàn cục trong file hướng dẫn phiên của IDE
 
@@ -226,12 +226,12 @@ trước khi dựa vào kiến thức từ dữ liệu huấn luyện (training 
 
 Chỉ một câu, nhưng được nạp ở mọi phiên. Nó kết hợp với cấu hình `acl-agent-dev.toml` để quy tắc có hiệu lực cả trong workflow của Amelia lẫn trong các cuộc trò chuyện ad-hoc với assistant. Mỗi lớp giữ đúng phạm vi của mình:
 
-| Lớp | Phạm vi | Dùng cho |
-|---|---|---|
-| File hướng dẫn phiên của IDE như `CLAUDE.md` hoặc `AGENTS.md` | Mọi phiên, trước khi bất kỳ skill nào chạy | Quy tắc ngắn, phổ quát, phải sống cả ngoài ACL |
-| Tùy chỉnh agent của ACL | Mọi workflow mà agent đó dispatch | Hành vi riêng theo persona/agent |
-| Tùy chỉnh workflow của ACL | Một lần chạy workflow | Dạng đầu ra, hook publish, template và logic riêng của workflow |
-| Cấu hình trung tâm của ACL | Agent roster và thiết lập cài đặt dùng chung | Ai đang ngồi trong phòng và đường dẫn nào cả team dùng chung |
+| Lớp                                                           | Phạm vi                                      | Dùng cho                                                        |
+| ------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
+| File hướng dẫn phiên của IDE như `CLAUDE.md` hoặc `AGENTS.md` | Mọi phiên, trước khi bất kỳ skill nào chạy   | Quy tắc ngắn, phổ quát, phải sống cả ngoài ACL                  |
+| Tùy chỉnh agent của ACL                                       | Mọi workflow mà agent đó dispatch            | Hành vi riêng theo persona/agent                                |
+| Tùy chỉnh workflow của ACL                                    | Một lần chạy workflow                        | Dạng đầu ra, hook publish, template và logic riêng của workflow |
+| Cấu hình trung tâm của ACL                                    | Agent roster và thiết lập cài đặt dùng chung | Ai đang ngồi trong phòng và đường dẫn nào cả team dùng chung    |
 
 Hãy giữ file hướng dẫn của IDE **ngắn gọn**. Một tá dòng được chọn kỹ sẽ hiệu quả hơn một danh sách dài lê thê. Model phải đọc file đó ở mọi lượt, và càng nhiều nhiễu thì càng ít tín hiệu.
 

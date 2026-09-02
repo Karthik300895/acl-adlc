@@ -1,5 +1,5 @@
 ---
-title: "Existující projekty"
+title: 'Existující projekty'
 description: Jak používat ACL Method na existujících kódových bázích
 sidebar:
   order: 6
@@ -10,10 +10,11 @@ Používejte ACL Method efektivně při práci na existujících projektech a st
 Tento návod pokrývá základní workflow pro zapojení se do existujících projektů s ACL Method.
 
 :::note[Předpoklady]
+
 - ACL Method nainstalován (`npx acl-adlc install`)
 - Existující kódová báze, na které chcete pracovat
 - Přístup k AI-powered IDE (Claude Code nebo Cursor)
-:::
+  :::
 
 ## Krok 1: Vyčistěte dokončené plánovací artefakty
 
@@ -36,6 +37,7 @@ acl-generate-project-context
 ```
 
 Toto skenuje vaši kódovou bázi a identifikuje:
+
 - Technologický stack a verze
 - Vzory organizace kódu
 - Konvence pojmenování
@@ -79,10 +81,10 @@ ACL-Help se také **automaticky spouští na konci každého workflow** a poskyt
 
 Veškerá implementace používá `acl-quick-dev`; rozsah určuje, jaký kontext připravíte předem:
 
-| Rozsah                         | Doporučený přístup                                                                                                            |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Jasné aktualizace či doplnění** | Vstupte přímo do `acl-quick-dev` s požadavkem, issue nebo existující specifikací. |
-| **Velké změny či doplnění**    | Připravte užitečné PRD, UX, architekturu, epic, story a sprint kontext a pak předejte vybranou práci do `acl-quick-dev`. |
+| Rozsah                            | Doporučený přístup                                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Jasné aktualizace či doplnění** | Vstupte přímo do `acl-quick-dev` s požadavkem, issue nebo existující specifikací.                                        |
+| **Velké změny či doplnění**       | Připravte užitečné PRD, UX, architekturu, epic, story a sprint kontext a pak předejte vybranou práci do `acl-quick-dev`. |
 
 ### Během tvorby PRD
 

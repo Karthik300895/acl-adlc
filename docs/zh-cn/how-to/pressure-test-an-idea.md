@@ -1,5 +1,5 @@
 ---
-title: "压测一个想法"
+title: '压测一个想法'
 description: 用 acl-forge-idea skill 在投入之前强化、验证或淘汰一个想法
 sidebar:
   order: 11

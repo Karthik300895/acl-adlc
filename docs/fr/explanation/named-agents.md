@@ -1,5 +1,5 @@
 ---
-title: "Agents nommés"
+title: 'Agents nommés'
 description: Pourquoi les agents ACL ont des noms, des personas et des options de personnalisation — et ce que cela permet par rapport aux alternatives basées sur des menus ou des prompts
 sidebar:
   order: 1
@@ -13,9 +13,9 @@ Cette page explique ce qui se passe réellement et pourquoi ACL est conçu ainsi
 
 Le modèle d’agent de ACL repose sur trois primitives qui s’articulent :
 
-| Primitive            | Ce qu’elle apporte                                                                                                                                                                      | Où elle se trouve                                                                                                      |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| **Skill**            | Capacité — une chose distincte que l’assistant peut faire (brainstormer, rédiger un PRD, implémenter une story)                                                                         | `.claude/skills/{skill-name}/SKILL.md` (ou l’équivalent de votre IDE)                                                  |
+| Primitive            | Ce qu’elle apporte                                                                                                                                                                      | Où elle se trouve                                                                                                     |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Skill**            | Capacité — une chose distincte que l’assistant peut faire (brainstormer, rédiger un PRD, implémenter une story)                                                                         | `.claude/skills/{skill-name}/SKILL.md` (ou l’équivalent de votre IDE)                                                 |
 | **Agent nommé**      | Continuité du persona — une identité reconnaissable qui englobe un menu de skills associés avec une voix, des principes et des repères visuels cohérents                                | Skills dont le répertoire commence par `acl-agent-*`                                                                  |
 | **Personnalisation** | Rendre le système vôtre — des overrides qui remodèlent le comportement d’un agent, ajoutent des intégrations MCP, remplacent des templates, intègrent les conventions de l’organisation | `_acl/custom/{skill-name}.toml` (overrides d’équipe, versionnés dans git) et `.user.toml` (personnel, ignoré par git) |
 
@@ -29,14 +29,14 @@ Retirez l’un des pieds et l’expérience s’effondre :
 
 ACL embarque six agents nommés, chacun ancré à une phase de la méthode ACL :
 
-| Agent                              | Phase          | Module                                                                                                                  |
-|------------------------------------|----------------|-------------------------------------------------------------------------------------------------------------------------|
-| 📊 **Mary**, Analyste d’affaires   | Analyse        | étude de marché, brainstorming, product briefs, PRFAQs                                                                   |
-| 📚 **Paige**, Rédactrice technique | Analyse        | documentation de projet, diagrammes, validation de docs                                                                  |
-| 📋 **John**, Chef de produit       | Planification  | création de PRD, décomposition epic/story, vérification de la préparation à l’implémentation                             |
-| 🎨 **Sally**, Designer UX          | Planification  | spécifications de design UX                                                                                              |
-| 🏗️ **Winston**, Architecte système  | Solutioning    | architecture technique, vérifications d’alignement                                                                     |
-| 💻 **Amelia**, Ingénieure senior   | Implémentation | exécution de stories, quick-dev, revue de code, planification de sprint  |
+| Agent                              | Phase          | Module                                                                                       |
+| ---------------------------------- | -------------- | -------------------------------------------------------------------------------------------- |
+| 📊 **Mary**, Analyste d’affaires   | Analyse        | étude de marché, brainstorming, product briefs, PRFAQs                                       |
+| 📚 **Paige**, Rédactrice technique | Analyse        | documentation de projet, diagrammes, validation de docs                                      |
+| 📋 **John**, Chef de produit       | Planification  | création de PRD, décomposition epic/story, vérification de la préparation à l’implémentation |
+| 🎨 **Sally**, Designer UX          | Planification  | spécifications de design UX                                                                  |
+| 🏗️ **Winston**, Architecte système | Solutioning    | architecture technique, vérifications d’alignement                                           |
+| 💻 **Amelia**, Ingénieure senior   | Implémentation | exécution de stories, quick-dev, revue de code, planification de sprint                      |
 
 Chacun possède une identité codée en dur (nom, titre, domaine) et une couche personnalisable (rôle, principes, style de communication, icône, menu). Vous pouvez réécrire les principes de Mary ou ajouter des éléments de menu ; vous ne pouvez pas la renommer — c’est délibéré. La reconnaissance de marque persiste après personnalisation pour que « hey Mary » active toujours l’analyste, indépendamment de la façon dont une équipe a façonné son comportement.
 
@@ -79,7 +79,7 @@ La plupart des utilisateurs ne rédigent jamais ces fichiers à la main. Le skil
 
 Exemple concret : une équipe versionne dans git un seul fichier demandant à Amelia d’utiliser systématiquement l’outil MCP Context7 pour la documentation des bibliothèques et de se rabattre sur Linear quand une story n’est pas dans la liste locale des epics. Chaque workflow de développement qu’Amelia lance (quick-dev, code-review, qa-generate) hérite de ce comportement, sans modification du code ni duplication par workflow.
 
-Il existe aussi une seconde surface de personnalisation pour les préoccupations *transversales* : la configuration centrale `_acl/config.toml` et `_acl/config.user.toml` (tous deux gérés par l’installateur, reconstruits à partir du `module.yaml` de chaque module) plus `_acl/custom/config.toml` (équipe, versionné dans git) et `_acl/custom/config.user.toml` (personnel, ignoré par git) pour les overrides. C’est là que se trouve le **registre des agents** — les descripteurs légers que les consommateurs du registre comme `acl-party-mode`, `acl-retrospective` et `acl-advanced-elicitation` lisent pour savoir qui est disponible et comment l’incarner. Redéfinissez l’image d’un agent pour toute l’organisation avec un override d’équipe ; ajoutez des personnages fictifs (Kirk, Spock, un persona expert du domaine) comme expériences personnelles via l’override `.user.toml` — sans toucher aucun dossier de skill. Le fichier par skill façonne la façon dont Mary *se comporte* quand elle s’active ; la configuration centrale façonne la façon dont les autres skills *la perçoivent* quand ils consultent le registre.
+Il existe aussi une seconde surface de personnalisation pour les préoccupations *transversales* : la configuration centrale `_acl/config.toml` et `_acl/config.user.toml` (tous deux gérés par l’installateur, reconstruits à partir du `module.yaml` de chaque module) plus `_acl/custom/config.toml` (équipe, versionné dans git) et `_acl/custom/config.user.toml` (personnel, ignoré par git) pour les overrides. C’est là que se trouve le **registre des agents** — les descripteurs légers que les consommateurs du registre comme `acl-party-mode`, `acl-retrospective` et `acl-advanced-elicitation` lisent pour savoir qui est disponible et comment l’incarner. Redéfinissez l’image d’un agent pour toute l’organisation avec un override d’équipe ; ajoutez des personnages fictifs (Kirk, Spock, un persona expert du domaine) comme expériences personnelles via l’override `.user.toml` — sans toucher aucun dossier de skill. Le fichier par skill façonne la façon dont Mary _se comporte_ quand elle s’active ; la configuration centrale façonne la façon dont les autres skills _la perçoivent_ quand ils consultent le registre.
 
 Pour la surface de personnalisation complète et des exemples concrets, consultez :
 

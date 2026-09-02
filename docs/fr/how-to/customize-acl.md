@@ -1,5 +1,5 @@
 ---
-title: "Comment personnaliser ACL"
+title: 'Comment personnaliser ACL'
 description: Personnalisez les agents et les workflows tout en préservant la compatibilité avec les mises à jour
 sidebar:
   order: 8
@@ -8,7 +8,7 @@ sidebar:
 Adaptez les personas d’agents, injectez du contexte métier, ajoutez des capacités et configurez le comportement des workflows — le tout sans modifier les fichiers installés. Vos personnalisations sont préservées à chaque mise à jour.
 
 :::tip[Vous ne voulez pas rédiger du TOML à la main ? Utilisez `acl-customize`]
-Le skill `acl-customize` est un assistant de rédaction guidée pour les **options de personnalisation par skill (agent/workflow)** décrite dans ce document. Il scanne ce qui est personnalisable dans votre installation, vous aide à choisir la bonne surface (agent ou workflow) pour votre intention, écrit le fichier d’override pour vous et vérifie que la fusion a fonctionné. Les overrides de la configuration centrale (`_acl/custom/config.toml`) ne sont pas couverts par la v1 du skill — rédigez-les manuellement en vous référant à la section Configuration centrale ci-dessous. Exécutez le skill chaque fois que vous souhaitez modifier un skill spécifique ; ce document est la référence sur *ce que* chaque surface expose et comment fonctionne la fusion.
+Le skill `acl-customize` est un assistant de rédaction guidée pour les **options de personnalisation par skill (agent/workflow)** décrite dans ce document. Il scanne ce qui est personnalisable dans votre installation, vous aide à choisir la bonne surface (agent ou workflow) pour votre intention, écrit le fichier d’override pour vous et vérifie que la fusion a fonctionné. Les overrides de la configuration centrale (`_acl/custom/config.toml`) ne sont pas couverts par la v1 du skill — rédigez-les manuellement en vous référant à la section Configuration centrale ci-dessous. Exécutez le skill chaque fois que vous souhaitez modifier un skill spécifique ; ce document est la référence sur _ce que_ chaque surface expose et comment fonctionne la fusion.
 :::
 
 ## Quand utiliser cette fonctionnalité
@@ -24,7 +24,7 @@ Le skill `acl-customize` est un assistant de rédaction guidée pour les **optio
 - ACL installé dans votre projet (voir [Comment installer ACL](./install-acl.md))
 - Un moyen d’exécuter le script de résolution — ACL adopte `uv` comme standard (`uv run`, qui provisionne Python pour vous) ; un simple `python3` 3.11+ sur votre PATH fonctionne toujours pendant la transition. Le script n’utilise que `tomllib` de la bibliothèque standard, il n’y a donc rien à `pip install`.
 - Un éditeur de texte pour les fichiers TOML
-:::
+  :::
 
 ## Comment ça marche
 
@@ -45,7 +45,7 @@ Le dossier `_acl/custom/` est initialement vide. Les fichiers n’apparaissent q
 Le résolveur applique quatre règles structurelles. Les noms de champ n’ont pas de traitement particulier — le comportement est déterminé uniquement par la forme de la valeur :
 
 | Forme                                                                                                                         | Règle                                                                                                          |
-|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | Scalaire (chaîne, entier, booléen, flottant)                                                                                  | L’override prévaut                                                                                             |
 | Table                                                                                                                         | Fusion profonde (application récursive des mêmes règles)                                                       |
 | Tableau de tables où chaque élément partage le **même** champ identifiant (chaque élément a `code`, ou chaque élément a `id`) | Fusionner par cette clé — les clés correspondantes **remplacent sur place**, les nouvelles clés **s’ajoutent** |
@@ -357,10 +357,10 @@ L’override prévaut sur ce que chaque développeur a répondu lors de son inst
 
 ### Quelle surface utiliser pour quel besoin
 
-| Besoin                                                   | Utiliser                                                                      |
-|----------------------------------------------------------|-------------------------------------------------------------------------------|
-| Ajouter des appels d’outils MCP à chaque workflow de dev | Par skill : `_acl/custom/acl-agent-dev.toml` `persistent_facts`             |
-| Ajouter un élément de menu à un agent                    | Par skill : `_acl/custom/acl-agent-{role}.toml` `[[agent.menu]]`            |
+| Besoin                                                   | Utiliser                                                                     |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Ajouter des appels d’outils MCP à chaque workflow de dev | Par skill : `_acl/custom/acl-agent-dev.toml` `persistent_facts`              |
+| Ajouter un élément de menu à un agent                    | Par skill : `_acl/custom/acl-agent-{role}.toml` `[[agent.menu]]`             |
 | Remplacer le template de sortie d’un workflow            | Par skill : `_acl/custom/{workflow}.toml` override scalaire                  |
 | Renommer le descripteur public d’un agent                | **Centrale** : `_acl/custom/config.toml` `[agents.<code>]`                   |
 | Ajouter un agent personnalisé ou fictif au registre      | **Centrale** : `_acl/custom/config.*.toml` nouvelle entrée `[agents.<code>]` |
@@ -377,7 +377,7 @@ Pour des recettes orientées entreprise (façonner un agent à travers tous les 
 **La personnalisation n’apparaît pas ?**
 
 - Vérifiez que votre fichier se trouve dans `_acl/custom/` avec le nom de skill correct
-- Vérifiez la syntaxe TOML : les chaînes doivent être entre guillemets, les en-têtes de table utilisent `[section]`, les tableaux de tables utilisent `[[section]]`, et toute clé scalaire ou de tableau pour une table doit apparaître *avant* toute `[[sous-table]]` de cette table dans le fichier
+- Vérifiez la syntaxe TOML : les chaînes doivent être entre guillemets, les en-têtes de table utilisent `[section]`, les tableaux de tables utilisent `[[section]]`, et toute clé scalaire ou de tableau pour une table doit apparaître _avant_ toute `[[sous-table]]` de cette table dans le fichier
 - Pour les agents, la personnalisation se trouve sous `[agent]` — les champs écrits sous cet en-tête appartiennent à `agent` jusqu’à ce qu’un autre en-tête de table commence
 - Rappelez-vous que `agent.name` et `agent.title` sont en lecture seule ; les overrides n’ont aucun effet
 

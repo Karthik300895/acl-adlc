@@ -83,8 +83,8 @@ your-project/
 
 ## Module Migration
 
-| v4 Module                     | v6 Status                                 |
-| ----------------------------- | ----------------------------------------- |
+| v4 Module                    | v6 Status                                 |
+| ---------------------------- | ----------------------------------------- |
 | `.acl-2d-phaser-game-dev`    | Integrated into BMGD Module               |
 | `.acl-2d-unity-game-dev`     | Integrated into BMGD Module               |
 | `.acl-godot-game-dev`        | Integrated into BMGD Module               |
@@ -93,9 +93,9 @@ your-project/
 
 ## Key Changes
 
-| Concept       | v4                                    | v6                                   |
-| ------------- | ------------------------------------- | ------------------------------------ |
+| Concept       | v4                                  | v6                                  |
+| ------------- | ----------------------------------- | ----------------------------------- |
 | **Core**      | `_acl-core` was actually ACL Method | `_acl/core/` is universal framework |
-| **Method**    | `_acl-adlc`                        | `_acl/acl/`                         |
-| **Config**    | Modified files directly               | `config.yaml` per module             |
-| **Documents** | Sharded or unsharded required setup   | Fully flexible, auto-scanned         |
+| **Method**    | `_acl-adlc`                         | `_acl/acl/`                         |
+| **Config**    | Modified files directly             | `config.yaml` per module            |
+| **Documents** | Sharded or unsharded required setup | Fully flexible, auto-scanned        |

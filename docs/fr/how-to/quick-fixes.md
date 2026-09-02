@@ -1,5 +1,5 @@
 ---
-title: "Corrections Rapides"
+title: 'Corrections Rapides'
 description: Comment effectuer des corrections rapides et des modifications ciblées
 sidebar:
   order: 6
@@ -15,9 +15,10 @@ Les corrections de bugs, refactorisations et petites modifications ciblées peuv
 - Mises à jour de dépendances
 
 :::note[Prérequis]
+
 - Méthode ACL installée (`npx acl-adlc install`)
 - Un IDE IA (Claude Code, Cursor, ou similaire)
-:::
+  :::
 
 ## Étapes
 

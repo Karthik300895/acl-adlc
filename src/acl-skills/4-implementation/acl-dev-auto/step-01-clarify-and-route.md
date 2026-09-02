@@ -17,6 +17,7 @@ story_id: '' # set at runtime under folder+id dispatch only
 Use the invocation prompt as the intent.
 
 If the invocation prompt explicitly points to an existing spec file with recognized `status` frontmatter, set `spec_file`, then **EARLY EXIT** to the appropriate step:
+
 - `draft` → `[[acl-snapshot:step-02-plan.md]]`
 - `ready-for-dev` or `in-progress` → `[[acl-snapshot:step-03-implement.md]]`
 - `in-review` → `[[acl-snapshot:step-04-review.md]]`
@@ -28,6 +29,7 @@ If the invocation prompt instead supplies a spec folder and a story id, with no 
 Read `{spec_folder}/stories.yaml`. If the file does not exist or fails to parse, HALT with status `blocked` and blocking condition `no stories.yaml found`. Find the entry whose `id` equals `{story_id}`; if none matches, HALT with status `blocked` and blocking condition `story id not found in stories.yaml`. Take only that entry's `title` and `description` — never read the checkpoint fields or `invoke_dev_with`; those are the caller's orchestration fields, not dev-auto's.
 
 Look for files matching `{spec_folder}/stories/{story_id}-*.md` (id-prefix match — story ids are prefix-free, so at most one should match):
+
 - **If more than one matches**, HALT with status `blocked` and blocking condition `ambiguous story file match`.
 - **If exactly one matches**, set `spec_file` to that path.
   - `draft` (planning was interrupted mid-flight): accumulate cross-story context before resuming — load every other file matching `{spec_folder}/stories/*.md` (every match except `{spec_file}` itself), regardless of `status`, and carry forward each one's **Code Map**, **Design Notes**, **Spec Change Log**, **Tasks & Acceptance** checklist state, and **Auto Run Result** details, where present, as additional planning context for step-02. Then **EARLY EXIT** to `[[acl-snapshot:step-02-plan.md]]`.
@@ -48,7 +50,6 @@ If the invocation prompt does not contain enough intent to identify what to impl
    - **Determine context strategy.** Using the intent and the artifact listing, infer whether the current work is a story from an epic. Do not rely on filename patterns or regex — reason about the intent, the listing, and any epics file content together.
 
      **A) Epic story path** — if the intent is clearly an epic story:
-
      1. Identify the epic number `{epic_num}` and (if present) the story number `{story_num}`. If you can't identify an epic number, use path B.
 
      2. **Check for a valid cached epic context.** Look for `{{.implementation_artifacts}}/epic-<N>-context.md` (where `<N>` is the epic number). A file is **valid** when it exists, is non-empty, starts with `# Epic <N> Context:` (with the correct epic number), and no file in `{{.planning_artifacts}}` is newer.
@@ -69,6 +70,7 @@ If the invocation prompt does not contain enough intent to identify what to impl
        - **Epics** (`*epic*`) — feature breakdown into implementable stories
        - **Product Brief** (`*brief*`) — project vision and scope
      - Scan the listing for files matching these patterns. If any look relevant to the current intent, load them selectively — you don't need all of them, but you need the right constraints and requirements rather than guessing from code alone.
+
 2. Resolve intent from the invocation prompt and loaded artifacts. Do not fantasize or leave open questions. If the intent cannot be resolved, HALT with status `blocked` and the unresolved questions as blocking condition.
 3. Version control sanity check. If version control is unavailable, skip this check. Otherwise require a clean working tree, a branch that fits the intent, and writable repository metadata. For Git, run `git add --refresh -- .`, then confirm the tree is still clean; on failure or change, HALT with status `blocked` and blocking condition `version-control metadata not writable`. Under folder+id dispatch, judge the branch against the epic, not the story. HALT on a dirty tree or obvious branch mismatch.
 4. Multi-goal warning. If the intent appears to contain multiple independently shippable goals, carry `multiple-goals` forward so step-02 can add it to `{spec_file}` frontmatter `warnings`. Do not split or block.

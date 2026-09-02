@@ -81,9 +81,9 @@ ACL-Help also **automatically runs at the end of every workflow**, providing cle
 
 All implementation uses `acl-quick-dev`; scope determines what context you prepare first:
 
-| Scope | Recommended preparation |
-| --- | --- |
-| **Clear updates or additions** | Enter `acl-quick-dev` directly with the request, issue, or existing spec. |
+| Scope                          | Recommended preparation                                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Clear updates or additions** | Enter `acl-quick-dev` directly with the request, issue, or existing spec.                                                             |
 | **Major changes or additions** | Prepare the useful PRD, UX, architecture, epic, story, readiness, and sprint context, then pass the selected work to `acl-quick-dev`. |
 
 ### During PRD Creation

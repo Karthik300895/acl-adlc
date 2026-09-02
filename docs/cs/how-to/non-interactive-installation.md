@@ -22,28 +22,28 @@ Vyžaduje [Node.js](https://nodejs.org) v20.12+ a `npx` (součástí npm).
 
 ### Možnosti instalace
 
-| Příznak | Popis | Příklad |
-|---------|-------|---------|
-| `--directory <cesta>` | Instalační adresář | `--directory ~/projects/myapp` |
-| `--modules <moduly>` | Čárkou oddělená ID modulů | `--modules acl,bmb` |
-| `--tools <nástroje>` | Čárkou oddělená ID nástrojů/IDE (použijte `none` pro přeskočení) | `--tools claude-code,cursor` nebo `--tools none` |
-| `--action <typ>` | Akce pro existující instalace: `install` (výchozí), `update` nebo `quick-update` | `--action quick-update` |
+| Příznak               | Popis                                                                            | Příklad                                          |
+| --------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `--directory <cesta>` | Instalační adresář                                                               | `--directory ~/projects/myapp`                   |
+| `--modules <moduly>`  | Čárkou oddělená ID modulů                                                        | `--modules acl,bmb`                              |
+| `--tools <nástroje>`  | Čárkou oddělená ID nástrojů/IDE (použijte `none` pro přeskočení)                 | `--tools claude-code,cursor` nebo `--tools none` |
+| `--action <typ>`      | Akce pro existující instalace: `install` (výchozí), `update` nebo `quick-update` | `--action quick-update`                          |
 
 ### Základní konfigurace
 
-| Příznak | Popis | Výchozí |
-|---------|-------|---------|
-| `--user-name <jméno>` | Jméno, které agenti použijí | Systémové uživatelské jméno |
-| `--communication-language <jazyk>` | Jazyk komunikace agentů | English |
-| `--document-output-language <jazyk>` | Jazyk výstupních dokumentů | English |
-| `--output-folder <cesta>` | Cesta k výstupní složce | _acl-output |
+| Příznak                              | Popis                       | Výchozí                     |
+| ------------------------------------ | --------------------------- | --------------------------- |
+| `--user-name <jméno>`                | Jméno, které agenti použijí | Systémové uživatelské jméno |
+| `--communication-language <jazyk>`   | Jazyk komunikace agentů     | English                     |
+| `--document-output-language <jazyk>` | Jazyk výstupních dokumentů  | English                     |
+| `--output-folder <cesta>`            | Cesta k výstupní složce     | \_acl-output                |
 
 ### Další možnosti
 
-| Příznak | Popis |
-|---------|-------|
-| `-y, --yes` | Přijmout všechna výchozí nastavení a přeskočit výzvy |
-| `-d, --debug` | Povolit ladící výstup pro generování manifestu |
+| Příznak       | Popis                                                |
+| ------------- | ---------------------------------------------------- |
+| `-y, --yes`   | Přijmout všechna výchozí nastavení a přeskočit výzvy |
+| `-d, --debug` | Povolit ladící výstup pro generování manifestu       |
 
 ## ID modulů
 
@@ -64,12 +64,12 @@ Spusťte `npx acl-adlc install` interaktivně jednou pro zobrazení aktuálního
 
 ## Režimy instalace
 
-| Režim | Popis | Příklad |
-|-------|-------|---------|
-| Plně neinteraktivní | Zadejte všechny příznaky pro přeskočení výzev | `npx acl-adlc install --directory . --modules acl --tools claude-code --yes` |
-| Polo-interaktivní | Zadejte některé příznaky; ACL se zeptá na zbytek | `npx acl-adlc install --directory . --modules acl` |
-| Pouze výchozí | Přijměte vše výchozí s `-y` | `npx acl-adlc install --yes` |
-| Bez nástrojů | Přeskočte konfiguraci nástrojů/IDE | `npx acl-adlc install --modules acl --tools none` |
+| Režim               | Popis                                            | Příklad                                                                      |
+| ------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Plně neinteraktivní | Zadejte všechny příznaky pro přeskočení výzev    | `npx acl-adlc install --directory . --modules acl --tools claude-code --yes` |
+| Polo-interaktivní   | Zadejte některé příznaky; ACL se zeptá na zbytek | `npx acl-adlc install --directory . --modules acl`                           |
+| Pouze výchozí       | Přijměte vše výchozí s `-y`                      | `npx acl-adlc install --yes`                                                 |
+| Bez nástrojů        | Přeskočte konfiguraci nástrojů/IDE               | `npx acl-adlc install --modules acl --tools none`                            |
 
 ## Příklady
 
@@ -124,16 +124,18 @@ ACL validuje všechny zadané příznaky:
 - **Akce** — Musí být jedna z: `install`, `update`, `quick-update`
 
 Neplatné hodnoty buď:
+
 1. Zobrazí chybu a ukončí se (pro kritické možnosti jako adresář)
 2. Zobrazí varování a přeskočí (pro volitelné položky jako vlastní obsah)
 3. Přepnou na interaktivní výzvy (pro chybějící povinné hodnoty)
 
 :::tip[Osvědčené postupy]
+
 - Používejte absolutní cesty pro `--directory` pro zamezení nejednoznačnosti
 - Otestujte příznaky lokálně před použitím v CI/CD pipelines
 - Kombinujte s `-y` pro skutečně bezobslužné instalace
 - Použijte `--debug` pokud narazíte na problémy během instalace
-:::
+  :::
 
 ## Řešení problémů
 

@@ -1,5 +1,5 @@
 ---
-title: "Installer des modules personnalisés et communautaires"
+title: 'Installer des modules personnalisés et communautaires'
 description: Installer des modules tiers depuis le registre communautaire, des dépôts Git ou des chemins locaux
 sidebar:
   order: 3
@@ -65,14 +65,14 @@ Would you like to install from a custom source (Git URL or local path)?
 
 Sélectionnez **Yes**, puis indiquez une source :
 
-| Type d’entrée             | Exemple                                           |
-| ------------------------- | ------------------------------------------------- |
-| URL HTTPS (tout hôte)     | `https://github.com/org/repo`                     |
-| URL HTTP (tout hôte)      | `http://host/org/repo`                            |
-| URL HTTPS avec sous-rép.  | `https://github.com/org/repo/tree/main/my-module` |
-| URL SSH                   | `git@github.com:org/repo.git`                     |
-| Chemin local              | `/Users/me/projects/my-module`                    |
-| Chemin local avec tilde   | `~/projects/my-module`                            |
+| Type d’entrée            | Exemple                                           |
+| ------------------------ | ------------------------------------------------- |
+| URL HTTPS (tout hôte)    | `https://github.com/org/repo`                     |
+| URL HTTP (tout hôte)     | `http://host/org/repo`                            |
+| URL HTTPS avec sous-rép. | `https://github.com/org/repo/tree/main/my-module` |
+| URL SSH                  | `git@github.com:org/repo.git`                     |
+| Chemin local             | `/Users/me/projects/my-module`                    |
+| Chemin local avec tilde  | `~/projects/my-module`                            |
 
 L’installateur clone le dépôt (pour les URL) ou lit directement depuis le disque (pour les chemins locaux), puis présente les modules découverts pour la sélection.
 
@@ -110,7 +110,7 @@ Plusieurs sources peuvent être séparées par des virgules :
 L’installateur utilise deux modes pour trouver les modules installables dans une source :
 
 | Mode       | Déclencheur                                          | Comportement                                                                                                     |
-|------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| ---------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Découverte | La source contient `.claude-plugin/marketplace.json` | Liste tous les plugins du manifeste ; vous choisissez lesquels installer                                         |
 | Direct     | Aucun `marketplace.json` trouvé                      | Analyse le répertoire pour trouver des skills (sous-répertoires avec `SKILL.md`), les résout en un module unique |
 

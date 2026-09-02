@@ -1,5 +1,5 @@
 ---
-title: "Pressure-Test an Idea"
+title: 'Pressure-Test an Idea'
 description: Use the acl-forge-idea skill to harden, prove, or kill an idea before you invest in it
 sidebar:
   order: 11

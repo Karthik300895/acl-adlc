@@ -1,5 +1,5 @@
 ---
-title: "Vì sao solutioning quan trọng"
+title: 'Vì sao solutioning quan trọng'
 description: Hiểu vì sao giai đoạn solutioning là tối quan trọng đối với dự án nhiều epic
 sidebar:
   order: 5
@@ -29,20 +29,21 @@ Bằng cách tài liệu hóa rõ ràng các quyết định kỹ thuật, tất
 
 ## Solutioning và Planning khác nhau ở đâu
 
-| Khía cạnh | Planning (Giai đoạn 2) | Solutioning (Giai đoạn 3) |
-| -------- | ----------------------- | --------------------------------- |
-| Câu hỏi | Xây gì và vì sao? | Xây như thế nào? Rồi chia thành đơn vị công việc gì? |
-| Đầu ra | FR/NFR (Yêu cầu) | Kiến trúc + Epics/Stories |
-| Agent | PM | Architect → PM |
-| Đối tượng đọc | Stakeholder | Developer |
-| Tài liệu | PRD (FRs/NFRs) | Kiến trúc + Tệp Epic |
-| Mức độ | Logic nghiệp vụ | Thiết kế kỹ thuật + Phân rã công việc |
+| Khía cạnh     | Planning (Giai đoạn 2) | Solutioning (Giai đoạn 3)                            |
+| ------------- | ---------------------- | ---------------------------------------------------- |
+| Câu hỏi       | Xây gì và vì sao?      | Xây như thế nào? Rồi chia thành đơn vị công việc gì? |
+| Đầu ra        | FR/NFR (Yêu cầu)       | Kiến trúc + Epics/Stories                            |
+| Agent         | PM                     | Architect → PM                                       |
+| Đối tượng đọc | Stakeholder            | Developer                                            |
+| Tài liệu      | PRD (FRs/NFRs)         | Kiến trúc + Tệp Epic                                 |
+| Mức độ        | Logic nghiệp vụ        | Thiết kế kỹ thuật + Phân rã công việc                |
 
 ## Nguyên lý cốt lõi
 
 **Biến các quyết định kỹ thuật thành tường minh và được tài liệu hóa** để tất cả agent triển khai nhất quán.
 
 Điều này ngăn chặn:
+
 - Xung đột phong cách API (REST vs GraphQL)
 - Không nhất quán trong thiết kế cơ sở dữ liệu
 - Bất đồng về quản lý state
@@ -51,12 +52,12 @@ Bằng cách tài liệu hóa rõ ràng các quyết định kỹ thuật, tất
 
 ## Chọn độ sâu solutioning
 
-| Đặc điểm công việc | Khuyến nghị solutioning |
-|-------|----------------------|
-| Thay đổi cục bộ rõ ràng với pattern đã ổn định | Thường không cần |
-| Nhiều component liên quan với ràng buộc đã biết | Tùy chọn theo rủi ro phối hợp |
-| Nhiều epic hoặc quyết định liên hệ thống | Cần thiết để đồng bộ implementation |
-| Sáng kiến tuân thủ, rủi ro cao hoặc enterprise | Tuân theo governance bắt buộc; solutioning thường là yêu cầu |
+| Đặc điểm công việc                              | Khuyến nghị solutioning                                      |
+| ----------------------------------------------- | ------------------------------------------------------------ |
+| Thay đổi cục bộ rõ ràng với pattern đã ổn định  | Thường không cần                                             |
+| Nhiều component liên quan với ràng buộc đã biết | Tùy chọn theo rủi ro phối hợp                                |
+| Nhiều epic hoặc quyết định liên hệ thống        | Cần thiết để đồng bộ implementation                          |
+| Sáng kiến tuân thủ, rủi ro cao hoặc enterprise  | Tuân theo governance bắt buộc; solutioning thường là yêu cầu |
 
 Solutioning thay đổi ngữ cảnh cung cấp cho `acl-quick-dev`, không thay đổi workflow triển khai.
 

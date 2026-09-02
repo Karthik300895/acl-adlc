@@ -8,7 +8,7 @@ sidebar:
 Điều chỉnh persona của agent, chèn ngữ cảnh theo domain, thêm khả năng mới và cấu hình hành vi workflow mà không cần sửa các file đã cài. Các tùy chỉnh của bạn sẽ được giữ nguyên qua mọi lần cập nhật.
 
 :::tip[Không muốn tự viết TOML? Hãy dùng `acl-customize`]
-Skill `acl-customize` là trợ lý tạo cấu hình có hướng dẫn cho **bề mặt override agent/workflow theo từng skill** được mô tả trong tài liệu này. Nó quét những gì có thể tùy chỉnh trong bản cài đặt của bạn, giúp bạn chọn đúng bề mặt (agent hay workflow), ghi file override và xác minh merge đã áp dụng. Override ở mức cấu hình trung tâm (`_acl/custom/config.toml`) chưa nằm trong phạm vi v1, nên phần đó vẫn cần viết tay theo mục Cấu hình trung tâm bên dưới. Hãy chạy skill này khi bạn muốn thay đổi theo từng skill; tài liệu này là phần tham chiếu cho *có thể tùy chỉnh gì* và merge hoạt động ra sao.
+Skill `acl-customize` là trợ lý tạo cấu hình có hướng dẫn cho **bề mặt override agent/workflow theo từng skill** được mô tả trong tài liệu này. Nó quét những gì có thể tùy chỉnh trong bản cài đặt của bạn, giúp bạn chọn đúng bề mặt (agent hay workflow), ghi file override và xác minh merge đã áp dụng. Override ở mức cấu hình trung tâm (`_acl/custom/config.toml`) chưa nằm trong phạm vi v1, nên phần đó vẫn cần viết tay theo mục Cấu hình trung tâm bên dưới. Hãy chạy skill này khi bạn muốn thay đổi theo từng skill; tài liệu này là phần tham chiếu cho _có thể tùy chỉnh gì_ và merge hoạt động ra sao.
 :::
 
 ## Khi nào nên dùng
@@ -24,7 +24,7 @@ Skill `acl-customize` là trợ lý tạo cấu hình có hướng dẫn cho **b
 - ACL đã được cài trong dự án của bạn (xem [Cách cài đặt ACL](./install-acl.md))
 - Một cách để chạy resolver script — ACL đang chuẩn hóa sang `uv` (`uv run`, tự cấp Python cho bạn); một `python3` 3.11+ thuần trên PATH vẫn dùng được trong giai đoạn chuyển đổi. Script chỉ dùng stdlib `tomllib`, nên không cần `pip install` gì cả.
 - Một trình soạn thảo văn bản cho file TOML
-:::
+  :::
 
 ## Cách hoạt động
 
@@ -44,12 +44,12 @@ Thư mục `_acl/custom/` ban đầu là rỗng. File chỉ xuất hiện khi ai
 
 Resolver áp dụng bốn quy tắc cấu trúc. Tên trường không được hardcode riêng; hành vi hoàn toàn được quyết định bởi dạng dữ liệu:
 
-| Dạng | Quy tắc |
-|---|---|
-| Scalar (string, int, bool, float) | Giá trị override sẽ thắng |
-| Table | Deep merge, tức merge đệ quy theo các quy tắc này |
+| Dạng                                                                                                                       | Quy tắc                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Scalar (string, int, bool, float)                                                                                          | Giá trị override sẽ thắng                                                             |
+| Table                                                                                                                      | Deep merge, tức merge đệ quy theo các quy tắc này                                     |
 | Mảng các table mà mọi phần tử đều dùng cùng **một** trường định danh (`code` ở tất cả phần tử, hoặc `id` ở tất cả phần tử) | Merge theo khóa đó, phần tử trùng khóa sẽ **thay tại chỗ**, phần tử mới sẽ **append** |
-| Mọi mảng khác (mảng scalar, table không có định danh, hoặc trộn `code` và `id`) | **Append**: phần tử gốc trước, rồi team, rồi user |
+| Mọi mảng khác (mảng scalar, table không có định danh, hoặc trộn `code` và `id`)                                            | **Append**: phần tử gốc trước, rồi team, rồi user                                     |
 
 **Không có cơ chế xóa.** Override không thể xóa phần tử mặc định. Nếu bạn cần vô hiệu hóa một menu item mặc định, hãy override nó theo `code` bằng mô tả hoặc prompt no-op. Nếu cần tái cấu trúc mảng sâu hơn, bạn phải fork skill.
 
@@ -357,14 +357,14 @@ Giá trị override này sẽ thắng mọi câu trả lời mà từng develope
 
 ### Khi nào dùng bề mặt nào
 
-| Nhu cầu | Bề mặt nên dùng |
-|---|---|
-| Thêm lời nhắc gọi MCP tool vào mọi dev workflow | Theo từng skill: `_acl/custom/acl-agent-dev.toml` trong `persistent_facts` |
-| Thêm menu item cho một agent | Theo từng skill: `_acl/custom/acl-agent-{role}.toml` với `[[agent.menu]]` |
-| Đổi template đầu ra của một workflow | Theo từng skill: `_acl/custom/{workflow}.toml` bằng scalar override |
-| Đổi descriptor công khai của một agent | **Cấu hình trung tâm**: `_acl/custom/config.toml` ở `[agents.<code>]` |
-| Thêm custom agent hoặc agent hư cấu vào roster | **Cấu hình trung tâm**: `_acl/custom/config*.toml` với entry mới `[agents.<code>]` |
-| Ghim thiết lập cài đặt dùng chung của team | **Cấu hình trung tâm**: `_acl/custom/config.toml` trong `[modules.<code>]` hoặc `[core]` |
+| Nhu cầu                                         | Bề mặt nên dùng                                                                          |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Thêm lời nhắc gọi MCP tool vào mọi dev workflow | Theo từng skill: `_acl/custom/acl-agent-dev.toml` trong `persistent_facts`               |
+| Thêm menu item cho một agent                    | Theo từng skill: `_acl/custom/acl-agent-{role}.toml` với `[[agent.menu]]`                |
+| Đổi template đầu ra của một workflow            | Theo từng skill: `_acl/custom/{workflow}.toml` bằng scalar override                      |
+| Đổi descriptor công khai của một agent          | **Cấu hình trung tâm**: `_acl/custom/config.toml` ở `[agents.<code>]`                    |
+| Thêm custom agent hoặc agent hư cấu vào roster  | **Cấu hình trung tâm**: `_acl/custom/config*.toml` với entry mới `[agents.<code>]`       |
+| Ghim thiết lập cài đặt dùng chung của team      | **Cấu hình trung tâm**: `_acl/custom/config.toml` trong `[modules.<code>]` hoặc `[core]` |
 
 Trong cùng một dự án, bạn hoàn toàn có thể dùng đồng thời cả hai bề mặt này.
 
@@ -377,7 +377,7 @@ Trong cùng một dự án, bạn hoàn toàn có thể dùng đồng thời c�
 **Tùy chỉnh không xuất hiện?**
 
 - Kiểm tra file của bạn có nằm đúng trong `_acl/custom/` và dùng đúng tên skill không
-- Kiểm tra cú pháp TOML: string phải có ngoặc kép, table header dùng `[section]`, array-of-tables dùng `[[section]]`, và mọi khóa scalar hay array của một table phải xuất hiện *trước* bất kỳ `[[subtables]]` nào của table đó trong file
+- Kiểm tra cú pháp TOML: string phải có ngoặc kép, table header dùng `[section]`, array-of-tables dùng `[[section]]`, và mọi khóa scalar hay array của một table phải xuất hiện _trước_ bất kỳ `[[subtables]]` nào của table đó trong file
 - Với agent, phần tùy chỉnh phải nằm dưới `[agent]`, và các trường bên dưới header đó sẽ thuộc `agent` cho tới khi bạn mở table header khác
 - Hãy nhớ rằng `agent.name` và `agent.title` là chỉ đọc, override vào đó sẽ không có tác dụng
 

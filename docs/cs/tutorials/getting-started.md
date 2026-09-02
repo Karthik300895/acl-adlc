@@ -1,5 +1,5 @@
 ---
-title: "Začínáme"
+title: 'Začínáme'
 description: Nainstalujte ACL a vytvořte svůj první projekt
 ---
 
@@ -14,11 +14,12 @@ Vytvářejte software rychleji pomocí pracovních postupů řízených AI se sp
 - Efektivně používat agenty a pracovní postupy
 
 :::note[Předpoklady]
+
 - **Node.js 20.12+** — Vyžadováno pro instalátor
 - **Git** — Doporučeno pro správu verzí
 - **AI-powered IDE** — Claude Code, Cursor nebo podobné
 - **Nápad na projekt** — I jednoduchý stačí pro učení
-:::
+  :::
 
 :::tip[Nejsnadnější cesta]
 **Instalace** → `npx acl-adlc install`
@@ -50,6 +51,7 @@ acl-help I have an idea for a SaaS product, I already know all the features I wa
 ```
 
 ACL-Help odpoví s:
+
 - Co je doporučeno pro vaši situaci
 - Jaký je první povinný úkol
 - Jak vypadá zbytek procesu
@@ -66,22 +68,22 @@ Po instalaci ACL okamžitě vyvolejte skill `acl-help`. Detekuje, jaké moduly m
 
 ACL vám pomáhá vytvářet software prostřednictvím řízených pracovních postupů se specializovanými AI agenty. Proces probíhá ve čtyřech fázích:
 
-| Fáze | Název          | Co se děje                                              |
-| ---- | -------------- | ------------------------------------------------------- |
-| 1    | Analýza        | Brainstorming, průzkum, product brief nebo PRFAQ *(volitelné)* |
-| 2    | Plánování      | Vytvoření požadavků (PRD nebo specifikace)              |
-| 3    | Solutioning    | Návrh architektury podle potřeby                         |
-| 4    | Implementace   | Implementace každé změny nebo naplánované story, volitelně pomocí automatizované orchestrace |
+| Fáze | Název        | Co se děje                                                                                   |
+| ---- | ------------ | -------------------------------------------------------------------------------------------- |
+| 1    | Analýza      | Brainstorming, průzkum, product brief nebo PRFAQ _(volitelné)_                               |
+| 2    | Plánování    | Vytvoření požadavků (PRD nebo specifikace)                                                   |
+| 3    | Solutioning  | Návrh architektury podle potřeby                                                             |
+| 4    | Implementace | Implementace každé změny nebo naplánované story, volitelně pomocí automatizované orchestrace |
 
 **[Otevřete Mapu pracovních postupů](../reference/workflow-map.md)** pro prozkoumání fází, workflow a správy kontextu.
 
 Hloubka plánování je flexibilní:
 
-| Hloubka | Nejlepší pro | Kontext před implementací |
-| --- | --- | --- |
-| **Přímá** | Jasné opravy, funkce, issues nebo existující specifikace | Záměr, issue nebo specifikace |
-| **Produktové plánování** | Produkty, platformy a složité funkce | PRD a volitelný UX návrh |
-| **Plné solutioning** | Koordinované, rizikové nebo mezisystémové iniciativy | PRD, UX, architektura, epicy, stories a sprint plán |
+| Hloubka                  | Nejlepší pro                                             | Kontext před implementací                           |
+| ------------------------ | -------------------------------------------------------- | --------------------------------------------------- |
+| **Přímá**                | Jasné opravy, funkce, issues nebo existující specifikace | Záměr, issue nebo specifikace                       |
+| **Produktové plánování** | Produkty, platformy a složité funkce                     | PRD a volitelný UX návrh                            |
+| **Plné solutioning**     | Koordinované, rizikové nebo mezisystémové iniciativy     | PRD, UX, architektura, epicy, stories a sprint plán |
 
 :::note
 Nejde o oddělené implementační cesty. Všechny vstupy se sbíhají do `acl-quick-dev`; plánování pouze mění množství dostupného kontextu.
@@ -100,6 +102,7 @@ Pokud chcete nejnovější prereleaseový build místo výchozího release kaná
 Při výzvě k výběru modulů zvolte **ACL Method**.
 
 Instalátor vytvoří dvě složky:
+
 - `_acl/` — agenti, workflow, úkoly a konfigurace
 - `_acl-output/` — prozatím prázdná, ale zde se budou ukládat vaše artefakty
 
@@ -134,6 +137,7 @@ Vytvořte ho ručně na `_acl-output/project-context.md` nebo ho vygenerujte po 
 ### Fáze 1: Analýza (volitelná)
 
 Všechny workflow v této fázi jsou volitelné:
+
 - **brainstorming** (`acl-brainstorming`) — Řízená ideace
 - **průzkum** (`acl-deep-recon`) — Navrhne prompt pro váš vlastní nástroj hloubkového výzkumu, zpracuje hotovou zprávu do stručného shrnutí pro navazující práci, nebo výzkum provede přímo — tržní, doménový, technický, konkurenční, uživatelský a akademický — s ověřováním tvrzení a životním cyklem obnovy
 - **product-brief** (`acl-product-brief`) — Doporučený základní dokument, když je váš koncept jasný
@@ -142,6 +146,7 @@ Všechny workflow v této fázi jsou volitelné:
 ### Fáze 2: Plánování (podle potřeby)
 
 Pro práci, které prospívá produktové plánování:
+
 1. Vyvolejte **PM agenta** (`acl-agent-pm`) v novém chatu
 2. Spusťte workflow `acl-prd` (`acl-prd`)
 3. Výstup: `PRD.md`
@@ -153,6 +158,7 @@ Pokud má váš projekt uživatelské rozhraní, vyvolejte **UX-Designer agenta*
 ### Fáze 3: Solutioning (podle potřeby)
 
 **Vytvoření architektury**
+
 1. Vyvolejte **Architect agenta** (`acl-agent-architect`) v novém chatu
 2. Spusťte `acl-architecture` (`acl-architecture`)
 3. Výstup: Dokument architektury s technickými rozhodnutími
@@ -160,14 +166,15 @@ Pokud má váš projekt uživatelské rozhraní, vyvolejte **UX-Designer agenta*
 **Vytvoření epiců a stories**
 
 :::tip[Vylepšení ve V6]
-Epicy a stories se nyní vytvářejí *po* architektuře. Tím vznikají kvalitnější stories, protože architektonická rozhodnutí (databáze, API vzory, tech stack) přímo ovlivňují rozklad práce.
+Epicy a stories se nyní vytvářejí _po_ architektuře. Tím vznikají kvalitnější stories, protože architektonická rozhodnutí (databáze, API vzory, tech stack) přímo ovlivňují rozklad práce.
 :::
 
 1. Vyvolejte **PM agenta** (`acl-agent-pm`) v novém chatu
 2. Spusťte `acl-create-epics-and-stories` (`acl-create-epics-and-stories`)
 3. Workflow využívá jak PRD, tak architekturu k vytvoření technicky informovaných stories
 
-**Kontrola připravenosti k implementaci** *(vysoce doporučeno)*
+**Kontrola připravenosti k implementaci** _(vysoce doporučeno)_
+
 1. Vyvolejte **Architect agenta** (`acl-agent-architect`) v novém chatu
 2. Spusťte `acl-check-implementation-readiness` (`acl-check-implementation-readiness`)
 3. Validuje soudržnost všech plánovacích dokumentů
@@ -188,10 +195,10 @@ Když Quick Dev v tomto souboru rozpozná vybranou story, během implementace ji
 
 Pro každou přímou změnu nebo naplánovanou story opakujte tento cyklus s novými chaty:
 
-| Krok | Agent | Workflow             | Příkaz                     | Účel                               |
-| ---- | ----- | -------------------- | -------------------------- | ---------------------------------- |
-| 1    | DEV   | `acl-quick-dev`     | `acl-quick-dev`           | Upřesnění, plán, implementace, revize a prezentace |
-| 2    | DEV   | `acl-code-review`   | `acl-code-review`         | Dodatečná validace kvality *(doporučeno)* |
+| Krok | Agent | Workflow          | Příkaz            | Účel                                               |
+| ---- | ----- | ----------------- | ----------------- | -------------------------------------------------- |
+| 1    | DEV   | `acl-quick-dev`   | `acl-quick-dev`   | Upřesnění, plán, implementace, revize a prezentace |
+| 2    | DEV   | `acl-code-review` | `acl-code-review` | Dodatečná validace kvality _(doporučeno)_          |
 
 Revize v Quick Dev je součástí každého běhu. `acl-code-review` je volitelná nezávislá validační vrstva v novém kontextu.
 
@@ -224,17 +231,17 @@ váš-projekt/
 
 ## Rychlý přehled
 
-| Workflow                              | Příkaz                                     | Agent     | Účel                                            |
-| ------------------------------------- | ------------------------------------------ | --------- | ----------------------------------------------- |
-| **`acl-help`** ⭐                    | `acl-help`                               | Jakýkoli  | **Váš inteligentní průvodce — ptejte se na cokoli!** |
-| `acl-prd`                     | `acl-prd`                         | PM        | Vytvoření dokumentu požadavků (PRD)             |
-| `acl-architecture`            | `acl-architecture`                | Architect | Vytvoření dokumentu architektury                |
-| `acl-generate-project-context`       | `acl-generate-project-context`           | Analyst   | Vytvoření souboru kontextu projektu             |
-| `acl-create-epics-and-stories`       | `acl-create-epics-and-stories`           | PM        | Rozklad PRD na epicy                            |
-| `acl-check-implementation-readiness` | `acl-check-implementation-readiness`     | Architect | Validace soudržnosti plánování                  |
-| `acl-sprint-planning`                | `acl-sprint-planning`                    | DEV       | Inicializace sledování sprintu                  |
-| `acl-quick-dev`                      | `acl-quick-dev`                          | DEV       | Implementace záměru, issue, funkce, opravy nebo story |
-| `acl-code-review`                    | `acl-code-review`                        | DEV       | Revize implementovaného kódu                    |
+| Workflow                             | Příkaz                               | Agent     | Účel                                                  |
+| ------------------------------------ | ------------------------------------ | --------- | ----------------------------------------------------- |
+| **`acl-help`** ⭐                    | `acl-help`                           | Jakýkoli  | **Váš inteligentní průvodce — ptejte se na cokoli!**  |
+| `acl-prd`                            | `acl-prd`                            | PM        | Vytvoření dokumentu požadavků (PRD)                   |
+| `acl-architecture`                   | `acl-architecture`                   | Architect | Vytvoření dokumentu architektury                      |
+| `acl-generate-project-context`       | `acl-generate-project-context`       | Analyst   | Vytvoření souboru kontextu projektu                   |
+| `acl-create-epics-and-stories`       | `acl-create-epics-and-stories`       | PM        | Rozklad PRD na epicy                                  |
+| `acl-check-implementation-readiness` | `acl-check-implementation-readiness` | Architect | Validace soudržnosti plánování                        |
+| `acl-sprint-planning`                | `acl-sprint-planning`                | DEV       | Inicializace sledování sprintu                        |
+| `acl-quick-dev`                      | `acl-quick-dev`                      | DEV       | Implementace záměru, issue, funkce, opravy nebo story |
+| `acl-code-review`                    | `acl-code-review`                    | DEV       | Revize implementovaného kódu                          |
 
 ## Časté otázky
 
@@ -254,6 +261,7 @@ Ne striktně. Jakmile se naučíte postup, můžete spouštět workflow přímo 
 
 :::tip[První zastávka: ACL-Help]
 **Vyvolejte `acl-help` kdykoli** — je to nejrychlejší způsob, jak se odpoutat. Zeptejte se na cokoli:
+
 - „Co mám dělat po instalaci?“
 - „Zasekl jsem se na workflow X“
 - „Jaké mám možnosti pro Y?“
@@ -268,10 +276,11 @@ ACL-Help prozkoumá váš projekt, detekuje, co jste dokončili, a řekne vám p
 ## Klíčové poznatky
 
 :::tip[Zapamatujte si]
+
 - **Začněte s `acl-help`** — Váš inteligentní průvodce, který zná váš projekt a možnosti
 - **Vždy používejte nové chaty** — Začněte nový chat pro každý workflow
 - **Hloubka plánování se liší** — přímý záměr i plně naplánované stories vstupují do `acl-quick-dev`
 - **ACL-Help se spouští automaticky** — Každý workflow končí pokyny, co dělat dál
-:::
+  :::
 
 Jste připraveni začít? Nainstalujte ACL, vyvolejte `acl-help` a nechte svého inteligentního průvodce ukázat cestu.

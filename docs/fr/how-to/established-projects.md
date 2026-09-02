@@ -1,5 +1,5 @@
 ---
-title: "Projets existants"
+title: 'Projets existants'
 description: Comment utiliser la méthode ACL sur des bases de code existantes
 sidebar:
   order: 7
@@ -10,10 +10,11 @@ Utilisez la méthode ACL efficacement lorsque vous travaillez sur des projets ex
 Ce guide couvre le flux de travail essentiel pour l’intégration à des projets existants avec la méthode ACL.
 
 :::note[Prérequis]
+
 - méthode ACL installée (`npx acl-adlc install`)
 - Une base de code existante sur laquelle vous souhaitez travailler
 - Accès à un IDE IA (Claude Code ou Cursor)
-:::
+  :::
 
 ## Étape 1 : Nettoyer les artefacts de planification terminés
 
@@ -36,6 +37,7 @@ acl-generate-project-context
 ```
 
 Cela analyse votre base de code pour identifier :
+
 - La pile technologique et les versions
 - Les patterns d’organisation du code
 - Les conventions de nommage
@@ -79,9 +81,9 @@ ACL-Help s’exécute également **automatiquement à la fin de chaque workflow*
 
 Toute implémentation utilise `acl-quick-dev` ; la portée détermine le contexte à préparer en amont :
 
-| Portée                              | Approche recommandée                                                                                                                                                                 |
-|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Mises à jour ou ajouts clairs**   | Entrez directement dans `acl-quick-dev` avec la demande, l’issue ou la spécification existante. |
+| Portée                              | Approche recommandée                                                                                                                                  |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Mises à jour ou ajouts clairs**   | Entrez directement dans `acl-quick-dev` avec la demande, l’issue ou la spécification existante.                                                       |
 | **Modifications ou ajouts majeurs** | Préparez le PRD, l’UX, l’architecture, les epics, les stories et le contexte de sprint utiles, puis confiez le travail sélectionné à `acl-quick-dev`. |
 
 ### Pendant la création du PRD
@@ -119,4 +121,5 @@ Soyez particulièrement attentif ici pour éviter de réinventer la roue ou de p
 ## Glossaire
 
 [^1]: PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur ce qui doit être construit et pourquoi.
+
 [^2]: UX (User Experience) : expérience utilisateur, englobant l’ensemble des interactions et perceptions d’un utilisateur face à un produit. Le design UX vise à créer des interfaces intuitives, efficaces et agréables en tenant compte des besoins, comportements et contexte d’utilisation.

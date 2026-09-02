@@ -1,5 +1,5 @@
 ---
-title: "Workflow Map"
+title: 'Workflow Map'
 description: Visual reference for ACL Method workflow phases and outputs
 sidebar:
   order: 1
@@ -33,13 +33,13 @@ first and using the entry from the agents menu.
 Explore the problem space and validate ideas before committing to planning. [**Learn what each tool does and when to use
 it**](../explanation/analysis-phase.md).
 
-| Workflow                                                                  | Purpose                                                                    | Produces                  |
-|---------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------------|
-| `acl-brainstorming`                                                      | Brainstorm Project Ideas with guided facilitation of a brainstorming coach | `brainstorm.html` keepsake plus an optional `brainstorm-intent.md` |
-| `acl-forge-idea` | Pressure-test an idea until it hardens, proves out, or dies cheaply | `forge-report.html` every run; `forged-idea.md` when an idea hardens |
-| `acl-deep-recon`                                                           | Research any subject for a decision — draft a prompt for your deep-research tool, process its report, or run the research here; six typed packs, verified and cited | Research report or summary + optional HTML briefing |
-| `acl-product-brief`                                                      | Capture strategic vision — best when your concept is clear                 | `brief.md` + `addendum.md`, plus any desired HTML or presentation output       |
-| `acl-prfaq`                                                              | Working Backwards — stress-test your product concept customer-first             | `prfaq-{project}.md`      |
+| Workflow            | Purpose                                                                                                                                                             | Produces                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `acl-brainstorming` | Brainstorm Project Ideas with guided facilitation of a brainstorming coach                                                                                          | `brainstorm.html` keepsake plus an optional `brainstorm-intent.md`       |
+| `acl-forge-idea`    | Pressure-test an idea until it hardens, proves out, or dies cheaply                                                                                                 | `forge-report.html` every run; `forged-idea.md` when an idea hardens     |
+| `acl-deep-recon`    | Research any subject for a decision — draft a prompt for your deep-research tool, process its report, or run the research here; six typed packs, verified and cited | Research report or summary + optional HTML briefing                      |
+| `acl-product-brief` | Capture strategic vision — best when your concept is clear                                                                                                          | `brief.md` + `addendum.md`, plus any desired HTML or presentation output |
+| `acl-prfaq`         | Working Backwards — stress-test your product concept customer-first                                                                                                 | `prfaq-{project}.md`                                                     |
 
 For Deep Recon's three modes and how a research run works inside, see [Deep Recon](../explanation/deep-recon.md).
 
@@ -47,11 +47,11 @@ For Deep Recon's three modes and how a research run works inside, see [Deep Reco
 
 Define what to build and for whom.
 
-| Workflow                | Purpose                                                                             | Produces                                          |
-|-------------------------|-------------------------------------------------------------------------------------|---------------------------------------------------|
-| `acl-prd`              | Create, update, or validate a PRD — facilitated discovery, three intents in one skill | Create/Update: `prd.md`, `addendum.md`, `.memlog.md`; Validate: `validation-report.html` + `.md` |
-| `acl-ux`               | Design user experience (when UX matters) — DESIGN.md (visual) + EXPERIENCE.md (behavioral) spine pair | `DESIGN.md`, `EXPERIENCE.md`, `.memlog.md`  |
-| `acl-spec`             | Distill any intent input (brief, PRD, transcript, brain dump, design folder) into a succinct SPEC.md contract + companions — locks the WHAT before the HOW | `SPEC.md` + companions under `{output_folder}/specs/spec-{slug}/`; optional `stories.yaml` |
+| Workflow   | Purpose                                                                                                                                                    | Produces                                                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `acl-prd`  | Create, update, or validate a PRD — facilitated discovery, three intents in one skill                                                                      | Create/Update: `prd.md`, `addendum.md`, `.memlog.md`; Validate: `validation-report.html` + `.md` |
+| `acl-ux`   | Design user experience (when UX matters) — DESIGN.md (visual) + EXPERIENCE.md (behavioral) spine pair                                                      | `DESIGN.md`, `EXPERIENCE.md`, `.memlog.md`                                                       |
+| `acl-spec` | Distill any intent input (brief, PRD, transcript, brain dump, design folder) into a succinct SPEC.md contract + companions — locks the WHAT before the HOW | `SPEC.md` + companions under `{output_folder}/specs/spec-{slug}/`; optional `stories.yaml`       |
 
 :::tip[Three intents in one skill]
 `acl-prd` handles the full PRD lifecycle. State your intent when invoking or the skill will ask:
@@ -59,7 +59,7 @@ Define what to build and for whom.
 - **Create** — new PRD from scratch via coached discovery; produces `prd.md`, `addendum.md`, and `.memlog.md`
 - **Update** — reconcile an existing PRD with a change signal, surfacing conflicts before applying changes
 - **Validate** — critique a PRD against a configurable checklist and produce a structured HTML findings report
-:::
+  :::
 
 :::note[`acl-spec`]
 `acl-spec` produces the canonical machine contract: a five-field kernel (Why, Capabilities, Constraints, Non-goals, Success signal) plus companion files, validated so every load-bearing source claim is preserved. It is the only writer of `SPEC.md`; other skills invoke it headless when they need to express or update intent. On request it can also break a spec into an ordered `stories.yaml` for autonomous dispatch — see [Autonomous Development Loops](./dev-auto.md).
@@ -73,24 +73,24 @@ Define what to build and for whom.
 
 Decide how to build it and break work into stories.
 
-| Workflow                              | Purpose                                    | Produces                    |
-|---------------------------------------|--------------------------------------------|-----------------------------|
-| `acl-architecture`            | Make technical decisions explicit          | `ARCHITECTURE-SPINE.md` is the spine by default but can hydrate to your desired output or presentation needs also |
-| `acl-create-epics-and-stories`       | Break requirements into implementable work | Epic files with stories     |
-| `acl-check-implementation-readiness` | Gate check before implementation           | PASS/CONCERNS/FAIL decision |
+| Workflow                             | Purpose                                    | Produces                                                                                                          |
+| ------------------------------------ | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| `acl-architecture`                   | Make technical decisions explicit          | `ARCHITECTURE-SPINE.md` is the spine by default but can hydrate to your desired output or presentation needs also |
+| `acl-create-epics-and-stories`       | Break requirements into implementable work | Epic files with stories                                                                                           |
+| `acl-check-implementation-readiness` | Gate check before implementation           | PASS/CONCERNS/FAIL decision                                                                                       |
 
 ## Phase 4: Implementation
 
 Every implementation path converges on `acl-quick-dev`. It accepts direct intent, an issue, a specification, or a planned story, then chooses the clarification, planning, implementation, and review depth needed for that input.
 
-| Workflow | Purpose | Produces |
-|----------|---------|----------|
-| `acl-quick-dev` | Turn direct intent or a planned story into implemented, reviewed code | `spec-*.md` + code |
-| `acl-sprint-planning` | Initialize tracking (once per project to sequence the dev cycle) | `sprint-status.yaml` |
-| `acl-code-review` | Ad hoc review of any code change | Findings + applied patches |
-| `acl-correct-course` | Handle significant mid-sprint changes | Updated plan or re-routing |
-| `acl-sprint-status` | Track sprint progress and story status | Sprint status update |
-| `acl-retrospective` | Review after epic completion | Lessons learned |
+| Workflow              | Purpose                                                               | Produces                   |
+| --------------------- | --------------------------------------------------------------------- | -------------------------- |
+| `acl-quick-dev`       | Turn direct intent or a planned story into implemented, reviewed code | `spec-*.md` + code         |
+| `acl-sprint-planning` | Initialize tracking (once per project to sequence the dev cycle)      | `sprint-status.yaml`       |
+| `acl-code-review`     | Ad hoc review of any code change                                      | Findings + applied patches |
+| `acl-correct-course`  | Handle significant mid-sprint changes                                 | Updated plan or re-routing |
+| `acl-sprint-status`   | Track sprint progress and story status                                | Sprint status update       |
+| `acl-retrospective`   | Review after epic completion                                          | Lessons learned            |
 
 ### Direct and Planned Entry
 

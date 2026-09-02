@@ -31,7 +31,7 @@ Open with space for the full picture and ask up front for any source material th
 
 Get a read on stakes early (passion project, internal pitch, investor input, public launch, regulated launch). That calibrates how hard you push.
 
-Surface the form factor (mobile, web, desktop, multi-surface, hardware, API, service): what *is* this thing? Echo back how it shapes your approach.
+Surface the form factor (mobile, web, desktop, multi-surface, hardware, API, service): what _is_ this thing? Echo back how it shapes your approach.
 
 **Verify time-sensitive facts via web search.** Training data is months stale. Landscape, comparables, market state, regulatory state, AI specifics: web-search rather than recall. Surface what you found as input to the user's thinking, not as a substitute. For deep research (full market sizing, exhaustive teardowns), tell the user this is the wrong tool for that depth and suggest dedicated market or domain research.
 

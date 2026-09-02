@@ -1,5 +1,5 @@
 ---
-title: "Sửa nhanh"
+title: 'Sửa nhanh'
 description: Cách thực hiện các sửa nhanh và thay đổi ad-hoc
 sidebar:
   order: 6
@@ -15,9 +15,10 @@ Sửa lỗi, refactor và thay đổi nhỏ có thể đi thẳng vào **Quick D
 - Cập nhật dependency
 
 :::note[Điều kiện tiên quyết]
+
 - Đã cài ACL Method (`npx acl-adlc install`)
 - Một IDE tích hợp AI (Claude Code, Cursor, hoặc tương tự)
-:::
+  :::
 
 ## Các bước thực hiện
 

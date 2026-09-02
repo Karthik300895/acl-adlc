@@ -1,5 +1,5 @@
 ---
-title: "Kontext projektu"
+title: 'Kontext projektu'
 description: Jak project-context.md vede AI agenty s pravidly a preferencemi vašeho projektu
 sidebar:
   order: 9
@@ -10,6 +10,7 @@ Soubor `project-context.md` je implementační průvodce vašeho projektu pro AI
 ## Co dělá
 
 AI agenti neustále dělají implementační rozhodnutí — jaké vzory následovat, jak strukturovat kód, jaké konvence používat. Bez jasného vedení mohou:
+
 - Následovat generické osvědčené postupy, které neodpovídají vaší kódové bázi
 - Dělat nekonzistentní rozhodnutí napříč různými stories
 - Přehlédnout požadavky nebo omezení specifická pro projekt
@@ -21,6 +22,7 @@ Soubor `project-context.md` toto řeší dokumentací toho, co agenti potřebuj�
 Každý implementační workflow automaticky načítá `project-context.md`, pokud existuje. Architektonický workflow ho také načítá, aby respektoval vaše technické preference při navrhování architektury.
 
 **Načítán těmito workflow:**
+
 - `acl-architecture` — respektuje technické preference během solutioningu
 - `acl-code-review` — validuje proti standardům projektu
 - `acl-quick-dev` — aplikuje vzory při plánování a implementaci přímých záměrů i stories
@@ -30,11 +32,11 @@ Každý implementační workflow automaticky načítá `project-context.md`, pok
 
 Soubor `project-context.md` je užitečný v jakékoli fázi projektu:
 
-| Scénář                               | Kdy vytvořit                                    | Účel                                                                 |
-| ------------------------------------ | ----------------------------------------------- | -------------------------------------------------------------------- |
-| **Nový projekt, před architekturou** | Ručně, před `acl-architecture`          | Dokumentujte vaše technické preference, aby je architekt respektoval |
-| **Nový projekt, po architektuře**    | Přes `acl-generate-project-context` nebo ručně | Zachyťte architektonická rozhodnutí pro implementační agenty         |
-| **Existující projekt**               | Přes `acl-generate-project-context`            | Objevte existující vzory, aby agenti dodržovali zavedené konvence    |
+| Scénář                               | Kdy vytvořit                                   | Účel                                                                       |
+| ------------------------------------ | ---------------------------------------------- | -------------------------------------------------------------------------- |
+| **Nový projekt, před architekturou** | Ručně, před `acl-architecture`                 | Dokumentujte vaše technické preference, aby je architekt respektoval       |
+| **Nový projekt, po architektuře**    | Přes `acl-generate-project-context` nebo ručně | Zachyťte architektonická rozhodnutí pro implementační agenty               |
+| **Existující projekt**               | Přes `acl-generate-project-context`            | Objevte existující vzory, aby agenti dodržovali zavedené konvence          |
 | **Přímý vstup do implementace**      | Před nebo během `acl-quick-dev`                | Zajistěte, aby implementace bez upstream plánování respektovala vaše vzory |
 
 :::tip[Doporučeno]
@@ -66,20 +68,24 @@ Dokumentuje vzory a konvence, které by agenti jinak mohli přehlédnout:
 ## Critical Implementation Rules
 
 **TypeScript Configuration:**
+
 - Strict mode enabled — no `any` types without explicit approval
 - Use `interface` for public APIs, `type` for unions/intersections
 
 **Code Organization:**
+
 - Components in `/src/components/` with co-located `.test.tsx`
 - Utilities in `/src/lib/` for reusable pure functions
 - API calls use the `apiClient` singleton — never fetch directly
 
 **Testing Patterns:**
+
 - Unit tests focus on business logic, not implementation details
 - Integration tests use MSW to mock API responses
 - E2E tests cover critical user journeys only
 
 **Framework-Specific:**
+
 - All async operations use the `handleError` wrapper for consistent error handling
 - Feature flags accessed via `featureFlag()` from `@/lib/flags`
 - New routes follow the file-based routing pattern in `/src/app/`
@@ -135,6 +141,7 @@ Bez `project-context.md` agenti dělají předpoklady, které nemusí odpovídat
 | Každý agent rozhoduje nezávisle                 | Všichni agenti se řídí stejnými pravidly |
 
 To je zvláště důležité pro:
+
 - **Přímý vstup** — bez PRD a architektury dodává kontextový soubor trvalé projektové konvence
 - **Týmové projekty** — zajistí, že všichni agenti dodržují stejné standardy
 - **Existující projekty** — zabrání porušení zavedených vzorů

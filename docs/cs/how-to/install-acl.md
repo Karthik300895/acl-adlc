@@ -1,5 +1,5 @@
 ---
-title: "Jak nainstalovat ACL"
+title: 'Jak nainstalovat ACL'
 description: Průvodce instalací ACL ve vašem projektu krok za krokem
 sidebar:
   order: 1
@@ -16,10 +16,11 @@ Pokud chcete použít neinteraktivní instalátor a zadat všechny možnosti na 
 - Aktualizujete stávající instalaci ACL
 
 :::note[Předpoklady]
+
 - **Node.js** 20.12+ (vyžadováno pro instalátor)
 - **Git** (doporučeno)
 - **AI nástroj** (Claude Code, Cursor nebo podobný)
-:::
+  :::
 
 ## Kroky
 
@@ -31,6 +32,7 @@ npx acl-adlc install
 
 :::tip[Chcete nejnovější prereleaseový build?]
 Použijte dist-tag `next`:
+
 ```bash
 npx acl-adlc@next install
 ```
@@ -40,9 +42,11 @@ Získáte novější změny dříve, s vyšší šancí na nestabilitu oproti v�
 
 :::tip[Bleeding edge]
 Pro instalaci nejnovější verze z hlavní větve (může být nestabilní):
+
 ```bash
 npx github:acl-code-org/ACL-ADLC install
 ```
+
 :::
 
 ### 2. Zvolte umístění instalace
@@ -99,11 +103,13 @@ váš-projekt/
 Spusťte `acl-help` pro ověření, že vše funguje, a zjistěte, co dělat dál.
 
 **ACL-Help je váš inteligentní průvodce**, který:
+
 - Potvrdí, že vaše instalace funguje
 - Ukáže, co je dostupné na základě nainstalovaných modulů
 - Doporučí váš první krok
 
 Můžete mu také klást otázky:
+
 ```
 acl-help I just installed, what should I do first?
 acl-help What are my options for a SaaS project?

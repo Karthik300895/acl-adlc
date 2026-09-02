@@ -1,5 +1,5 @@
 ---
-title: "Contexte du Projet"
+title: 'Contexte du Projet'
 description: Comment project-context.md guide les agents IA avec les règles et préférences de votre projet
 sidebar:
   order: 11
@@ -10,6 +10,7 @@ Le fichier `project-context.md` est le guide d’implémentation de votre projet
 ## Ce Qu’il Fait
 
 Les agents IA prennent constamment des décisions d’implémentation — quels patterns suivre, comment structurer le code, quelles conventions utiliser. Sans guidance claire, ils peuvent :
+
 - Suivre des bonnes pratiques génériques qui ne correspondent pas à votre codebase
 - Prendre des décisions incohérentes selon les différentes stories
 - Passer à côté d’exigences ou de contraintes spécifiques au projet
@@ -21,6 +22,7 @@ Le fichier `project-context.md` résout ce problème en documentant ce que les a
 Chaque workflow d’implémentation charge automatiquement `project-context.md` s’il existe. Le workflow architecte le charge également pour respecter vos préférences techniques lors de la conception de l’architecture.
 
 **Chargé par ces workflows :**
+
 - `acl-architecture` — respecte les préférences techniques pendant la phase de solutioning
 - `acl-code-review` — valide par rapport aux standards du projet
 - `acl-quick-dev` — applique les patterns lors de la planification et de l’implémentation d’intentions directes ou de stories
@@ -30,9 +32,9 @@ Chaque workflow d’implémentation charge automatiquement `project-context.md` 
 
 Le fichier `project-context.md` est utile à n’importe quel stade d’un projet :
 
-| Scénario                                 | Quand Créer                                         | Objectif                                                                              |
-|------------------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------|
-| **Nouveau projet, avant l’architecture** | Manuellement, avant `acl-architecture`      | Documenter vos préférences techniques pour que l’architecte les respecte              |
+| Scénario                                 | Quand Créer                                        | Objectif                                                                              |
+| ---------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Nouveau projet, avant l’architecture** | Manuellement, avant `acl-architecture`             | Documenter vos préférences techniques pour que l’architecte les respecte              |
 | **Nouveau projet, après l’architecture** | Via `acl-generate-project-context` ou manuellement | Capturer les décisions d’architecture pour les agents d’implémentation                |
 | **Projet existant**                      | Via `acl-generate-project-context`                 | Découvrir les patterns existants pour que les agents suivent les conventions établies |
 | **Entrée directe en implémentation**     | Avant ou pendant `acl-quick-dev`                   | Garantir que l’implémentation sans planification amont respecte vos patterns          |
@@ -63,24 +65,27 @@ Documente les frameworks, langages et outils utilisés par votre projet avec leu
 Documente les patterns et conventions que les agents pourraient autrement manquer :
 
 ```markdown
-
 ## Règles Critiques d’Implémentation
 
 **Configuration TypeScript :**
+
 - Mode strict activé — pas de types `any` sans approbation explicite
 - Utiliser `interface` pour les APIs publiques, `type` pour les unions/intersections
 
 **Organisation du Code :**
+
 - Composants dans `/src/components/` avec fichiers `.test.tsx` co-localisés
 - Utilitaires dans `/src/lib/` pour les fonctions pures réutilisables
 - Les appels API utilisent le singleton `apiClient` — jamais de fetch direct
 
 **Patterns de Tests :**
+
 - Les tests unitaires se concentrent sur la logique métier, pas sur les détails d’implémentation
 - Les tests d’intégration utilisent MSW pour simuler les réponses API
 - Les tests E2E couvrent uniquement les parcours utilisateurs critiques
 
 **Spécifique au Framework :**
+
 - Toutes les opérations async utilisent le wrapper `handleError` pour une gestion cohérente des erreurs
 - Les feature flags sont accessibles via `featureFlag()` de `@/lib/flags`
 - Les nouvelles routes suivent le modèle de routage basé sur les fichiers dans `/src/app/`
@@ -129,13 +134,14 @@ Le workflow analyse votre codebase pour identifier les conventions, puis génèr
 Sans `project-context.md`, les agents font des suppositions qui peuvent ne pas correspondre à votre projet :
 
 | Sans Contexte                                      | Avec Contexte                                   |
-|----------------------------------------------------|-------------------------------------------------|
+| -------------------------------------------------- | ----------------------------------------------- |
 | Utilise des patterns génériques                    | Suit vos conventions établies                   |
 | Style incohérent selon les stories                 | Implémentation cohérente                        |
 | Peut manquer les contraintes spécifiques au projet | Respecte toutes les exigences techniques        |
 | Chaque agent décide indépendamment                 | Tous les agents s’alignent sur les mêmes règles |
 
 C’est particulièrement important pour :
+
 - **Entrée directe** — sans PRD ni architecture, le fichier de contexte fournit les conventions durables du projet
 - **Projets d’équipe** — garantit que tous les agents suivent les mêmes standards
 - **Projets existants** — empêche de casser les patterns établis

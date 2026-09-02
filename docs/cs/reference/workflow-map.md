@@ -1,5 +1,5 @@
 ---
-title: "Mapa pracovních postupů"
+title: 'Mapa pracovních postupů'
 description: Vizuální reference fází workflow ACL Method a jejich výstupů
 sidebar:
   order: 1
@@ -23,45 +23,45 @@ Důležitá poznámka: Každý workflow níže lze spustit přímo vaším nást
 
 Prozkoumejte problémový prostor a validujte nápady před závazkem k plánování.
 
-| Workflow                        | Účel                                                                       | Produkuje                 |
-| ------------------------------- | -------------------------------------------------------------------------- | ------------------------- |
-| `acl-brainstorming`            | Brainstorming nápadů na projekt s řízenou facilitací brainstormingového kouče | `brainstorming-report.md` |
-| `acl-deep-recon` | Validace předpokladů nebo výběr mezi variantami — návrh promptu pro váš nástroj hloubkového výzkumu, zpracování jeho zprávy, nebo výzkum přímo zde; tržní, doménový, technický, konkurenční, uživatelský, akademický; ověřené, citované, obnovitelné | Výzkumná zpráva či shrnutí + volitelný HTML briefing |
-| `acl-product-brief`            | Zachycení strategické vize — nejlepší, když je váš koncept jasný           | `product-brief.md`        |
-| `acl-prfaq`                    | Working Backwards — zátěžový test a zformování vašeho produktového konceptu | `prfaq-{project}.md`      |
+| Workflow            | Účel                                                                                                                                                                                                                                                 | Produkuje                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `acl-brainstorming` | Brainstorming nápadů na projekt s řízenou facilitací brainstormingového kouče                                                                                                                                                                        | `brainstorming-report.md`                            |
+| `acl-deep-recon`    | Validace předpokladů nebo výběr mezi variantami — návrh promptu pro váš nástroj hloubkového výzkumu, zpracování jeho zprávy, nebo výzkum přímo zde; tržní, doménový, technický, konkurenční, uživatelský, akademický; ověřené, citované, obnovitelné | Výzkumná zpráva či shrnutí + volitelný HTML briefing |
+| `acl-product-brief` | Zachycení strategické vize — nejlepší, když je váš koncept jasný                                                                                                                                                                                     | `product-brief.md`                                   |
+| `acl-prfaq`         | Working Backwards — zátěžový test a zformování vašeho produktového konceptu                                                                                                                                                                          | `prfaq-{project}.md`                                 |
 
 ## Fáze 2: Plánování
 
 Definujte, co budovat a pro koho.
 
-| Workflow                    | Účel                                     | Produkuje    |
-| --------------------------- | ---------------------------------------- | ------------ |
-| `acl-prd`           | Definice požadavků (FR/NFR)              | `PRD.md`     |
-| `acl-ux`                | Návrh uživatelského zážitku (když záleží na UX) | `DESIGN.md`, `EXPERIENCE.md` |
-| `acl-spec`              | Destiluje jakýkoli vstupní záměr (brief, PRD, přepis, poznámky) do stručného kontraktu `SPEC.md` + doprovodných souborů — zafixuje CO před JAK | `SPEC.md` + doprovodné soubory pod `{output_folder}/specs/spec-{slug}/` |
+| Workflow   | Účel                                                                                                                                           | Produkuje                                                               |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `acl-prd`  | Definice požadavků (FR/NFR)                                                                                                                    | `PRD.md`                                                                |
+| `acl-ux`   | Návrh uživatelského zážitku (když záleží na UX)                                                                                                | `DESIGN.md`, `EXPERIENCE.md`                                            |
+| `acl-spec` | Destiluje jakýkoli vstupní záměr (brief, PRD, přepis, poznámky) do stručného kontraktu `SPEC.md` + doprovodných souborů — zafixuje CO před JAK | `SPEC.md` + doprovodné soubory pod `{output_folder}/specs/spec-{slug}/` |
 
 ## Fáze 3: Solutioning
 
 Rozhodněte, jak to budovat, a rozložte práci na stories.
 
-| Workflow                                  | Účel                                       | Produkuje                   |
-| ----------------------------------------- | ------------------------------------------ | --------------------------- |
-| `acl-architecture`                | Explicitní technická rozhodnutí            | `architecture.md` s ADR     |
-| `acl-create-epics-and-stories`           | Rozložení požadavků na implementovatelnou práci | Soubory epiců se stories |
-| `acl-check-implementation-readiness`     | Kontrola brány před implementací           | Rozhodnutí PASS/CONCERNS/FAIL |
+| Workflow                             | Účel                                            | Produkuje                     |
+| ------------------------------------ | ----------------------------------------------- | ----------------------------- |
+| `acl-architecture`                   | Explicitní technická rozhodnutí                 | `architecture.md` s ADR       |
+| `acl-create-epics-and-stories`       | Rozložení požadavků na implementovatelnou práci | Soubory epiců se stories      |
+| `acl-check-implementation-readiness` | Kontrola brány před implementací                | Rozhodnutí PASS/CONCERNS/FAIL |
 
 ## Fáze 4: Implementace
 
 Všechny implementační vstupy se sbíhají do `acl-quick-dev`. Přijímá přímý záměr, issue, specifikaci nebo naplánovanou story a zvolí potřebnou míru upřesnění, plánování, implementace a revize.
 
-| Workflow                   | Účel                                                                     | Produkuje                        |
-| -------------------------- | ------------------------------------------------------------------------ | -------------------------------- |
-| `acl-quick-dev`           | Převod přímého záměru nebo naplánované story na implementovaný a revidovaný kód | `spec-*.md` + kód          |
-| `acl-sprint-planning`     | Inicializace sledování (jednou na projekt pro sekvencování dev cyklu)    | `sprint-status.yaml`             |
-| `acl-code-review`         | Validace kvality implementace                                            | Schváleno nebo požadovány změny  |
-| `acl-correct-course`      | Řešení významných změn uprostřed sprintu                                 | Aktualizovaný plán nebo přesměrování |
-| `acl-sprint-status`       | Sledování průběhu sprintu a stavu stories                                | Aktualizace stavu sprintu        |
-| `acl-retrospective`       | Revize po dokončení epicu                                                | Poučení                          |
+| Workflow              | Účel                                                                            | Produkuje                            |
+| --------------------- | ------------------------------------------------------------------------------- | ------------------------------------ |
+| `acl-quick-dev`       | Převod přímého záměru nebo naplánované story na implementovaný a revidovaný kód | `spec-*.md` + kód                    |
+| `acl-sprint-planning` | Inicializace sledování (jednou na projekt pro sekvencování dev cyklu)           | `sprint-status.yaml`                 |
+| `acl-code-review`     | Validace kvality implementace                                                   | Schváleno nebo požadovány změny      |
+| `acl-correct-course`  | Řešení významných změn uprostřed sprintu                                        | Aktualizovaný plán nebo přesměrování |
+| `acl-sprint-status`   | Sledování průběhu sprintu a stavu stories                                       | Aktualizace stavu sprintu            |
+| `acl-retrospective`   | Revize po dokončení epicu                                                       | Poučení                              |
 
 ### Přímý a plánovaný vstup
 

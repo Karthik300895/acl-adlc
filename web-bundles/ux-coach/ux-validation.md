@@ -39,7 +39,7 @@ List every visual artifact captured in Canvas or referenced (Stitch outputs, Mer
 
 ## Pass 2: Judgment
 
-Verdict per category (*strong / adequate / thin / broken*); findings only where they add information.
+Verdict per category (_strong / adequate / thin / broken_); findings only where they add information.
 
 ### 6. Bloat and overspecification
 
@@ -75,6 +75,7 @@ Render findings inline in Canvas under a **Validation Report** heading. Group by
 **Overall verdict:** [2-3 sentences. What's strong, what's load-bearing-broken.]
 
 **Category verdicts:**
+
 - Flow coverage: [verdict]
 - Token completeness: [verdict]
 - Component coverage: [verdict]
@@ -85,15 +86,19 @@ Render findings inline in Canvas under a **Validation Report** heading. Group by
 - Shape fit: [verdict]
 
 ### Critical (n)
-- **[Category]**: [finding] (location). *Fix:* [suggestion].
+
+- **[Category]**: [finding] (location). _Fix:_ [suggestion].
 
 ### High (n)
+
 ...
 
 ### Medium (n)
+
 ...
 
 ### Low (n)
+
 ...
 ```
 

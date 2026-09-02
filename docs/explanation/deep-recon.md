@@ -1,5 +1,5 @@
 ---
-title: "Deep Recon"
+title: 'Deep Recon'
 description: Decision-grade research three ways — draft a prompt for your own deep-research tool, process a finished report, or run the research in place
 sidebar:
   order: 14
@@ -19,24 +19,24 @@ The output is always the same shape: a cited report (`research.md`) with metadat
 
 A type selects a pack: a short card of prioritized dimensions, source craft, and freshness rules that makes the research sharper than an unaided prompt. Deep Recon infers the type from your ask, or you name it.
 
-| Type | Reach for it when |
-| --- | --- |
-| `market` | Sizing an opportunity, segments, pricing, go-to-market |
-| `domain` | Learning an industry or field: structure, players, rules, vocabulary |
-| `technical` | Evaluating a technology area, integration approaches, implementation reality |
-| `competitive` | Tearing down named competitors: offers, pricing, trajectory, sentiment |
-| `user-voice` | What users actually experience and want: reviews, communities |
-| `academic-lit` | Literature review, state of the art, grounding an approach in papers |
+| Type           | Reach for it when                                                            |
+| -------------- | ---------------------------------------------------------------------------- |
+| `market`       | Sizing an opportunity, segments, pricing, go-to-market                       |
+| `domain`       | Learning an industry or field: structure, players, rules, vocabulary         |
+| `technical`    | Evaluating a technology area, integration approaches, implementation reality |
+| `competitive`  | Tearing down named competitors: offers, pricing, trajectory, sentiment       |
+| `user-voice`   | What users actually experience and want: reviews, communities                |
+| `academic-lit` | Literature review, state of the art, grounding an approach in papers         |
 
 The decision shape is a second, independent choice. **Explore** (the default) builds understanding; **select** runs a structured choose-between when you're picking among candidates. Any type can end in a selection matrix. You can also add your own types through [acl-customize](../how-to/customize-acl.md).
 
 ## The three modes
 
-| Mode | What happens | You provide |
-| --- | --- | --- |
-| **Draft** | Deep Recon composes a research prompt carrying the pack's craft; you run it in your own tool | One paste into ChatGPT, Gemini, Grok, or Perplexity |
-| **Process** | A finished report gets filed, its claims extracted and checked against the pack, and distilled into the standard summary | The report, from any source |
-| **Run** | Deep Recon does the research here: parallel web fan-out, verification, cited synthesis | Approval at one plan gate |
+| Mode        | What happens                                                                                                             | You provide                                         |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| **Draft**   | Deep Recon composes a research prompt carrying the pack's craft; you run it in your own tool                             | One paste into ChatGPT, Gemini, Grok, or Perplexity |
+| **Process** | A finished report gets filed, its claims extracted and checked against the pack, and distilled into the standard summary | The report, from any source                         |
+| **Run**     | Deep Recon does the research here: parallel web fan-out, verification, cited synthesis                                   | Approval at one plan gate                           |
 
 **Draft** exists because dedicated deep-research products are excellent gatherers and most people already pay for one. The drafted prompt packages the type's dimensions, recency requirements, and a strict citation demand, tuned to the tool you name. Your subscription does the expensive crawling.
 
@@ -46,13 +46,13 @@ The decision shape is a second, independent choice. **Explore** (the default) bu
 
 ## Which mode should you use?
 
-| Situation | Use |
-| --- | --- |
-| You subscribe to a deep-research tool and don't mind one manual round-trip | Draft, then Process |
-| You already have a report, whatever produced it | Process |
-| You want results now, in one sitting, no app switching | Run |
-| The research needs internal sources or MCP tools only your session can reach | Run |
-| Broad public sweep first, targeted follow-up after | Draft + Process, then a focused Run on the gaps |
+| Situation                                                                    | Use                                             |
+| ---------------------------------------------------------------------------- | ----------------------------------------------- |
+| You subscribe to a deep-research tool and don't mind one manual round-trip   | Draft, then Process                             |
+| You already have a report, whatever produced it                              | Process                                         |
+| You want results now, in one sitting, no app switching                       | Run                                             |
+| The research needs internal sources or MCP tools only your session can reach | Run                                             |
+| Broad public sweep first, targeted follow-up after                           | Draft + Process, then a focused Run on the gaps |
 
 The trade-off: Draft costs one manual round-trip but rides a subscription you've already paid for, and hosted deep-research products crawl wider than a session-bound run for the same money. Run costs tokens and minutes but stays in context and can use every tool your harness has. When you ask for research with no verb, Deep Recon states this trade once and remembers your preference for the session.
 
@@ -84,11 +84,11 @@ Topology matters because fan-out is a deliberate choice. Independent sub-questio
 
 Effort comes bundled in presets, and anything you say in the request overrides them:
 
-| Preset | Assistants | Sources per round | Rounds |
-| --- | --- | --- | --- |
-| `quick` | 2 | 5 | 1 |
-| `standard` (default) | 3 | 8 | 2 |
-| `deep` | 6 | 12 | 3 |
+| Preset               | Assistants | Sources per round | Rounds |
+| -------------------- | ---------- | ----------------- | ------ |
+| `quick`              | 2          | 5                 | 1      |
+| `standard` (default) | 3          | 8                 | 2      |
+| `deep`               | 6          | 12                | 3      |
 
 Rounds follow leads: contradictions between sources and unexpected connections from round one become round two's assignments. Dimensions stop early when their questions are answered or a full round surfaces nothing new.
 
@@ -110,15 +110,15 @@ That map powers the lifecycle. **Refresh** re-verifies only the stale claims and
 
 ## Starting it
 
-| Goal | Type this |
-| --- | --- |
-| Research something | `/acl-deep-recon` then describe the decision, or just "research the self-hosted analytics market" |
-| Force a type | "competitive research on Linear and Height" |
-| Draft a prompt for your tool | "draft a deep research prompt about X for Gemini" |
-| Process a report | "there's a research report at ~/Downloads/report.pdf, process it" |
-| Choose between options | "help me choose between Postgres and MySQL for this" |
-| Refresh an existing report | "refresh the market research" |
-| Customize defaults | `/acl-customize acl-deep-recon` |
+| Goal                         | Type this                                                                                         |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- |
+| Research something           | `/acl-deep-recon` then describe the decision, or just "research the self-hosted analytics market" |
+| Force a type                 | "competitive research on Linear and Height"                                                       |
+| Draft a prompt for your tool | "draft a deep research prompt about X for Gemini"                                                 |
+| Process a report             | "there's a research report at ~/Downloads/report.pdf, process it"                                 |
+| Choose between options       | "help me choose between Postgres and MySQL for this"                                              |
+| Refresh an existing report   | "refresh the market research"                                                                     |
+| Customize defaults           | `/acl-customize acl-deep-recon`                                                                   |
 
 ## Where the old research skills went
 

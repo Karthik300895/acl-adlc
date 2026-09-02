@@ -1,9 +1,10 @@
 ---
-title: "Established Projects FAQ"
+title: 'Established Projects FAQ'
 description: Common questions about using ACL Method on established projects
 sidebar:
   order: 12
 ---
+
 Quick answers to common questions about working on established projects with the ACL Method (ACL).
 
 ## Questions

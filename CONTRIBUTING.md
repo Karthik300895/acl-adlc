@@ -17,12 +17,14 @@ Thank you for considering contributing! We believe in **Human Amplification, Not
 ACL strengthens human-AI collaboration through specialized agents and guided workflows. Every contribution should answer: **"Does this make humans and AI better together?"**
 
 **✅ What we welcome:**
+
 - Enhanced collaboration patterns and workflows
 - Improved agent personas and prompts
 - Domain-specific modules leveraging ACL Core
 - Better planning and context continuity
 
 **❌ What doesn't fit:**
+
 - Purely automated solutions that sideline humans
 - Complexity that creates barriers to adoption
 - Features that fragment ACL Core's foundation
@@ -63,9 +65,9 @@ After searching, use the [feature request template](https://github.com/acl-code-
 
 ## Before Starting Work
 
-| Work Type               | Requirement                                              |
-| ----------------------- | -------------------------------------------------------- |
-| Typo / small bug fix    | Just open the PR                                         |
+| Work Type               | Requirement                                               |
+| ----------------------- | --------------------------------------------------------- |
+| Typo / small bug fix    | Just open the PR                                          |
 | Feature or large change | Confirm with a maintainer on Discord **before** you start |
 
 ---
@@ -104,17 +106,21 @@ We will reject PRs that read like raw LLM output: bulk refactors nobody asked fo
 
 ```markdown
 ## What
+
 [1-2 sentences describing WHAT changed]
 
 ## Why
+
 [1-2 sentences explaining WHY this change is needed]
 Fixes #[issue number]
 
 ## How
+
 - [2-3 bullets listing HOW you implemented it]
 -
 
 ## Testing
+
 [1-2 sentences on how you tested this]
 ```
 
@@ -137,7 +143,7 @@ Keep messages under 72 characters. Each commit = one logical change.
 
 ## What Makes a Good PR?
 
-| ✅ Do                        | ❌ Don't                      |
+| ✅ Do                       | ❌ Don't                     |
 | --------------------------- | ---------------------------- |
 | Change one thing per PR     | Mix unrelated changes        |
 | Clear title and description | Vague or missing explanation |
@@ -157,11 +163,11 @@ Keep messages under 72 characters. Each commit = one logical change.
 
 ### File-Pattern-to-Validator Mapping
 
-| File Pattern | Validator | Extraction Function |
-| ------------ | --------- | ------------------- |
-| `*.yaml`, `*.yml` | `validate-file-refs.js` | `extractYamlRefs` |
-| `*.md`, `*.xml` | `validate-file-refs.js` | `extractMarkdownRefs` |
-| `*.csv` | `validate-file-refs.js` | `extractCsvRefs` |
+| File Pattern      | Validator               | Extraction Function   |
+| ----------------- | ----------------------- | --------------------- |
+| `*.yaml`, `*.yml` | `validate-file-refs.js` | `extractYamlRefs`     |
+| `*.md`, `*.xml`   | `validate-file-refs.js` | `extractMarkdownRefs` |
+| `*.csv`           | `validate-file-refs.js` | `extractCsvRefs`      |
 
 ---
 

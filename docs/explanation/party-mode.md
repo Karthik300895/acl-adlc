@@ -1,5 +1,5 @@
 ---
-title: "Party Mode"
+title: 'Party Mode'
 description: Get your AI agents in one conversation — run them, build your own cast, and choose how independently they think
 sidebar:
   order: 10
@@ -36,27 +36,27 @@ Party mode is also a fast and genuinely fun way to brainstorm, since the persona
 
 Invoke the skill and say what you want; it works out whether you mean to run a party or build one.
 
-| Goal | Type this |
-| --- | --- |
-| Start a party in the default mode | `/acl-party-mode` |
-| Start in a specific mode | `/acl-party-mode --mode auto` (also `session`, `subagent`, `agent-team`) |
-| Run it once, non-interactively | `/acl-party-mode --non-interactive "review this PR"` |
-| Open a saved party | `/acl-party-mode --party code-review-crew` |
-| Conjure a cast on the spot | "party mode with the bridge crew of the Enterprise" |
-| Create or add a party | "party mode, create a new party" |
-| Edit an existing party | "party mode, edit the writers' room" |
-| Customize the skill | `/acl-customize acl-party-mode` |
+| Goal                              | Type this                                                                |
+| --------------------------------- | ------------------------------------------------------------------------ |
+| Start a party in the default mode | `/acl-party-mode`                                                        |
+| Start in a specific mode          | `/acl-party-mode --mode auto` (also `session`, `subagent`, `agent-team`) |
+| Run it once, non-interactively    | `/acl-party-mode --non-interactive "review this PR"`                     |
+| Open a saved party                | `/acl-party-mode --party code-review-crew`                               |
+| Conjure a cast on the spot        | "party mode with the bridge crew of the Enterprise"                      |
+| Create or add a party             | "party mode, create a new party"                                         |
+| Edit an existing party            | "party mode, edit the writers' room"                                     |
+| Customize the skill               | `/acl-customize acl-party-mode`                                          |
 
 ## How a party runs
 
 A party can run in four modes. One mode is active per session, and it decides who does the thinking: a single model voicing everyone, or separate agents reasoning on their own.
 
-| Mode | What it does | Reach for it when |
-| --- | --- | --- |
-| `session` | Default. One model voices every persona inline. Fast and fully conversational. | Most conversations — banter, brainstorming, quick back-and-forth. |
-| `auto` | Voices inline for light rounds, spawns independent agents only when independence changes the answer. | You want speed most of the time but real independence on the hard rounds. |
-| `subagent` | Spawns a separate agent for each persona every substantive round, so no single mind colors them all. | Honest reviews and focus groups, where the voices must not bleed together. |
-| `agent-team` | Stands the personas up as a persistent team that address each other directly. Claude Code only. | A live, hands-off round-table where the agents talk among themselves. |
+| Mode         | What it does                                                                                         | Reach for it when                                                          |
+| ------------ | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `session`    | Default. One model voices every persona inline. Fast and fully conversational.                       | Most conversations — banter, brainstorming, quick back-and-forth.          |
+| `auto`       | Voices inline for light rounds, spawns independent agents only when independence changes the answer. | You want speed most of the time but real independence on the hard rounds.  |
+| `subagent`   | Spawns a separate agent for each persona every substantive round, so no single mind colors them all. | Honest reviews and focus groups, where the voices must not bleed together. |
+| `agent-team` | Stands the personas up as a persistent team that address each other directly. Claude Code only.      | A live, hands-off round-table where the agents talk among themselves.      |
 
 The choice matters because one model voicing five personas can quietly converge: they share a mind. Spawning real agents keeps their reasoning separate, which is the entire point of a review panel or a focus group. `session` is the cheapest and most fluid. The spawning modes cost more but protect independence, and `auto` aims for both by spawning only when a round needs it.
 
@@ -82,14 +82,14 @@ Two ideas do most of the work.
 
 ### Shapes a party can take
 
-| Shape | What it is |
-| --- | --- |
-| Themed cast | Famous investors, a TV ensemble — distinct voices gathered around a topic. |
-| One-off personas | A persona or two added to the pool, no group needed. |
+| Shape                 | What it is                                                                                                                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Themed cast           | Famous investors, a TV ensemble — distinct voices gathered around a topic.                                                                                                            |
+| One-off personas      | A persona or two added to the pool, no group needed.                                                                                                                                  |
 | Focus group from data | Hand it customer or survey data; it clusters people by what drives their behavior and builds representative personas. Pair it with `subagent` mode so the customers stay independent. |
-| Review panel | Purpose-built critical lenses that argue about what matters. The shipped Code Review Crew is one. |
-| Deliberation scaffold | A room that makes the human think harder without pretending to be an autonomous decision council. The shipped Anti-Consensus Club is one. |
-| Open-cast room | No fixed roster. The scene names a universe and the room is cast on the fly as the topic shifts. |
+| Review panel          | Purpose-built critical lenses that argue about what matters. The shipped Code Review Crew is one.                                                                                     |
+| Deliberation scaffold | A room that makes the human think harder without pretending to be an autonomous decision council. The shipped Anti-Consensus Club is one.                                             |
+| Open-cast room        | No fixed roster. The scene names a universe and the room is cast on the fly as the topic shifts.                                                                                      |
 
 A focus group is the case that pays off most. Feed in real profiles and you get a standing panel of representative customers to test an idea against before you build it, each reacting from their own goals and budget instead of agreeing with the last voice.
 
@@ -110,13 +110,13 @@ These are starting points. Any set of voices you can describe becomes a party: w
 
 Your default party is the agents your installed modules provide. The Code Review Crew is a custom party ACL ships alongside that default — a working template to study before you build your own, not a replacement for it. It's a review panel: five lenses that attack a change from different angles and argue about what actually matters, instead of rubber-stamping it.
 
-| Member | Lens |
-| --- | --- |
-| Vex | Security — threat-models everything and names the concrete exploit path. |
-| Grumbal | The adversary — assumes the code is broken and sets out to prove it. |
-| Boundary | Edge cases — every branch, null, race, oversized input, odd timezone. |
-| Yui | The craftsman — simplicity, naming, no needless cleverness or duplication. |
-| Dana | The pragmatist — counters the perfectionists and ranks what's real versus a nit. |
+| Member   | Lens                                                                             |
+| -------- | -------------------------------------------------------------------------------- |
+| Vex      | Security — threat-models everything and names the concrete exploit path.         |
+| Grumbal  | The adversary — assumes the code is broken and sets out to prove it.             |
+| Boundary | Edge cases — every branch, null, race, oversized input, odd timezone.            |
+| Yui      | The craftsman — simplicity, naming, no needless cleverness or duplication.       |
+| Dana     | The pragmatist — counters the perfectionists and ranks what's real versus a nit. |
 
 The crew ships defined but inactive. The members sit in the pool and cost nothing until you summon the group, and they never crowd your default room. Run it with `subagent` mode so each lens reviews on its own before the five clash over the findings.
 
@@ -124,12 +124,12 @@ The crew ships defined but inactive. The members sit in the pool and cost nothin
 
 The Anti-Consensus Club helps with decisions, strategy, designs, and fuzzy questions where one assistant might agree too quickly or keep debating after the useful work is done. It is not a voting body. Its job is to raise useful objections, check claims, stop repetition, and return the decision to the human.
 
-| Member | Lens |
-| --- | --- |
+| Member   | Lens                                                                                   |
+| -------- | -------------------------------------------------------------------------------------- |
 | Wildcard | Option generator — suggests alternative problem statements, assumptions, and examples. |
-| Level | Claim checker — checks support, missing information, and confidence. |
-| Killjoy | Loop stopper — stops repetition, fake disagreement, and unsupported speculation. |
-| Splinter | Consensus challenger — questions easy agreement and ignored tradeoffs. |
+| Level    | Claim checker — checks support, missing information, and confidence.                   |
+| Killjoy  | Loop stopper — stops repetition, fake disagreement, and unsupported speculation.       |
+| Splinter | Consensus challenger — questions easy agreement and ignored tradeoffs.                 |
 
 Run it as `/acl-party-mode --party anti-consensus-club --mode subagent` when the platform supports it. The room recommends that at session start, then stops nagging if you continue in another mode.
 

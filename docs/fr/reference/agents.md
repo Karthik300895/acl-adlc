@@ -15,14 +15,14 @@ Cette page liste les agents ACL (suite Agile) par défaut installés avec la mé
 - Les déclencheurs sont les codes courts affichés dans le menu de chaque agent (par exemple, `PRD`) et les correspondances approximatives présentées dans chaque menu.
 - La génération de tests QA est gérée par le skill de workflow `acl-qa-generate-e2e-tests`, disponible via l’agent Développeur. L’architecte de tests complet (TEA) se trouve dans son propre module.
 
-| Agent                       | Identifiant de skill     | Déclencheurs                                   | Workflows principaux                                                                                                                                                       |
-|-----------------------------|--------------------------|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Analyste (Mary)             | `acl-agent-analyst`     | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP`       | Brainstorming, Recherche marché, Recherche domaine, Recherche technique, Création du brief[^1], Défi PRFAQ, Documentation du projet                                        |
-| Product Manager (John)      | `acl-agent-pm`          | `PRD`, `CE`, `IR`, `CC`                        | Créer, mettre à jour ou valider un PRD, Créer des Epics et Stories, vérifier l’état de préparation à l’Implémentation, Corriger le Cours                                   |
-| Architecte (Winston)        | `acl-agent-architect`   | `CA`, `IR`                                     | Créer l’architecture, Préparation à l’implémentation                                                                                                                       |
-| Développeur (Amelia)        | `acl-agent-dev`         | `QD`, `QA`, `CR`, `SP`, `ER` | Quick Dev, Génération de Tests QA, Code Review, Sprint Planning, Rétrospective d’Epic |
-| Designer UX (Sally)         | `acl-agent-ux-designer` | `CU`                                           | Création du design UX[^2]                                                                                                                                                  |
-| Rédacteur Technique (Paige) | `acl-agent-tech-writer` | `DP`, `WD`, `MG`, `VD`, `EC`                   | Documentation du projet, Rédaction de documents, Génération de diagrammes Mermaid, Validation de documents, Explication de concepts                                        |
+| Agent                       | Identifiant de skill    | Déclencheurs                             | Workflows principaux                                                                                                                     |
+| --------------------------- | ----------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Analyste (Mary)             | `acl-agent-analyst`     | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP` | Brainstorming, Recherche marché, Recherche domaine, Recherche technique, Création du brief[^1], Défi PRFAQ, Documentation du projet      |
+| Product Manager (John)      | `acl-agent-pm`          | `PRD`, `CE`, `IR`, `CC`                  | Créer, mettre à jour ou valider un PRD, Créer des Epics et Stories, vérifier l’état de préparation à l’Implémentation, Corriger le Cours |
+| Architecte (Winston)        | `acl-agent-architect`   | `CA`, `IR`                               | Créer l’architecture, Préparation à l’implémentation                                                                                     |
+| Développeur (Amelia)        | `acl-agent-dev`         | `QD`, `QA`, `CR`, `SP`, `ER`             | Quick Dev, Génération de Tests QA, Code Review, Sprint Planning, Rétrospective d’Epic                                                    |
+| Designer UX (Sally)         | `acl-agent-ux-designer` | `CU`                                     | Création du design UX[^2]                                                                                                                |
+| Rédacteur Technique (Paige) | `acl-agent-tech-writer` | `DP`, `WD`, `MG`, `VD`, `EC`             | Documentation du projet, Rédaction de documents, Génération de diagrammes Mermaid, Validation de documents, Explication de concepts      |
 
 ## Types de déclencheurs
 
@@ -39,7 +39,7 @@ Exemples : `PRD` (Créer, mettre à jour ou valider un PRD), `CA` (Créer l’a
 Certains déclencheurs lancent une conversation libre au lieu d’un workflow structuré. Ils s’attendent à ce que vous décriviez ce dont vous avez besoin à côté du code du déclencheur.
 
 | Agent                       | Déclencheur | Ce qu’il faut fournir                                           |
-|-----------------------------|-------------|-----------------------------------------------------------------|
+| --------------------------- | ----------- | --------------------------------------------------------------- |
 | Rédacteur Technique (Paige) | `WD`        | Description du document à rédiger                               |
 | Rédacteur Technique (Paige) | `MG`        | Description et type de diagramme (séquence, organigramme, etc.) |
 | Rédacteur Technique (Paige) | `VD`        | Document à valider et domaines à examiner                       |
@@ -56,4 +56,5 @@ EC Explique le fonctionnement du système de modules
 ## Glossaire
 
 [^1]: Brief : document synthétique qui formalise le contexte, les objectifs, le périmètre et les contraintes d’un projet ou d’une demande, afin d’aligner rapidement les parties prenantes avant le travail détaillé.
+
 [^2]: UX (User Experience) : expérience utilisateur, englobant l’ensemble des interactions et perceptions d’un utilisateur face à un produit. Le design UX vise à créer des interfaces intuitives, efficaces et agréables en tenant compte des besoins, comportements et contexte d’utilisation.

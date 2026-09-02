@@ -15,17 +15,17 @@ Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví d�
 
 **Module lõi (luôn được cài):**
 
-| Công cụ                                                   | Mục đích                                                                                                |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Công cụ                                                 | Mục đích                                                                                                |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | [`acl-help`](#acl-help)                                 | Nhận hướng dẫn có ngữ cảnh về việc nên làm gì tiếp theo                                                 |
 | [`acl-advanced-elicitation`](#acl-advanced-elicitation) | Đẩy đầu ra của LLM qua các vòng tinh luyện lặp                                                          |
 | [`acl-review`](#acl-review)                             | Review đa lăng kính — hoài nghi, ca biên, lỗ hổng kiểm chứng cho code; cấu trúc và câu chữ cho tài liệu |
-| [`acl-customize`](#acl-customize)                       | Tạo và kiểm tra các tùy biến ACL                                                                       |
+| [`acl-customize`](#acl-customize)                       | Tạo và kiểm tra các tùy biến ACL                                                                        |
 
 **Skill tư duy:**
 
-| Công cụ                                     | Mục đích                                                                                |
-| ------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Công cụ                                   | Mục đích                                                                                |
+| ----------------------------------------- | --------------------------------------------------------------------------------------- |
 | [`acl-brainstorming`](#acl-brainstorming) | Tổ chức các phiên brainstorming có tương tác                                            |
 | [`acl-forge-idea`](#acl-forge-idea)       | Thử lửa một ý tưởng cho đến khi nó cứng cáp, được chứng thực hoặc chết với chi phí thấp |
 | [`acl-party-mode`](#acl-party-mode)       | Điều phối thảo luận nhóm nhiều agent                                                    |
@@ -84,13 +84,13 @@ Chạy bất kỳ công cụ nào bằng cách gõ tên skill của nó, ví d�
 
 **Các lăng kính đi kèm:**
 
-| Lăng kính                                 | Áp dụng cho             | Phương pháp                                                                                  |
-| ----------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------- |
-| **Hoài nghi (Adversarial)**               | Mọi nội dung            | Review hoài nghi mặc định vấn đề luôn tồn tại — săn phần còn thiếu, không chỉ phần sai       |
-| **Ca biên (Edge case)**                   | Mọi nội dung            | Đi qua mọi nhánh rẽ và điều kiện biên trong nội dung có định nghĩa hành vi                   |
-| **Lỗ hổng kiểm chứng (Verification gap)** | Code                    | Tìm hành vi đã thay đổi có thể hồi quy mà không có kiểm chứng đáng tin cậy nào bắt được      |
-| **Cấu trúc (Structure)**                  | Tài liệu                | Đề xuất cắt, gộp, di chuyển và cô đọng — hình hài tài liệu có phục vụ mục đích của nó không? |
-| **Câu chữ (Prose)**                       | Tài liệu                | Biên tập các vấn đề diễn đạt gây cản trở việc hiểu                                           |
+| Lăng kính                                 | Áp dụng cho  | Phương pháp                                                                                  |
+| ----------------------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
+| **Hoài nghi (Adversarial)**               | Mọi nội dung | Review hoài nghi mặc định vấn đề luôn tồn tại — săn phần còn thiếu, không chỉ phần sai       |
+| **Ca biên (Edge case)**                   | Mọi nội dung | Đi qua mọi nhánh rẽ và điều kiện biên trong nội dung có định nghĩa hành vi                   |
+| **Lỗ hổng kiểm chứng (Verification gap)** | Code         | Tìm hành vi đã thay đổi có thể hồi quy mà không có kiểm chứng đáng tin cậy nào bắt được      |
+| **Cấu trúc (Structure)**                  | Tài liệu     | Đề xuất cắt, gộp, di chuyển và cô đọng — hình hài tài liệu có phục vụ mục đích của nó không? |
+| **Câu chữ (Prose)**                       | Tài liệu     | Biên tập các vấn đề diễn đạt gây cản trở việc hiểu                                           |
 
 Hai lăng kính biên tập coi nội dung là bất khả xâm phạm: không bao giờ chất vấn ý tưởng của bạn, chỉ xét cách tổ chức và diễn đạt, và chỉ đề xuất chứ không tự sửa. Khi chọn cả hai, lăng kính câu chữ chạy trên các phát hiện của lăng kính cấu trúc.
 

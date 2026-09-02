@@ -52,10 +52,7 @@ module.exports = {
       '--with-docs-console',
       'Scaffold ACL Docs Console (acl-docs-console.html + API templates) for manager Approve/Reject of MD frontmatter status',
     ],
-    [
-      '--no-docs-console',
-      'Skip scaffolding the ACL Docs Console assets',
-    ],
+    ['--no-docs-console', 'Skip scaffolding the ACL Docs Console assets'],
   ],
   action: async (options) => {
     try {

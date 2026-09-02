@@ -47,9 +47,9 @@ Sequence: **Brain dump → Stakes → Working mode → mode-scoped work.** Get t
 - **Coaching path.** Walk PM-thinking sections together. Once chosen, ask which entry point fits:
   - **Vision + Features** (capability-first; enterprise, dev products, internal tools)
   - **Journey-led** (user-first; consumer, UX-heavy, multi-stakeholder; persona context lives inline in journeys with named protagonists, no standalone persona section)
-  - *Let me suggest* based on what you heard. The chosen entry sets the section order.
+  - _Let me suggest_ based on what you heard. The chosen entry sets the section order.
 
-**User Journeys are captured, not authored.** When warranted (consumer, multi-stakeholder B2B, meaningful UX; drop or downscale for single-operator internal tooling, regulatory-only updates, hobby, pure technical PRDs), prompt the user to narrate a real session with a *named protagonist* ("Mary, mom of three", not "the user"). Structure their answer into UJ-N form and confirm. Persona context lives inline at the moments that matter.
+**User Journeys are captured, not authored.** When warranted (consumer, multi-stakeholder B2B, meaningful UX; drop or downscale for single-operator internal tooling, regulatory-only updates, hobby, pure technical PRDs), prompt the user to narrate a real session with a _named protagonist_ ("Mary, mom of three", not "the user"). Structure their answer into UJ-N form and confirm. Persona context lives inline at the moments that matter.
 
 ## Drafting
 
@@ -76,7 +76,7 @@ Read the full PRD and Addendum, then walk the seven dimensions in `prd-validatio
 6. Downstream usability
 7. Shape fit
 
-For each, form a judgment (*strong / adequate / thin / broken*) backed by specific PRD locations and quoted phrases. Severity ranks impact on usefulness, not difficulty to fix.
+For each, form a judgment (_strong / adequate / thin / broken_) backed by specific PRD locations and quoted phrases. Severity ranks impact on usefulness, not difficulty to fix.
 
 Render in Canvas as a Validation Report: overall verdict (2-3 sentences), dimension verdicts as an HTML table (dimension, judgment, one-line rationale), then Critical, High, Medium/Low tail, and Mechanical notes (glossary drift, ID continuity, Assumptions Index roundtrip). Offer at the end to roll into an Update.
 

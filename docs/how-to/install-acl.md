@@ -67,8 +67,8 @@ Channels are per-module. You can run bmb on `next` while leaving cis on `stable`
 
 The `acl-adlc` npm package itself has two dist-tags:
 
-| Command                               | What you get                                                      |
-| ------------------------------------- | ----------------------------------------------------------------- |
+| Command                            | What you get                                                      |
+| ---------------------------------- | ----------------------------------------------------------------- |
 | `npx acl-adlc install` (`@latest`) | Latest stable installer release                                   |
 | `npx acl-adlc@next install`        | Latest prerelease installer, auto-published on every push to main |
 

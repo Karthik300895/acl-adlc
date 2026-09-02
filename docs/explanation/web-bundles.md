@@ -17,11 +17,11 @@ V4 of ACL shipped web bundles. V6 brings them back, rewritten for the current Ge
 
 Planning work and implementation work want different tools. Web bundles let each use the right one.
 
-| Concern | Web LLM (Gem or GPT) | IDE (Claude Code, Cursor) |
-| --- | --- | --- |
-| Cost model | Flat-rate subscription | Metered tokens |
-| Strongest at | Conversation, Canvas, Deep Research, images | Files, terminal, codebase context |
-| Best for | Brainstorming, briefs, PRDs, research | Implementation, refactoring, code review |
+| Concern      | Web LLM (Gem or GPT)                        | IDE (Claude Code, Cursor)                |
+| ------------ | ------------------------------------------- | ---------------------------------------- |
+| Cost model   | Flat-rate subscription                      | Metered tokens                           |
+| Strongest at | Conversation, Canvas, Deep Research, images | Files, terminal, codebase context        |
+| Best for     | Brainstorming, briefs, PRDs, research       | Implementation, refactoring, code review |
 
 Running a full PRD or market research conversation in an IDE burns tokens that a Gem or Custom GPT handles for the price of your existing subscription. The polished artifact then drops into your repo and Claude Code or Cursor takes it from there.
 
@@ -33,14 +33,14 @@ The cost saving compounds on longer engagements. A PRFAQ pass and three rounds o
 
 The current set of bundles covers the analysis and planning phases:
 
-| Bundle | Phase | Persona lineage |
-| --- | --- | --- |
-| Brainstorming Coach | Analysis | Osborn (default), Minto (swap) |
-| Product Brief Coach | Analysis | Mary (ACL analyst) |
-| PRFAQ Coach | Analysis | Working Backwards (Bezos) |
-| PRD Coach | Planning | Cagan |
-| UX Coach | Planning | Norman |
-| Market & Industry Research | Analysis | Porter and Christensen |
+| Bundle                     | Phase    | Persona lineage                |
+| -------------------------- | -------- | ------------------------------ |
+| Brainstorming Coach        | Analysis | Osborn (default), Minto (swap) |
+| Product Brief Coach        | Analysis | Mary (ACL analyst)             |
+| PRFAQ Coach                | Analysis | Working Backwards (Bezos)      |
+| PRD Coach                  | Planning | Cagan                          |
+| UX Coach                   | Planning | Norman                         |
+| Market & Industry Research | Analysis | Porter and Christensen         |
 
 Each bundle carries a default persona inherited from its owning ACL agent (where one exists) and a contrasting swap example to demonstrate the voice change pattern.
 

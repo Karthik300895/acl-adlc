@@ -17,11 +17,11 @@ ACL V4 曾 ship web bundles。V6 把它们带回来，为当前的 Gem 和 Custo
 
 规划工作和实现工作想要不同的工具。Web bundles 让各用其长。
 
-| 关注点 | Web LLM（Gem 或 GPT） | IDE（Claude Code、Cursor） |
-| --- | --- | --- |
-| 成本模型 | 固定费率订阅 | 按 token 计费 |
-| 最强项 | 对话、Canvas、Deep Research、图像 | 文件、终端、代码库上下文 |
-| 最适合 | 头脑风暴、brief、PRD、研究 | 实现、重构、代码审查 |
+| 关注点   | Web LLM（Gem 或 GPT）             | IDE（Claude Code、Cursor） |
+| -------- | --------------------------------- | -------------------------- |
+| 成本模型 | 固定费率订阅                      | 按 token 计费              |
+| 最强项   | 对话、Canvas、Deep Research、图像 | 文件、终端、代码库上下文   |
+| 最适合   | 头脑风暴、brief、PRD、研究        | 实现、重构、代码审查       |
 
 在 IDE 里跑完整 PRD 或市场研究会烧 token，而 Gem 或 Custom GPT 用现有订阅价就能扛。打磨好的 artifact 再丢进 repo，Claude Code 或 Cursor 接手后续。
 
@@ -33,14 +33,14 @@ ACL V4 曾 ship web bundles。V6 把它们带回来，为当前的 Gem 和 Custo
 
 当前 bundle 集覆盖分析和规划阶段：
 
-| Bundle | 阶段 | Persona  lineage |
-| --- | --- | --- |
-| Brainstorming Coach | Analysis | Osborn（默认）、Minto（swap） |
-| Product Brief Coach | Analysis | Mary（ACL analyst） |
-| PRFAQ Coach | Analysis | Working Backwards（Bezos） |
-| PRD Coach | Planning | Cagan |
-| UX Coach | Planning | Norman |
-| Market & Industry Research | Analysis | Porter and Christensen |
+| Bundle                     | 阶段     | Persona lineage               |
+| -------------------------- | -------- | ----------------------------- |
+| Brainstorming Coach        | Analysis | Osborn（默认）、Minto（swap） |
+| Product Brief Coach        | Analysis | Mary（ACL analyst）           |
+| PRFAQ Coach                | Analysis | Working Backwards（Bezos）    |
+| PRD Coach                  | Planning | Cagan                         |
+| UX Coach                   | Planning | Norman                        |
+| Market & Industry Research | Analysis | Porter and Christensen        |
 
 每个 bundle 带有默认 persona（若所属 ACL agent 存在则继承），以及对比 swap 示例，演示换 voice 的模式。
 

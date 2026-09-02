@@ -33,11 +33,11 @@ You may **not**:
 
 ## Examples
 
-| Permitted                                              | Not Permitted                                |
-| ------------------------------------------------------ | -------------------------------------------- |
-| "My workflow tool, compatible with ACL Method"        | "ACLFlow" or "ACL Studio"                  |
-| "An alternative implementation inspired by ACL"       | "ACL Pro" or "ACL Enterprise"              |
-| "My Awesome Healthcare Module (Acl Community Module)" | "The Official ACL Core Healthcare Module"   |
+| Permitted                                             | Not Permitted                                |
+| ----------------------------------------------------- | -------------------------------------------- |
+| "My workflow tool, compatible with ACL Method"        | "ACLFlow" or "ACL Studio"                    |
+| "An alternative implementation inspired by ACL"       | "ACL Pro" or "ACL Enterprise"                |
+| "My Awesome Healthcare Module (Acl Community Module)" | "The Official ACL Core Healthcare Module"    |
 | Accurately stating you use ACL as a dependency        | Implying official endorsement or partnership |
 
 ## Commercial Use

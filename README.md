@@ -1,5 +1,3 @@
-
-
 **Build More Architect Dreams** — An AI-driven agile development module for the ACL Method Module Ecosystem, the best and most comprehensive Agile AI Driven Development framework that has true scale-adaptive intelligence that adjusts from bug fixes to enterprise systems.
 
 **100% free and open source.** No paywalls. No gated content. No gated Discord. We believe in empowering everyone, not just those who can pay for a gated community or courses.
@@ -14,7 +12,6 @@ Traditional AI tools do the thinking for you, producing average results. ACL age
 - **Specialized Agents** — 12+ domain experts (PM, Architect, Developer, UX, and more)
 - **Party Mode** — Bring multiple agent personas into one session to collaborate and discuss
 - **Complete Lifecycle** — From brainstorming to deployment
-
 
 ## Quick Start
 
@@ -43,20 +40,19 @@ npx acl-adlc install --yes \
   --set acl.user_skill_level=expert
 ```
 
-
 > **Not sure what to do?** Ask `acl-help` — it tells you exactly what's next and what's optional. You can also ask questions like `acl-help I just finished the architecture, what do I do next?`
 
 ## Modules
 
 ACL Method extends with official modules for specialized domains. Available during installation or anytime after.
 
-| Module                                                                                                            | Purpose                                           |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [ACL Method (ACL)]   | Core framework with 34+ workflows         |
-| [ACL Builder (BMB)] | Create custom ACL agents and workflows           |
-| [Test Architect (TEA)]  | Risk-based test strategy and automation           |
-| [Game Dev Studio (BMGD)]  | Game development workflows (Unity, Unreal, Godot) |
-| [Creative Intelligence Suite (CIS)] | Innovation, brainstorming, design thinking   |
+| Module                              | Purpose                                           |
+| ----------------------------------- | ------------------------------------------------- |
+| [ACL Method (ACL)]                  | Core framework with 34+ workflows                 |
+| [ACL Builder (BMB)]                 | Create custom ACL agents and workflows            |
+| [Test Architect (TEA)]              | Risk-based test strategy and automation           |
+| [Game Dev Studio (BMGD)]            | Game development workflows (Unity, Unreal, Godot) |
+| [Creative Intelligence Suite (CIS)] | Innovation, brainstorming, design thinking        |
 
 ## Web Bundles
 
@@ -66,13 +62,9 @@ Web bundles package selected ACL skills for installation as **Google Gemini Gems
 
 Current shelf: brainstorming, product brief, PRFAQ, PRD, UX, market & industry research.
 
-
-
 ## Documentation
 
 ACL Method Docs Site — Tutorials, guides, concepts, and reference
-
-
 
 ## Contributing
 
@@ -85,7 +77,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 ---
 
 **ACL** and **ACL-ADLC** are trademarks of ACL Code, LLC. See [TRADEMARK.md](TRADEMARK.md) for details.
-
-
 
 See [CONTRIBUTORS.md](CONTRIBUTORS.md) for contributor information.

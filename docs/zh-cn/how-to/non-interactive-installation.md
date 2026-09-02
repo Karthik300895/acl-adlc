@@ -1,5 +1,5 @@
 ---
-title: "非交互式安装"
+title: '非交互式安装'
 description: 使用命令行参数安装 ACL，适用于 CI/CD 流水线和自动化部署
 sidebar:
   order: 2
@@ -22,28 +22,28 @@ sidebar:
 
 ### 安装选项
 
-| 参数 | 描述 | 示例 |
-|------|-------------|---------|
-| `--directory <path>` | 安装目录 | `--directory ~/projects/myapp` |
-| `--modules <modules>` | 逗号分隔的模块 ID | `--modules acl,bmb` |
-| `--tools <tools>` | 逗号分隔的工具/IDE ID（使用 `none` 跳过） | `--tools claude-code,cursor` 或 `--tools none` |
-| `--action <type>` | 对现有安装的操作：`install`（默认）、`update` 或 `quick-update` | `--action quick-update` |
+| 参数                  | 描述                                                            | 示例                                           |
+| --------------------- | --------------------------------------------------------------- | ---------------------------------------------- |
+| `--directory <path>`  | 安装目录                                                        | `--directory ~/projects/myapp`                 |
+| `--modules <modules>` | 逗号分隔的模块 ID                                               | `--modules acl,bmb`                            |
+| `--tools <tools>`     | 逗号分隔的工具/IDE ID（使用 `none` 跳过）                       | `--tools claude-code,cursor` 或 `--tools none` |
+| `--action <type>`     | 对现有安装的操作：`install`（默认）、`update` 或 `quick-update` | `--action quick-update`                        |
 
 ### 核心配置
 
-| 参数 | 描述 | 默认值 |
-|------|-------------|---------|
-| `--user-name <name>` | 智能体使用的名称 | 系统用户名 |
-| `--communication-language <lang>` | 智能体通信语言 | 英语 |
-| `--document-output-language <lang>` | 文档输出语言 | 英语 |
-| `--output-folder <path>` | 输出文件夹路径 | _acl-output |
+| 参数                                | 描述             | 默认值       |
+| ----------------------------------- | ---------------- | ------------ |
+| `--user-name <name>`                | 智能体使用的名称 | 系统用户名   |
+| `--communication-language <lang>`   | 智能体通信语言   | 英语         |
+| `--document-output-language <lang>` | 文档输出语言     | 英语         |
+| `--output-folder <path>`            | 输出文件夹路径   | \_acl-output |
 
 ### 其他选项
 
-| 参数 | 描述 |
-|------|-------------|
-| `-y, --yes` | 接受所有默认值并跳过提示 |
-| `-d, --debug` | 启用清单生成的调试输出 |
+| 参数          | 描述                     |
+| ------------- | ------------------------ |
+| `-y, --yes`   | 接受所有默认值并跳过提示 |
+| `-d, --debug` | 启用清单生成的调试输出   |
 
 ## 模块 ID
 
@@ -64,12 +64,12 @@ sidebar:
 
 ## 安装模式
 
-| 模式 | 描述 | 示例 |
-|------|-------------|---------|
-| 完全非交互式 | 提供所有参数以跳过所有提示 | `npx acl-adlc install --directory . --modules acl --tools claude-code --yes` |
-| 半交互式 | 提供部分参数；ACL 提示其余部分 | `npx acl-adlc install --directory . --modules acl` |
-| 仅使用默认值 | 使用 `-y` 接受所有默认值 | `npx acl-adlc install --yes` |
-| 不包含工具 | 跳过工具/IDE 配置 | `npx acl-adlc install --modules acl --tools none` |
+| 模式         | 描述                           | 示例                                                                         |
+| ------------ | ------------------------------ | ---------------------------------------------------------------------------- |
+| 完全非交互式 | 提供所有参数以跳过所有提示     | `npx acl-adlc install --directory . --modules acl --tools claude-code --yes` |
+| 半交互式     | 提供部分参数；ACL 提示其余部分 | `npx acl-adlc install --directory . --modules acl`                           |
+| 仅使用默认值 | 使用 `-y` 接受所有默认值       | `npx acl-adlc install --yes`                                                 |
+| 不包含工具   | 跳过工具/IDE 配置              | `npx acl-adlc install --modules acl --tools none`                            |
 
 ## 示例
 
@@ -123,16 +123,18 @@ ACL 会验证你提供的所有参数：
 - **操作** — 必须是以下之一：`install`、`update`、`quick-update`
 
 无效值将：
+
 1. 显示错误并退出（对于目录等关键选项）
 2. 显示警告并跳过（对于可选项目）
 3. 回退到交互式提示（对于缺失的必需值）
 
 :::tip[最佳实践]
+
 - 为 `--directory` 使用绝对路径以避免歧义
 - 在 CI/CD 流水线中使用前先在本地测试参数
 - 结合 `-y` 实现真正的无人值守安装
 - 如果在安装过程中遇到问题，使用 `--debug`
-:::
+  :::
 
 ## 故障排除
 
@@ -150,4 +152,3 @@ ACL 会验证你提供的所有参数：
 :::note[仍然卡住了？]
 使用 `--debug` 获取详细输出，尝试交互模式定位问题，或在 <https://github.com/acl-code-org/ACL-ADLC/issues> 提交反馈。
 :::
-

@@ -137,20 +137,20 @@ Per the [Google Labs design.md spec](https://github.com/google-labs-code/design.
 
 **Frontmatter tokens:**
 
-| Key | Type | Notes |
-|---|---|---|
-| `name` | string | Required. Brand or system name. |
-| `description` | string | One-line statement of what this system is. |
-| `colors` | flat object | Kebab-case keys; hex values (`'#FBF9F4'`). |
-| `typography` | nested object | Each value: any subset of `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`. |
-| `rounded` | object | `sm`, `md`, `lg`, `xl`, `full` (conventionally `9999px`), `DEFAULT`. |
-| `spacing` | object | Scale levels (`'1'`, `'2'`...) or named (`gutter`, `margin-mobile`). |
-| `components` | object | Component-name to object of tokens mapped to values or `{path.to.token}` references. |
+| Key           | Type          | Notes                                                                                            |
+| ------------- | ------------- | ------------------------------------------------------------------------------------------------ |
+| `name`        | string        | Required. Brand or system name.                                                                  |
+| `description` | string        | One-line statement of what this system is.                                                       |
+| `colors`      | flat object   | Kebab-case keys; hex values (`'#FBF9F4'`).                                                       |
+| `typography`  | nested object | Each value: any subset of `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`. |
+| `rounded`     | object        | `sm`, `md`, `lg`, `xl`, `full` (conventionally `9999px`), `DEFAULT`.                             |
+| `spacing`     | object        | Scale levels (`'1'`, `'2'`...) or named (`gutter`, `margin-mobile`).                             |
+| `components`  | object        | Component-name to object of tokens mapped to values or `{path.to.token}` references.             |
 
 **Body sections** (omittable; order-locked when present):
 
 1. **Brand & Style**: aesthetic posture in prose; the editorial voice.
-2. **Colors**: per-color story (where used, what it is *not* used for).
+2. **Colors**: per-color story (where used, what it is _not_ used for).
 3. **Typography**: roles, ramp, rules.
 4. **Layout & Spacing**: scale narrative, grid, margins, gutters, breakpoints.
 5. **Elevation & Depth**: shadow language, tonal layering.

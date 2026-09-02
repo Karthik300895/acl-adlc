@@ -18,7 +18,6 @@ This skill was consolidated into `acl-prd`. It is retained as a thin compatibili
    > Notice: `acl-edit-prd` is deprecated and will be removed in a future release. It now forwards to `acl-prd` with update intent. To silence this notice and access the full new customization surface (`prd_template`, `validation_checklist_template`, `validation_report_template`, `doc_standards`, `finalize_reviewers`, `external_sources`, `external_handoffs`, `prd_output_path`, `run_folder_pattern`), migrate `_acl/custom/acl-edit-prd.toml` to `_acl/custom/acl-prd.toml` and invoke `acl-prd` directly next time. Customization fields that were in this version still remain in the new version and will be respected if present in `_acl/custom/acl-prd.toml`, but the new version also supports additional fields that you can take advantage of by migrating.
 
 4. Invoke `acl-prd` with the following context. Pass these as the activating context so `acl-prd` honors them instead of resolving its own customization from scratch:
-
    - **Intent:** `update` — skip `acl-prd`'s usual intent detection step.
    - **Pre-resolved legacy customization** — use these in place of resolving from `acl-prd`'s own `customize.toml` for the four legacy fields. For everything else (`prd_template`, `validation_checklist_template`, `validation_report_template`, `doc_standards`, `finalize_reviewers`, `prd_output_path`, `run_folder_pattern`, `external_sources`, `external_handoffs`), use `acl-prd`'s own defaults and overrides as normal:
      - `activation_steps_prepend` = the resolved value from step 1

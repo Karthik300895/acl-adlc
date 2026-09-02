@@ -22,14 +22,14 @@ Why a single front door:
 
 ## The shelf
 
-| Bundle | Purpose |
-| --- | --- |
-| Brainstorming Coach | Facilitated ideation across 60 techniques. Defaults to **Carson** (Osborn lineage); swap to **Mary** for analyst rigor. |
-| Product Brief Coach | Build a product brief through guided discovery. Create, Update, or Validate modes. |
-| PRFAQ Coach | Working Backwards PRFAQ challenge (Bezos lineage) to forge and stress-test product concepts. |
-| PRD Coach | Product Requirements Document with built-in validation (Cagan lineage). |
-| UX Coach | UX patterns, flows, and design specifications. Pairs with Google Stitch. |
-| Market & Industry Research | Market research, customer JTBD, competitive landscape, regulatory and technical lenses. Deep Research mode integrated. |
+| Bundle                     | Purpose                                                                                                                 |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Brainstorming Coach        | Facilitated ideation across 60 techniques. Defaults to **Carson** (Osborn lineage); swap to **Mary** for analyst rigor. |
+| Product Brief Coach        | Build a product brief through guided discovery. Create, Update, or Validate modes.                                      |
+| PRFAQ Coach                | Working Backwards PRFAQ challenge (Bezos lineage) to forge and stress-test product concepts.                            |
+| PRD Coach                  | Product Requirements Document with built-in validation (Cagan lineage).                                                 |
+| UX Coach                   | UX patterns, flows, and design specifications. Pairs with Google Stitch.                                                |
+| Market & Industry Research | Market research, customer JTBD, competitive landscape, regulatory and technical lenses. Deep Research mode integrated.  |
 
 Requires Gemini Advanced (for Gems) or ChatGPT Plus / Pro / Business / Enterprise (for Custom GPTs). Deep Research has its own plan limits.
 

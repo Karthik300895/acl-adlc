@@ -15,6 +15,7 @@ To HALT with a final status and optional blocking condition:
      - **Otherwise** (the entry was resolved and no ambiguous on-disk match exists): derive `{spec_file}` = `{spec_folder}/stories/{story_id}-{slug}.md`, where `{slug}` is a kebab-case slug from `title` (and `description` if needed) with no `{story_id}` prefix — the same derivation step-01's Route uses.
    - If `{spec_file}` exists on disk, update `status` in frontmatter and append missing result details under `## Auto Run Result`.
    - If it does not exist, create it as a skeletal story spec:
+
      ```markdown
      ---
      status: <final status>
@@ -27,9 +28,11 @@ To HALT with a final status and optional blocking condition:
      Status: <final status>
      Blocking condition: <blocking condition, if any>
      ```
+
 2. **Otherwise:**
    - If `{spec_file}` is known and exists, update `status` in frontmatter and append missing result details under `## Auto Run Result`.
    - If `{spec_file}` is unknown or missing, create `{{.implementation_artifacts}}/acl-dev-auto-result-<slug-or-timestamp>.md` with:
+
      ```markdown
      ---
      status: <final status>
@@ -40,6 +43,7 @@ To HALT with a final status and optional blocking condition:
      Status: <final status>
      Blocking condition: <blocking condition, if any>
      ```
+
 3. Follow **On Complete** below, then stop the workflow.
 
 ### On Complete

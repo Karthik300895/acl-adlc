@@ -1,5 +1,5 @@
 ---
-title: "Guide de style de la documentation"
+title: 'Guide de style de la documentation'
 description: Conventions de documentation spécifiques au projet, basées sur le style Google et la structure Diataxis
 ---
 
@@ -8,7 +8,7 @@ Ce projet suit le [Guide de style de documentation pour développeurs Google](ht
 ## Règles spécifiques au projet
 
 | Règle                                      | Spécification                                          |
-|--------------------------------------------|--------------------------------------------------------|
+| ------------------------------------------ | ------------------------------------------------------ |
 | Pas de règles horizontales (`---`)         | Perturbe le flux de lecture des fragments              |
 | Pas de titres `####`                       | Utiliser du texte en gras ou des admonitions           |
 | Pas de sections « Related » ou « Next »    | La barre latérale gère la navigation                   |
@@ -42,7 +42,7 @@ Avertissements critiques uniquement — perte de données, problèmes de sécuri
 ### Utilisations standards
 
 | Admonition              | Usage                            |
-|-------------------------|----------------------------------|
+| ----------------------- | -------------------------------- |
 | `:::note[Pré-requis]`   | Dépendances avant de commencer   |
 | `:::tip[Chemin rapide]` | Résumé TL;DR en haut du document |
 | `:::caution[Important]` | Mises en garde critiques         |
@@ -54,16 +54,16 @@ Avertissements critiques uniquement — perte de données, problèmes de sécuri
 
 ```md
 | Phase | Nom           | Ce qui se passe                                       |
-|-------|---------------|-------------------------------------------------------|
-| 1     | Analyse       | Brainstorm, recherche *(optionnel)*                   |
-| 2     | Planification | Exigences — PRD ou spécification technique *(requis)* |
+| ----- | ------------- | ----------------------------------------------------- |
+| 1     | Analyse       | Brainstorm, recherche _(optionnel)_                   |
+| 2     | Planification | Exigences — PRD ou spécification technique _(requis)_ |
 ```
 
 **Skills :**
 
 ```md
-| Skill                | Agent    | Objectif                              |
-|----------------------|----------|---------------------------------------|
+| Skill               | Agent    | Objectif                              |
+| ------------------- | -------- | ------------------------------------- |
 | `acl-brainstorming` | Analyste | Brainstorming pour un nouveau projet  |
 | `acl-prd`           | PM       | Créer un document d'exigences produit |
 ```
@@ -145,7 +145,7 @@ votre-projet/
 ### Types
 
 | Type                     | Exemple                       |
-|--------------------------|-------------------------------|
+| ------------------------ | ----------------------------- |
 | **Index/Page d’accueil** | `core-concepts/index.md`      |
 | **Concept**              | `what-are-agents.md`          |
 | **Fonctionnalité**       | `quick-dev.md`                |
@@ -221,7 +221,7 @@ votre-projet/
 ### Types
 
 | Type                     | Exemple               |
-|--------------------------|-----------------------|
+| ------------------------ | --------------------- |
 | **Index/Page d’accueil** | `workflows/index.md`  |
 | **Catalogue**            | `agents/index.md`     |
 | **Approfondissement**    | `document-project.md` |
@@ -303,12 +303,11 @@ Starlight génère la navigation « Sur cette page » à droite à partir de
 
 ### Format de tableau
 
-
 ```md
 ## Nom de catégorie
 
 | Terme        | Définition                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------------|
+| ------------ | ---------------------------------------------------------------------------------------------------------- |
 | **Agent**    | Personnalité IA spécialisée avec une expertise spécifique qui guide les utilisateurs dans les workflows.   |
 | **Workflow** | Processus guidé en plusieurs étapes qui orchestre les activités des agents IA pour produire des livrables. |
 ```
@@ -316,7 +315,7 @@ Starlight génère la navigation « Sur cette page » à droite à partir de
 ### Règles de définition
 
 | À faire                                        | À ne pas faire                                      |
-|------------------------------------------------|-----------------------------------------------------|
+| ---------------------------------------------- | --------------------------------------------------- |
 | Commencer par ce que c’est ou ce que cela fait | Commencer par « C’est... » ou « Un [terme] est... » |
 | Se limiter à 1-2 phrases                       | Écrire des explications de plusieurs paragraphes    |
 | Mettre le nom du terme en gras dans la cellule | Utiliser du texte simple pour les termes            |

@@ -15,14 +15,14 @@ Trang này liệt kê các agent mặc định của ACL (bộ Agile suite) đư
 - Trigger là các mã menu ngắn, ví dụ `CP`, cùng với các fuzzy match hiển thị trong menu của từng agent.
 - Việc tạo test QA do workflow skill `acl-qa-generate-e2e-tests` đảm nhận, khả dụng thông qua Developer agent. Module Test Architect (TEA) đầy đủ nằm trong một module riêng.
 
-| Agent | Skill ID | Trigger | Workflow chính |
-| --------------------------- | -------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Analyst (Mary) | `acl-analyst` | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP` | Brainstorm, Market Research, Domain Research, Technical Research, Create Brief, PRFAQ Challenge, Document Project |
-| Product Manager (John) | `acl-pm` | `CP`, `VP`, `EP`, `CE`, `IR`, `CC` | Create/Validate/Edit PRD, Create Epics and Stories, Implementation Readiness, Correct Course |
-| Architect (Winston) | `acl-architect` | `CA`, `IR` | Create Architecture, Implementation Readiness |
-| Developer (Amelia) | `acl-agent-dev` | `QD`, `QA`, `CR`, `SP`, `ER` | Quick Dev, QA Test Generation, Code Review, Sprint Planning, Epic Retrospective |
-| UX Designer (Sally) | `acl-ux-designer` | `CU` | Create UX Design |
-| Technical Writer (Paige) | `acl-tech-writer` | `DP`, `WD`, `US`, `MG`, `VD`, `EC` | Document Project, Write Document, Update Standards, Mermaid Generate, Validate Doc, Explain Concept |
+| Agent                    | Skill ID          | Trigger                                  | Workflow chính                                                                                                    |
+| ------------------------ | ----------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Analyst (Mary)           | `acl-analyst`     | `BP`, `MR`, `DR`, `TR`, `CB`, `WB`, `DP` | Brainstorm, Market Research, Domain Research, Technical Research, Create Brief, PRFAQ Challenge, Document Project |
+| Product Manager (John)   | `acl-pm`          | `CP`, `VP`, `EP`, `CE`, `IR`, `CC`       | Create/Validate/Edit PRD, Create Epics and Stories, Implementation Readiness, Correct Course                      |
+| Architect (Winston)      | `acl-architect`   | `CA`, `IR`                               | Create Architecture, Implementation Readiness                                                                     |
+| Developer (Amelia)       | `acl-agent-dev`   | `QD`, `QA`, `CR`, `SP`, `ER`             | Quick Dev, QA Test Generation, Code Review, Sprint Planning, Epic Retrospective                                   |
+| UX Designer (Sally)      | `acl-ux-designer` | `CU`                                     | Create UX Design                                                                                                  |
+| Technical Writer (Paige) | `acl-tech-writer` | `DP`, `WD`, `US`, `MG`, `VD`, `EC`       | Document Project, Write Document, Update Standards, Mermaid Generate, Validate Doc, Explain Concept               |
 
 ## Các Loại Trigger
 
@@ -38,13 +38,13 @@ Ví dụ: `CP` (Create PRD), `CA` (Create Architecture), `QD` (Quick Dev)
 
 Một số trigger sẽ mở cuộc hội thoại tự do thay vì chạy workflow có cấu trúc. Khi đó bạn cần mô tả yêu cầu của mình cùng với mã trigger.
 
-| Agent | Trigger | Nội dung cần cung cấp |
-| --- | --- | --- |
-| Technical Writer (Paige) | `WD` | Mô tả tài liệu cần viết |
-| Technical Writer (Paige) | `US` | Sở thích hoặc quy ước muốn thêm vào standards |
-| Technical Writer (Paige) | `MG` | Mô tả sơ đồ và loại sơ đồ (sequence, flowchart, v.v.) |
-| Technical Writer (Paige) | `VD` | Tài liệu cần kiểm tra và các vùng trọng tâm |
-| Technical Writer (Paige) | `EC` | Tên khái niệm cần giải thích |
+| Agent                    | Trigger | Nội dung cần cung cấp                                 |
+| ------------------------ | ------- | ----------------------------------------------------- |
+| Technical Writer (Paige) | `WD`    | Mô tả tài liệu cần viết                               |
+| Technical Writer (Paige) | `US`    | Sở thích hoặc quy ước muốn thêm vào standards         |
+| Technical Writer (Paige) | `MG`    | Mô tả sơ đồ và loại sơ đồ (sequence, flowchart, v.v.) |
+| Technical Writer (Paige) | `VD`    | Tài liệu cần kiểm tra và các vùng trọng tâm           |
+| Technical Writer (Paige) | `EC`    | Tên khái niệm cần giải thích                          |
 
 **Ví dụ:**
 

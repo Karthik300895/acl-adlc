@@ -1,5 +1,5 @@
 ---
-title: "Sơ đồ workflow"
+title: 'Sơ đồ workflow'
 description: Tài liệu trực quan về các giai đoạn, quy trình và đầu ra của ACL Method
 sidebar:
   order: 1
@@ -23,45 +23,45 @@ Lưu ý quan trọng cuối cùng: mọi quy trình dưới đây đều có th�
 
 Khám phá không gian vấn đề và xác nhận ý tưởng trước khi cam kết đi vào lập kế hoạch. [**Tìm hiểu từng công cụ làm gì và nên dùng khi nào**](../explanation/analysis-phase.md).
 
-| Quy trình | Mục đích | Tạo ra |
-| ------------------------------- | -------------------------------------------------------------------------- | ------------------------- |
-| `acl-brainstorming` | Động não ý tưởng dự án với sự điều phối của người dẫn dắt brainstorming | `brainstorming-report.md` |
-| `acl-deep-recon` | Xác thực giả định hoặc lựa chọn giữa các phương án — soạn prompt cho công cụ nghiên cứu chuyên sâu của bạn, xử lý báo cáo của nó, hoặc nghiên cứu ngay tại đây; thị trường, miền nghiệp vụ, kỹ thuật, cạnh tranh, tiếng nói người dùng, học thuật; đã kiểm chứng, có trích dẫn, có thể làm mới | Báo cáo hoặc bản tóm tắt nghiên cứu + bản tóm tắt HTML tùy chọn |
-| `acl-product-brief` | Ghi lại tầm nhìn chiến lược — phù hợp nhất khi concept của bạn đã rõ | `product-brief.md` |
-| `acl-prfaq` | Working Backwards — stress-test và rèn sắc concept sản phẩm của bạn | `prfaq-{project}.md` |
+| Quy trình           | Mục đích                                                                                                                                                                                                                                                                                       | Tạo ra                                                          |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `acl-brainstorming` | Động não ý tưởng dự án với sự điều phối của người dẫn dắt brainstorming                                                                                                                                                                                                                        | `brainstorming-report.md`                                       |
+| `acl-deep-recon`    | Xác thực giả định hoặc lựa chọn giữa các phương án — soạn prompt cho công cụ nghiên cứu chuyên sâu của bạn, xử lý báo cáo của nó, hoặc nghiên cứu ngay tại đây; thị trường, miền nghiệp vụ, kỹ thuật, cạnh tranh, tiếng nói người dùng, học thuật; đã kiểm chứng, có trích dẫn, có thể làm mới | Báo cáo hoặc bản tóm tắt nghiên cứu + bản tóm tắt HTML tùy chọn |
+| `acl-product-brief` | Ghi lại tầm nhìn chiến lược — phù hợp nhất khi concept của bạn đã rõ                                                                                                                                                                                                                           | `product-brief.md`                                              |
+| `acl-prfaq`         | Working Backwards — stress-test và rèn sắc concept sản phẩm của bạn                                                                                                                                                                                                                            | `prfaq-{project}.md`                                            |
 
 ## Giai đoạn 2: Lập kế hoạch
 
 Xác định cần xây gì và xây cho ai.
 
-| Quy trình | Mục đích | Tạo ra |
-| --------------------------- | ---------------------------------------- | ------------ |
-| `acl-prd` | Xác định yêu cầu (FR/NFR) | `PRD.md` |
-| `acl-ux`            | Thiết kế trải nghiệm người dùng khi UX là yếu tố quan trọng | `DESIGN.md`, `EXPERIENCE.md` |
-| `acl-spec`          | Chưng cất mọi đầu vào ý định (brief, PRD, bản ghi, ghi chú) thành hợp đồng `SPEC.md` súc tích + các tệp đi kèm — chốt CÁI GÌ trước CÁCH LÀM | `SPEC.md` + tệp đi kèm trong `{output_folder}/specs/spec-{slug}/` |
+| Quy trình  | Mục đích                                                                                                                                    | Tạo ra                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `acl-prd`  | Xác định yêu cầu (FR/NFR)                                                                                                                   | `PRD.md`                                                          |
+| `acl-ux`   | Thiết kế trải nghiệm người dùng khi UX là yếu tố quan trọng                                                                                 | `DESIGN.md`, `EXPERIENCE.md`                                      |
+| `acl-spec` | Chưng cất mọi đầu vào ý định (brief, PRD, bản ghi, ghi chú) thành hợp đồng `SPEC.md` súc tích + các tệp đi kèm — chốt CÁI GÌ trước CÁCH LÀM | `SPEC.md` + tệp đi kèm trong `{output_folder}/specs/spec-{slug}/` |
 
 ## Giai đoạn 3: Định hình giải pháp
 
 Quyết định cách xây và chia nhỏ công việc thành các story.
 
-| Quy trình | Mục đích | Tạo ra |
-| ----------------------------------------- | ------------------------------------------ | --------------------------- |
-| `acl-architecture` | Làm rõ các quyết định kỹ thuật | `architecture.md` kèm ADR |
-| `acl-create-epics-and-stories` | Phân rã yêu cầu thành các phần việc có thể triển khai | Các file epic chứa các story |
-| `acl-check-implementation-readiness` | Cổng kiểm tra trước khi triển khai | Quyết định PASS/CONCERNS/FAIL |
+| Quy trình                            | Mục đích                                              | Tạo ra                        |
+| ------------------------------------ | ----------------------------------------------------- | ----------------------------- |
+| `acl-architecture`                   | Làm rõ các quyết định kỹ thuật                        | `architecture.md` kèm ADR     |
+| `acl-create-epics-and-stories`       | Phân rã yêu cầu thành các phần việc có thể triển khai | Các file epic chứa các story  |
+| `acl-check-implementation-readiness` | Cổng kiểm tra trước khi triển khai                    | Quyết định PASS/CONCERNS/FAIL |
 
 ## Giai đoạn 4: Triển khai
 
 Mọi đầu vào triển khai đều hội tụ vào `acl-quick-dev`. Workflow này nhận ý định trực tiếp, issue, đặc tả hoặc story đã lập kế hoạch, rồi chọn mức làm rõ, lập kế hoạch, triển khai và review phù hợp.
 
-| Quy trình | Mục đích | Tạo ra |
-| -------------------------- | ------------------------------------------------------------------------ | -------------------------------- |
-| `acl-quick-dev` | Biến ý định trực tiếp hoặc story đã lập kế hoạch thành mã nguồn đã triển khai và review | `spec-*.md` + mã nguồn |
-| `acl-sprint-planning` | Khởi tạo theo dõi, thường chạy một lần mỗi dự án để sắp thứ tự chu trình phát triển | `sprint-status.yaml` |
-| `acl-code-review` | Kiểm tra chất lượng phần triển khai | Được duyệt hoặc yêu cầu thay đổi |
-| `acl-correct-course` | Xử lý thay đổi lớn giữa sprint | Kế hoạch cập nhật hoặc định tuyến lại |
-| `acl-sprint-status` | Theo dõi tiến độ sprint và trạng thái story | Cập nhật trạng thái sprint |
-| `acl-retrospective` | Review sau khi hoàn tất epic | Bài học rút ra |
+| Quy trình             | Mục đích                                                                                | Tạo ra                                |
+| --------------------- | --------------------------------------------------------------------------------------- | ------------------------------------- |
+| `acl-quick-dev`       | Biến ý định trực tiếp hoặc story đã lập kế hoạch thành mã nguồn đã triển khai và review | `spec-*.md` + mã nguồn                |
+| `acl-sprint-planning` | Khởi tạo theo dõi, thường chạy một lần mỗi dự án để sắp thứ tự chu trình phát triển     | `sprint-status.yaml`                  |
+| `acl-code-review`     | Kiểm tra chất lượng phần triển khai                                                     | Được duyệt hoặc yêu cầu thay đổi      |
+| `acl-correct-course`  | Xử lý thay đổi lớn giữa sprint                                                          | Kế hoạch cập nhật hoặc định tuyến lại |
+| `acl-sprint-status`   | Theo dõi tiến độ sprint và trạng thái story                                             | Cập nhật trạng thái sprint            |
+| `acl-retrospective`   | Review sau khi hoàn tất epic                                                            | Bài học rút ra                        |
 
 ### Đầu vào trực tiếp và đã lập kế hoạch
 

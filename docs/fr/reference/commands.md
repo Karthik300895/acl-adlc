@@ -12,8 +12,8 @@ Les skills sont des prompts pré-construits qui chargent des agents, exécutent 
 ACL offre deux façons de démarrer un travail, chacune ayant un usage différent.
 
 | Mécanisme                     | Comment l’invoquer                                            | Ce qui se passe                                                                                |
-|-------------------------------|---------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| **Skill**                     | Tapez le nom du skill (ex. `acl-help`) dans votre IDE        | Charge directement un agent, exécute un workflow ou lance une tâche                            |
+| ----------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Skill**                     | Tapez le nom du skill (ex. `acl-help`) dans votre IDE         | Charge directement un agent, exécute un workflow ou lance une tâche                            |
 | **Déclencheur du menu agent** | Chargez d’abord un agent, puis tapez un code court (ex. `QD`) | L’agent interprète le code et démarre le workflow correspondant tout en préservant son persona |
 
 Les déclencheurs du menu agent nécessitent une session agent active. Utilisez les skills lorsque vous savez quel workflow vous voulez. Utilisez les déclencheurs lorsque vous travaillez déjà avec un agent et souhaitez changer de tâche sans quitter la conversation.
@@ -25,7 +25,7 @@ Lorsque vous exécutez `npx acl-adlc install`, l’installateur lit les manifest
 L’installateur utilise des modèles pour chaque type de skill :
 
 | Type de skill         | Ce que fait le fichier généré                                                  |
-|-----------------------|--------------------------------------------------------------------------------|
+| --------------------- | ------------------------------------------------------------------------------ |
 | **Lanceur d’agent**   | Charge le fichier de persona de l’agent, active son menu et reste en caractère |
 | **Skill de workflow** | Charge la configuration du workflow et suit ses étapes                         |
 | **Skill de tâche**    | Charge un fichier de tâche autonome et suit ses instructions                   |
@@ -40,7 +40,7 @@ Si vous ajoutez ou supprimez des modules, relancez l’installateur. Il régén�
 L’installateur écrit les fichiers de skill dans un répertoire spécifique à l’IDE à l’intérieur de votre projet. Le chemin exact dépend de l’IDE que vous avez sélectionné lors de l’installation.
 
 | IDE / CLI   | Répertoire des skills                                      |
-|-------------|------------------------------------------------------------|
+| ----------- | ---------------------------------------------------------- |
 | Claude Code | `.claude/skills/`                                          |
 | Cursor      | `.agents/skills/`                                          |
 | Windsurf    | `.agents/skills/`                                          |
@@ -77,8 +77,8 @@ Les répertoires de skills générés dans votre projet sont la liste de référ
 
 Les skills d’agent chargent un persona[^2] IA spécialisé avec un rôle défini, un style de communication et un menu de workflows. Une fois chargé, l’agent reste en caractère et répond aux déclencheurs du menu.
 
-| Exemple de skill       | Agent                  | Rôle                                                        |
-|------------------------|------------------------|-------------------------------------------------------------|
+| Exemple de skill      | Agent                  | Rôle                                                        |
+| --------------------- | ---------------------- | ----------------------------------------------------------- |
 | `acl-agent-dev`       | Amelia (Développeur)   | Implémente les stories avec une adhérence stricte aux specs |
 | `acl-agent-pm`        | John (Product Manager) | Crée, met à jour et valide les PRDs[^1]                     |
 | `acl-agent-architect` | Winston (Architecte)   | Conçoit l’architecture système                              |
@@ -89,12 +89,12 @@ Consultez [Agents](./agents.md) pour la liste complète des agents par défaut e
 
 Les skills de workflow exécutent un processus structuré en plusieurs étapes sans charger d’abord un persona d’agent. Ils chargent une configuration de workflow et suivent ses étapes.
 
-| Exemple de skill                | Objectif                                                                                                                     |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| Exemple de skill               | Objectif                                                                                                                     |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | `acl-product-brief`            | Créer ou mettre à jour un product brief[^3] — découverte guidée lorsque votre concept est clair                              |
 | `acl-prfaq`                    | Défi [PRFAQ Working Backwards](../explanation/analysis-phase.md#prfaq-working-backwards) pour éprouver votre concept produit |
 | `acl-prd`                      | Créer, mettre à jour ou valider un PRD[^1]                                                                                   |
-| `acl-architecture`      | Concevoir l’architecture système                                                                                             |
+| `acl-architecture`             | Concevoir l’architecture système                                                                                             |
 | `acl-create-epics-and-stories` | Créer des epics et des stories                                                                                               |
 | `acl-code-review`              | Effectuer une revue de code                                                                                                  |
 | `acl-quick-dev`                | Implémenter une intention directe, une issue, une fonctionnalité, un correctif ou une story planifiée                        |
@@ -110,11 +110,13 @@ Les tâches et outils sont des opérations autonomes qui ne nécessitent pas de 
 `acl-help` est votre interface principale pour découvrir quoi faire ensuite. Il inspecte votre projet, comprend les requêtes en langage naturel et recommande la prochaine étape requise ou optionnelle en fonction de vos modules installés.
 
 :::note[Exemple]
+
 ```
 acl-help
 acl-help J'ai une idée de SaaS et je connais toutes les fonctionnalités. Par où commencer ?
 acl-help Quelles sont mes options pour le design UX ?
 ```
+
 :::
 
 **Autres tâches et outils principaux**
@@ -136,5 +138,7 @@ Tous les skills utilisent le préfixe `acl-` suivi d’un nom descriptif (ex. `a
 ## Glossaire
 
 [^1]: PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur ce qui doit être construit et pourquoi.
+
 [^2]: Persona : dans le contexte de ACL, un persona désigne un agent IA avec un rôle défini, un style de communication et une expertise spécifiques (ex. Mary l’analyste, Winston l’architecte). Chaque persona garde son « caractère » pendant les interactions.
+
 [^3]: Brief : document synthétique qui formalise le contexte, les objectifs, le périmètre et les contraintes d’un projet ou d’une demande, afin d’aligner rapidement les parties prenantes avant le travail détaillé.

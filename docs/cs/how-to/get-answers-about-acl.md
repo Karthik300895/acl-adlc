@@ -1,5 +1,5 @@
 ---
-title: "Jak získat odpovědi o ACL"
+title: 'Jak získat odpovědi o ACL'
 description: Použijte LLM k rychlému zodpovězení vašich otázek o ACL
 sidebar:
   order: 4
@@ -10,6 +10,7 @@ sidebar:
 **Nejrychlejší způsob, jak získat odpovědi o ACL, je skill `acl-help`.** Tento inteligentní průvodce zodpoví více než 80 % všech otázek a je vám k dispozici přímo ve vašem IDE při práci.
 
 ACL-Help je víc než vyhledávací nástroj — umí:
+
 - **Prozkoumat váš projekt** a zjistit, co už bylo dokončeno
 - **Rozumět přirozenému jazyku** — ptejte se běžnou řečí
 - **Přizpůsobit se nainstalovaným modulům** — zobrazí relevantní možnosti
@@ -38,6 +39,7 @@ acl-help Show me what's been done so far
 ```
 
 ACL-Help odpoví:
+
 - Co je doporučeno pro vaši situaci
 - Jaký je první povinný úkol
 - Jak vypadá zbytek procesu
@@ -45,6 +47,7 @@ ACL-Help odpoví:
 ## Kdy použít tohoto průvodce
 
 Použijte tuto sekci, když:
+
 - Chcete pochopit architekturu nebo interní fungování ACL
 - Potřebujete odpovědi mimo to, co ACL-Help nabízí
 - Zkoumáte ACL před instalací
@@ -54,11 +57,11 @@ Použijte tuto sekci, když:
 
 ### 1. Vyberte si zdroj
 
-| Zdroj                | Nejlepší pro                              | Příklady                     |
-| -------------------- | ----------------------------------------- | ---------------------------- |
-| **Složka `_acl`**   | Jak ACL funguje — agenti, workflow, prompty | „Co dělá PM agent?“        |
-| **Celý GitHub repo** | Historie, instalátor, architektura        | „Co se změnilo ve v6?“      |
-| **`llms-full.txt`**  | Rychlý přehled z dokumentace              | „Vysvětli čtyři fáze ACL“  |
+| Zdroj                | Nejlepší pro                                | Příklady                  |
+| -------------------- | ------------------------------------------- | ------------------------- |
+| **Složka `_acl`**    | Jak ACL funguje — agenti, workflow, prompty | „Co dělá PM agent?“       |
+| **Celý GitHub repo** | Historie, instalátor, architektura          | „Co se změnilo ve v6?“    |
+| **`llms-full.txt`**  | Rychlý přehled z dokumentace                | „Vysvětli čtyři fáze ACL“ |
 
 Složka `_acl` se vytvoří při instalaci ACL. Pokud ji ještě nemáte, naklonujte si repo.
 
@@ -98,12 +101,12 @@ Přímé odpovědi o ACL — jak agenti fungují, co dělají workflow, proč js
 
 Zkusili jste přístup přes LLM a stále potřebujete pomoc? Nyní máte mnohem lepší otázku k položení.
 
-| Kanál                     | Použijte pro                                |
-| ------------------------- | ------------------------------------------- |
-| `#acl-adlc-help`       | Rychlé otázky (chat v reálném čase)         |
-| `help-requests` fórum     | Detailní otázky (vyhledatelné, trvalé)      |
-| `#suggestions-feedback`   | Nápady a požadavky na funkce                |
-| `#report-bugs-and-issues` | Hlášení chyb                                |
+| Kanál                     | Použijte pro                           |
+| ------------------------- | -------------------------------------- |
+| `#acl-adlc-help`          | Rychlé otázky (chat v reálném čase)    |
+| `help-requests` fórum     | Detailní otázky (vyhledatelné, trvalé) |
+| `#suggestions-feedback`   | Nápady a požadavky na funkce           |
+| `#report-bugs-and-issues` | Hlášení chyb                           |
 
 **Discord:** [discord.gg/gk8jAdXWmj](https://discord.gg/gk8jAdXWmj)
 

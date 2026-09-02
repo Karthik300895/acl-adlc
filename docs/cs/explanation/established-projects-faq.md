@@ -1,9 +1,10 @@
 ---
-title: "FAQ pro existující projekty"
+title: 'FAQ pro existující projekty'
 description: Časté otázky o používání ACL Method na existujících projektech
 sidebar:
   order: 10
 ---
+
 Rychlé odpovědi na časté otázky o práci na existujících projektech s ACL Method (ACL).
 
 ## Otázky

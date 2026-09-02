@@ -1,5 +1,5 @@
 ---
-title: "Jak upgradovat na v6"
+title: 'Jak upgradovat na v6'
 description: Migrace z ACL v4 na v6
 sidebar:
   order: 3
@@ -14,9 +14,10 @@ Použijte instalátor ACL pro upgrade z v4 na v6, který zahrnuje automatickou d
 - Máte existující plánovací artefakty k zachování
 
 :::note[Předpoklady]
+
 - Node.js 20.12+
 - Existující instalace ACL v4
-:::
+  :::
 
 ## Kroky
 
@@ -82,8 +83,8 @@ váš-projekt/
 
 ## Migrace modulů
 
-| Modul v4                      | Stav v6                            |
-| ----------------------------- | ---------------------------------- |
+| Modul v4                     | Stav v6                            |
+| ---------------------------- | ---------------------------------- |
 | `.acl-2d-phaser-game-dev`    | Integrován do modulu BMGD          |
 | `.acl-2d-unity-game-dev`     | Integrován do modulu BMGD          |
 | `.acl-godot-game-dev`        | Integrován do modulu BMGD          |
@@ -92,9 +93,9 @@ váš-projekt/
 
 ## Klíčové změny
 
-| Koncept         | v4                                   | v6                                     |
-| --------------- | ------------------------------------ | -------------------------------------- |
+| Koncept         | v4                                 | v6                                    |
+| --------------- | ---------------------------------- | ------------------------------------- |
 | **Core**        | `_acl-core` byl vlastně ACL Method | `_acl/core/` je univerzální framework |
-| **Method**      | `_acl-adlc`                       | `_acl/acl/`                           |
-| **Konfigurace** | Přímá editace souborů                | `config.yaml` pro každý modul          |
-| **Dokumenty**   | Vyžadované nastavení shardů          | Plně flexibilní, auto-skenování        |
+| **Method**      | `_acl-adlc`                        | `_acl/acl/`                           |
+| **Konfigurace** | Přímá editace souborů              | `config.yaml` pro každý modul         |
+| **Dokumenty**   | Vyžadované nastavení shardů        | Plně flexibilní, auto-skenování       |

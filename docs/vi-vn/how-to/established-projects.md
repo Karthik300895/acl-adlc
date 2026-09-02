@@ -1,5 +1,5 @@
 ---
-title: "Dự án đã tồn tại"
+title: 'Dự án đã tồn tại'
 description: Cách sử dụng ACL Method trên các codebase hiện có
 sidebar:
   order: 7
@@ -10,10 +10,11 @@ Sử dụng ACL Method hiệu quả khi làm việc với các dự án hiện c
 Tài liệu này mô tả workflow cốt lõi để on-board vào các dự án đã tồn tại bằng ACL Method.
 
 :::note[Điều kiện tiên quyết]
+
 - Đã cài ACL Method (`npx acl-adlc install`)
 - Một codebase hiện có mà bạn muốn làm việc cùng
 - Quyền truy cập vào một IDE tích hợp AI (Claude Code hoặc Cursor)
-:::
+  :::
 
 ## Bước 1: Dọn dẹp các tài liệu lập kế hoạch đã hoàn tất
 
@@ -36,6 +37,7 @@ acl-generate-project-context
 ```
 
 Workflow này sẽ quét codebase để nhận diện:
+
 - Stack công nghệ và các phiên bản
 - Các pattern tổ chức code
 - Quy ước đặt tên
@@ -79,10 +81,10 @@ ACL-Help cũng **tự động chạy ở cuối mỗi workflow**, đưa ra hư�
 
 Mọi implementation đều dùng `acl-quick-dev`; phạm vi quyết định ngữ cảnh cần chuẩn bị trước:
 
-| Phạm vi | Cách tiếp cận được khuyến nghị |
-| --- | --- |
-| **Cập nhật hoặc bổ sung rõ ràng** | Đi thẳng vào `acl-quick-dev` với yêu cầu, issue hoặc spec hiện có. |
-| **Thay đổi hoặc bổ sung lớn** | Chuẩn bị PRD, UX, kiến trúc, epic, story và sprint context hữu ích, rồi đưa phần việc đã chọn vào `acl-quick-dev`. |
+| Phạm vi                           | Cách tiếp cận được khuyến nghị                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Cập nhật hoặc bổ sung rõ ràng** | Đi thẳng vào `acl-quick-dev` với yêu cầu, issue hoặc spec hiện có.                                                 |
+| **Thay đổi hoặc bổ sung lớn**     | Chuẩn bị PRD, UX, kiến trúc, epic, story và sprint context hữu ích, rồi đưa phần việc đã chọn vào `acl-quick-dev`. |
 
 ### Khi tạo PRD
 

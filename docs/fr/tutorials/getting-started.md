@@ -1,5 +1,5 @@
 ---
-title: "Premiers pas"
+title: 'Premiers pas'
 description: Installer ACL et développer votre premier projet
 ---
 
@@ -14,11 +14,12 @@ Accélérez le développement de vos applications grâce à des workflows alimen
 - Utiliser efficacement les agents et les workflows
 
 :::note[Prérequis]
+
 - **Node.js 20.12+** — Nécessaire pour l’installation
 - **Git** — Recommandé pour la gestion de versions
 - **IDE avec IA intégrée** — Claude Code, Cursor ou équivalent
 - **Une idée de projet** — Même simple, elle fera l’affaire pour commencer
-:::
+  :::
 
 :::tip[Le chemin le plus rapide]
 **Installer** → `npx acl-adlc install`
@@ -67,22 +68,22 @@ Après avoir installé ACL, invoquez immédiatement le skill `acl-help`. Il dét
 
 ACL vous aide à développer des logiciels grâce à des workflows guidés par des agents IA spécialisés. Le processus s’articule en quatre phases :
 
-| Phase | Nom            | Ce qui se passe                                                |
-|-------|----------------|----------------------------------------------------------------|
-| 1     | Analyse        | Brainstorming, recherche, product brief ou PRFAQ _(optionnel)_ |
-| 2     | Planification  | Définir les exigences (PRD[^1] ou spécification technique)     |
-| 3     | Solutioning    | Concevoir l’architecture selon les besoins                      |
+| Phase | Nom            | Ce qui se passe                                                                                    |
+| ----- | -------------- | -------------------------------------------------------------------------------------------------- |
+| 1     | Analyse        | Brainstorming, recherche, product brief ou PRFAQ _(optionnel)_                                     |
+| 2     | Planification  | Définir les exigences (PRD[^1] ou spécification technique)                                         |
+| 3     | Solutioning    | Concevoir l’architecture selon les besoins                                                         |
 | 4     | Implémentation | Implémenter chaque changement ou story planifiée, éventuellement via une orchestration automatisée |
 
 **[Ouvrez la carte des workflows](../reference/workflow-map.md)** pour explorer les phases, les workflows et la gestion du contexte.
 
 La profondeur de planification reste flexible :
 
-| Profondeur | Idéal pour | Contexte disponible avant l’implémentation |
-|---|---|---|
-| **Directe** | Corrections, fonctionnalités, issues ou spécifications claires | Intention, issue ou spécification |
-| **Planification produit** | Produits, plateformes et fonctionnalités complexes | PRD et conception UX optionnelle |
-| **Solutioning complet** | Initiatives coordonnées, risquées ou multi-systèmes | PRD, UX, architecture, epics, stories et plan de sprint |
+| Profondeur                | Idéal pour                                                     | Contexte disponible avant l’implémentation              |
+| ------------------------- | -------------------------------------------------------------- | ------------------------------------------------------- |
+| **Directe**               | Corrections, fonctionnalités, issues ou spécifications claires | Intention, issue ou spécification                       |
+| **Planification produit** | Produits, plateformes et fonctionnalités complexes             | PRD et conception UX optionnelle                        |
+| **Solutioning complet**   | Initiatives coordonnées, risquées ou multi-systèmes            | PRD, UX, architecture, epics, stories et plan de sprint |
 
 :::note
 Il ne s’agit pas de voies d’implémentation distinctes. Tous les points d’entrée convergent vers `acl-quick-dev`; la planification ne change que la quantité de contexte disponible.
@@ -154,8 +155,7 @@ Pour les travaux qui bénéficient d’une planification produit :
 - **Create** — exploration guidée à partir de zéro ; le skill nomme le dossier de travail et vous accompagne jusqu’à l’obtention d’un PRD dont vous serez fier
 - **Update** — pointez vers un PRD existant et un changement à apporter ; le skill met en évidence les conflits avant d’appliquer les modifications
 - **Validate** — critiquez un PRD finalisé à l’aide d’une liste de contrôle et générez un rapport HTML des constatations
-:::
-
+  :::
 
 :::note[Design UX (optionnel)]
 Si votre projet comporte une interface utilisateur, invoquez l'**agent UX Designer** (`acl-agent-ux-designer`) et lancez le workflow de design UX (`acl-ux`) après avoir créé votre PRD.
@@ -172,14 +172,14 @@ Si votre projet comporte une interface utilisateur, invoquez l'**agent UX Design
 **Créer les epics et les stories**
 
 :::tip[Amélioration V6]
-Les epics et stories sont désormais créés *après* l’architecture. Cela produit des stories de meilleure qualité, car les décisions d’architecture (choix de la base de données, patterns d’API, pile technologique) influencent directement la façon dont le travail doit être découpé.
+Les epics et stories sont désormais créés _après_ l’architecture. Cela produit des stories de meilleure qualité, car les décisions d’architecture (choix de la base de données, patterns d’API, pile technologique) influencent directement la façon dont le travail doit être découpé.
 :::
 
 1. Invoquez l'**agent PM** (`acl-agent-pm`) dans un nouveau chat
 2. Exécutez `acl-create-epics-and-stories` (`acl-create-epics-and-stories`)
 3. Le workflow s’appuie sur le PRD et l’architecture pour créer des stories techniquement fondées
 
-**Vérification de la préparation à l’implémentation** *(fortement recommandée)*
+**Vérification de la préparation à l’implémentation** _(fortement recommandée)_
 
 1. Invoquez l'**agent Architecte** (`acl-agent-architect`) dans un nouveau chat
 2. Exécutez `acl-check-implementation-readiness` (`acl-check-implementation-readiness`)
@@ -201,10 +201,10 @@ Lorsque Quick Dev retrouve la story sélectionnée dans ce fichier, il la passe 
 
 Pour chaque changement direct ou story planifiée, répétez ce cycle dans de nouveaux chats :
 
-| Étape | Agent | Workflow            | Commande            | Objectif                             |
-|-------|-------|---------------------|---------------------|--------------------------------------|
-| 1     | DEV   | `acl-quick-dev`    | `acl-quick-dev`    | Clarifier, planifier, implémenter, réviser et présenter |
-| 2     | DEV   | `acl-code-review`  | `acl-code-review`  | Validation qualité supplémentaire *(recommandée)* |
+| Étape | Agent | Workflow          | Commande          | Objectif                                                |
+| ----- | ----- | ----------------- | ----------------- | ------------------------------------------------------- |
+| 1     | DEV   | `acl-quick-dev`   | `acl-quick-dev`   | Clarifier, planifier, implémenter, réviser et présenter |
+| 2     | DEV   | `acl-code-review` | `acl-code-review` | Validation qualité supplémentaire _(recommandée)_       |
 
 La revue de Quick Dev fait partie de chaque exécution. `acl-code-review` est une couche facultative de validation indépendante dans un contexte neuf.
 
@@ -237,17 +237,17 @@ your-project/
 
 ## Référence rapide
 
-| Workflow                              | Commande                              | Agent     | Objectif                                                        |
-|---------------------------------------|---------------------------------------|-----------|-----------------------------------------------------------------|
-| **`acl-help`** ⭐                    | `acl-help`                           | Tous      | **Votre guide intelligent — posez n’importe quelle question !**  |
-| `acl-prd`                            | `acl-prd`                            | Tous      | Créer, mettre à jour ou valider un PRD                          |
-| `acl-architecture`            | `acl-architecture`            | Architect | Créer le document d’architecture                                |
-| `acl-generate-project-context`       | `acl-generate-project-context`       | Analyst   | Créer le fichier de contexte projet                             |
-| `acl-create-epics-and-stories`       | `acl-create-epics-and-stories`       | PM        | Décomposer le PRD en epics                                      |
-| `acl-check-implementation-readiness` | `acl-check-implementation-readiness` | Architect | Valider la cohérence de la planification                        |
-| `acl-sprint-planning`                | `acl-sprint-planning`                | DEV       | Initialiser le suivi de sprint                                  |
+| Workflow                             | Commande                             | Agent     | Objectif                                                                            |
+| ------------------------------------ | ------------------------------------ | --------- | ----------------------------------------------------------------------------------- |
+| **`acl-help`** ⭐                    | `acl-help`                           | Tous      | **Votre guide intelligent — posez n’importe quelle question !**                     |
+| `acl-prd`                            | `acl-prd`                            | Tous      | Créer, mettre à jour ou valider un PRD                                              |
+| `acl-architecture`                   | `acl-architecture`                   | Architect | Créer le document d’architecture                                                    |
+| `acl-generate-project-context`       | `acl-generate-project-context`       | Analyst   | Créer le fichier de contexte projet                                                 |
+| `acl-create-epics-and-stories`       | `acl-create-epics-and-stories`       | PM        | Décomposer le PRD en epics                                                          |
+| `acl-check-implementation-readiness` | `acl-check-implementation-readiness` | Architect | Valider la cohérence de la planification                                            |
+| `acl-sprint-planning`                | `acl-sprint-planning`                | DEV       | Initialiser le suivi de sprint                                                      |
 | `acl-quick-dev`                      | `acl-quick-dev`                      | DEV       | Implémenter une intention, une issue, une fonctionnalité, un correctif ou une story |
-| `acl-code-review`                    | `acl-code-review`                    | DEV       | Revoir le code implémenté                                       |
+| `acl-code-review`                    | `acl-code-review`                    | DEV       | Revoir le code implémenté                                                           |
 
 ## Questions fréquentes
 
@@ -282,18 +282,23 @@ ACL-Help inspecte votre projet, détecte ce que vous avez accompli et vous indiq
 ## Points clés à retenir
 
 :::tip[Retenez ceci]
+
 - **Commencez par `acl-help`** — Votre guide intelligent qui connaît votre projet et vos options
 - **Utilisez toujours de nouveaux chats** — Démarrez un nouveau chat pour chaque workflow
 - **La profondeur de planification varie** — une intention directe et une story entièrement planifiée entrent toutes deux dans `acl-quick-dev`
 - **ACL-Help se lance automatiquement** — Chaque workflow se termine par des conseils sur la prochaine étape
-:::
+  :::
 
 Prêt à commencer ? Installez ACL, invoquez `acl-help`, et laissez votre guide intelligent vous accompagner.
 
 ## Glossaire
 
 [^1]: PRD (Product Requirements Document) : document de référence qui décrit les objectifs du produit, les besoins utilisateurs, les fonctionnalités attendues, les contraintes et les critères de succès, afin d’aligner les équipes sur ce qui doit être construit et pourquoi.
+
 [^2]: Epic : grand ensemble de fonctionnalités ou de travaux qui peut être décomposé en plusieurs user stories.
+
 [^3]: Story (User Story) : description courte et simple d’une fonctionnalité du point de vue de l’utilisateur ou du client. Elle représente une unité de travail implémentable en un court délai.
+
 [^4]: UX (User Experience) : expérience utilisateur, englobant l’ensemble des interactions et perceptions d’un utilisateur face à un produit. Le design UX vise à créer des interfaces intuitives, efficaces et agréables en tenant compte des besoins, des comportements et du contexte d’utilisation.
+
 [^5]: Multi-tenant : architecture logicielle où une seule instance de l’application sert plusieurs clients (tenants) tout en maintenant leurs données isolées et sécurisées les unes des autres.
