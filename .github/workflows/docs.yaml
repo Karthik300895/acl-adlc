@@ -53,9 +53,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
       - name: Build documentation
         env:
           # Override site URL from GitHub repo variable if set.
@@ -75,6 +72,7 @@ jobs:
           path: build/site
 
   deploy:
+    # Requires GitHub Pages enabled: Settings → Pages → Source: GitHub Actions
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
