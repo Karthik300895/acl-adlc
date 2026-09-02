@@ -1,12 +1,15 @@
-# Hosted Agent Generation from Markdown Studio
+---
+title: "Hosted Agent Generation from Markdown Studio"
+description: Specification and migration guide for Markdown Studio agent generation, Next Step modal, local testing, and hosted deployment
+sidebar:
+  order: 15
+---
 
 > **Purpose:** Specification and migration guide for Markdown Studio agent generation — from your older `ACL-ADLC-V1` repo through the current `ACL-ACLC/ACL-ADLC-V1` implementation, including the **Next Step suggestion modal**, local testing, and the remaining work for full hosted (GitHub) deployment.
 
 **Last updated:** 2026-03-01  
 **Current framework version:** `acl-adlc@6.11.7` (repo: `ACL-ACLC/ACL-ADLC-V1`)  
 **This repo:** `Documents/react/ACL-ADLC-V1` published as `acl-adlc-v1@6.11.0`
-
----
 
 ## Table of contents
 
@@ -284,7 +287,7 @@ $env:ACL_PROJECT_ROOT = "c:\Users\karthik.r\Documents\react\fleet-360-new"
 node "c:\Users\karthik.r\Documents\react\ACL-ACLC\ACL-ADLC-V1\tools\studio-server.js"
 ```
 
-Open: **http://localhost:3333/markdown.html**
+Open: [http://localhost:3333/markdown.html](http://localhost:3333/markdown.html)
 
 Supports: list, edit, save, **Next Step modal**, **`/api/generate-step`**
 
@@ -295,7 +298,7 @@ Set-Location "c:\Users\karthik.r\Documents\react\fleet-360-new"
 npm run dev
 ```
 
-Open: **http://localhost:5173/markdown.html**
+Open: [http://localhost:5173/markdown.html](http://localhost:5173/markdown.html)
 
 Supports: list, edit, save via Vite middleware.  
 Does **not** support `/api/generate-step` (agent generation falls back to empty template).

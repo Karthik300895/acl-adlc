@@ -271,6 +271,13 @@ function extractMarkdownRefs(filePath, content) {
     while ((match = regex.exec(stripped)) !== null) {
       const raw = match[1];
       if (!isResolvable(raw)) continue;
+      const lineStart = stripped.lastIndexOf('\n', match.index) + 1;
+      const lineEnd = stripped.indexOf('\n', match.index);
+      const lineText = stripped.slice(lineStart, lineEnd === -1 ? undefined : lineEnd);
+      const contextStart = Math.max(0, match.index - 400);
+      const contextEnd = Math.min(stripped.length, match.index + raw.length + 400);
+      const context = stripped.slice(contextStart, contextEnd);
+      if (/To be generated|incomplete_docs/i.test(lineText) || /To be generated|incomplete_docs/i.test(context)) continue;
       refs.push({ file: filePath, raw, type, line: offsetToLine(stripped, match.index) });
     }
   }

@@ -1791,8 +1791,7 @@ class UI {
       return true;
     }
     return await prompts.confirm({
-      message:
-        'Scaffold ACL Docs Console? (acl-docs-console.html + API — managers Approve/Reject MD frontmatter status)',
+      message: 'Scaffold ACL Docs Console? (acl-docs-console.html + API — managers Approve/Reject MD frontmatter status)',
       default: true,
     });
   }

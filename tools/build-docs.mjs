@@ -39,6 +39,7 @@ const LLM_EXCLUDE_PATTERNS = [
   'faq',
   'reference/glossary/',
   'explanation/game-dev/',
+  'explanation/hosted-agent-generation-feature.md',
   'bmgd/',
   // Note: Files/dirs starting with _ (like _STYLE_GUIDE.md, _archive/) are excluded in shouldExcludeFromLlm()
 ];

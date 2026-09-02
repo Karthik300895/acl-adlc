@@ -20,9 +20,9 @@
   "author": "Karthick N",
   "main": "tools/installer/acl-cli.js",
   "bin": {
-    "acl-adlc-v1": "tools/installer/acl-cli.js",
     "acl": "tools/installer/acl-cli.js",
-    "acl-adlc": "tools/installer/acl-cli.js"
+    "acl-adlc": "tools/installer/acl-cli.js",
+    "acl-adlc-v1": "tools/installer/acl-cli.js"
   },
   "files": [
     "src",

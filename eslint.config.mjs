@@ -32,6 +32,8 @@ export default [
       'tools/template-test-generator/test-scenarios/**',
       'src/modules/*/sub-modules/**',
       '.bundler-temp/**',
+      // Vercel serverless handler — ESM export default
+      'src/docs-console/**',
       // Lock files — generated, gitignored, not project code
       'pnpm-lock.yaml',
       'bun.lock',
