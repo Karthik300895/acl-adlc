@@ -1,6 +1,9 @@
 # Test fixtures with intentionally broken/malformed files
 test/fixtures/**
 
+# npm lockfile — generated on Windows with CRLF; not worth reformatting in CI
+package-lock.json
+
 # Contributor Covenant (external standard)
 CODE_OF_CONDUCT.md
 
