@@ -31,6 +31,19 @@ jobs:
           # Full history needed for Starlight's lastUpdated timestamps (git log)
           fetch-depth: 0
 
+      - name: Ensure docs content symlink
+        run: |
+          LINK="website/src/content/docs"
+          TARGET="../../../docs"
+          if [ -L "$LINK" ] && [ -e "$LINK" ]; then
+            echo "docs symlink is valid: $(readlink "$LINK")"
+          else
+            echo "Recreating docs symlink for Starlight content loader"
+            rm -f "$LINK"
+            ln -s "$TARGET" "$LINK"
+          fi
+          test -d "$LINK" || { echo "docs content directory is missing after symlink setup"; exit 1; }
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -40,12 +53,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Build documentation
         env:
-          # Override site URL from GitHub repo variable if set
-          # Otherwise, astro.config.mjs will compute from GITHUB_REPOSITORY
+          # Override site URL from GitHub repo variable if set.
+          # Otherwise, astro.config.mjs computes https://<owner>.github.io/<repo>.
           SITE_URL: ${{ vars.SITE_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: npm run docs:build
+
+      - name: Verify build output
+        run: |
+          test -d build/site || { echo "build/site was not created"; exit 1; }
+          test -f build/site/index.html || { echo "build/site/index.html is missing"; exit 1; }
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -58,6 +80,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
