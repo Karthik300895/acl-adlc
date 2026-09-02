@@ -155,6 +155,385 @@
         min-height: 0;
       }
 
+      .sidebar-view-toggle {
+        display: flex;
+        padding: 0.65rem 0.85rem 0;
+        gap: 0.35rem;
+        background: var(--bg-surface);
+        flex-shrink: 0;
+      }
+
+      .sidebar-view-btn {
+        flex: 1;
+        background: var(--bg-canvas);
+        border: 1px solid var(--border-color);
+        padding: 0.5rem 0.65rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        transition: all 0.15s ease;
+      }
+      .sidebar-view-btn:hover {
+        color: var(--text-primary);
+        border-color: #afb8c1;
+      }
+      .sidebar-view-btn.active {
+        background: #ffffff;
+        color: var(--accent-blue);
+        border-color: var(--accent-blue);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .sidebar-panel {
+        display: none;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .sidebar-panel.active {
+        display: flex;
+      }
+
+      .sidebar-dashboard-nav {
+        padding: 0.85rem;
+        overflow-y: auto;
+      }
+
+      .sidebar-dashboard-nav-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--text-muted);
+        margin-bottom: 0.65rem;
+      }
+
+      .sidebar-phase-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.55rem 0.65rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--bg-canvas);
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+        cursor: pointer;
+        transition: border-color 0.15s ease;
+      }
+      .sidebar-phase-link:hover {
+        border-color: var(--accent-blue);
+      }
+      .sidebar-phase-link.disabled {
+        opacity: 0.55;
+        cursor: default;
+      }
+      .sidebar-phase-link.disabled:hover {
+        border-color: var(--border-color);
+      }
+
+      .workspace-panel {
+        display: none;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .workspace-panel.active {
+        display: flex;
+      }
+
+      .project-dashboard {
+        flex: 1;
+        overflow-y: auto;
+        background: var(--bg-canvas);
+        padding: 1.75rem 2rem 2.5rem;
+      }
+
+      .dashboard-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .dashboard-title {
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.35rem;
+      }
+
+      .dashboard-subtitle {
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+        line-height: 1.45;
+        max-width: 640px;
+      }
+
+      .dashboard-mode-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        border: 1px solid var(--border-color);
+        background: #ffffff;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .dashboard-mode-badge.greenfield {
+        color: #1a7f37;
+        border-color: #4ac26b;
+        background: var(--accent-green-bg);
+      }
+      .dashboard-mode-badge.brownfield {
+        color: #9a6700;
+        border-color: #d4a72c;
+        background: var(--accent-yellow-bg);
+      }
+
+      .dashboard-progress-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem 1.35rem;
+        margin-bottom: 1.25rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .dashboard-progress-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .dashboard-progress-label {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .dashboard-progress-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .dashboard-progress-bar {
+        height: 10px;
+        background: #eef2f6;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .dashboard-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #0969da, #1a7f37);
+        border-radius: 9999px;
+        transition: width 0.35s ease;
+      }
+
+      .dashboard-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.85rem;
+        margin-bottom: 1.25rem;
+      }
+
+      @media (max-width: 1100px) {
+        .dashboard-stats-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .dashboard-stat-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 1rem 1.1rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .dashboard-stat-value {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 0.25rem;
+      }
+
+      .dashboard-stat-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .dashboard-stat-card.approved .dashboard-stat-value {
+        color: var(--accent-green);
+      }
+      .dashboard-stat-card.in-review .dashboard-stat-value {
+        color: var(--accent-yellow);
+      }
+      .dashboard-stat-card.rejected .dashboard-stat-value {
+        color: var(--accent-red);
+      }
+      .dashboard-stat-card.total .dashboard-stat-value {
+        color: var(--accent-blue);
+      }
+
+      .dashboard-grid-2 {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 1.25rem;
+      }
+
+      @media (max-width: 1200px) {
+        .dashboard-grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .dashboard-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 1.15rem 1.25rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .dashboard-card-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 0.85rem;
+        color: var(--text-primary);
+      }
+
+      .dashboard-phase-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.75rem 0.85rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--bg-canvas);
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        transition: border-color 0.15s ease, background 0.15s ease;
+      }
+      .dashboard-phase-row:last-child {
+        margin-bottom: 0;
+      }
+      .dashboard-phase-row:hover:not(.no-file) {
+        border-color: var(--accent-blue);
+        background: #ffffff;
+      }
+      .dashboard-phase-row.no-file {
+        cursor: default;
+        opacity: 0.72;
+      }
+
+      .dashboard-phase-left {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        min-width: 0;
+      }
+
+      .dashboard-phase-icon {
+        font-size: 1.15rem;
+        line-height: 1.2;
+        flex-shrink: 0;
+      }
+
+      .dashboard-phase-name {
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .dashboard-phase-meta {
+        font-size: 0.74rem;
+        color: var(--text-muted);
+        font-family: 'Fira Code', monospace;
+        margin-top: 0.15rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 420px;
+      }
+
+      .dashboard-next-card {
+        border-left: 4px solid var(--accent-blue);
+        background: linear-gradient(135deg, #ffffff 0%, #f6f8fa 100%);
+      }
+
+      .dashboard-next-agent {
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      .dashboard-next-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+      }
+
+      .dashboard-next-desc {
+        font-size: 0.84rem;
+        color: var(--text-secondary);
+        line-height: 1.45;
+        margin-bottom: 0.85rem;
+      }
+
+      .dashboard-recent-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #eef2f6;
+        cursor: pointer;
+      }
+      .dashboard-recent-row:last-child {
+        border-bottom: none;
+      }
+      .dashboard-recent-row:hover {
+        color: var(--accent-blue);
+      }
+
+      .dashboard-recent-name {
+        font-size: 0.84rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .dashboard-recent-path {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        font-family: 'Fira Code', monospace;
+      }
+
       .sidebar-controls {
         padding: 0.85rem;
         border-bottom: 1px solid var(--border-color);
@@ -1389,35 +1768,57 @@
     <div class="app-container">
       <!-- Sidebar -->
       <aside class="sidebar">
-        <div class="sidebar-controls">
-          <div class="search-input-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Search files or paths..." oninput="renderFileTree()" />
-          </div>
-
-          <div class="filter-grid">
-            <select id="sortSelect" class="select-control" onchange="renderFileTree()" title="Sort Files">
-              <option value="alpha-asc">🔤 Name (A → Z)</option>
-              <option value="alpha-desc">🔤 Name (Z → A)</option>
-              <option value="date-desc">🕒 Date (Newest)</option>
-              <option value="date-asc">🕒 Date (Oldest)</option>
-            </select>
-
-            <select id="filterStatusSelect" class="select-control" onchange="renderFileTree()" title="Filter by Status">
-              <option value="all">⚡ All Statuses</option>
-              <option value="In Review">🟡 In Review</option>
-              <option value="Approved">🟢 Approved</option>
-              <option value="Rejected">🔴 Rejected</option>
-            </select>
-          </div>
+        <div class="sidebar-view-toggle">
+          <button type="button" class="sidebar-view-btn" id="btnSidebarDashboard" onclick="setSidebarView('dashboard')">
+            <span>📊</span>
+            <span>Dashboard</span>
+          </button>
+          <button type="button" class="sidebar-view-btn active" id="btnSidebarDocuments" onclick="setSidebarView('documents')">
+            <span>📄</span>
+            <span>Documents</span>
+          </button>
         </div>
 
-        <!-- File Tree -->
-        <div class="file-tree-container" id="fileTreeRoot"></div>
+        <div id="sidebarDocumentsPanel" class="sidebar-panel active">
+          <div class="sidebar-controls">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" class="search-input" placeholder="Search files or paths..." oninput="renderFileTree()" />
+            </div>
+
+            <div class="filter-grid">
+              <select id="sortSelect" class="select-control" onchange="renderFileTree()" title="Sort Files">
+                <option value="alpha-asc">🔤 Name (A → Z)</option>
+                <option value="alpha-desc">🔤 Name (Z → A)</option>
+                <option value="date-desc">🕒 Date (Newest)</option>
+                <option value="date-asc">🕒 Date (Oldest)</option>
+              </select>
+
+              <select id="filterStatusSelect" class="select-control" onchange="renderFileTree()" title="Filter by Status">
+                <option value="all">⚡ All Statuses</option>
+                <option value="In Review">🟡 In Review</option>
+                <option value="Approved">🟢 Approved</option>
+                <option value="Rejected">🔴 Rejected</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="file-tree-container" id="fileTreeRoot"></div>
+        </div>
+
+        <div id="sidebarDashboardNav" class="sidebar-panel sidebar-dashboard-nav">
+          <div class="sidebar-dashboard-nav-title">Pipeline phases</div>
+          <div id="sidebarDashboardPhaseLinks"></div>
+        </div>
       </aside>
 
       <!-- Workspace -->
       <main class="workspace">
+        <div id="workspaceDashboardPanel" class="workspace-panel project-dashboard">
+          <div id="projectDashboardRoot"></div>
+        </div>
+
+        <div id="workspaceDocumentsPanel" class="workspace-panel active">
         <div class="editor-status-bar">
           <div class="status-selection-area">
             <span class="status-label">Document Status:</span>
@@ -1457,6 +1858,7 @@
             oninput="handleContentInput()"
           ></textarea>
         </div>
+        </div>
       </main>
     </div>
 
@@ -1471,6 +1873,7 @@
       let activeFileId = null;
       let isDirty = false;
       let currentMode = 'preview';
+      let sidebarView = localStorage.getItem('acl_sidebar_view') || 'documents';
 
       // Phase Gate Definitions
       function formatFileDateTime(isoString) {
@@ -1500,6 +1903,7 @@
                 } catch (e) {}
                 renderFileTree();
                 loadEmptyState();
+                renderProjectDashboard();
                 setSyncStatus('Synced with VS Code (0 files in _acl-output)', 'green');
                 return true;
               }
@@ -1529,11 +1933,13 @@
               }
               setSyncStatus('Synced with VS Code (Local Test Mode)', 'green');
               evaluateProceedButton();
+              renderProjectDashboard();
               return true;
             }
           }
         } catch (e) {}
         evaluateProceedButton();
+        renderProjectDashboard();
         return false;
       }
 
@@ -1555,6 +1961,7 @@
         closeWorkflowDropdown();
         showToast(`Switched workflow mode to: ${mode === 'brownfield' ? 'Brownfield' : 'Greenfield'}`, 'info');
         evaluateProceedButton();
+        renderProjectDashboard();
       }
 
       function openWorkflowDiagramModal(e) {
@@ -1596,6 +2003,9 @@
         }
 
         evaluateProceedButton();
+
+        setSidebarView(sidebarView, false);
+        renderProjectDashboard();
 
         setInterval(() => {
           if (!isDirty) {
@@ -1654,6 +2064,7 @@
         }
         renderFileTree();
         evaluateProceedButton();
+        renderProjectDashboard();
       }
 
       function updateDocumentStatusFrontmatter(content, newStatus, nowIso = new Date().toISOString()) {
@@ -2129,6 +2540,225 @@
           return `${mode} workflow: no deliverables approved yet. Start with the recommended agent below.`;
         }
         return `${mode} workflow progress: ${approved.join(' → ')}. Choose the next agent to continue.`;
+      }
+
+      function getDashboardPipelineSteps() {
+        return AGENT_STEP_CATALOG.filter((step) => step.modes.includes(activeWorkflowMode) && step.stepKey !== 'story_impl');
+      }
+
+      function statusToBadgeClass(status) {
+        if (status === 'Approved') return 'approved';
+        if (status === 'Rejected') return 'rejected';
+        if (status === 'Missing') return 'missing';
+        return 'in-review';
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function setSidebarView(view, persist = true) {
+        sidebarView = view === 'dashboard' ? 'dashboard' : 'documents';
+        if (persist) {
+          try {
+            localStorage.setItem('acl_sidebar_view', sidebarView);
+          } catch (e) {}
+        }
+
+        const isDashboard = sidebarView === 'dashboard';
+        document.getElementById('btnSidebarDashboard')?.classList.toggle('active', isDashboard);
+        document.getElementById('btnSidebarDocuments')?.classList.toggle('active', !isDashboard);
+        document.getElementById('sidebarDocumentsPanel')?.classList.toggle('active', !isDashboard);
+        document.getElementById('sidebarDashboardNav')?.classList.toggle('active', isDashboard);
+        document.getElementById('workspaceDashboardPanel')?.classList.toggle('active', isDashboard);
+        document.getElementById('workspaceDocumentsPanel')?.classList.toggle('active', !isDashboard);
+
+        if (isDashboard) {
+          renderProjectDashboard();
+        }
+      }
+
+      function openDashboardArtifact(fileId) {
+        if (!fileId) return;
+        setSidebarView('documents');
+        loadFile(fileId);
+      }
+
+      function renderSidebarDashboardNav(steps) {
+        const container = document.getElementById('sidebarDashboardPhaseLinks');
+        if (!container) return;
+
+        if (!steps.length) {
+          container.innerHTML = '<div style="font-size:0.82rem;color:var(--text-muted);">No pipeline phases for this workflow.</div>';
+          return;
+        }
+
+        container.innerHTML = steps
+          .map((step) => {
+            const state = getArtifactState(step);
+            const badgeClass = statusToBadgeClass(state.status);
+            const disabled = !state.file;
+            const fileId = state.file?.id || '';
+            return `
+              <div class="sidebar-phase-link ${disabled ? 'disabled' : ''}" ${disabled ? '' : `onclick="openDashboardArtifact('${fileId}')"`}>
+                <span>${step.icon} ${escapeHtml(step.phase)}</span>
+                <span class="gate-row-badge ${badgeClass}">${escapeHtml(state.status)}</span>
+              </div>
+            `;
+          })
+          .join('');
+      }
+
+      function renderProjectDashboard() {
+        const root = document.getElementById('projectDashboardRoot');
+        if (!root) return;
+
+        const pipelineSteps = getDashboardPipelineSteps();
+        const stepStates = pipelineSteps.map((step) => ({ step, state: getArtifactState(step) }));
+        const approvedCount = stepStates.filter((item) => item.state.status === 'Approved').length;
+        const totalSteps = stepStates.length;
+        const progressPct = totalSteps > 0 ? Math.round((approvedCount / totalSteps) * 100) : 0;
+
+        const fileStats = { total: files.length, approved: 0, inReview: 0, rejected: 0 };
+        files.forEach((file) => {
+          const status = normalizeArtifactStatus(file.status);
+          if (status === 'Approved') fileStats.approved += 1;
+          else if (status === 'Rejected') fileStats.rejected += 1;
+          else fileStats.inReview += 1;
+        });
+
+        const suggestions = buildNextStepSuggestions();
+        const nextStep = suggestions.find((s) => s.recommended) || suggestions.find((s) => s.availability === 'available') || null;
+        const modeLabel = activeWorkflowMode === 'brownfield' ? 'Brownfield' : 'Greenfield';
+        const projectTitle = resolveProjectTitle();
+
+        const recentFiles = [...files]
+          .filter((f) => f.filename && !f.filename.startsWith('.'))
+          .sort((a, b) => new Date(b.updatedAt || b.createdAt || 0) - new Date(a.updatedAt || a.createdAt || 0))
+          .slice(0, 6);
+
+        const storyFiles = files.filter((f) => (f.filename || '').toLowerCase().includes('story-'));
+        const approvedStories = storyFiles.filter((f) => normalizeArtifactStatus(f.status) === 'Approved').length;
+
+        root.innerHTML = `
+          <div class="dashboard-header">
+            <div>
+              <div class="dashboard-title">${escapeHtml(projectTitle)}</div>
+              <div class="dashboard-subtitle">${escapeHtml(getPipelineHint())}</div>
+            </div>
+            <span class="dashboard-mode-badge ${activeWorkflowMode}">${activeWorkflowMode === 'brownfield' ? '🍂' : '🌱'} ${modeLabel}</span>
+          </div>
+
+          <div class="dashboard-progress-card">
+            <div class="dashboard-progress-top">
+              <span class="dashboard-progress-label">Pipeline completion</span>
+              <span class="dashboard-progress-value">${approvedCount} / ${totalSteps} approved (${progressPct}%)</span>
+            </div>
+            <div class="dashboard-progress-bar">
+              <div class="dashboard-progress-fill" style="width: ${progressPct}%"></div>
+            </div>
+          </div>
+
+          <div class="dashboard-stats-grid">
+            <div class="dashboard-stat-card total">
+              <div class="dashboard-stat-value">${fileStats.total}</div>
+              <div class="dashboard-stat-label">Total files</div>
+            </div>
+            <div class="dashboard-stat-card approved">
+              <div class="dashboard-stat-value">${fileStats.approved}</div>
+              <div class="dashboard-stat-label">Approved</div>
+            </div>
+            <div class="dashboard-stat-card in-review">
+              <div class="dashboard-stat-value">${fileStats.inReview}</div>
+              <div class="dashboard-stat-label">In review</div>
+            </div>
+            <div class="dashboard-stat-card rejected">
+              <div class="dashboard-stat-value">${fileStats.rejected}</div>
+              <div class="dashboard-stat-label">Rejected</div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-2">
+            <div class="dashboard-card">
+              <div class="dashboard-card-title">Completed pipeline phases</div>
+              ${stepStates
+                .map(({ step, state }) => {
+                  const badgeClass = statusToBadgeClass(state.status);
+                  const path = state.file
+                    ? `_acl-output/${state.file.folderPath || ''}/${state.file.filename}`.replace(/\/+/g, '/')
+                    : 'Not generated yet';
+                  const rowClass = state.file ? '' : 'no-file';
+                  const clickHandler = state.file ? `onclick="openDashboardArtifact('${state.file.id}')"` : '';
+                  return `
+                    <div class="dashboard-phase-row ${rowClass}" ${clickHandler}>
+                      <div class="dashboard-phase-left">
+                        <span class="dashboard-phase-icon">${step.icon}</span>
+                        <div>
+                          <div class="dashboard-phase-name">${escapeHtml(step.phase)}: ${escapeHtml(step.title)}</div>
+                          <div class="dashboard-phase-meta">${escapeHtml(path)}</div>
+                        </div>
+                      </div>
+                      <span class="gate-row-badge ${badgeClass}">${escapeHtml(state.status)}</span>
+                    </div>
+                  `;
+                })
+                .join('')}
+              ${
+                storyFiles.length > 0
+                  ? `<div style="margin-top:0.85rem;font-size:0.8rem;color:var(--text-secondary);">Story implementations: ${approvedStories} approved of ${storyFiles.length} generated</div>`
+                  : ''
+              }
+            </div>
+
+            <div>
+              <div class="dashboard-card dashboard-next-card" style="margin-bottom:1rem;">
+                <div class="dashboard-card-title">Recommended next step</div>
+                ${
+                  nextStep
+                    ? `
+                  <div class="dashboard-next-agent">${nextStep.icon || '🤖'} ${escapeHtml(nextStep.agent || 'ACL Agent')} · ${escapeHtml(nextStep.agentTitle || '')}</div>
+                  <div class="dashboard-next-title">${escapeHtml(nextStep.displayTitle || nextStep.title)}</div>
+                  <div class="dashboard-next-desc">${escapeHtml(nextStep.displayDesc || nextStep.desc || '')}</div>
+                  <button type="button" class="btn-proceed" style="display:inline-flex;" onclick="openNextStepModal()">
+                    <span>🚀</span>
+                    <span>Proceed with ${escapeHtml(nextStep.displayTitle || nextStep.title)}</span>
+                  </button>
+                `
+                    : `<div class="dashboard-next-desc">All core phases are approved for this workflow. You can continue with story implementation or review documents.</div>`
+                }
+              </div>
+
+              <div class="dashboard-card">
+                <div class="dashboard-card-title">Recent documents</div>
+                ${
+                  recentFiles.length
+                    ? recentFiles
+                        .map((file) => {
+                          const status = normalizeArtifactStatus(file.status);
+                          const badgeClass = statusToBadgeClass(status);
+                          return `
+                          <div class="dashboard-recent-row" onclick="openDashboardArtifact('${file.id}')">
+                            <div style="min-width:0;">
+                              <div class="dashboard-recent-name">${escapeHtml(file.filename)}</div>
+                              <div class="dashboard-recent-path">${escapeHtml(file.folderPath || 'root')}</div>
+                            </div>
+                            <span class="gate-row-badge ${badgeClass}">${escapeHtml(status)}</span>
+                          </div>
+                        `;
+                        })
+                        .join('')
+                    : '<div style="font-size:0.84rem;color:var(--text-muted);">No markdown files in _acl-output yet.</div>'
+                }
+              </div>
+            </div>
+          </div>
+        `;
+
+        renderSidebarDashboardNav(pipelineSteps);
       }
 
       function buildNextStepSuggestions() {
